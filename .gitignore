@@ -1,0 +1,66 @@
+###FRONT###
+
+# dependencies
+/Front/covoit-viveris/node_modules/
+/Front/covoit-viveris/.pnp
+/Front/covoit-viveris/.pnp.js
+
+# testing
+/Front/covoit-viveris/coverage
+
+# production
+/Front/covoit-viveris/build
+
+# misc
+/Front/covoit-viveris/.DS_Store
+/Front/covoit-viveris/.env.local
+/Front/covoit-viveris/.env.development.local
+/Front/covoit-viveris/.env.test.local
+/Front/covoit-viveris/.env.production.local
+
+/Front/covoit-viveris/npm-debug.log*
+/Front/covoit-viveris/yarn-debug.log*
+/Front/covoit-viveris/yarn-error.log*
+
+
+
+###BACK###
+
+Back/.metadata/
+
+Back/API/HELP.md
+Back/API/target/
+!Back/API/.mvn/
+!Back/API/**/src/main/**/target/
+!Back/API/**/src/test/**/target/
+
+### STS ###
+Back/API/.apt_generated
+Back/API/.classpath
+Back/API/.factorypath
+Back/API/.project
+Back/API/.settings
+Back/API/.springBeans
+Back/API/.sts4-cache
+#Back/API/mvnw
+#Back/API/mvnw.cmd
+
+
+### IntelliJ IDEA ###
+Back/API/.idea
+Back/API/*.iws
+Back/API/*.iml
+Back/API/*.ipr
+
+### NetBeans ###
+Back/API/nbproject/private/
+Back/API/nbbuild/
+Back/API/dist/
+Back/API/nbdist/
+Back/API/.nb-gradle/
+Back/API/build/
+!Back/API/**/src/main/**/build/
+!Back/API/**/src/test/**/build/
+
+### VS Code ###
+Back/API/.vscode/
