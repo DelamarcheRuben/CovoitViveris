@@ -1,0 +1,1 @@
+INSERT INTO users (pseudo, level) VALUES ('Henri', 12),('Benoit', 7),('Jeanne', 14),('Ines', 4);
