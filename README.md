@@ -2,7 +2,8 @@
 
 ## Pour le front
 Avec la console:
-  - npm install
+  - npm install vite (si pas encore installé)
+  - npm install (si projet pas initialisé)
   - npm start (pour lancer le serveur eet voir la page web)
 
 ## Pour le back
