@@ -4,7 +4,7 @@
 Avec la console:
   - npm install vite (si pas encore installé)
   - npm install (si projet pas initialisé)
-  - npm start (pour lancer le serveur eet voir la page web)
+  - npm run dev (pour lancer le serveur eet voir la page web)
 
 ## Pour le back
 Avec Eclipse ou la SpringToolSuite : 
