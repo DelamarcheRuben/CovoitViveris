@@ -14,7 +14,7 @@ export function ProfileView(u){
 
     return (
         <div className="profile-view" >
-            <div className="profile-background" style={{ backgroundImage: `url(./src/images/background_profile/background_${u.user.picture}.png)` }}>
+            <div className="profile-background" style={{ backgroundImage: `url(./src/images/background_profile/background_${u.user.picture_background}.png)` }}>
 
             </div>
             <div className="column" style={{ marginTop: "-85px"}}>
@@ -24,9 +24,9 @@ export function ProfileView(u){
                 </div>
                 <div className="row" style={{ lineHeight: "20px"}}>
                     <img src="./src/images/exp/exp_level_1.png" alt="Photo profil" style={{ marginTop: "70px", width: "90%" }}/>
-                    <p style={{ marginTop: "15px", fontSize: "20px" }}><strong>{u.user.name}</strong></p>
-                    <p style={{ fontSize:  "14px" }}>{u.user.job}, {u.user.location}</p>
-                    <p><em style={{ fontSize:  "14px" }}>{u.user.carShares} covoiturages, {u.user.kilometers} km parcourus</em></p>
+                    <p style={{ marginTop: "15px", fontSize: "20px" }}><strong>{u.user.pseudo}</strong></p>
+                    <p style={{ fontSize:  "14px" }}>{u.user.job}, {u.user.city}</p>
+                    <p><em style={{ fontSize:  "14px" }}>{u.user.nb_carshares} covoiturages, {u.user.kilometers} km parcourus</em></p>
                     <div className="column" style={{ marginTop: "10px"}}>
                         <img className="column-item-badge" src="./src/images/badge/badge_1.png" alt="Badge 1"/>
                         <img className="column-item-badge" src="./src/images/badge/badge_2.png" alt="Badge 2"/>

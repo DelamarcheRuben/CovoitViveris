@@ -2,13 +2,20 @@ import React from "react";
 import { Navbar }      from "../components/header/Navbar";
 import { ProfileView } from "../components/ProfileView";
 
-const users = [{ name: "Esteban",   job: "Dev Full-Stack",   location: "Boulogne-Billancourt", carShares: 549, kilometers: 8754, experience: 109, picture: "mountain" },
-               { name: "Alexandra", job: "Business Analyst", location: "Montpellier",          carShares: 93,  kilometers: 2750, experience: 47,  picture: "mountain" },
-               { name: "Enzo",      job: "Developper",        location: "Nice",                carShares: 80,  kilometers: 1800, experience: 35,  picture: "sky"      },
-               { name: "Dimitri",   job: "IT Manager",       location: "Boulogne-Billancourt", carShares: 58,  kilometers: 1500, experience: 33,  picture: "forest"   },
-               { name: "Solenne",   job: "UX Designer",      location: "Montpellier",          carShares: 43,  kilometers: 1240, experience: 28,  picture: "land"     },
-               { name: "Yann",      job: "RH",               location: "Montpellier",          carShares: 39,  kilometers: 1150, experience: 6,  picture: "desert"   }
+const users = [{ pseudo: "Esteban",   job: "Dev Full-Stack",   city: "Boulogne-Billancourt", nb_carshares: 549, kilometers: 8754, experience: 109, picture_background: "mountain" },
+               { pseudo: "Alexandra", job: "Business Analyst", city: "Montpellier",          nb_carshares: 93,  kilometers: 2750, experience: 47,  picture_background: "mountain" },
+               { pseudo: "Enzo",      job: "Developper",        city: "Nice",                nb_carshares: 80,  kilometers: 1800, experience: 35,  picture_background: "sky"      },
+               { pseudo: "Dimitri",   job: "IT Manager",       city: "Boulogne-Billancourt", nb_carshares: 58,  kilometers: 1500, experience: 33,  picture_background: "forest"   },
+               { pseudo: "Solenne",   job: "UX Designer",      city: "Montpellier",          nb_carshares: 43,  kilometers: 1240, experience: 28,  picture_background: "land"     },
+               { pseudo: "Yann",      job: "RH",               city: "Montpellier",          nb_carshares: 39,  kilometers: 1150, experience: 6,  picture_background: "desert"   }
 ]
+
+// var users = [];
+// async function getUsers() {
+//   const response = await fetch("http://localhost:8080/users");
+//   users = await response.json();
+// }
+// await getUsers();
 
 const Ranking = () => {
   return (

@@ -17,7 +17,17 @@ public class User {
     public Long UID;
 
     public String pseudo;
+    
+    public String job;
+    
+    public String city;
+    
+    public String picture_background;
+    
+    public int nb_carshares;
+    
+    public int kilometers;
 
-    public int level;
+    public int experience;
 
 }

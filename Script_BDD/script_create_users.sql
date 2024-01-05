@@ -7,9 +7,15 @@ CREATE TABLE USERS (
   first_name    VARCHAR(42),
   email         VARCHAR(42),
   company_ID    VARCHAR(42),
+  job           VARCHAR(42),
   car_type      VARCHAR(42),
   fuel          VARCHAR(42),
+  city          VARCHAR(42),
+  bonus_loyalty VARCHAR(42),
+  picture_background VARCHAR(42),
+  nb_carshares VARCHAR(42),
+  kilometers   VARCHAR(42),
+  CO_2_economy VARCHAR(42),
   level         INT,
-  experience    VARCHAR(42),
-  bonus_loyalty VARCHAR(42)
+  experience    VARCHAR(42)
 );
