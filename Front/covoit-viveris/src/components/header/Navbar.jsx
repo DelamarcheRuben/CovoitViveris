@@ -41,11 +41,21 @@ export function Navbar(){
             </NavLink>
             <label className="small-screen">{contentLabel()}</label>
             <nav ref={navRef}>
-                <NavLink to="/"         style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal"};}}>Accueil</NavLink>
-                <NavLink to="/schedule" style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal"};}}>Planifier un trajet</NavLink>
-                <NavLink to="/research" style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal"};}}>Rechercher un trajet</NavLink>
-                <NavLink to="/ranking"  style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal"};}}>Classement</NavLink>
-                <NavLink to="/profile"  style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal"};}}>Mon profil</NavLink>
+                <NavLink to="/"         style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
+                                                                            paddingBottom : isActive ? "5px" : "0px",
+                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Accueil</NavLink>
+                <NavLink to="/schedule" style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
+                                                                            paddingBottom : isActive ? "5px" : "0px",
+                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Planifier un trajet</NavLink>
+                <NavLink to="/research" style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
+                                                                            paddingBottom : isActive ? "5px" : "0px",
+                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Rechercher un trajet</NavLink>
+                <NavLink to="/ranking"  style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
+                                                                            paddingBottom : isActive ? "5px" : "0px",
+                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Classement</NavLink>
+                <NavLink to="/profile"  style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
+                                                                            paddingBottom : isActive ? "5px" : "0px",
+                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Mon profil</NavLink>
                 <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                     <FaTimes />
                 </button>
