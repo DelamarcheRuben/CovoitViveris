@@ -1,0 +1,23 @@
+:
+:
+LEAGUE: UID, start_date, end_date
+:
+:
+
+:
+ISPASSENGER, 0N CARSHARE, 0N [passegenr] USER : schedule, start_place, withComeback
+PLAY, 0N USER, 0N LEAGUE : experience
+CONTAIN, 11 USER, 11 STATISTIC
+STATISTIC: UID, kilometers, nb_carshares, CO2_economy
+
+CARSHARE: UID, max_passenger, isFull, schedule, start_place, end_place, distance, bonus_pollution
+DRIVE, 0N CARSHARE, 0N [driver] USER 
+USER: UID, pseudo, password, last_name, first_name, email, companyID, car_type, fuel, level, experience, bonus_loyalty
+SPONSOR, 0N USER, 11 USER
+:
+
+:
+COMPANY : UID, name
+WORK, 0N COMPANY, 11 USER
+PARTICIPATE, 0N USER, 0N CHALLENGE : progression
+CHALLENGE: UID, name, description, bonus_exp, expired_date
