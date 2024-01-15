@@ -3,6 +3,8 @@
 ## Pour le front
 Avec la console:
   - npm install vite (si pas encore installé)
+
+Se placer dans le dossier covoit-viveris (cd Front/covoit-viveris) puis dans la console: 
   - npm install (si projet pas initialisé)
   - npm run dev (pour lancer le serveur eet voir la page web)
 
