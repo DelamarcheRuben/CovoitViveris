@@ -1,0 +1,22 @@
+Choix d'implémentation :
+
+Table CARSHARE :
+schedule -> date et heure d'arrivée à destination
+comeback -> si le covoiturage est aller-retour (TRUE) ou juste aller (FALSE).
+
+Table ISPASSENGER :
+schedule -> date et heure de récupération au point de départ pour cet utilisateur
+
+Table CHALLENGE :
+description -> explique l'objectif du challenge (obj de km, d'économie, nombre de carshares, ...).
+goal -> détermine le niveau de l'objectif (ex : 10 covoiturages ou 3.2 km covoiturés).
+
+TABLE PARTICIPATE (en lien avec CHALLENGE) :
+progression -> indique la progression de l'utilisateur. Une fois que progression==goal, alors challenge réussi.
+
+TABLE USER : 
+fuel_consumption -> consommation d'essence par kilomètre
+level -> niveau du joueur
+experience -> comme dans un jeu vidéo, l'expérience permet d'augmenter de niveau (ex : pour passer du niveau 3 au 4, il y a besoin de gagner 300 exp)
+bonus_loyalty -> si plusieurs covoiturages d'affilées, il y a un bonus d'exp
+UID_sponsor -> l'uid de l'utilisateur qui nous sponsorise (si un utilisateur sponsorise qqn, alors il gagne de l'expérience à chaque covoiturage).
