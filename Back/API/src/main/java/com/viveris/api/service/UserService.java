@@ -25,6 +25,10 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
+	public Iterable<User> getUsersByPseudo(String pseudo) {
+		return userRepository.findByPseudo(pseudo);
+	}
+	
 	public void deleteUser(final Long id) {
 		userRepository.deleteById(id);
 	}
@@ -33,5 +37,7 @@ public class UserService {
 		User savedEmployee = userRepository.save(user);
 		return savedEmployee;
 	}
+
+
 
 }

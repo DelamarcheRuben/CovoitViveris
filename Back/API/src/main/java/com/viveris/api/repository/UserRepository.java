@@ -7,5 +7,5 @@ import com.viveris.api.model.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
-
+	Iterable<User> findByPseudo(String pseudo);
 }
