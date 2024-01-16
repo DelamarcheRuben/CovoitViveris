@@ -1,45 +1,36 @@
 package com.viveris.api.model;
 
-import java.sql.Date;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+
 @Data
 @Entity
-@Table(name = "carshare")
-public class Carshare {
+@Table(name = "ispassenger")
+public class Passenger {
 
-    @Id
-    public Long UID;
+    @EmbeddedId
+    @JsonProperty("UID")
+    public PassengerId UID;
 
-    public Integer max_passenger;
-
-    public Boolean is_Full;
-    
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     public LocalDateTime schedule;
-    
+
     public String start_place;
-    
-    public String end_place;
-    
-    public Float distance;
-    
-    public Float bonus_pollution;
-
-    public Boolean comeback;
-
-    public Long UID_driver;
 
 }
