@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     element: <div><Ranking/></div>
   },
   {
-    path: "/profile",
+    path: "/profile/*",
     element: <div><Profile/></div>
   }
 ])

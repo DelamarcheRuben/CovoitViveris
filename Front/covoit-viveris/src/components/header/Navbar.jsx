@@ -36,23 +36,23 @@ export function Navbar(){
     return (
         <header>
             <NavLink to="/">
-                <img className="large-screen" src="./src/images/logo/logo_viveris.jpg" alt="Logo Viveris" style={{ width: "80%" }}/>
+                <img className="large-screen" src="./src/images/logo/logo_viveris_full.png" alt="Logo Viveris" style={{ width: "70%" }}/>
                 <img className="small-screen" src="./src/images/logo/logo_v.jpg"       alt="Logo Viveris" style={{ width: "80%" }}/>
             </NavLink>
             <label className="small-screen">{contentLabel()}</label>
             <nav ref={navRef}>
                 <NavLink to="/"         style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
                                                                             paddingBottom : isActive ? "5px" : "0px",
-                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Accueil</NavLink>
+                                                                            borderBottom : isActive ? "2px solid #FF5046" : "none"};}}>Accueil</NavLink>
                 <NavLink to="/schedule" style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
                                                                             paddingBottom : isActive ? "5px" : "0px",
-                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Planifier un trajet</NavLink>
+                                                                            borderBottom : isActive ? "2px solid #FF5046" : "none"};}}>Planifier un trajet</NavLink>
                 <NavLink to="/research" style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
                                                                             paddingBottom : isActive ? "5px" : "0px",
-                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Rechercher un trajet</NavLink>
+                                                                            borderBottom : isActive ? "2px solid #FF5046" : "none"};}}>Rechercher un trajet</NavLink>
                 <NavLink to="/ranking"  style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
                                                                             paddingBottom : isActive ? "5px" : "0px",
-                                                                            borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Classement</NavLink>
+                                                                            borderBottom : isActive ? "2px solid #FF5046" : "none"};}}>Classement</NavLink>
                 <NavLink to="/profile"  style={({ isActive }) => { return { fontWeight: isActive ? "bold" : "normal",
                                                                             paddingBottom : isActive ? "5px" : "0px",
                                                                             borderBottom : isActive ? "2px solid #FF393A" : "none"};}}>Mon profil</NavLink>

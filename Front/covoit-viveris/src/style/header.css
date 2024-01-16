@@ -36,7 +36,7 @@ header .nav-btn:hover{
     color: var(--mainColor);
 }
 
-@media only screen and (max-width: 1024px){
+@media only screen and (max-width: 1105px){
     header .nav-btn{
         display   : flex;
         opacity   : 1;
@@ -68,11 +68,10 @@ header .nav-btn:hover{
 
     .small-screen {
         display    : block;
-        font-weight: bold;
     }
 }
 
-@media only screen and (min-width: 1024px){
+@media only screen and (min-width: 1105px){
     
     .large-screen {
         display: block;
