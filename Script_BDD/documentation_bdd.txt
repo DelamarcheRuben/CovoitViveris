@@ -1,5 +1,7 @@
 Choix d'implémentation :
 
+Codage charset : utf8mb4
+
 Table CARSHARE :
 schedule -> date et heure d'arrivée à destination
 comeback -> si le covoiturage est aller-retour (TRUE) ou juste aller (FALSE).

@@ -34,8 +34,8 @@ public class UserService {
 	}
 	
 	public User saveUser(User user) {
-		User savedEmployee = userRepository.save(user);
-		return savedEmployee;
+		User savedUser = userRepository.save(user);
+		return savedUser;
 	}
 
 

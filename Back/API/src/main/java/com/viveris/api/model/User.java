@@ -24,10 +24,10 @@ public class User {
     
     public String picture_background;
     
-    public int nb_carshares;
+    public Integer nb_carshares;
     
-    public int kilometers;
+    public Integer kilometers;
 
-    public int experience;
+    public Integer experience;
 
 }
