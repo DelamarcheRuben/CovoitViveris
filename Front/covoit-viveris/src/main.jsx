@@ -6,8 +6,8 @@ import Schedule from "./webpage/Schedule";
 import Research from "./webpage/Research";
 import Ranking  from "./webpage/Ranking";
 import Profile  from "./webpage/Profile";
-import "./style/main.css"
-import "./style/header.css"
+import "./style/main.css";
+import "./style/header.css";
 
 
 const router = createBrowserRouter([
