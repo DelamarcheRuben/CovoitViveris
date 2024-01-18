@@ -18,7 +18,7 @@ CREATE TABLE CHALLENGE (
   PRIMARY KEY (UID),
   UID          INT NOT NULL AUTO_INCREMENT,
   name         VARCHAR(42),
-  description  VARCHAR(42),
+  description  VARCHAR(200),
   goal         FLOAT,
   bonus_exp    FLOAT,
   expired_date DATE

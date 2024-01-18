@@ -20,3 +20,10 @@ INSERT INTO carshare(max_passenger, schedule, start_place, end_place, UID_driver
 INSERT INTO PASSENGER(UID_carshare, UID_passenger, schedule, start_place) VALUES
 (1, 6, "2024-03-05 8:05:00", "45 rue Émile Zola, 94200"),
 (3, 7, "2024-03-05 7:50:00", "33 rue Lamber Wilson, 91400");
+
+INSERT INTO CHALLENGE(name, description, goal, bonus_exp, expired_date) VALUES
+("Mangeur de kilomètres", "34km en covoiturage en 1 mois", 34, 300, "2024-03-24"),
+("Collègue parfait", "5 personnes différentes en 1 mois", 5, 150, "2024-04-01");
+
+INSERT INTO LEAGUE(start_date, end_date) VALUES
+("2024-03-01", "2024-06-01");

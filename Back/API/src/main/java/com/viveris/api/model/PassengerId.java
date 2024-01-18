@@ -3,7 +3,6 @@ package com.viveris.api.model;
 import java.io.Serializable;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.ManyToOne;
 
 @Embeddable
 public class PassengerId implements Serializable {
