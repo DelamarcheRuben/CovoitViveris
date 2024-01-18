@@ -21,7 +21,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ispassenger")
+@Table(name = "passenger")
 public class Passenger {
 
     @EmbeddedId

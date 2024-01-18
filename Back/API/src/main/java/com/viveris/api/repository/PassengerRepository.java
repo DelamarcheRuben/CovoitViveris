@@ -1,5 +1,6 @@
 package com.viveris.api.repository;
 
+import org.hibernate.mapping.Join;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
