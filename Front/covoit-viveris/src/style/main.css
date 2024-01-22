@@ -19,6 +19,10 @@
     color: var(--mainColor);
 }
 
+.color-company-background{
+    background-color: var(--mainColor);
+}
+
 p{
     margin-bottom: 0px;
 }
@@ -104,8 +108,31 @@ button:hover{
     margin          : auto;
 }
 
+.btn-auth{
+    background-color: var(--mainColor);
+    color           : var(--backgroundColor);
+    width           : 150px;
+    box-shadow      : 0px 5px 10px rgba(0, 0, 0, 0.8);
+    border-radius   : 30px;
+    padding         : 5px;
+    margin          : auto;
+}
+
+.btn-auth-small{
+    color           : var(--textcolor);
+    border          : 1px solid #ffffff; 
+    width           : 100%;
+    box-shadow      : none;
+    font-size       : 20px;
+    margin          : auto;
+}
+
 .btn:hover{
     color: var(--mainColor);
+}
+
+.btn-auth:hover{
+    color: var(--textColor);
 }
 
 /* ===================== Ranking ===================== */
@@ -230,4 +257,69 @@ button:hover{
     .small-screen {
         display: none;
     }
+}
+
+
+
+
+
+
+
+
+.split-header {
+    position: relative;
+    width: 300px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.split-container {
+    position: relative;
+    width: 42%;
+    min-width: 700px;
+    height: 50vh;
+    overflow: hidden;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.left-side,
+.right-side {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  transition: background-color 0.5s ease;
+}
+
+.non-active-side{
+    background-color: var(--mainColor);
+}
+
+.left-side {
+    left: 0;
+  }
+  
+.right-side {
+    right: 0;
+}
+
+.input-stylish {
+    width: 250px;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+    background-color: gainsboro;
+}
+
+.auth-horizontal-line-small {
+    border-bottom: 2px solid var(--secondaryColor); 
+    width        : 150px; 
+    right        : 0;
+}
+
+.auth-horizontal-line-large {
+    border-bottom: 3px solid var(--secondaryColor); 
+    width        : 250px; 
+    right        : 0;
 }

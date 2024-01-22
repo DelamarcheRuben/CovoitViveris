@@ -10,7 +10,7 @@ const COVOITURAGE = [
   { id: "5", heure: "12h30", lieuDepart: "Gif Sur Yvette", lieuArrivee: "Polytech", journee: "Vendredi", occupe:false},
 ]
 
-const HomePage = () => {
+const Home = () => {
 
   return (
     <React.Fragment>
@@ -19,4 +19,4 @@ const HomePage = () => {
   );
 }
 
-export default HomePage;
+export default Home;

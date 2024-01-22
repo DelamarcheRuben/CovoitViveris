@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./webpage/HomePage.jsx";
+import AuthentificationPage from "./components/authentification/AuthentificationPage.jsx";
+import Home     from "./webpage/Home.jsx";
 import Schedule from "./webpage/Schedule";
 import Research from "./webpage/Research";
 import Ranking  from "./webpage/Ranking";
@@ -13,7 +14,11 @@ import "./style/header.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div><HomePage/></div>
+    element: <div><AuthentificationPage/></div>
+  },
+  {
+    path: "/home",
+    element: <div><Home/></div>
   },
   {
     path: "/schedule",
