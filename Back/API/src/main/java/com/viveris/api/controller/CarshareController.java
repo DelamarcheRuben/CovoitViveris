@@ -67,7 +67,7 @@ public class CarshareController {
 	public Carshare updateCarshare(@PathVariable("id") final Long id, @RequestBody Carshare carshare) {
 		Optional<Carshare> e = carshareService.getCarshare(id);
 		if(e.isPresent()) {
-			carshare.setUID(id);
+			carshare.setUid(id);
 			Carshare currentCarshare = carshare;
 			carshareService.saveCarshare(currentCarshare);
 			return currentCarshare;

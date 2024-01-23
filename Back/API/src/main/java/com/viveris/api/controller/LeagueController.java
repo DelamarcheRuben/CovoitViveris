@@ -67,7 +67,7 @@ public class LeagueController {
 	public League updateLeague(@PathVariable("id") final Long id, @RequestBody League league) {
 		Optional<League> e = leagueService.getLeague(id);
 		if(e.isPresent()) {
-			league.setUID(id);
+			league.setUid(id);
 			League currentLeague = league;
 			leagueService.saveLeague(currentLeague);
 			return currentLeague;

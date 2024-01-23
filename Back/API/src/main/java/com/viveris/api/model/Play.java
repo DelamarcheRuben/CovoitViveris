@@ -14,15 +14,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "passenger")
-public class Passenger {
+@Table(name = "play")
+public class Play {
 
     @EmbeddedId
-    public PassengerId uid;
+    public PlayId uid;
 
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    public LocalDateTime schedule;
-
-    public String start_place;
+    public Integer experience;
 
 }

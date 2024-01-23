@@ -68,7 +68,7 @@ public class PassengerController {
 	public Passenger updatePassenger(@RequestParam Long carshare, @RequestParam Long user, @RequestBody Passenger passenger) {
 		Optional<Passenger> e = passengerService.getPassenger(new PassengerId(carshare, user));
 		if(e.isPresent()) {
-			passenger.setUID(new PassengerId(carshare, user));
+			passenger.setUid(new PassengerId(carshare, user));
 			Passenger currentPassenger = passenger;
 			passengerService.savePassenger(currentPassenger);
 			return currentPassenger;

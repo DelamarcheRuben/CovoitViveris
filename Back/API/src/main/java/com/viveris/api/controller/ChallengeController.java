@@ -67,7 +67,7 @@ public class ChallengeController {
 	public Challenge updateChallenge(@PathVariable("id") final Long id, @RequestBody Challenge challenge) {
 		Optional<Challenge> e = challengeService.getChallenge(id);
 		if(e.isPresent()) {
-			challenge.setUID(id);
+			challenge.setUid(id);
 			Challenge currentChallenge = challenge;
 			challengeService.saveChallenge(currentChallenge);
 			return currentChallenge;

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -19,7 +20,8 @@ import lombok.Data;
 public class Carshare {
 
     @Id
-    public Long UID;
+    @Column(name="UID")
+    public Long uid;
 
     public Integer max_passenger;
 
