@@ -1,6 +1,8 @@
 import React from "react";
+import { useUser } from "../../context/UserContext";
 
-export function ProfileSummary(u){
+export function ProfileSummary(){
+    const { user } = useUser();
 
     return (
         <React.Fragment>
@@ -25,10 +27,10 @@ export function ProfileSummary(u){
                         <p>Date de début         </p>
                     </div>
                     <div className="col">
-                        <p>{u.user.kilometers} km</p>
-                        <p>{u.user.nb_carshares} </p>
-                        <p>{u.user.nb_badges}    </p>
-                        <p>{u.user.start_date}   </p>
+                        <p>{user.kilometers} km</p>
+                        <p>{user.nb_carshares} </p>
+                        <p>{user.nb_badges}    </p>
+                        <p>{user.start_date}   </p>
                     </div>
                 </div>
             </div>
@@ -56,10 +58,10 @@ export function ProfileSummary(u){
                         <p style={{ fontSize:"22px"}}>Date de début         </p>
                     </div>
                     <div className="col">
-                        <p style={{ fontSize:"22px"}}>{u.user.kilometers} km</p>
-                        <p style={{ fontSize:"22px"}}>{u.user.nb_carshares} </p>
-                        <p style={{ fontSize:"22px"}}>{u.user.nb_badges}    </p>
-                        <p style={{ fontSize:"22px"}}>{u.user.start_date}   </p>
+                        <p style={{ fontSize:"22px"}}>{user.kilometers} km</p>
+                        <p style={{ fontSize:"22px"}}>{user.nb_carshares} </p>
+                        <p style={{ fontSize:"22px"}}>{user.nb_badges}    </p>
+                        <p style={{ fontSize:"22px"}}>{user.start_date}   </p>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,8 @@
 import React from "react";
+import { useUser } from "../../context/UserContext";
 
-export function ProfileBadges(u){
+export function ProfileBadges(){
+    const { user } = useUser();
 
     return (
         <React.Fragment>

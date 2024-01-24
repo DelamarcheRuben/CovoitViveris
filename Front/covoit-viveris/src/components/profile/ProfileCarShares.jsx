@@ -1,6 +1,8 @@
 import React from "react";
+import { useUser } from "../../context/UserContext";
 
-export function ProfileCarShares(u){
+export function ProfileCarShares(){
+    const { user } = useUser();
 
     return (
         <React.Fragment>

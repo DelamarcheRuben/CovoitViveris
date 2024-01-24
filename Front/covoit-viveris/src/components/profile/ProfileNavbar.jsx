@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useLocation, NavLink, Route, Routes } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 import { ProfileBadges   } from "./ProfileBadges";
 import { ProfileCarShares} from "./ProfileCarShares";
 import { ProfileFriends  } from "./ProfileFriends";
@@ -9,8 +10,8 @@ import { ProfileUpdate   } from "./ProfileUpdate";
 
 
 
-export function ProfileNavbar(u){
-
+export function ProfileNavbar(){
+    const { user } = useUser();
     const location = useLocation();
     const [currentUrl, setCurrentUrl] = useState("profile");
 
@@ -58,16 +59,16 @@ export function ProfileNavbar(u){
     return (
         <React.Fragment>
             <div className="small-screen">
-                <img className="center-picture" src={`./src/images/background_profile/background_${u.user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
+                <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
-                <p className="color-company center" style={{ marginTop: "-46px" }}><strong style={{ fontSize: "12px" }}> {u.user.experience} </strong></p>
-                <p className="center" style={{ marginTop: "10px" }}><strong style={{ fontSize: "4.5vw" }}>{u.user.pseudo}</strong></p>
-                <p className="center" style={{ fontSize:  "3vw" }}>{u.user.job}, {u.user.city}</p>
+                <p className="color-company center" style={{ marginTop: "-46px" }}><strong style={{ fontSize: "12px" }}> {user.experience} </strong></p>
+                <p className="center" style={{ marginTop: "10px" }}><strong style={{ fontSize: "4.5vw" }}>{user.pseudo}</strong></p>
+                <p className="center" style={{ fontSize:  "3vw" }}>{user.job}, {user.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "50%" }}>
-                    <div className="profile-progress" style={{ width: `${u.user.nb_carshares*1000 / u.user.kilometers}%`}}></div>
+                    <div className="profile-progress" style={{ width: `${user.nb_carshares*1000 / user.kilometers}%`}}></div>
                 </div>
-                <p className="center" style={{ marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "4vw" }}>{u.user.nb_carshares} / {u.user.kilometers}</strong></p>
+                <p className="center" style={{ marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "4vw" }}>{user.nb_carshares} / {user.kilometers}</strong></p>
 
                 <div className="row justify-content-center">
                     <div className="col center">
@@ -111,26 +112,26 @@ export function ProfileNavbar(u){
                 ) : null}
 
                 <Routes>
-                    <Route path="updateProfile"    element={<ProfileUpdate    user={u.user}/>} />
-                    <Route path="carSharesHistory" element={<ProfileCarShares user={u.user}/>} />
-                    <Route path="badges"           element={<ProfileBadges    user={u.user}/>} />
-                    <Route path=""                 element={<ProfileSummary   user={u.user}/>} />
+                    <Route path="updateProfile"    element={<ProfileUpdate    />} />
+                    <Route path="carSharesHistory" element={<ProfileCarShares />} />
+                    <Route path="badges"           element={<ProfileBadges    />} />
+                    <Route path=""                 element={<ProfileSummary   />} />
                 </Routes>
             </div>
 
 
 
             <div className="large-screen">
-                <img className="center-picture" src={`./src/images/background_profile/background_${u.user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
+                <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>
-                <p className={`color-company center`} style={{ marginTop: "-70px" }}><strong style={{ fontSize: "22px" }}>{u.user.experience}</strong></p>
-                <p className="center" style={{ marginTop: "15px" }}><strong style={{ fontSize: "30px" }}>{u.user.pseudo}</strong></p>
-                <p className="center" style={{ fontSize:  "15px" }}>{u.user.job}, {u.user.city}</p>
+                <p className={`color-company center`} style={{ marginTop: "-70px" }}><strong style={{ fontSize: "22px" }}>{user.experience}</strong></p>
+                <p className="center" style={{ marginTop: "15px" }}><strong style={{ fontSize: "30px" }}>{user.pseudo}</strong></p>
+                <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "25%" }}>
-                    <div className="profile-progress" style={{ width: `${u.user.nb_carshares*1000 / u.user.kilometers}%`}}></div>
+                    <div className="profile-progress" style={{ width: `${user.nb_carshares*1000 / user.kilometers}%`}}></div>
                 </div>
-                <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{u.user.nb_carshares} / {u.user.kilometers}</strong></p>
+                <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{user.nb_carshares} / {user.kilometers}</strong></p>
 
                 <div className="row justify-content-center">
                     <div className="col-md-2 mb-4 center">
@@ -182,11 +183,11 @@ export function ProfileNavbar(u){
                 ) : null}
 
                 <Routes>
-                    <Route path="updateProfile"    element={<ProfileUpdate    user={u.user}/>} />
-                    <Route path="carSharesHistory" element={<ProfileCarShares user={u.user}/>} />
-                    <Route path="badges"           element={<ProfileBadges    user={u.user}/>} />
-                    <Route path="friends"          element={<ProfileFriends   user={u.user}/>} />
-                    <Route path=""                 element={<ProfileSummary   user={u.user}/>} />
+                    <Route path="updateProfile"    element={<ProfileUpdate    />} />
+                    <Route path="carSharesHistory" element={<ProfileCarShares />} />
+                    <Route path="badges"           element={<ProfileBadges    />} />
+                    <Route path="friends"          element={<ProfileFriends   />} />
+                    <Route path=""                 element={<ProfileSummary   />} />
                 </Routes>
 
             </div>

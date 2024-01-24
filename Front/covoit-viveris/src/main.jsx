@@ -1,20 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AuthentificationPage from "./components/authentification/AuthentificationPage.jsx";
-import Home     from "./webpage/Home.jsx";
-import Schedule from "./webpage/Schedule";
-import Research from "./webpage/Research";
-import Ranking  from "./webpage/Ranking";
-import Profile  from "./webpage/Profile";
+import Login    from "./pages/Login";
+import Home     from "./pages/Home";
+import Schedule from "./pages/Schedule";
+import Research from "./pages/Research";
+import Ranking  from "./pages/Ranking";
+import Profile  from "./pages/Profile";
 import "./style/main.css";
 import "./style/header.css";
+import { UserProvider } from "./context/UserContext";
+
 
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <div><AuthentificationPage/></div>
+    path: "/login",
+    element: <div><Login/></div>
   },
   {
     path: "/home",
@@ -40,6 +42,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <UserProvider>
+      <RouterProvider router={router}/>
+    </UserProvider>
   </React.StrictMode>,
 )

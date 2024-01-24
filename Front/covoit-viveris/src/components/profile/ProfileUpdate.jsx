@@ -1,6 +1,8 @@
 import React from "react";
+import { useUser } from "../../context/UserContext";
 
-export function ProfileUpdate(u){
+export function ProfileUpdate(){
+    const { user } = useUser();
 
     return (
         <React.Fragment>

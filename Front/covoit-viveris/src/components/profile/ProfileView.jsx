@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useLocation, NavLink, Routes, Route } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 import { ProfileNavbar  } from "./ProfileNavbar";
 import { ProfileFriends } from "./ProfileFriends";
 
 export function ProfileView(u){
+    const { user } = useUser();
 
     const location = useLocation();
     const [currentUrl, setCurrentUrl] = useState("profile");
@@ -35,15 +37,15 @@ export function ProfileView(u){
                     </div>
                 </div>
                 <Routes>
-                    <Route path="friends" element={<ProfileFriends user={u.user}/>} />
-                    <Route path="*"       element={<ProfileNavbar  user={u.user}/>} />
+                    <Route path="friends" element={<ProfileFriends />} />
+                    <Route path="*"       element={<ProfileNavbar  />} />
                 </Routes>
             </div>
 
 
 
             <div className="large-screen">
-                <ProfileNavbar user={u.user}/>
+                <ProfileNavbar />
             </div>
         </React.Fragment>
 

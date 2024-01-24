@@ -1,6 +1,8 @@
 import React from "react";
+import { useUser } from "../../context/UserContext";
 
-export function ProfileFriends(u){
+export function ProfileFriends(){
+    const { user } = useUser();
 
     return (
         <React.Fragment>

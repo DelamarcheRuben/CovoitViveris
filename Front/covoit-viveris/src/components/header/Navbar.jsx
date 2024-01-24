@@ -2,10 +2,10 @@ import React from "react";
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from "react-icons/fa";
-// import { useAuth } from "../authentification/AuthProvider";
+import { useUser } from "../../context/UserContext";
 
 export function Navbar(){
-    // const { user, login, logout } = useAuth();
+    const { logout } = useUser();
 
     // Interact with DOM elements
     const navRef   = useRef();
@@ -17,7 +17,7 @@ export function Navbar(){
     }
 
     useEffect(() => {
-        if(location.pathname == "/"){
+        if(location.pathname == "/home"){
             setCurrentUrl("home");
         }
         else if(location.pathname == "/schedule"){
@@ -58,17 +58,22 @@ export function Navbar(){
 
     return (
         <header>
-            <NavLink to="/">
+            <NavLink to="/home">
                 <img className="small-screen" src="./src/images/logo/logo_v.jpg"            alt="Logo Viveris" style={{ width: "80%" }}/>
                 <img className="large-screen" src="./src/images/logo/logo_viveris_full.png" alt="Logo Viveris" style={{ width: "70%" }}/>
             </NavLink>
             <label className="small-screen">{contentLabel()}</label>
-            <nav ref={navRef}>
+            <nav ref={navRef} style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
                 <NavLink to="/home"     className={`${currentUrl === "home"     ? 'active-link' : 'no-active-link'}`}>Accueil             </NavLink>
                 <NavLink to="/schedule" className={`${currentUrl === "schedule" ? 'active-link' : 'no-active-link'}`}>Planifier un trajet </NavLink>
                 <NavLink to="/research" className={`${currentUrl === "research" ? 'active-link' : 'no-active-link'}`}>Rechercher un trajet</NavLink>
                 <NavLink to="/ranking"  className={`${currentUrl === "ranking"  ? 'active-link' : 'no-active-link'}`}>Classement          </NavLink>
                 <NavLink to="/profile"  className={`${currentUrl === "profile"  ? 'active-link' : 'no-active-link'}`}>Mon profil          </NavLink>
+                <NavLink to="/login" className="small-screen" onClick={logout}> Déconnexion </NavLink>
+                <NavLink to="/login" className="large-screen" style={{ maxWidth:"50px" }}onClick={logout}> 
+                    <img src="./src/images/logo/logout.jpg" alt="Logout" style={{ width: "50%" }}></img>
+                </NavLink> 
+
                 <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                     <FaTimes />
                 </button>

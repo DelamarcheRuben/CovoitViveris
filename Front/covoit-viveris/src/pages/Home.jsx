@@ -1,5 +1,7 @@
 import React from "react";
 import { Navbar } from "../components/header/Navbar";
+import { useUser } from "../context/UserContext";
+import { NavLink } from "react-router-dom";
 
 
 const COVOITURAGE = [
@@ -11,10 +13,13 @@ const COVOITURAGE = [
 ]
 
 const Home = () => {
+  const { user, logout } = useUser();
+  
 
   return (
     <React.Fragment>
       <Navbar />
+      <p>{user.pseudo}/{user.uid}</p>
     </React.Fragment>
   );
 }
