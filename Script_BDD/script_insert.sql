@@ -27,3 +27,17 @@ INSERT INTO CHALLENGE(name, description, goal, bonus_exp, expired_date) VALUES
 
 INSERT INTO LEAGUE(start_date, end_date) VALUES
 ("2024-03-01", "2024-06-01");
+
+INSERT INTO PLAY(UID_league, UID_user, experience) VALUES
+(1, 1, 100),
+(1, 2, 200),
+(1, 3, 300),
+(1, 4, 400),
+(1, 5, 500),
+(1, 6, 600),
+(1, 7, 700);
+
+INSERT INTO PARTICIPATE(UID_challenge, UID_user, progression) VALUES
+(1, 2, 16.6),
+(1, 5, 5.4),
+(2, 4, 2);
