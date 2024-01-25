@@ -10,31 +10,31 @@ public class PassengerId implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Long UID_carshare;
-	private Long UID_passenger;
+	private Long uid_carshare;
+	private Long uid_passenger;
 
 	public PassengerId() {
     }
 	
-    public PassengerId(Long UID_carshare, Long UID_passenger) {
-        this.UID_carshare = UID_carshare;
-        this.UID_passenger = UID_passenger;
+    public PassengerId(Long uid_carshare, Long uid_passenger) {
+        this.uid_carshare = uid_carshare;
+        this.uid_passenger = uid_passenger;
     }
     
-    public Long getUID_carshare() {
-		return UID_carshare;
+    public Long getuid_carshare() {
+		return uid_carshare;
 	}
 
-	public void setUID_carshare(Long uID_carshare) {
-		UID_carshare = uID_carshare;
+	public void setuid_carshare(Long uID_carshare) {
+		uid_carshare = uID_carshare;
 	}
 
-	public Long getUID_passenger() {
-		return UID_passenger;
+	public Long getuid_passenger() {
+		return uid_passenger;
 	}
 
-	public void setUID_passenger(Long uID_passenger) {
-		UID_passenger = uID_passenger;
+	public void setuid_passenger(Long uID_passenger) {
+		uid_passenger = uID_passenger;
 	}
 	
 	@Override

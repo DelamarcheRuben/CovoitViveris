@@ -10,36 +10,36 @@ public class ParticipateId implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Long UID_challenge;
-	private Long UID_user;
+	private Long uid_challenge;
+	private Long uid_user;
 
 	public ParticipateId(Long uID_challenge, Long uID_user) {
-		UID_challenge = uID_challenge;
-		UID_user = uID_user;
+		uid_challenge = uID_challenge;
+		uid_user = uID_user;
 	}
 
     
 
-	public Long getUID_league() {
-		return UID_challenge;
+	public Long getuid_league() {
+		return uid_challenge;
 	}
 
 
 
-	public void setUID_league(Long uID_league) {
-		UID_challenge = uID_league;
+	public void setuid_league(Long uID_league) {
+		uid_challenge = uID_league;
 	}
 
 
 
-	public Long getUID_user() {
-		return UID_user;
+	public Long getuid_user() {
+		return uid_user;
 	}
 
 
 
-	public void setUID_user(Long uID_user) {
-		UID_user = uID_user;
+	public void setuid_user(Long uID_user) {
+		uid_user = uID_user;
 	}
 
 
