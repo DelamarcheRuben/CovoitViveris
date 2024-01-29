@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import Login    from "./pages/Login";
 import Home     from "./pages/Home";
 import Schedule from "./pages/Schedule";
@@ -14,6 +14,10 @@ import { UserProvider } from "./context/UserContext";
 
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div><Navigate to="/login" /></div>
+  },
   {
     path: "/login",
     element: <div><Login/></div>

@@ -129,7 +129,7 @@ export function ProfileNavbar(){
                 <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "25%" }}>
-                    <div className="profile-progress" style={{ width: `${user.nb_carshares*1000 / user.kilometers}%`}}></div>
+                    <div className="profile-progress" style={{ width: `${user.nb_carshares*10 / user.kilometers}%`}}></div>
                 </div>
                 <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{user.nb_carshares} / {user.kilometers}</strong></p>
 

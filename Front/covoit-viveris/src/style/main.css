@@ -135,6 +135,65 @@ button:hover{
     color: var(--textColor);
 }
 
+/* ===================== Authentification ===================== */
+.split-header {
+    width   : 300px;
+    height  : 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.split-container {
+    width     : 42%;
+    min-width : 700px;
+    height    : 50vh;
+    position  : relative;
+    overflow  : hidden;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.left-side,
+.right-side {
+  width     : 50%;
+  height    : 100%;
+  position  : absolute;
+  transition: background-color 0.5s ease;
+}
+
+.non-active-side{
+    background-color: var(--mainColor);
+}
+
+.left-side {
+    left: 0;
+  }
+  
+.right-side {
+    right: 0;
+}
+
+.input-stylish {
+    width     : 250px;
+    background-color: gainsboro;
+    font-size : 16px;
+    padding   : 5px;
+    border    : 1px solid #ccc;
+    outline   : none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.auth-horizontal-line-small {
+    width        : 150px; 
+    right        : 0;
+    border-bottom: 2px solid var(--secondaryColor); 
+}
+
+.auth-horizontal-line-large {
+    width        : 250px; 
+    right        : 0;
+    border-bottom: 3px solid var(--secondaryColor);
+}
+
 /* ===================== Ranking ===================== */
 .ranking-background{
     background-image     : url(./src/images/background_ranking.png);
@@ -191,16 +250,16 @@ button:hover{
 
 /* ===================== Badge ===================== */
 .badge-view{
-    width        : 600px;
-    height       : 300px;
+    width        : 500px;
+    height       : 850px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.1);
     margin       : auto;
     margin-bottom: 25px;
 }
 
 .badge-view-small{
-    width        : 300px;
-    height       : 150px;
+    width        : 350px;
+    height       : 725px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.1);
     margin       : auto;
     margin-bottom: 25px;
@@ -236,6 +295,22 @@ button:hover{
     border          : 2px solid red; 
 }
 
+/* ===================== Information Circle (Badge) ===================== */
+.circle {
+    width           : 30px;
+    height          : 30px;
+    background-color: black;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    border-radius   : 50%;
+    cursor          : pointer;
+  }
+  
+.circle:hover {
+    background-color: var(--mainColor);
+}
+
 /* ===================== Media queries ===================== */
 @media only screen and (max-width: 1105px){
     
@@ -257,69 +332,4 @@ button:hover{
     .small-screen {
         display: none;
     }
-}
-
-
-
-
-
-
-
-
-.split-header {
-    position: relative;
-    width: 300px;
-    height: 30px;
-    overflow: hidden;
-}
-
-.split-container {
-    position: relative;
-    width: 42%;
-    min-width: 700px;
-    height: 50vh;
-    overflow: hidden;
-    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.left-side,
-.right-side {
-  height: 100%;
-  width: 50%;
-  position: absolute;
-  transition: background-color 0.5s ease;
-}
-
-.non-active-side{
-    background-color: var(--mainColor);
-}
-
-.left-side {
-    left: 0;
-  }
-  
-.right-side {
-    right: 0;
-}
-
-.input-stylish {
-    width: 250px;
-    font-size: 16px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    outline: none;
-    transition: border-color 0.3s ease-in-out;
-    background-color: gainsboro;
-}
-
-.auth-horizontal-line-small {
-    border-bottom: 2px solid var(--secondaryColor); 
-    width        : 150px; 
-    right        : 0;
-}
-
-.auth-horizontal-line-large {
-    border-bottom: 3px solid var(--secondaryColor); 
-    width        : 250px; 
-    right        : 0;
 }

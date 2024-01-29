@@ -70,7 +70,7 @@ export function Navbar(){
                 <NavLink to="/ranking"  className={`${currentUrl === "ranking"  ? 'active-link' : 'no-active-link'}`}>Classement          </NavLink>
                 <NavLink to="/profile"  className={`${currentUrl === "profile"  ? 'active-link' : 'no-active-link'}`}>Mon profil          </NavLink>
                 <NavLink to="/login" className="small-screen" onClick={logout}> Déconnexion </NavLink>
-                <NavLink to="/login" className="large-screen" style={{ maxWidth:"50px" }}onClick={logout}> 
+                <NavLink to="/login" className="large-screen" style={{ maxWidth:"50px", marginLeft:"10px" }}onClick={logout}> 
                     <img src="./src/images/logo/logout.jpg" alt="Logout" style={{ width: "50%" }}></img>
                 </NavLink> 
 
