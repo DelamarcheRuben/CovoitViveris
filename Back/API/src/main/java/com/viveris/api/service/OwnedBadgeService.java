@@ -26,6 +26,10 @@ public class OwnedBadgeService {
 		return ownedBadgeRepository.findAll();
 	}
 	
+	public Iterable<OwnedBadge> getOwnedBadgesByUserId(Integer user_id) {
+		return ownedBadgeRepository.findByUser_Uid(user_id);
+	}
+	
 	
 	public void deleteOwnedBadge(final OwnedBadgeId id) {
 		ownedBadgeRepository.deleteById(id);

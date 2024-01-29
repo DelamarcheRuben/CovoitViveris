@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,7 +55,8 @@ public class OwnedBadgeController {
 	 * @return - An Iterable object of OwnedBadge full filled
 	 */
 	@GetMapping("/ownedbadges")
-	public Iterable<OwnedBadge> getOwnedBadges() {
+	public Iterable<OwnedBadge> getOwnedBadges(@RequestParam(required=false) Integer user_id) {
+		if(user_id!=null) return ownedBadgeService.getOwnedBadgesByUserId(user_id);
 		return ownedBadgeService.getOwnedBadges();
 	}
 	

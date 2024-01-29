@@ -8,4 +8,5 @@ import com.viveris.api.model.OwnedBadgeId;
 
 @Repository
 public interface OwnedBadgeRepository extends CrudRepository<OwnedBadge, OwnedBadgeId> {
+	Iterable<OwnedBadge> findByUser_Uid(Integer user_uid);
 }
