@@ -58,5 +58,5 @@ INSERT INTO OWNEDBADGE(UID_badge, UID_user, level) VALUES
 (2, 1, 2),
 (3, 1, 3),
 (4, 2, 4),
-(5, 2, 5),
+(5, 2, 3),
 (6, 3, 2);
