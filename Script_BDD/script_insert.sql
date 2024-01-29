@@ -41,3 +41,22 @@ INSERT INTO PARTICIPATE(UID_challenge, UID_user, progression) VALUES
 (1, 2, 16.6),
 (1, 5, 5.4),
 (2, 4, 2);
+
+
+INSERT INTO BADGE(name_badge, picture_badge) VALUES
+("Covoitureur", "covoitureur.png"),
+("Covoiturage consécutif", "covoit_consecutif.png"),
+("Kilométrage", "kilometrage.png"),
+("Éco-citoyen", "eco_citoyen.png"),
+("Vétéran", "veteran.png"),
+("Annonceur", "annonceur.png"),
+("Partenaire", "partenaire.png"),
+("Challenge", "challenge.png");
+
+INSERT INTO OWNEDBADGE(UID_badge, UID_user, level) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 4),
+(5, 2, 5),
+(6, 3, 2);
