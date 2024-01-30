@@ -26,4 +26,8 @@ public class Badge {
     public String name_badge;
     
     public String picture_badge;
+    
+    public String description;
+    
+    public String goals;
 }

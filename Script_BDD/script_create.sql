@@ -63,7 +63,9 @@ CREATE TABLE BADGE (
   PRIMARY KEY (UID),
   UID        INT NOT NULL AUTO_INCREMENT,
   name_badge VARCHAR(42),
-  picture_badge VARCHAR(42)
+  description VARCHAR(150),
+  picture_badge VARCHAR(42),
+  goals VARCHAR(42)
 );
 
 CREATE TABLE OWNEDBADGE (
