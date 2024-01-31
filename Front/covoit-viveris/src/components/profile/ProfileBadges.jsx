@@ -74,6 +74,7 @@ export function ProfileBadges(){
 
     return (
         <React.Fragment>
+            {window.innerWidth < 1105 && 
             <div className="small-screen">
                 <div className="badge-view-small">
                     <p><strong className="center-div-picture" style={{ fontSize:"20px", paddingTop:"15px" }}>GALERIES DE BADGES : </strong></p>
@@ -92,9 +93,10 @@ export function ProfileBadges(){
                     
                 </div>
             </div>
+            }
 
 
-
+            {window.innerWidth >= 1105 && 
             <div className="large-screen" style={{ marginTop:"20px"}}>
                 <div className="badge-view">
                     <p><strong className="center-div-picture" style={{ fontSize:"20px", paddingTop:"15px" }}>GALERIES DE BADGES : </strong></p>
@@ -120,6 +122,7 @@ export function ProfileBadges(){
                     
                 </div>
             </div>
+            }
         </React.Fragment>
     );
 }

@@ -6,6 +6,7 @@ export function ProfileSummary(){
 
     return (
         <React.Fragment>
+            {window.innerWidth < 1105 &&
             <div className="small-screen">
                 <div className="row" style={{ marginTop:"10px" }}>
                     <div className="col center">
@@ -34,9 +35,10 @@ export function ProfileSummary(){
                     </div>
                 </div>
             </div>
+            }
 
 
-
+            {window.innerWidth >= 1105 && 
             <div className="large-screen">
                 <div className="row" style={{ marginTop:"10px" }}>
                     <div className="col center">
@@ -65,6 +67,7 @@ export function ProfileSummary(){
                     </div>
                 </div>
             </div>
+            }
         </React.Fragment>
     );
 }
