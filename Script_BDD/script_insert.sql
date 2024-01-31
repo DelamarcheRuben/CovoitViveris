@@ -44,14 +44,14 @@ INSERT INTO PARTICIPATE(UID_challenge, UID_user, progression) VALUES
 
 
 INSERT INTO BADGE(name_badge, picture_badge, description, goals) VALUES
-("Covoitureur", "covoitureur.png", "covoiturages réalisés", "5, 20, 50, 100"),
-("Covoiturage consécutif", "covoit_consecutif.png", "covoiturages consécutifs réalisés", "2, 3, 5, 10"),
-("Kilométrage", "kilometrage.png", "Parcourez des kilomètres en covoiturage", "50, 150, 500, 1000"),
-("Éco-citoyen", "eco_citoyen.png", "Réduisez vos émissions de CO2 grâce au covoiturage", "1, 2, 3, 4"),
-("Vétéran", "veteran.png", "Utilisez l'application de covoiturage pendant plusieurs semaines", "2, 4, 12, 24"),
-("Annonceur", "annonceur.png", "Postez des annonces de covoiturage", "3, 10, 20, 50"),
-("Partenaire", "partenaire.png", "Partagez un covoiturage avec plusieurs passagers différents","2, 3, 5, 10"),
-("Challenge", "challenge.png", "Réussir des challenges", "2, 3, 5, 10" );
+("Covoitureur", "covoitureur", "covoiturages réalisés", "5, 20, 50, 100"),
+("Covoiturage consécutif", "covoitureur_consecutif", "covoiturages consécutifs réalisés", "2, 3, 5, 10"),
+("Kilométrage", "kilometrage", "Parcourez des kilomètres en covoiturage", "50, 150, 500, 1000"),
+("Éco-citoyen", "eco_citoyen", "Réduisez vos émissions de CO2 grâce au covoiturage", "1, 2, 3, 4"),
+("Vétéran", "veteran", "Utilisez l'application de covoiturage pendant plusieurs semaines", "2, 4, 12, 24"),
+("Annonceur", "annonceur", "Postez des annonces de covoiturage", "3, 10, 20, 50"),
+("Partenaire", "partenaire", "Partagez un covoiturage avec plusieurs passagers différents","2, 3, 5, 10"),
+("Challenge", "challenge", "Réussir des challenges", "2, 3, 5, 10" );
 
 INSERT INTO OWNEDBADGE(UID_badge, UID_user, level) VALUES
 (1, 1, 1),

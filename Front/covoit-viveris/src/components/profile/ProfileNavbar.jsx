@@ -72,6 +72,8 @@ export function ProfileNavbar(){
 
     return (
         <React.Fragment>
+
+            {window.innerWidth < 1105 && 
             <div className="small-screen">
                 <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
@@ -132,9 +134,9 @@ export function ProfileNavbar(){
                     <Route path=""                 element={<ProfileSummary   />} />
                 </Routes>
             </div>
+            }
 
-
-
+            {window.innerWidth >= 1105 && 
             <div className="large-screen">
                 <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>
@@ -143,7 +145,7 @@ export function ProfileNavbar(){
                 <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "25%" }}>
-                    <div className="profile-progress" style={{ width: `${user.nb_carshares*10 / user.kilometers}%`}}></div>
+                    <div className="profile-progress" style={{ width: `${(user.nb_carshares / user.kilometers)*100}%`}}></div>
                 </div>
                 <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{user.nb_carshares} / {user.kilometers}</strong></p>
 
@@ -205,6 +207,7 @@ export function ProfileNavbar(){
                 </Routes>
 
             </div>
+            }
         </React.Fragment>
     );
 }

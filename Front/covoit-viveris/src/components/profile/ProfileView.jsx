@@ -23,6 +23,8 @@ export function ProfileView(u){
 
     return (
         <React.Fragment>
+            
+            {window.innerWidth < 1105 && 
             <div className="small-screen" style={{ height:"50px", marginTop: "-10px" }}>
                 <div className="row flex-nowrap">
                     <div className="col center" >
@@ -40,13 +42,13 @@ export function ProfileView(u){
                     <Route path="friends" element={<ProfileFriends />} />
                     <Route path="*"       element={<ProfileNavbar  />} />
                 </Routes>
-            </div>
+            </div>}
 
-
-
+            {window.innerWidth >= 1105 && 
             <div className="large-screen">
                 <ProfileNavbar />
             </div>
+            }
         </React.Fragment>
 
     );

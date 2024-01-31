@@ -10,6 +10,7 @@ import Profile  from "./pages/Profile";
 import "./style/main.css";
 import "./style/header.css";
 import { UserProvider } from "./context/UserContext";
+import { ProfileNavbar } from "./components/profile/ProfileNavbar";
 
 
 
@@ -45,9 +46,9 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <UserProvider>
       <RouterProvider router={router}/>
     </UserProvider>
-  </React.StrictMode>,
+  //</React.StrictMode>
 )
