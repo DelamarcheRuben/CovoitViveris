@@ -1,10 +1,10 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUser } from "../../context/UserContext";
 import { Tooltip } from "../Tooltip";
 
 
-export function ProfileBadges(){
+export function ProfileBadges({badges}){
     const { user } = useUser();
 
     const [showTooltip, setShowTooltip] = useState(false);
@@ -50,31 +50,31 @@ export function ProfileBadges(){
                         "challenge_"
                         ];
 
-    const goalBadge = [
-                        [5, 20, 50, 100],
-                        [2, 3, 5, 10],
-                        [50, 150, 500, 1000],
-                        [1, 2, 3, 4],
-                        [2, 4, 12, 24],
-                        [3, 10, 20, 50],
-                        [2, 3, 5, 10],
-                        [2, 3, 5, 10]
-                      ]
+    const goalBadge = [];
+    // for (let index = 0; index < badges.length; index++) {
+    //     goalBadge.push(badges[index].split(", "))
+    // }
+    
 
     const tooltipContent = "Bronze &nbsp; : 5 <br>Argent &nbsp;&nbsp; : 20 <br>Or &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 50 <br>Diamant : 100";
 
-    const badgeData = badgeTitle.map((item, index) => ({
-        title: item,
-        description: badgeDescription[index],
-        picture: badgePicture[index],
-        id: index % 4 + 1,
-        content: "Bronze &nbsp; : " + goalBadge[index][0] + "<br>Argent &nbsp;&nbsp; : " + goalBadge[index][1] + " <br>Or &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : " + goalBadge[index][2] + " <br>Diamant : " + goalBadge[index][3]
-    }));
+    console.log(badges);
+    
+    // const badgeData = badges.map((item, index) => ({
+    //     title: item.name_badge,
+    //     description: item.description,
+    //     picture: item.picture_badge+"_",
+    //     id: index % 4 + 1,
+    //     content: "Bronze &nbsp; : " + goalBadge[index][0] + "<br>Argent &nbsp;&nbsp; : " + goalBadge[index][1] + " <br>Or &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : " + goalBadge[index][2] + " <br>Diamant : " + goalBadge[index][3]
+    // }));
+
+
+    
 
 
     return (
         <React.Fragment>
-            <div className="small-screen">
+            {/* <div className="small-screen">
                 <div className="badge-view-small">
                     <p><strong className="center-div-picture" style={{ fontSize:"20px", paddingTop:"15px" }}>GALERIES DE BADGES : </strong></p>
                     
@@ -119,7 +119,7 @@ export function ProfileBadges(){
                     ))}
                     
                 </div>
-            </div>
+            </div> */}
         </React.Fragment>
     );
 }

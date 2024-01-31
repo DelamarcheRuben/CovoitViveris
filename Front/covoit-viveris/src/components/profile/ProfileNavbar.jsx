@@ -9,11 +9,25 @@ import { ProfileSummary  } from "./ProfileSummary";
 import { ProfileUpdate   } from "./ProfileUpdate";
 
 
-
 export function ProfileNavbar(){
     const { user } = useUser();
     const location = useLocation();
     const [currentUrl, setCurrentUrl] = useState("profile");
+    const [badges, setBadges] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:8080/badges")
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            setBadges(data);
+        });
+      }, []);
+    
+
+    
+
 
     useEffect(() => {
         if(location.pathname == "/profile/updateProfile"){
@@ -185,7 +199,7 @@ export function ProfileNavbar(){
                 <Routes>
                     <Route path="updateProfile"    element={<ProfileUpdate    />} />
                     <Route path="carSharesHistory" element={<ProfileCarShares />} />
-                    <Route path="badges"           element={<ProfileBadges    />} />
+                    <Route path="badges"           element={<ProfileBadges badges={badges}    />} />
                     <Route path="friends"          element={<ProfileFriends   />} />
                     <Route path=""                 element={<ProfileSummary   />} />
                 </Routes>
