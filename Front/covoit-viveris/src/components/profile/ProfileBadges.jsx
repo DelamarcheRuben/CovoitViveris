@@ -4,8 +4,10 @@ import { useUser } from "../../context/UserContext";
 import { Tooltip } from "../Tooltip";
 
 
-export function ProfileBadges({badges}){
+export function ProfileBadges(){
     const { user } = useUser();
+    const [badges, setBadges] = useState([]);
+    const [ownedBadges, setOwnedBadges] = useState([]);
 
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -17,56 +19,50 @@ export function ProfileBadges({badges}){
         setShowTooltip(false);
     };
 
-    // const badgeTitle =  [
-    //                     "Covoitureur", 
-    //                     "Covoitureur Consécutif", 
-    //                     "Kilométrage", 
-    //                     "Eco-Citoyen", 
-    //                     "Vétéran", 
-    //                     "Annonceur", 
-    //                     "Partenaire", 
-    //                     "Challenge"
-    //                     ];
+    useEffect(() => {
+        fetch("http://localhost:8080/badges")
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            setBadges(data);
+        });
 
-    // const badgeDescription =[   
-    //                         "covoiturages réalisés", 
-    //                         "covoiturages consécutifs réalisés", 
-    //                         "Parcourez 50 km en covoiturage", 
-    //                         "Réduisez --- d'émissions de CO2 grâce au covoiturage", 
-    //                         "Utilisez l'application de covoiturage pendant 2 semaine", 
-    //                         "Postez 3 annonces de covoiturage", 
-    //                         "Partagez un covoiturage avec 2 passagers différents",
-    //                         "Réussir 2 challenges"
-    //                         ];
-
-    // const badgePicture =[   
-    //                     "covoiturage_", 
-    //                     "covoiturage_consecutif_", 
-    //                     "kilometrage_", 
-    //                     "eco_citoyen_", 
-    //                     "veteran_", 
-    //                     "annonceur_", 
-    //                     "partenaire_",
-    //                     "challenge_"
-    //                     ];
+        fetch("http://localhost:8080/ownedbadges?user_id="+user.uid)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            setOwnedBadges(data);
+        });
+      }, []);
 
     const goalBadge = [];
     for (let index = 0; index < badges.length; index++) {
         goalBadge.push(badges[index].goals.split(", "))
     }
-    
 
-    const tooltipContent = "Bronze &nbsp; : 5 <br>Argent &nbsp;&nbsp; : 20 <br>Or &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 50 <br>Diamant : 100";
+    var badgeData = []
 
-    
-    
-    const badgeData = badges.map((item, index) => ({
-        title: item.name_badge,
-        description: item.description,
-        picture: item.picture_badge.substring(0, (item.picture_badge.length)-4)+"_",
-        id: index % 4 + 1,
-        content: "Bronze &nbsp; : " + goalBadge[index][0] + "<br>Argent &nbsp;&nbsp; : " + goalBadge[index][1] + " <br>Or &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : " + goalBadge[index][2] + " <br>Diamant : " + goalBadge[index][3]
-    }));
+    for (let index = 0; index < badges.length; index++) {
+        var item = badges[index];
+        //le num badge à afficher est le level du badge pour user actuel
+        var num_badge = ownedBadges.find((element) => element.uid.uid_badge === item.uid);
+        if(num_badge===undefined) num_badge = 0;
+        else num_badge = num_badge.level;
+
+        const tooltipContent = "Bronze &nbsp; : " + goalBadge[index][0] + "<br>Argent &nbsp;&nbsp; : " + 
+                            goalBadge[index][1] + " <br>Or &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : " + 
+                            goalBadge[index][2] + " <br>Diamant : " + goalBadge[index][3]
+
+        badgeData.push({
+            title: item.name_badge,
+            description: item.description,
+            picture: item.picture_badge.substring(0, (item.picture_badge.length)-4)+"_",
+            num_badge: num_badge,
+            content: tooltipContent
+        })
+    }
 
 
     console.log(badgeData);
@@ -82,7 +78,7 @@ export function ProfileBadges({badges}){
                     {badgeData.map((data, index) => (
                         <div className="row center-picture" style={{ marginTop:"20px" }}>
                             <div className="col" style={{ maxWidth:"75px", marginLeft:"5%" }}>
-                                <img className="center-picture" src={`../src/images/badge/${data.picture}${data.id}.png`} alt={`Badge ${data.title}`} width="100%"/>
+                                <img className="center-picture" src={`../src/images/badge/${data.picture}${data.num_badge}.png`} alt={`Badge ${data.title}`} width="100%"/>
                             </div>
                             <div className="col" style={{ maxWidth:"300px"}}>
                                 <p className="center"><strong style={{ fontSize:"15px" }}>{data.title}</strong></p>
@@ -111,7 +107,7 @@ export function ProfileBadges({badges}){
                                 </Tooltip>
                             </div>
                             <div className="col" style={{ maxWidth:"100px", marginLeft:"5%" }}>
-                                <img className="large-screen center-picture" src={`../src/images/badge/${data.picture}${data.id}.png`} alt={`Badge ${data.title}`} width="100%"/>
+                                <img className="large-screen center-picture" src={`../src/images/badge/${data.picture}${data.num_badge}.png`} alt={`Badge ${data.title}`} width="100%"/>
                             </div>
                             <div className="col" style={{ width:"80px"}}>
                                 <p className="center"><strong style={{ fontSize:"19px" }}>{data.title}</strong></p>

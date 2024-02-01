@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
+import * as levels from "../../functions/levels"
 import { useLocation, NavLink, Route, Routes } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { ProfileBadges   } from "./ProfileBadges";
@@ -13,20 +14,8 @@ export function ProfileNavbar(){
     const { user } = useUser();
     const location = useLocation();
     const [currentUrl, setCurrentUrl] = useState("profile");
-    const [badges, setBadges] = useState([]);
-
-    useEffect(() => {
-        fetch("http://localhost:8080/badges")
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            setBadges(data);
-        });
-      }, []);
     
 
-    
 
 
     useEffect(() => {
@@ -77,14 +66,14 @@ export function ProfileNavbar(){
             <div className="small-screen">
                 <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
-                <p className="color-company center" style={{ marginTop: "-46px" }}><strong style={{ fontSize: "12px" }}> {user.experience} </strong></p>
+                <p className="color-company center" style={{ marginTop: "-46px" }}><strong style={{ fontSize: "12px" }}> {user.level} </strong></p>
                 <p className="center" style={{ marginTop: "10px" }}><strong style={{ fontSize: "4.5vw" }}>{user.pseudo}</strong></p>
                 <p className="center" style={{ fontSize:  "3vw" }}>{user.job}, {user.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "50%" }}>
-                    <div className="profile-progress" style={{ width: `${user.nb_carshares*1000 / user.kilometers}%`}}></div>
+                    <div className="profile-progress" style={{ width: `${(levels.compute_current_level_exp(user.level, user.experience)/levels.compute_next_level_exp(user.level))*100}%`}}></div>
                 </div>
-                <p className="center" style={{ marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "4vw" }}>{user.nb_carshares} / {user.kilometers}</strong></p>
+                <p className="center" style={{ marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "4vw" }}>{levels.compute_current_level_exp(user.level, user.experience)} / {levels.compute_next_level_exp(user.level)}</strong></p>
 
                 <div className="row justify-content-center">
                     <div className="col center">
@@ -140,14 +129,14 @@ export function ProfileNavbar(){
             <div className="large-screen">
                 <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>
-                <p className={`color-company center`} style={{ marginTop: "-70px" }}><strong style={{ fontSize: "22px" }}>{user.experience}</strong></p>
+                <p className={`color-company center`} style={{ marginTop: "-70px" }}><strong style={{ fontSize: "22px" }}>{user.level}</strong></p>
                 <p className="center" style={{ marginTop: "15px" }}><strong style={{ fontSize: "30px" }}>{user.pseudo}</strong></p>
                 <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "25%" }}>
-                    <div className="profile-progress" style={{ width: `${(user.nb_carshares / user.kilometers)*100}%`}}></div>
+                    <div className="profile-progress" style={{ width: `${(levels.compute_current_level_exp(user.level, user.experience)/levels.compute_next_level_exp(user.level))*100}%`}}></div>
                 </div>
-                <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{user.nb_carshares} / {user.kilometers}</strong></p>
+                <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{levels.compute_current_level_exp(user.level, user.experience)} / {levels.compute_next_level_exp(user.level)}</strong></p>
 
                 <div className="row justify-content-center">
                     <div className="col-md-2 mb-4 center">
@@ -201,7 +190,7 @@ export function ProfileNavbar(){
                 <Routes>
                     <Route path="updateProfile"    element={<ProfileUpdate    />} />
                     <Route path="carSharesHistory" element={<ProfileCarShares />} />
-                    <Route path="badges"           element={<ProfileBadges badges={badges}    />} />
+                    <Route path="badges"           element={<ProfileBadges    />} />
                     <Route path="friends"          element={<ProfileFriends   />} />
                     <Route path=""                 element={<ProfileSummary   />} />
                 </Routes>
