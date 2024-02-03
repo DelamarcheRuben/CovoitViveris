@@ -19,6 +19,8 @@ progression -> indique la progression de l'utilisateur. Une fois que progression
 TABLE USER : 
 fuel_consumption -> consommation d'essence par kilomètre
 level -> niveau du joueur
-experience -> comme dans un jeu vidéo, l'expérience permet d'augmenter de niveau (ex : pour passer du niveau 3 au 4, il y a besoin de gagner 300 exp)
+experience -> comme dans un jeu vidéo, l'expérience permet d'augmenter de niveau 
+    (ex : pour passer du niveau 3 au 4, il y a besoin de gagner 300 exp)
+    On stocke l'expérience du niveau actuelle. L'expérience totale est calculable si besoin
 bonus_loyalty -> si plusieurs covoiturages d'affilées, il y a un bonus d'exp
 UID_sponsor -> l'uid de l'utilisateur qui nous sponsorise (si un utilisateur sponsorise qqn, alors il gagne de l'expérience à chaque covoiturage).

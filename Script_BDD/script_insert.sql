@@ -2,13 +2,13 @@ INSERT INTO COMPANY(name) VALUES ("Viveris");
 
 
 INSERT INTO users (pseudo, job, city, picture_background, nb_carshares, kilometers, experience, level, UID_company) VALUES 
-("Esteban",    "Dev Full-Stack",    "Boulogne-Billancourt",    "desert"   ,549,  8754,  400, 9, 1),
-("Alexandra",  "Business Analyst",  "Montpellier", "land", 93,   2750,  47, 2, 1),
-("Enzo",       "Developper",         "Nice", "forest", 80,   1800,  270, 7, 1),
-("Dimitri",    "IT Manager",        "Boulogne-Billancourt", "sky", 58,   1500,  4500, 29, 1),
-("Solenne",    "UX Designer",       "Montpellier", "mountain" ,  43,   1240,  2800, 24, 1),
-("Yann",       "RH",                "Montpellier", "mountain" ,  39,   1150,  12, 1, 1),
-("Ruben",    "Dev Back",    "Paris",    "desert"   ,10,  50,  87, 4, 1);
+("Esteban",    "Dev Full-Stack",    "Boulogne-Billancourt",    "desert"   ,549,  8754,  50, 9, 1),
+("Alexandra",  "Business Analyst",  "Montpellier", "land", 93,   2750,  12, 2, 1),
+("Enzo",       "Developper",         "Nice", "forest", 80,   1800,  23, 7, 1),
+("Dimitri",    "IT Manager",        "Boulogne-Billancourt", "sky", 58,   1500,  351, 29, 1),
+("Solenne",    "UX Designer",       "Montpellier", "mountain" ,  43,   1240,  200, 24, 1),
+("Yann",       "RH",                "Montpellier", "mountain" ,  39,   1150,  0, 1, 1),
+("Ruben",    "Dev Back",    "Paris",    "desert"   ,10,  50,  17, 4, 1);
 
 
 INSERT INTO carshare(max_passenger, schedule, start_place, end_place, UID_driver) VALUES
