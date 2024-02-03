@@ -295,22 +295,6 @@ button:hover{
     border          : 2px solid red; 
 }
 
-/* ===================== Information Circle (Badge) ===================== */
-.circle {
-    width           : 30px;
-    height          : 30px;
-    background-color: black;
-    display         : flex;
-    align-items     : center;
-    justify-content : center;
-    border-radius   : 50%;
-    cursor          : pointer;
-  }
-  
-.circle:hover {
-    background-color: var(--mainColor);
-}
-
 /* ===================== Media queries ===================== */
 @media only screen and (max-width: 1105px){
     
@@ -332,4 +316,62 @@ button:hover{
     .small-screen {
         display: none;
     }
+}
+
+
+.endCarShare-background{
+    background-image     : url(./src/images/background_map.png);
+    background-size      : 50%;
+    background-repeat    : no-repeat;
+    background-position  : top center;
+    z-index              : -1;
+}
+
+.carShare-travel-info{
+    width        : 440px;
+    height       : 170px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top: 15px;
+    background-color: white;
+}
+  
+.circle {
+    width : 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+  
+.line {
+    height: 35px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: black; /* Couleur de la ligne, à personnaliser */
+    margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
+.circle-experience {
+    width : 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 4px solid var(--mainColor);
+}
+
+.carShare-co2-saved{
+    width        : 440px;
+    height       : 100px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top: 15px;
+    background-color: white;
+}
+
+.carShare-experience{
+    width        : 440px;
+    height       : 325px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top: 15px;
+    background-color: white;
 }

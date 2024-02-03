@@ -53,6 +53,7 @@ const Ranking = () => {
   return (
     <React.Fragment>
       <Navbar />
+      {window.innerWidth < 1105 &&
       <div className="small-screen">
         <p className="center" style={{ marginBottom: "20px" }}>Le classement est actualisé tous les matins. <br></br> Atteignez les plus hautes places pour gagner des récompenses ! </p>
         <div className="center">
@@ -79,9 +80,10 @@ const Ranking = () => {
             </React.Fragment>
           ))} 
       </div>
+      }
 
 
-
+      {window.innerWidth >= 1105 &&
       <div className="large-screen">
         <div className="ranking-background">
           <p className="center" style={{ marginBottom: "20px" }}>Le classement est actualisé tous les matins. <br></br> Atteignez les plus hautes places pour gagner des récompenses ! </p>
@@ -108,6 +110,7 @@ const Ranking = () => {
           ))}
         </div>
       </div>
+      }
     </React.Fragment>
   );
 };

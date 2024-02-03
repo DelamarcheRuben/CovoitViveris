@@ -11,6 +11,7 @@ import "./style/main.css";
 import "./style/header.css";
 import { UserProvider } from "./context/UserContext";
 import { ProfileNavbar } from "./components/profile/ProfileNavbar";
+import EndCarShare from "./pages/EndCarShare";
 
 
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/profile/*",
     element: <div><Profile/></div>
+  },
+  {
+    path: "/endCarShare",
+    element: <div><EndCarShare/></div>
   }
 ])
 

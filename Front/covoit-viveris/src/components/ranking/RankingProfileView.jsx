@@ -14,6 +14,7 @@ export function RankingProfileView(u){
 
     return (
         <React.Fragment>
+            {window.innerWidth < 1105 &&
             <div className="small-screen">
                 <div className="ranking-profile-view-small" style={{ maxWidth: "290px"}}>
 
@@ -36,9 +37,10 @@ export function RankingProfileView(u){
                     </div>
                 </div>
             </div>
+            }
 
             
-            
+            {window.innerWidth >= 1105 && 
             <div className="large-screen">
                 <div className="ranking-profile-view">
                     <div className="profile-background" style={{ backgroundImage: `url(./src/images/background_profile/background_${u.user.picture_background}.png)` }}>
@@ -64,6 +66,7 @@ export function RankingProfileView(u){
                     </div>
                 </div>
             </div>
+            }
 
         </React.Fragment>
     );
