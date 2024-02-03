@@ -31,15 +31,18 @@ export function compute_current_level_exp(current_level, total_exp)
     return total_exp-total_exp_level(current_level);
 }
 
+// Retourne l'expérience du level l
 export function level_experience(level){
     level = level - 1;
     return Math.ceil(first_level_exp * Math.pow(1.05, level) + 5 * ((Math.pow(1.05, level) - 1)/(1.05 - 1))); 
 }
 
+// Retourne l'expérience gagné grâce à un trajet
 export function calculate_experience_carShare(nb_people, bonus_streak, bonus_pollution, bonus_day){
     return Math.ceil((10+2*nb_people) * bonus_streak * bonus_pollution * bonus_day); 
 }
 
+// Retourne le nombre de level gagné avec le trajet
 export function level_up(level, exp_user, exp_car_share, nb_level){
     if(exp_user + exp_car_share < level_experience(level)){
         return nb_level;
@@ -49,6 +52,7 @@ export function level_up(level, exp_user, exp_car_share, nb_level){
     }
 }
 
+// Retourne l'expérience de l'user à la fin du trajet dans son nouveau level
 export function experience_user_end_carShare(level, exp_user, exp_car_share){
     if(exp_user + exp_car_share < level_experience(level)){
         return exp_car_share;
@@ -58,13 +62,12 @@ export function experience_user_end_carShare(level, exp_user, exp_car_share){
     }
 }
 
+// Retourne vrai si l'utilisateur augmente de level et faux sinon
 export function increase_level(level, exp_user, exp_car_share){
     if(exp_user + exp_car_share < level_experience(level)){
-        console.log(false);
         return false;
     }
     else{
-        console.log(true);
         return true;
     }
 }
