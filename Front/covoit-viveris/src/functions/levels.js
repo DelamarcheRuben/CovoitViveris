@@ -33,7 +33,7 @@ export function compute_current_level_exp(current_level, total_exp)
 
 // Retourne l'expérience du level l
 export function level_experience(level){
-    level = level - 1;
+    level = level;
     return Math.ceil(first_level_exp * Math.pow(1.05, level) + 5 * ((Math.pow(1.05, level) - 1)/(1.05 - 1))); 
 }
 
@@ -45,9 +45,11 @@ export function calculate_experience_carShare(nb_people, bonus_streak, bonus_pol
 // Retourne le nombre de level gagné avec le trajet
 export function level_up(level, exp_user, exp_car_share, nb_level){
     if(exp_user + exp_car_share < level_experience(level)){
+        console.log(exp_car_share);
         return nb_level;
     }
     else{
+        console.log(exp_car_share);
         return level_up(level+1, 0, exp_car_share - (level_experience(level) - exp_user), nb_level+1);
     }
 }
