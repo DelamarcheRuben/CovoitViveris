@@ -58,7 +58,7 @@ export function ProfileBadges(){
         badgeData.push({
             title: item.name_badge,
             description: item.description,
-            picture: item.picture_badge.substring(0, (item.picture_badge.length)-4)+"_",
+            picture: item.picture_badge.substring(0, (item.picture_badge.length))+"_",
             num_badge: num_badge,
             content: tooltipContent
         })

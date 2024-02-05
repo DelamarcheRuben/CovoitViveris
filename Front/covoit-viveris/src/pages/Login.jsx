@@ -15,7 +15,6 @@ const Login = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         updateUser(data[0]);
         navigate('/home');
       });

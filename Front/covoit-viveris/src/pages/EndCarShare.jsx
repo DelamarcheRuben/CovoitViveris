@@ -8,20 +8,18 @@ import * as levels from "../functions/levels";
 const EndCarShare = () => {
   const id_carshare = 1;
   const navigate = useNavigate();
-  const { user, setUser } = useUser();
+  const { user } = useUser();
   const [data, setData] = useState();
 
   useEffect(() => {
-    console.log("--------------------------------------")
     fetch("http://localhost:8080/carshare/"+id_carshare)
     .then((res) => {
         return res.json();
     })
     .then((data_json) => {
-        // console.log(data_json)
         const carShareUser = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16), 
         endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place, endLocation:data_json.end_place, 
-        co2Saved:895, level:6, experience:5, nbPeople:data_json.max_passenger};
+        co2Saved:895, level:user.level, experience:user.experience, nbPeople:data_json.max_passenger};
         const bonus = {bonusStreak:1.2, bonusPollution:1.5, bonusDay: 1.5};
         const experience_earned = levels.calculate_experience_carShare(carShareUser.nbPeople, bonus.bonusStreak, bonus.bonusPollution, bonus.bonusDay); 
         const level_up  = levels.level_up(carShareUser.level, carShareUser.experience, experience_earned, 0); 
@@ -32,9 +30,6 @@ const EndCarShare = () => {
             level_up:level_up, level_end:level_end, experience_end:experience_end});
     });
   }, []);
-
-    
-  console.log(data);
 
 
   const handleClickRanking = () => {
@@ -101,7 +96,7 @@ const EndCarShare = () => {
             <div className="carShare-experience">
                 <div className="row" style={{ margin:"20px", paddingTop:"10px" }}>
                     <div className="col" style={{ marginLeft:"40px" }}>
-                        <p style={{ fontSize:"25px" }}>{10 + data.carShare.nbPeople * 2}0XP</p>
+                        <p style={{ fontSize:"25px" }}>{10 + data.carShare.nbPeople * 2}XP</p>
                     </div>
                     <div className="col center">
                         <p>accumulés pendant ce covoiturage</p>
