@@ -62,7 +62,7 @@ export function ProfileNavbar(){
     return (
         <React.Fragment>
 
-            {window.innerWidth < 1105 && 
+            {user && window.innerWidth < 1105 && 
             <div className="small-screen">
                 <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
@@ -125,7 +125,7 @@ export function ProfileNavbar(){
             </div>
             }
 
-            {window.innerWidth >= 1105 && 
+            {user && window.innerWidth >= 1105 && 
             <div className="large-screen">
                 <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>

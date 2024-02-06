@@ -29,7 +29,7 @@ const EndCarShare = () => {
         setData({carShare:carShareUser, bonus:bonus, experience_earned:experience_earned, 
             level_up:level_up, level_end:level_end, experience_end:experience_end});
     });
-  }, []);
+  }, [user]);
 
 
   const handleClickRanking = () => {
