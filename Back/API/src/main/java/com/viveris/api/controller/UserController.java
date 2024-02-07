@@ -75,11 +75,15 @@ public class UserController {
 			if(pseudo != null) {
 				currentUser.setPseudo(pseudo);
 			}
-			int level = user.getExperience();
+			int level = user.getLevel();
 			if(level>0) {
-				currentUser.setExperience(level);;
+				currentUser.setLevel(level);;
 			}
-
+			int experience = user.getExperience();
+			if(experience>0) {
+				currentUser.setExperience(experience);
+			}
+			
 			userService.saveUser(currentUser);
 			return currentUser;
 		} else {

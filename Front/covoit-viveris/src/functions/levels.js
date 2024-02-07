@@ -1,13 +1,15 @@
-const first_level_exp = 12;
+const FIRST_LEVEL_EXP = 12;
+
 
 function formula_level_exp(experience) {
     return Math.ceil(experience*1.05+5);
 }
 
+//total de l'xp obtenu au début du niveau
 function total_exp_level(level)
 {
-    var next_level_exp = first_level_exp;
-    var total_exp = first_level_exp;
+    var next_level_exp = FIRST_LEVEL_EXP;
+    var total_exp = FIRST_LEVEL_EXP;
     for(var i=1;i<level;++i)
     {
         next_level_exp = formula_level_exp(next_level_exp);
@@ -16,25 +18,9 @@ function total_exp_level(level)
     return total_exp;
 }
 
-export function compute_next_level_exp(current_level)
-{
-    var next_level_exp = first_level_exp;
-    for(var i=0;i<current_level;++i)
-    {
-        next_level_exp = formula_level_exp(next_level_exp);
-    }
-    return next_level_exp;
-}
-
-export function compute_current_level_exp(current_level, total_exp)
-{
-    return total_exp-total_exp_level(current_level);
-}
-
 // Retourne l'expérience du level l
 export function level_experience(level){
-    level = level;
-    return Math.ceil(first_level_exp * Math.pow(1.05, level) + 5 * ((Math.pow(1.05, level) - 1)/(1.05 - 1))); 
+    return total_exp_level(level)-total_exp_level(level-1);
 }
 
 // Retourne l'expérience gagné grâce à un trajet
@@ -45,11 +31,9 @@ export function calculate_experience_carShare(nb_people, bonus_streak, bonus_pol
 // Retourne le nombre de level gagné avec le trajet
 export function level_up(level, exp_user, exp_car_share, nb_level){
     if(exp_user + exp_car_share < level_experience(level)){
-        console.log(exp_car_share);
         return nb_level;
     }
     else{
-        console.log(exp_car_share);
         return level_up(level+1, 0, exp_car_share - (level_experience(level) - exp_user), nb_level+1);
     }
 }

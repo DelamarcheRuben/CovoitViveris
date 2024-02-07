@@ -28,9 +28,20 @@ const EndCarShare = () => {
 
         setData({carShare:carShareUser, bonus:bonus, experience_earned:experience_earned, 
             level_up:level_up, level_end:level_end, experience_end:experience_end});
+
+        var update_user = {uid:user.uid, level:level_end, experience:experience_end}
+        const options = {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(update_user)
+        };
+        fetch("http://localhost:8080/user/"+user.uid, options)
+        .then((res) => {
+        })
     });
   }, [user]);
-
 
   const handleClickRanking = () => {
     navigate('/ranking');
@@ -128,7 +139,7 @@ const EndCarShare = () => {
                 </div>
                 <p className="center" style={{ marginTop:"10px" }}><strong>+{data.experience_earned} points d'expériences gagnés</strong></p>
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "75%" }}>
-                    {levels.increase_level(data.carShare.level, data.carShare.experience, levels.calculate_experience_carShare(data.carShare.nbPeople, data.bonus.bonusStreak, data.bonus.bonusPollution, data.bonus.bonusDay)) === true 
+                    {data.level_up > 0
                         ? <div className="profile-progress" style={{ background: `linear-gradient(to right, #fc948c 0%, #fc948c ${data.experience_end / levels.level_experience(data.level_end) * 100}%, white ${data.experience_end / levels.level_experience(data.level_end) * 100}%, white 100%)` }}></div> 
                         : <div className="profile-progress" style={{ background: `linear-gradient(to right, #ff5046 0%, #ff5046 ${data.carShare.experience / levels.level_experience(data.carShare.level) * 100}%, #fc948c ${data.carShare.experience / levels.level_experience(data.carShare.level) * 100}%, #fc948c ${(data.carShare.experience + data.experience_earned) / levels.level_experience(data.carShare.level) * 100}%, white ${(data.carShare.experience + data.experience_earned) / levels.level_experience(data.carShare.level) * 100}%, white 100%)` }}></div>
                     }
