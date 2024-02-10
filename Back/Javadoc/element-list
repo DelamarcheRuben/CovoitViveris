@@ -1,0 +1,5 @@
+com.viveris.api
+com.viveris.api.controller
+com.viveris.api.model
+com.viveris.api.repository
+com.viveris.api.service

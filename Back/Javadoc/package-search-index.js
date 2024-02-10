@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.viveris.api"},{"l":"com.viveris.api.controller"},{"l":"com.viveris.api.model"},{"l":"com.viveris.api.repository"},{"l":"com.viveris.api.service"}];updateSearchResults();

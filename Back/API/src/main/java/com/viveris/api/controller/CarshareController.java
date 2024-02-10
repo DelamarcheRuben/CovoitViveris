@@ -25,12 +25,11 @@ public class CarshareController {
 	
 	/**
 	 * Create - Add a new carshare
-	 * @param carshare An object carshare
+	 * @param carshare An object carshare : in the json, carshare.driver.uid must be given
 	 * @return The carshare object saved
 	 */
 	@PostMapping("/carshare")
 	public Carshare createCarshare(@RequestBody Carshare carshare) {
-		System.out.println(carshare);
 		return carshareService.saveCarshare(carshare);
 	}
 	
@@ -60,12 +59,12 @@ public class CarshareController {
 	}
 	
 	/**
-	 * Read - Get all carshares that are not full
+	 * Read - Get all carshares that are not full and not linked with a given user
 	 * @param id_user : a user that is not in the carshares
 	 * @return - An Iterable object of Carshare full filled
 	 */
 	@GetMapping("/not-full-carshares")
-	public Iterable<Carshare> getNotFullCarshares(@RequestParam(required = false) Integer id_user ) {
+	public Iterable<Carshare> getNotFullCarshares(@RequestParam(required = true) Integer id_user ) {
 		return carshareService.getNotFullCarshares(id_user);
 	}
 	
