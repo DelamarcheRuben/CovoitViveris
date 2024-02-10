@@ -30,6 +30,7 @@ public class CarshareController {
 	 */
 	@PostMapping("/carshare")
 	public Carshare createCarshare(@RequestBody Carshare carshare) {
+		System.out.println(carshare);
 		return carshareService.saveCarshare(carshare);
 	}
 	

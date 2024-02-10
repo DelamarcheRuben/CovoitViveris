@@ -29,11 +29,13 @@ const Carsharecreation = () => {
                     body: JSON.stringify({
                         max_passenger:  numSeats ,
                         is_Full: 'false',
-                        schedule: ( startDate  + " " +  startTime ),
+                        schedule: startDate  + ' ' +  startTime ,
                         start_place:  startPlace ,
                         end_place:  endPlace ,
                         //TODO: Calculer distance et bonus_polution avant de faire cette requête POST
-                        UID_driver: user.uid 
+                        driver:{
+                            uid: user.uid 
+                        }
                     })
                 };
                 fetch('http://localhost:8080/carshare', options).then((res) => { });
@@ -41,22 +43,22 @@ const Carsharecreation = () => {
                 //Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
                 //Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
                 setMessage("Requête de création de covoiturage envoyée");
-                setStartPlace('');
-                setEndPlace('');
-                setStartDate('');
-                setNumSeats('1');
+                // setStartPlace('');
+                // setEndPlace('');
+                // setStartDate('');
+                // setNumSeats('1');
                 
             }
     }
 
     return (
            <React.Fragment>
-            {window.innerWidth < 1105 && user &&
+            {user && window.innerWidth < 1105 &&
                 //TODO: Gestion de la version mobile du site. Pour l'instant seule la version ordi a été écrite
                 <div className="small-screen">
                     <p className="center" style={{ marginBottom: "20px" }}>Placeholder version mobile </p>
                 </div>}
-            {window.innerWidth >= 1105 && user &&
+            {user && window.innerWidth >= 1105 &&
                 <div className="large-screen">
                     <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
                     <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Proposer un trajet</strong> </p>
