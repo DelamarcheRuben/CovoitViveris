@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUser } from "../../context/UserContext";
 
 const Carsharecreation = () => {
@@ -10,50 +10,53 @@ const Carsharecreation = () => {
     const [numSeats, setNumSeats] = useState(1);
     const [message, setMessage] = useState('');
 
-    const { user, logout } = useUser();
+    const { user } = useUser();
 
     const handleCreateClick = () => {
-        if (startPlace === '' || endPlace === '' || startDate === '' || startTime === '') {
-            setMessage("Certains champs n'ont pas été remplis");
-        }
-        else {
 
-            //TODO: Changer cette requête pour qu'elle fonctionne. En l'état le serveur affiche l'erreur suivante :
-            //WARN 9416 --- [nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported]
-            const request = {
-                method: 'POST',
-                body: {
-                    max_passenger: { numSeats },
-                    is_Full: 'true',
-                    schedule: ({ startDate } + " " + { startTime }),
-                    start_place: { startPlace },
-                    end_place: { endPlace }
-                    //TODO: Calculer distance et bonus_polution avant de faire cette requête POST
-                    //TODO: Récupérer l'uid actif pour l'envoyer
-                    //UID_driver: {user.uid}
-                }
-            };
-            fetch('http://localhost:8080/carshare', request);
-            /*
-            //Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
-            //Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
-            setMessage("Requête de création de covoiturage envoyée");
-            setStartPlace('');
-            setEndPlace('');
-            setStartDate('');
-            setNumSeats('1');
-            */
-        }
+            if (startPlace === '' || endPlace === '' || startDate === '' || startTime === '') {
+                setMessage("Certains champs n'ont pas été remplis");
+            }
+            else {
+
+                //TODO: Changer cette requête pour qu'elle fonctionne. En l'état le serveur affiche l'erreur suivante :
+                //WARN 9416 --- [nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported]
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        max_passenger:  numSeats ,
+                        is_Full: 'false',
+                        schedule: ( startDate  + " " +  startTime ),
+                        start_place:  startPlace ,
+                        end_place:  endPlace ,
+                        //TODO: Calculer distance et bonus_polution avant de faire cette requête POST
+                        UID_driver: user.uid 
+                    })
+                };
+                fetch('http://localhost:8080/carshare', options).then((res) => { });
+                
+                //Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
+                //Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
+                setMessage("Requête de création de covoiturage envoyée");
+                setStartPlace('');
+                setEndPlace('');
+                setStartDate('');
+                setNumSeats('1');
+                
+            }
     }
 
     return (
            <React.Fragment>
-            {window.innerWidth < 1105 && 
+            {window.innerWidth < 1105 && user &&
                 //TODO: Gestion de la version mobile du site. Pour l'instant seule la version ordi a été écrite
                 <div className="small-screen">
                     <p className="center" style={{ marginBottom: "20px" }}>Placeholder version mobile </p>
                 </div>}
-            {window.innerWidth >= 1105 &&
+            {window.innerWidth >= 1105 && user &&
                 <div className="large-screen">
                     <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
                     <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Proposer un trajet</strong> </p>
