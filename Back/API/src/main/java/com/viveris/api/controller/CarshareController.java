@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viveris.api.model.Carshare;
@@ -56,6 +57,18 @@ public class CarshareController {
 	public Iterable<Carshare> getCarshares() {
 		return carshareService.getCarshares();
 	}
+	
+	/**
+	 * Read - Get all carshares that are not full
+	 * @param id_user : a user that is not in the carshares
+	 * @return - An Iterable object of Carshare full filled
+	 */
+	@GetMapping("/not-full-carshares")
+	public Iterable<Carshare> getNotFullCarshares(@RequestParam(required = false) Integer id_user ) {
+		return carshareService.getNotFullCarshares(id_user);
+	}
+	
+	
 	
 	/**
 	 * Update - Update an existing carshare

@@ -35,4 +35,8 @@ public class CarshareService {
 		return savedCarshare;
 	}
 
+	public Iterable<Carshare> getNotFullCarshares(Integer id_user) {
+		return carshareRepository.findNotFullCarshares(id_user);
+	}
+
 }
