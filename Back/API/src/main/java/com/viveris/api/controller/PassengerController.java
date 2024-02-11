@@ -54,7 +54,11 @@ public class PassengerController {
 	 * @return - An Iterable object of Passenger full filled
 	 */
 	@GetMapping("/passengers")
-	public Iterable<Passenger> getPassengers() {
+	public Iterable<Passenger> getPassengers(@RequestParam(required = false) Long id_carshare) {
+		if(id_carshare!=null)
+		{
+			return passengerService.getPassengersByIdCarshare(id_carshare);
+		}
 		return passengerService.getPassengers();
 	}
 	
