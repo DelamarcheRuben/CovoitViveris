@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useUser } from "../../context/UserContext";
 
-const Carsharecreation = () => {
+const CarshareCreation = () => {
     const [startPlace, setStartPlace] = useState('');
     const [endPlace, setEndPlace] = useState('');
     const [startDate, setStartDate] = useState('');
@@ -93,7 +93,7 @@ const Carsharecreation = () => {
 
 };
 
-export default Carsharecreation
+export default CarshareCreation
 
 
 

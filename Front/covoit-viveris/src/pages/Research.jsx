@@ -1,12 +1,14 @@
 import React from "react";
 import { Navbar } from "../components/header/Navbar";
+import { CarshareResearch } from "../components/carsharesearch/CarshareResearch";
 
-const Reseach = () => {
+const Research = () => {
   return (
-    <React.Fragment>
-      <Navbar />
-    </React.Fragment>
+      <React.Fragment>
+        <Navbar />
+        <CarshareResearch />
+      </React.Fragment>
   );
 };
 
-export default Reseach
+export default Research;
