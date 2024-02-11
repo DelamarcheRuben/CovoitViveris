@@ -2,6 +2,77 @@
 import { useState, useEffect } from 'react';
 import { useUser } from "../../context/UserContext";
 
+const AutocompleteInput = ({ value, onChange, placeholder }) => {
+    const [suggestions, setSuggestions] = useState([]);
+    const [timer, setTimer] = useState(null);
+
+    // Fonction de nettoyage pour le timer
+    useEffect(() => {
+        return () => {
+            if (timer) {
+                clearTimeout(timer);
+            }
+        };
+    }, [timer]);
+
+    const handleInputChange = (event) => {
+        const query = event.target.value;
+        onChange(query); // Mise à jour de l'état du parent avec la valeur de l'input
+
+        // Annuler la recherche précédente en cours
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        // Configuration d'un nouveau délai
+        const newTimer = setTimeout(() => {
+            if (query.length >= 3) {
+                const url = `https://nominatim.openstreetmap.org/search?format=json&countrycodes=fr&limit=5&q=${encodeURIComponent(query)}`;
+
+                fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        setSuggestions(data);
+                    })
+                    .catch((error) => {
+                        console.error('Erreur lors de la recherche d\'adresses:', error);
+                    });
+            } else {
+                setSuggestions([]);
+            }
+        }, 500); // 500ms de délai
+
+        setTimer(newTimer);
+    };
+
+    return (
+        <div>
+            <input
+                type="text"
+                value={value}
+                onChange={handleInputChange}
+                placeholder={placeholder}
+                autoComplete="off"
+            />
+            {suggestions.length > 0 && (
+                <ul style={{ position: 'absolute', zIndex: 1000 }}>
+                    {suggestions.slice(0, 5).map((suggestion, index) => (
+                        <li
+                            key={index}
+                            onClick={() => {
+                                onChange(suggestion.display_name);
+                                setSuggestions([]);
+                            }}
+                        >
+                            {suggestion.display_name}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
+
 const CarshareCreation = () => {
     const [startPlace, setStartPlace] = useState('');
     const [endPlace, setEndPlace] = useState('');
@@ -40,8 +111,8 @@ const CarshareCreation = () => {
                 };
                 fetch('http://localhost:8080/carshare', options).then((res) => { });
                 
-                //Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
-                //Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
+                // Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
+                // Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
                 setMessage("Requête de création de covoiturage envoyée");
                 // setStartPlace('');
                 // setEndPlace('');
@@ -64,13 +135,22 @@ const CarshareCreation = () => {
                     <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Proposer un trajet</strong> </p>
                     <div className="scheduling-form" style={{ boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)", padding: "5%", width: "70%", marginLeft: "15%" }}>
 
-                        <label style={{ marginBottom: "20px" }}> Lieu de départ :<br></br>
-                            <input className="input-stylish" type="text" name="start" value={startPlace} onChange={e => setStartPlace(e.target.value)} />
+                        <label> Lieu de départ :<br />
+                            <AutocompleteInput
+                                value={startPlace}
+                                onChange={setStartPlace}
+                                placeholder="Entrez l'adresse de départ"
+                            />
                         </label>
-                        <br></br>
-                        <label style={{ marginBottom: "20px" }}> Lieu d'arrivée :<br></br>
-                            <input className="input-stylish" type="text" name="end" value={endPlace} onChange={e => setEndPlace(e.target.value)} />
+
+                        <label> Lieu d'arrivée :<br />
+                            <AutocompleteInput
+                                value={endPlace}
+                                onChange={setEndPlace}
+                                placeholder="Entrez l'adresse d'arrivée"
+                            />
                         </label>
+
                         <br></br>
                         <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
                             <input type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />

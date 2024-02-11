@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { geocodeAddress } from "../../functions/geocode.js";
+import {useUser} from "../../context/UserContext.jsx";
 
 // Le composant pour la carte
 const CarshareMap = ({ carshares }) => {
@@ -48,10 +49,10 @@ const CarshareList = ({ carshares }) => {
 const CarshareResearch = () => {
     const [carshares, setCarshares] = useState([]);
     const [showMap, setShowMap] = useState(false);
+    const { user } = useUser();
 
     useEffect(() => {
-        // Remplacer 'http://localhost:8080/carshares' par l'URL réelle de votre API
-        fetch('http://localhost:8080/carshares')
+        fetch('http://localhost:8080/not-full-carshares?id_user=1')
             .then(response => response.json())
             .then(async (data) => {
                 // Géocoder les adresses et ajouter les positions aux objets carshare
@@ -65,7 +66,7 @@ const CarshareResearch = () => {
             .catch(error => {
                 console.error('Erreur lors de la récupération des covoiturages:', error);
             });
-    }, []);
+    }, [ user ]);
 
     return (
         <div>
