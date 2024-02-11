@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
 @Entity
@@ -32,4 +33,12 @@ public class Address {
     public String road;
 
     public Integer house_number;
+
+    public Double lon;
+
+    public Double lat;
+
+    public String getFullAddress() {
+        return String.format("%d, %s, %s, %s, %d", house_number, road, city,department,postcode);
+    }
 }

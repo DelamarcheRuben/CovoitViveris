@@ -12,16 +12,15 @@ const CarshareMap = ({ carshares }) => {
         <MapContainer center={defaultPosition} zoom={13} style={{ height: '100vh', width: '100%' }}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
             {carshares.map(carshare => (
                 <Marker
                     key={carshare.uid}
-                    position={carshare.position} // La position est maintenant une propriété dans l'objet carshare
+                    position={carshare.position}
                 >
                     <Popup>
-                        Départ: {carshare.start_place}<br />
-                        Arrivée: {carshare.end_place}<br />
+                        Départ: {carshare.start_place.road}<br />
+                        Arrivée: {carshare.end_place.road}<br />
                         Distance: {carshare.distance} km<br />
                         Place max: {carshare.max_passenger}<br />
                         Est plein: {carshare.is_Full ? 'Oui' : 'Non'}
@@ -38,7 +37,7 @@ const CarshareList = ({ carshares }) => {
         <div style={{ marginTop: '20px' }}>
             {carshares.map(carshare => (
                 <div key={carshare.uid} style={{ padding: '10px', border: '1px solid #ccc', marginBottom: '10px' }}>
-                    Départ: {carshare.start_place} - Arrivée: {carshare.end_place}
+                    Départ: {carshare.start_place.fullAddress} - Arrivée: {carshare.end_place.fullAddress}
                 </div>
             ))}
         </div>
@@ -55,9 +54,10 @@ const CarshareResearch = () => {
         fetch('http://localhost:8080/not-full-carshares?id_user=1')
             .then(response => response.json())
             .then(async (data) => {
+                console.log(data); // Afficher les données récupérées dans la console
                 // Géocoder les adresses et ajouter les positions aux objets carshare
                 const geocodedData = await Promise.all(data.map(async (carshare) => {
-                    const position = await geocodeAddress(carshare.start_place);
+                    const position = await geocodeAddress(carshare.start_place.fullAddress);
                     return { ...carshare, position };
                 }));
 

@@ -53,8 +53,8 @@ public class AddressController {
 	 * Read - Get all addresss
 	 * @return - An Iterable object of Address full filled
 	 */
-	@GetMapping("/addresss")
-	public Iterable<Address> getAddresss() {
+	@GetMapping("/addresses")
+	public Iterable<Address> getAddresses() {
 		return addressService.getAddresss();
 	}
 	

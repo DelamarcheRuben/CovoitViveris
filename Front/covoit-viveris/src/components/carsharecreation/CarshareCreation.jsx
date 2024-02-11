@@ -89,9 +89,6 @@ const CarshareCreation = () => {
                 setMessage("Certains champs n'ont pas été remplis");
             }
             else {
-
-                //TODO: Changer cette requête pour qu'elle fonctionne. En l'état le serveur affiche l'erreur suivante :
-                //WARN 9416 --- [nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported]
                 const options = {
                     method: 'POST',
                     headers: {
@@ -103,7 +100,7 @@ const CarshareCreation = () => {
                         schedule: startDate  + ' ' +  startTime ,
                         start_place:  startPlace ,
                         end_place:  endPlace ,
-                        //TODO: Calculer distance et bonus_polution avant de faire cette requête POST
+                        //TODO: Calculer distance et bonus_pollution avant de faire cette requête POST
                         driver:{
                             uid: user.uid 
                         }
