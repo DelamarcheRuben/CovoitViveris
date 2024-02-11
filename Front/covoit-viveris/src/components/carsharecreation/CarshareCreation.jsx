@@ -27,7 +27,7 @@ const AutocompleteInput = ({ value, onChange, placeholder }) => {
         // Configuration d'un nouveau délai
         const newTimer = setTimeout(() => {
             if (query.length >= 3) {
-                const url = `https://nominatim.openstreetmap.org/search?format=json&countrycodes=fr&limit=5&q=${encodeURIComponent(query)}`;
+                const url = `https://nominatim.openstreetmap.org/search?format=json&countrycodes=fr&limit=5&addressdetails=1&q=${encodeURIComponent(query)}`;
 
                 fetch(url)
                     .then((response) => response.json())
@@ -152,7 +152,7 @@ const CarshareCreation = () => {
                         </label>
 
                         <br></br>
-                        <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
+                        {/* <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
                             <input type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />
                             <input type="time" name="timeStart" value={startTime} onChange={e => setStartTime(e.target.value)} />
                         </label>
@@ -164,7 +164,7 @@ const CarshareCreation = () => {
                             <button className="btn" onClick={handleCreateClick}>
                                 <strong style={{ fontSize: "15px", padding: "5px" }}>Je propose un trajet</strong>
                         </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>}
 
