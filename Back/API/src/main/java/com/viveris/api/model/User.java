@@ -30,7 +30,9 @@ public class User {
     
     public String job;
     
-    public String city;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="address", referencedColumnName="UID")
+    public Address address;
     
     public String picture_background;
     
