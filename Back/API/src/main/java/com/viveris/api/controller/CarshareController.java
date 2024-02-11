@@ -1,5 +1,6 @@
 package com.viveris.api.controller;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,8 +81,32 @@ public class CarshareController {
 	public Carshare updateCarshare(@PathVariable("id") final Long id, @RequestBody Carshare carshare) {
 		Optional<Carshare> e = carshareService.getCarshare(id);
 		if(e.isPresent()) {
-			carshare.setUid(id);
-			Carshare currentCarshare = carshare;
+			Carshare currentCarshare = e.get();
+			Integer max_passenger = carshare.getMax_passenger();
+			if(max_passenger!=null) {
+				currentCarshare.setMax_passenger(max_passenger);
+			}
+			Boolean is_Full = carshare.getIs_Full();
+			if(is_Full!=null) {
+				currentCarshare.setIs_Full(is_Full);
+			}
+			LocalDateTime schedule = carshare.getSchedule();
+			if(schedule!=null) {
+				currentCarshare.setSchedule(schedule);
+			}
+			Float distance = carshare.getDistance();
+			if(distance!=null) {
+				currentCarshare.setDistance(distance);
+			}
+			Float bonus_pollution = carshare.getBonus_pollution();
+			if(bonus_pollution!=null) {
+				currentCarshare.setBonus_pollution(bonus_pollution);
+			}
+			
+			Boolean comeback = carshare.getComeback();
+			if(comeback!=null) {
+				currentCarshare.setComeback(comeback);
+			}
 			carshareService.saveCarshare(currentCarshare);
 			return currentCarshare;
 		} else {
