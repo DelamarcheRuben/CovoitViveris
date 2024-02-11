@@ -2,23 +2,23 @@
 INSERT INTO COMPANY (name) VALUES ('Viveris');
 
 -- Insertion des adresses
-INSERT INTO ADDRESS (city, department, postcode, road, house_number)
+INSERT INTO ADDRESS (city, department, postcode, road, house_number, latitude, longitude)
 VALUES
-    ('Paris', 'Paris', 75001, 'Rue de Rivoli', 1),
-    ('Paris', 'Paris', 75004, 'Place de la Bastille', 4),
-    ('Paris', 'Paris', 75006, 'Boulevard Saint-Germain', 60),
-    ('Paris', 'Paris', 75007, 'Rue de Grenelle', 70),
-    ('Paris', 'Paris', 75008, 'Avenue des Champs-Élysées', 100),
-    ('Paris', 'Paris', 75014, 'Avenue du Maine', 140),
-    ('Paris', 'Paris', 75016, 'Rue de la Pompe', 160),
-    ('Paris', 'Paris', 75018, 'Rue Marcadet', 180),
-    ('Boulogne-Billancourt', 'Hauts-de-Seine', 92100, 'Rue du Point du Jour', 10),
-    ('Neuilly-sur-Seine', 'Hauts-de-Seine', 92200, 'Avenue Charles de Gaulle', 22),
-    ('Versailles', 'Yvelines', 78000, 'Avenue de Paris', 5),
-    ('Saint-Denis', 'Seine-Saint-Denis', 93200, 'Rue Gabriel Péri', 11),
-    ('Montreuil', 'Seine-Saint-Denis', 93100, 'Rue de Paris', 56),
-    ('Créteil', 'Val-de-Marne', 94000, 'Avenue du Général de Gaulle', 1),
-    ('Nanterre', 'Hauts-de-Seine', 92000, 'Rue Maurice Thorez', 7);
+    ('Paris', 'Paris', 75001, 'Rue de Rivoli', 1, 48.8566, 2.3522),
+    ('Paris', 'Paris', 75004, 'Place de la Bastille', 4, 48.853, 2.3692),
+    ('Paris', 'Paris', 75006, 'Boulevard Saint-Germain', 60, 48.8538, 2.3388),
+    ('Paris', 'Paris', 75007, 'Rue de Grenelle', 70, 48.8565, 2.3201),
+    ('Paris', 'Paris', 75008, 'Avenue des Champs-Élysées', 100, 48.8696, 2.3079),
+    ('Paris', 'Paris', 75014, 'Avenue du Maine', 140, 48.8319, 2.3231),
+    ('Paris', 'Paris', 75016, 'Rue de la Pompe', 160, 48.8626, 2.2819),
+    ('Paris', 'Paris', 75018, 'Rue Marcadet', 180, 48.8922, 2.3444),
+    ('Boulogne-Billancourt', 'Hauts-de-Seine', 92100, 'Rue du Point du Jour', 10, 48.8352, 2.2413),
+    ('Neuilly-sur-Seine', 'Hauts-de-Seine', 92200, 'Avenue Charles de Gaulle', 22, 48.8848, 2.2684),
+    ('Versailles', 'Yvelines', 78000, 'Avenue de Paris', 5, 48.8046, 2.1203),
+    ('Saint-Denis', 'Seine-Saint-Denis', 93200, 'Rue Gabriel Péri', 11, 48.9362, 2.3574),
+    ('Montreuil', 'Seine-Saint-Denis', 93100, 'Rue de Paris', 56, 48.8638, 2.4484),
+    ('Créteil', 'Val-de-Marne', 94000, 'Avenue du Général de Gaulle', 1, 48.7795, 2.4557),
+    ('Nanterre', 'Hauts-de-Seine', 92000, 'Rue Maurice Thorez', 7, 48.892, 2.2069);
 
 -- Insertion des utilisateurs (en référençant l'adresse et la compagnie)
 INSERT INTO USERS (pseudo, password, last_name, first_name, email, job, address, picture_background, car_type, fuel_consumption, level, experience, bonus_loyalty, kilometers, nb_carshares, CO_2_economy, UID_company) VALUES

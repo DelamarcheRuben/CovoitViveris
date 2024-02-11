@@ -34,9 +34,9 @@ public class Address {
 
     public Integer house_number;
 
-    public Double lon;
+    public Double latitude;
 
-    public Double lat;
+    public Double longitude;
 
     public String getFullAddress() {
         return String.format("%d, %s, %s, %s, %d", house_number, road, city,department,postcode);
