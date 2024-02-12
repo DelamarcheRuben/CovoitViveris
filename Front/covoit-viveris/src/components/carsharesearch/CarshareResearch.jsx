@@ -1,32 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {MapContainer, TileLayer, Marker, Popup, useMap} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useUser } from "../../context/UserContext.jsx";
 
-// Le composant pour la carte
-const CarshareMap = ({ carshares }) => {
+// Composant pour gérer le marqueur de l'utilisateur
+const UserLocationMarker = ({ userLocation }) => {
+    const map = useMap();
+
+    useEffect(() => {
+        if (userLocation) {
+            const userMarkerIcon = L.icon({
+                iconUrl: '../../../src/images/icon/maison.png', // Remplacez par le chemin de votre icône
+                iconSize: [25, 25], // Taille de l'icône
+            });
+
+            L.marker(userLocation, { icon: userMarkerIcon }).addTo(map);
+        }
+    }, [userLocation, map]);
+
+    return null;
+};
+
+// Dans CarshareMap.jsx ou dans votre fichier de composant de carte
+
+const CarshareMap = ({ carshares, userLocation, locationDenied }) => {
     const defaultPosition = [48.8566, 2.3522]; // Coordonnées de Paris
 
+    const mapStyle = locationDenied ? { filter: 'grayscale(100%)' } : {};
+
+    // Styles pour le conteneur de la carte
+    const mapContainerStyle = {
+        height: '500px', // Hauteur fixe pour la carte
+        width: '80%', // Largeur à 80% pour centrer la carte
+        margin: '20px auto', // Centrer le conteneur de la carte sur la page
+        boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.2)', // Ombre portée similaire à CarshareCreation
+    };
+
     return (
-        <MapContainer center={defaultPosition} zoom={13} style={{ height: '100vh', width: '100%' }}>
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            {carshares.map(carshare => (
-                <Marker
-                    key={carshare.uid}
-                    position={[carshare.start_place.latitude, carshare.start_place.longitude]}
-                >
-                    <Popup>
-                        Départ: {carshare.start_place.road}<br />
-                        Arrivée: {carshare.end_place.road}<br />
-                        Distance: {carshare.distance} km<br />
-                        Place max: {carshare.max_passenger}<br />
-                        Est plein: {carshare.is_Full ? 'Oui' : 'Non'}
-                    </Popup>
-                </Marker>
-            ))}
-        </MapContainer>
+        <div className="mapContainer">
+            <MapContainer center={defaultPosition} zoom={13} style={{ height: '100%', width: '100%', ...mapStyle }}>
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {carshares.map(carshare => (
+                    <Marker
+                        key={carshare.uid}
+                        position={[carshare.start_place.latitude, carshare.start_place.longitude]}
+                    >
+                        <Popup>
+                            Départ: {carshare.start_place.road}<br />
+                            Arrivée: {carshare.end_place.road}<br />
+                            Distance: {carshare.distance} km<br />
+                            Place max: {carshare.max_passenger}<br />
+                            Est plein: {carshare.is_Full ? 'Oui' : 'Non'}
+                        </Popup>
+                    </Marker>
+                ))}
+                {userLocation && <UserLocationMarker userLocation={userLocation} />}
+            </MapContainer>
+            {locationDenied && (
+                <div className="overlay">
+                    Autorisez l'accès à votre localisation pour pouvoir voir les covoiturages disponibles autour de vous.
+                </div>
+            )}
+        </div>
     );
 };
 
@@ -43,13 +80,24 @@ const CarshareList = ({ carshares }) => {
     );
 };
 
-// Le composant parent qui gère l'affichage de la carte ou de la liste et récupère les données
 const CarshareResearch = () => {
     const [carshares, setCarshares] = useState([]);
     const [showMap, setShowMap] = useState(false);
     const { user } = useUser();
+    const [userLocation, setUserLocation] = useState(null);
+    const [locationDenied, setLocationDenied] = useState(false);
 
     useEffect(() => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setUserLocation([position.coords.latitude, position.coords.longitude]);
+                setLocationDenied(false);
+            },
+            () => {
+                setLocationDenied(true);
+            }
+        );
+
         fetch('http://localhost:8080/not-full-carshares?id_user=1') // Assurez-vous que l'ID utilisateur est correctement passé
             .then(response => response.json())
             .then((data) => {
@@ -63,7 +111,7 @@ const CarshareResearch = () => {
     return (
         <div>
             {showMap ? (
-                <CarshareMap carshares={carshares} />
+                <CarshareMap carshares={carshares} userLocation={userLocation} locationDenied={locationDenied} />
             ) : (
                 <CarshareList carshares={carshares} />
             )}
