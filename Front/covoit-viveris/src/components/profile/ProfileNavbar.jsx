@@ -134,9 +134,9 @@ export function ProfileNavbar(){
                 <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "25%" }}>
-                    <div className="profile-progress" style={{ width: `${(levels.compute_current_level_exp(user.level, user.experience)/levels.compute_next_level_exp(user.level))*100}%`}}></div>
+                    <div className="profile-progress" style={{ width: `${(user.experience/levels.level_experience(user.level))*100}%`}}></div>
                 </div>
-                <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{levels.compute_current_level_exp(user.level, user.experience)} / {levels.compute_next_level_exp(user.level)}</strong></p>
+                <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{user.experience} / {levels.level_experience(user.level)}</strong></p>
 
                 <div className="row justify-content-center">
                     <div className="col-md-2 mb-4 center">

@@ -12,6 +12,8 @@ export function RankingProfileView(u){
         marginClass = 'margin3';
     }
 
+
+
     return (
         <React.Fragment>
             {window.innerWidth < 1105 &&
@@ -57,10 +59,10 @@ export function RankingProfileView(u){
                             <p style={{ fontSize:  "14px" }}>{u.user.job}, {u.user.city}</p>
                             <p><em style={{ fontSize:  "14px" }}>{u.user.nb_carshares} covoiturages, {u.user.kilometers} km parcourus</em></p>
                             <div className="column" style={{ marginTop: "10px"}}>
-                                <img className="column-item-badge" src="./src/images/badge/badge_1.png" alt="Badge 1"/>
-                                <img className="column-item-badge" src="./src/images/badge/badge_2.png" alt="Badge 2"/>
-                                <img className="column-item-badge" src="./src/images/badge/badge_3.png" alt="Badge 3"/>
-                                <img className="column-item-badge" src="./src/images/badge/badge_4.png" alt="Badge 4"/>
+                                <img className="column-item-badge" style={{ width:"35px" }} src="../../src/images/badge/covoitureur_0.png" alt="Badge 1"/>
+                                <img className="column-item-badge" style={{ width:"35px" }} src="../../src/images/badge/covoitureur_consecutif_0.png" alt="Badge 2"/>
+                                <img className="column-item-badge" style={{ width:"35px" }} src="../../src/images/badge/kilometrage_0.png" alt="Badge 3"/>
+                                <img className="column-item-badge" style={{ width:"35px" }} src="../../src/images/badge/eco_citoyen_0.png" alt="Badge 4"/>
                             </div>
                         </div>
                     </div>
