@@ -1,7 +1,6 @@
-import React from "react";
-import { useState, useEffect } from 'react';
-import { Navbar } from "../components/header/Navbar";
-import { useUser } from "../context/UserContext";
+import React, { useState, useEffect } from "react";
+import { useUser }              from "../context/UserContext";
+import { Navbar }               from "../components/header/Navbar";
 import { ResearchCarShareView } from "../components/research/ResearchCarShareView";
 
 const Research = () => {
@@ -23,19 +22,15 @@ const Research = () => {
     <React.Fragment>
       <Navbar />
         {carShareList && carShareList.length == 0
-          ?
-          <p className="center"><strong style={{ fontSize:"40px" }}>Aucun Résultat</strong></p>
+          ? <p className="center"><strong style={{ fontSize:"40px" }}>Aucun Résultat</strong></p>
           :
           carShareList.map((carshare, index) => (
-          <React.Fragment key={index}>
-            {/* Display medal + user if user is in the top 3 otherwise display user only */}
-            {carshare.driver.uid == user.uid ? (
-              <div></div>
-            ) : (
-              <ResearchCarShareView key={index} carshare={carshare} />
-            )}
-
-          </React.Fragment>
+            <React.Fragment key={index}>
+              {carshare.driver.uid == user.uid 
+                ? (<div></div>)
+                : (<ResearchCarShareView key={index} carshare={carshare} />)
+              }
+            </React.Fragment>
         ))}
     </React.Fragment>
   );

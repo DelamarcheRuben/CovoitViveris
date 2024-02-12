@@ -87,10 +87,6 @@ export function ResearchCarShareView(carshare){
                     </div>
                 </div>
             }
-            {/* <div>
-            WIN
-            </div> */}
-
         </React.Fragment>
     );
 }

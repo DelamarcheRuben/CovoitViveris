@@ -12,7 +12,7 @@ export function RankingProfileView(u){
         marginClass = 'margin3';
     }
 
-
+    console.log(u);
 
     return (
         <React.Fragment>
@@ -46,8 +46,8 @@ export function RankingProfileView(u){
             <div className="large-screen">
                 <div className="ranking-profile-view">
                     <div className="profile-background" style={{ backgroundImage: `url(./src/images/background_profile/background_${u.user.picture_background}.png)` }}>
-
                     </div>
+
                     <div className="column" style={{ marginTop: "-85px"}}>
                         <div className="">
                             <img src="./src/images/profil_picture.png" alt="Photo profil"/>
