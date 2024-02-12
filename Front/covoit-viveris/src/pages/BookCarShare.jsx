@@ -7,7 +7,7 @@ import { useUser } from "../context/UserContext";
 const BookCarShare = () => {
 
     const [carshare, setCarshare] = useState();
-    const [passengers, setPassengers] = useState();
+    const [passengers, setPassengers] = useState([]);
     const { user } = useUser();
     const navigate = useNavigate();
 
@@ -71,7 +71,7 @@ const BookCarShare = () => {
                         is_Full: true
                     })
                 };
-                fetch('http://localhost:8080/carshare', carshareUpdate).then((res) => { });      
+                fetch("http://localhost:8080/carshare/" + carshare.uid, carshareUpdate).then((res) => { });      
             }
 
         });  
@@ -95,7 +95,7 @@ const BookCarShare = () => {
                                             <p><strong>{carshare.schedule.substring(11, 16)}</strong></p>
                                         </div>
                                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
-                                            <div className="circle"></div>
+                                            <div className="carshare-circle"></div>
                                         </div>
                                         <div className="col">
                                             <p><strong style={{ fontSize:"18px" }}>{carshare.start_place}</strong></p>
@@ -117,7 +117,7 @@ const BookCarShare = () => {
                                             <p><strong>12:00</strong></p>
                                         </div>
                                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
-                                            <div className="circle"></div>
+                                            <div className="carshare-circle"></div>
                                         </div>
                                         <div className="col">
                                             <p><strong style={{ fontSize:"18px" }}>{carshare.end_place}</strong></p>

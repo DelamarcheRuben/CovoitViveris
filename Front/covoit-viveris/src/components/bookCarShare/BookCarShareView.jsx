@@ -39,12 +39,17 @@ export function BookCarShareView(userDriver){
                         <div className="line-company-color"></div>
                     </div>
                     <div className="col">
-                        <div className="container-badge-booking" style={{ marginTop:"25px", marginLeft:"-15px" }}>
-                            {ownedBadges.map((data, index) => (
-                                <div key={index} className="item-badge-booking">
-                                    <img className="center-picture" src={`../../src/images/badge/${data.badge.picture_badge}_${data.level}.png`} alt={`Badge ${data.badge.title}`} width="100%"/>
-                                </div>
-                            ))}
+                        <div className="row">
+                            <p className="center"><strong style={{ fontSize:"20px" }}>Bagdes :</strong></p>
+                        </div>
+                        <div className="row">
+                            <div className="container-badge-booking" style={{ marginTop:"25px", marginLeft:"-15px" }}>
+                                {ownedBadges.map((data, index) => (
+                                    <div key={index} className="item-badge-booking">
+                                        <img className="center-picture" src={`../../src/images/badge/${data.badge.picture_badge}_${data.level}.png`} alt={`Badge ${data.badge.title}`} width="100%"/>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

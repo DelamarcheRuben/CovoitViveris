@@ -12,11 +12,13 @@ const EndCarShare = () => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:8080/not-full-carshares?id_user="+id_carshare)
+    fetch("http://localhost:8080/carshare/"+id_carshare)
     .then((res) => {
         return res.json();
     })
     .then((data_json) => {
+        console.log("aaa");
+        console.log(data_json);
         const carShareUser = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16), 
         endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place, endLocation:data_json.end_place, 
         co2Saved:895, level:user.level, experience:user.experience, nbPeople:data_json.max_passenger};
@@ -67,7 +69,7 @@ const EndCarShare = () => {
                             <p><strong>{data.carShare.startHour}</strong></p>
                         </div>
                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
-                            <div className="circle"></div>
+                            <div className="carshare-circle"></div>
                         </div>
                         <div className="col">
                             <p style={{ fontSize:"15px" }}>{data.carShare.startLocation}</p>
@@ -88,7 +90,7 @@ const EndCarShare = () => {
                             <p><strong>{data.carShare.endHour}</strong></p>
                         </div>
                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
-                            <div className="circle"></div>
+                            <div className="carshare-circle"></div>
                         </div>
                         <div className="col">
                             <p style={{ fontSize:"15px" }}>{data.carShare.endLocation}</p>
@@ -177,7 +179,7 @@ const EndCarShare = () => {
                             <p><strong>{data.carShare.startHour}</strong></p>
                         </div>
                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
-                            <div className="circle"></div>
+                            <div className="carshare-circle"></div>
                         </div>
                         <div className="col">
                             <p>{data.carShare.startLocation}</p>
@@ -198,7 +200,7 @@ const EndCarShare = () => {
                             <p><strong>{data.carShare.endHour}</strong></p>
                         </div>
                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
-                            <div className="circle"></div>
+                            <div className="carshare-circle"></div>
                         </div>
                         <div className="col">
                             <p>{data.carShare.endLocation}</p>

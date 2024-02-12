@@ -295,6 +295,22 @@ button:hover{
     border          : 2px solid red; 
 }
 
+ 
+.info-badge-circle {
+    width           : 30px;
+    height          : 30px;
+    background-color: var(--secondaryColor);
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    border-radius   : 50%;
+    cursor          : pointer;
+  }
+
+.info-badge-circle:hover {
+    background-color: var(--mainColor);
+}
+
 /* ===================== Media queries ===================== */
 @media only screen and (max-width: 1105px){
     
@@ -336,13 +352,14 @@ button:hover{
     background-color: white;
 }
   
-.circle {
+.carshare-circle {
     width : 25px;
     height: 25px;
     border-radius: 50%;
     border: 2px solid black;
 }
-  
+
+
 .line {
     height: 35px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
     width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
