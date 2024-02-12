@@ -17,8 +17,6 @@ const EndCarShare = () => {
         return res.json();
     })
     .then((data_json) => {
-        console.log("aaa");
-        console.log(data_json);
         const carShareUser = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16), 
         endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place, endLocation:data_json.end_place, 
         co2Saved:895, level:user.level, experience:user.experience, nbPeople:data_json.max_passenger};

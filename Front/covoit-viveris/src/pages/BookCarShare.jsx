@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar }      from "../components/header/Navbar";
-import { BookCarShareView } from "../components/bookCarShare/BookCarShareView";
+import { BookCarshareView } from "../components/booking/BookCarshareView.jsx";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
@@ -58,9 +58,6 @@ const BookCarShare = () => {
             return res.json();
         })
         .then((data) => {
-            console.log(data)
-            console.log(data.length)
-            console.log(carshare.max_passenger)
             if(carshare.max_passenger == data.length){
                 const carshareUpdate = {
                     method: 'PUT',
@@ -78,7 +75,6 @@ const BookCarShare = () => {
 
         navigate('/home');
     }
-
 
     return (
         <React.Fragment>
@@ -135,7 +131,7 @@ const BookCarShare = () => {
                         </div>
                     </div>
                     <p style={{ marginTop:"25px", marginLeft:"12.5%" }}><strong style={{ fontSize:"25px" }}>Profil conducteur :</strong></p>
-                    <BookCarShareView carDriver={carshare.driver}/>
+                    <BookCarshareView carDriver={carshare.driver}/>
                 </React.Fragment>
 
             }

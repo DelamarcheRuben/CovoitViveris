@@ -44,7 +44,6 @@ export const useUser = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         context.updateUser(data);
       });
     }

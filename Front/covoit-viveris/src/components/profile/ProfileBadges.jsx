@@ -64,10 +64,6 @@ export function ProfileBadges(){
         })
     }
 
-
-    console.log(badgeData);
-
-
     return (
         <React.Fragment>
             {window.innerWidth < 1105 && 

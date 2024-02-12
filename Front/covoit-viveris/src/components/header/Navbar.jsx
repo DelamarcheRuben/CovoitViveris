@@ -35,9 +35,6 @@ export function Navbar(){
         else{
             setCurrentUrl("home");
         }
-
-        console.log(currentUrl + "#");
-        console.log(url)
     }, [location.pathname]);
 
     const contentLabel = () => {
