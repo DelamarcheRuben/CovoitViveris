@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { geocodeAddress } from "../../functions/geocode.js";
-import {useUser} from "../../context/UserContext.jsx";
+import { useUser } from "../../context/UserContext.jsx";
 
 // Le composant pour la carte
 const CarshareMap = ({ carshares }) => {
@@ -16,7 +15,7 @@ const CarshareMap = ({ carshares }) => {
             {carshares.map(carshare => (
                 <Marker
                     key={carshare.uid}
-                    position={carshare.position}
+                    position={[carshare.start_place.latitude, carshare.start_place.longitude]}
                 >
                     <Popup>
                         Départ: {carshare.start_place.road}<br />
@@ -51,22 +50,15 @@ const CarshareResearch = () => {
     const { user } = useUser();
 
     useEffect(() => {
-        fetch('http://localhost:8080/not-full-carshares?id_user=1')
+        fetch('http://localhost:8080/not-full-carshares?id_user=1') // Assurez-vous que l'ID utilisateur est correctement passé
             .then(response => response.json())
-            .then(async (data) => {
-                console.log(data); // Afficher les données récupérées dans la console
-                // Géocoder les adresses et ajouter les positions aux objets carshare
-                const geocodedData = await Promise.all(data.map(async (carshare) => {
-                    const position = await geocodeAddress(carshare.start_place.fullAddress);
-                    return { ...carshare, position };
-                }));
-
-                setCarshares(geocodedData);
+            .then((data) => {
+                setCarshares(data); // Pas besoin de géocodage supplémentaire
             })
             .catch(error => {
                 console.error('Erreur lors de la récupération des covoiturages:', error);
             });
-    }, [ user ]);
+    }, [user]);
 
     return (
         <div>

@@ -100,6 +100,7 @@ const CarshareCreation = () => {
                         schedule: startDate  + ' ' +  startTime ,
                         start_place:  startPlace ,
                         end_place:  endPlace ,
+                        //TODO : Ajouter les coordonnées lat et lon de chaque start_place et end_place, ne pas oublier que start et end_place sont maintenant des Addresses. Faire attention a envoyer les bonnes informations pour créer l'objet covoiturage.
                         //TODO: Calculer distance et bonus_pollution avant de faire cette requête POST
                         driver:{
                             uid: user.uid 
