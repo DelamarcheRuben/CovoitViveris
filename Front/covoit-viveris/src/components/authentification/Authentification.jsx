@@ -54,7 +54,7 @@ const Authentification = ({ onLogin }) => {
         {window.innerWidth < 1105 && 
         <div>
           <div className="small-screen" style={{ boxShadow:"0px 5px 10px rgba(0, 0, 0, 0.2)", padding:"10px" }}>
-            <img className="" src="./src/images/logo/logo_v.jpg" alt="Logo Viveris" style={{ width: "35px" }}/>
+            <img className="" src="../../src/images/logo/logo_v.jpg" alt="Logo Viveris" style={{ width: "35px" }}/>
           </div>
           <div className="small-screen">
             <p className="center color-company" style={{ marginTop:"8vh" }}><strong style={{ fontSize:"30px" }}>Bienvenue,</strong></p>
@@ -109,7 +109,7 @@ const Authentification = ({ onLogin }) => {
         {window.innerWidth >= 1105 && 
         <div>
           <div className="large-screen" style={{ boxShadow:"0px 5px 10px rgba(0, 0, 0, 0.2)", padding:"20px" }}>
-            <img className="" src="./src/images/logo/logo_viveris.jpg" alt="Logo Viveris" style={{ width: "150px" }}/>
+            <img className="" src="../../src/images/logo/logo_viveris.jpg" alt="Logo Viveris" style={{ width: "150px" }}/>
           </div>
           <div className="large-screen" style={{ marginTop:"12vh" }}>
             <p className="center"><strong style={{ fontSize:"30px" }}>Trouvez votre covoiturage maintenant !</strong></p>

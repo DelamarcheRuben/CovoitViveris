@@ -36,6 +36,8 @@ public class PassengerService {
 		return savedPassenger;
 	}
 
-
+	public Iterable<Passenger> getPassengersByIdCarshare(Long id_carshare) {
+		return passengerRepository.FindAllByIdCarshare(id_carshare);
+	}
 
 }

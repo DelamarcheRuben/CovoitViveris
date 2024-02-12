@@ -295,6 +295,22 @@ button:hover{
     border          : 2px solid red; 
 }
 
+
+.info-badge-circle {
+    width           : 30px;
+    height          : 30px;
+    background-color: var(--secondaryColor);
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    border-radius   : 50%;
+    cursor          : pointer;
+  }
+
+.info-badge-circle:hover {
+    background-color: var(--mainColor);
+}
+
 /* ===================== Media queries ===================== */
 @media only screen and (max-width: 1105px){
     
@@ -336,7 +352,7 @@ button:hover{
     background-color: white;
 }
   
-.circle {
+.carshare-circle {
     width : 25px;
     height: 25px;
     border-radius: 50%;
@@ -381,4 +397,58 @@ button:hover{
     width: 80%;
     margin: 20px auto;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.carShare-research{
+    width        : 90%;
+    height       : 215px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top   : 15px;
+    background-color: white;
+}
+
+.carShare-booking{
+    width        : 75%;
+    height       : 215px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top   : 15px;
+    background-color: white;
+}
+
+.line-50{
+    height: 52px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: black; /* Couleur de la ligne, à personnaliser */
+    margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
+.line-company-color{
+    height: 150px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: var(--secondaryColor); /* Couleur de la ligne, à personnaliser */
+    margin-top: 20px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
+.profile-booking{
+    width        : 60%;
+    height       : 300px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top   : 15px;
+    background-color: white;
+}
+
+.container-badge-booking {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item-badge-booking {
+    width: calc(25% - 10px); /* 25% de largeur moins les marges */
+    margin: 5px; /* Marge autour des éléments */
 }

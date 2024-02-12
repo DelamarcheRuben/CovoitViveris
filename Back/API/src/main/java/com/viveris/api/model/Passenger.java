@@ -34,7 +34,7 @@ public class Passenger {
     @JoinColumn(name="UID_passenger", referencedColumnName="UID")
     public User user;
     
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public LocalDateTime schedule;
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -101,7 +101,7 @@ export function ProfileBadges(){
                         <div className="row center-picture" style={{ marginTop:"20px" }}>
                             <div className="col" style={{ maxWidth:"50px", marginLeft:"5%" }}>
                                 <Tooltip content={data.content}>
-                                    <div className="circle">
+                                    <div className="info-badge-circle">
                                         <span style={{ color: 'white', fontSize: '16px'}}>i</span>
                                     </div>
                                 </Tooltip>
