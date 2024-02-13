@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar } from "../components/header/Navbar";
-import {CarshareResearchList} from "../components/research/CarshareResearchList";
 import {CarshareResearchMap} from "../components/research/CarshareResearchMap.jsx";
+import CarshareResearchForm from "../components/research/CarshareResearchForm.jsx";
 
 
 const Research = () => {
@@ -9,6 +9,7 @@ const Research = () => {
         <React.Fragment>
             <Navbar />
             <CarshareResearchMap/>
+            <CarshareResearchForm />
         </React.Fragment>
     );
 };
