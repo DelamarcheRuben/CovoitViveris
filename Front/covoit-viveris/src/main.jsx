@@ -12,7 +12,7 @@ import "./style/header.css";
 import { UserProvider } from "./context/UserContext";
 import { ProfileNavbar } from "./components/profile/ProfileNavbar";
 import EndCarShare from "./pages/EndCarShare";
-import BookCarShare from "./pages/BookCarShare";
+import BookCarshare from "./pages/BookCarshare.jsx";
 
 
 
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
   },
   {
     path: "research/bookCarShare/*",
-    element: <div><BookCarShare/></div>
+    element: <div><BookCarshare/></div>
   }
 ])
 
