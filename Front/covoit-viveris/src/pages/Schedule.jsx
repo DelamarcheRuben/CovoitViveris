@@ -1,14 +1,13 @@
 import React from "react";
-import { Navbar }       from "../components/header/Navbar";
-import Carsharecreation from "../components/carsharecreation/Carsharecreation";
+import { Navbar } from "../components/header/Navbar";
+import CarshareCreation from "../components/creation/CarshareCreation.jsx";
 
 
 const Schedule = () => {
-  
   return (
     <React.Fragment>
           <Navbar />
-          <Carsharecreation />
+          <CarshareCreation />
     </React.Fragment>
   );
 };

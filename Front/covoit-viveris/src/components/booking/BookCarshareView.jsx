@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser }          from "../../context/UserContext";
-import { BookCarShareViewDriver } from "./BookCarShareViewDriver";
+import { BookCarshareViewDriver } from "./BookCarshareViewDriver.jsx";
 
-export function BookCarShareView(){
+export function BookCarshareView(){
 
     const [carshare, setCarshare]     = useState();
     const [passengers, setPassengers] = useState([]);
@@ -48,9 +48,9 @@ export function BookCarShareView(){
                 "start_place": carshare.start_place
             })
         };
-        
+
         fetch('http://localhost:8080/passenger', passenger)
-        .then((res) => { 
+        .then((res) => {
             return fetch("http://localhost:8080/passengers?id_carshare=" + carshare.uid);
         })
         .then((res) => {
@@ -67,9 +67,9 @@ export function BookCarShareView(){
                         is_Full: true
                     })
                 };
-                fetch("http://localhost:8080/carshare/" + carshare.uid, carshareUpdate).then((res) => { });      
+                fetch("http://localhost:8080/carshare/" + carshare.uid, carshareUpdate).then((res) => { });
             }
-        });  
+        });
 
         navigate('/home');
     }
@@ -117,10 +117,10 @@ export function BookCarShareView(){
                                             <p><strong style={{ fontSize:"18px" }}>{carshare.end_place}</strong></p>
                                         </div>
                                     </div>
-                                </div>                        
+                                </div>
                             </div>
                             <div className="col center-div-picture">
-                                {carshare.max_passenger - passengers.length == 1 
+                                {carshare.max_passenger - passengers.length == 1
                                     ? <p><strong style={{ fontSize:"25px"}}>1 place libre restante</strong></p>
                                     : <p><strong style={{ fontSize:"25px"}}>{carshare.max_passenger - passengers.length} places libres restantes</strong></p>
                                 }
@@ -129,9 +129,9 @@ export function BookCarShareView(){
                         </div>
                     </div>
                     <p style={{ marginTop:"25px", marginLeft:"12.5%" }}><strong style={{ fontSize:"25px" }}>Profil conducteur :</strong></p>
-                    <BookCarShareViewDriver carDriver={carshare.driver}/>
+                    <BookCarshareViewDriver carDriver={carshare.driver}/>
                 </React.Fragment>
             }
         </React.Fragment>
     );
-};
+}

@@ -1,39 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useUser }              from "../context/UserContext";
-import { Navbar }               from "../components/header/Navbar";
-import { ResearchCarShareView } from "../components/research/ResearchCarShareView";
+import React from "react";
+import { Navbar } from "../components/header/Navbar";
+
 
 const Research = () => {
-
-  const { user } = useUser();
-  const [carShareList, setCarShareList] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8080/not-full-carshares?id_user=" + user.uid)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setCarShareList(data);
-      });
-  }, []);
-
-  return (
-    <React.Fragment>
-      <Navbar />
-        {carShareList && carShareList.length == 0
-          ? <p className="center"><strong style={{ fontSize:"40px" }}>Aucun Résultat</strong></p>
-          :
-          carShareList.map((carshare, index) => (
-            <React.Fragment key={index}>
-              {carshare.driver.uid == user.uid 
-                ? (<div></div>)
-                : (<ResearchCarShareView key={index} carshare={carshare} />)
-              }
-            </React.Fragment>
-        ))}
-    </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <Navbar />
+            <p> Travail en progrès sur la branche "feature/form-research". Ne travaillez pas sur l'une de ces fonctionnalités. @esteban est dessus</p>
+            <p> Le composant Map et le composant List sont fait. Le travail en cours consiste a faire le formulaire de recherche pour afficher ensuite les bons composants.</p>
+        </React.Fragment>
+    );
 };
 
-export default Research
+export default Research;

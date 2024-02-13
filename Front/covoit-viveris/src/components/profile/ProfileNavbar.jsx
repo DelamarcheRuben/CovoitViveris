@@ -14,9 +14,6 @@ export function ProfileNavbar(){
     const { user } = useUser();
     const location = useLocation();
     const [currentUrl, setCurrentUrl] = useState("profile");
-    
-
-
 
     useEffect(() => {
         if(location.pathname == "/profile/updateProfile"){
@@ -34,7 +31,6 @@ export function ProfileNavbar(){
         else{
             setCurrentUrl("profile");
         }
-        console.log(location.pathname);
     }, [location.pathname]);
 
     const contentLabel = () => {

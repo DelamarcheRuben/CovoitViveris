@@ -4,7 +4,7 @@ import { useUser }     from "../../context/UserContext";
 import { Navbar  }     from "../header/Navbar";
 import * as levels     from "../../functions/levels";
 
-export function EndCarShareView(){
+export function EndCarshareView(){
     const id_carshare = 1;
     const navigate = useNavigate();
     const { user } = useUser();

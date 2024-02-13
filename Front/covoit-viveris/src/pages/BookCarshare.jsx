@@ -1,15 +1,15 @@
 import React from "react";
 import { Navbar }           from "../components/header/Navbar";
-import { BookCarShareView } from "../components/bookCarShare/BookCarShareView";
+import { BookCarshareView } from "../components/booking/BookCarshareView";
 
-const BookCarShare = () => {
+const BookCarshare = () => {
 
     return (
         <React.Fragment>
             <Navbar />
-            <BookCarShareView />
+            <BookCarshareView />
         </React.Fragment>
     );
 };
 
-export default BookCarShare
+export default BookCarshare

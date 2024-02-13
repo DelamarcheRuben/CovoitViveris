@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { BookCarShareProfile } from "./BookCarShareProfile";
+import { BookCarshareProfile } from "../booking/BookCarshareProfile.jsx"
 
-export function BookCarShareViewDriver(userDriver){
+export function BookCarshareViewDriver(userDriver){
 
     const [ownedBadges, setOwnedBadges] = useState([]);
 
@@ -26,7 +26,7 @@ export function BookCarShareViewDriver(userDriver){
                 </div>
                 <div className="row">
                     <div className="col">
-                        <BookCarShareProfile userid={userDriver.carDriver.uid}/>
+                        <BookCarshareProfile userid={userDriver.carDriver.uid}/>
                     </div>
                     <div className="col" style={{ maxWidth:"10px" }}>
                         <div className="line-company-color"></div>

@@ -1,10 +1,8 @@
 import React from "react";
-import { ResearchProfile } from "./ResearchProfile";
+import { CarshareResearchProfile } from "./CarshareResearchProfile.jsx";
 import { NavLink } from "react-router-dom";
 
-export function ResearchCarShareView(carshare){
-
-    console.log(carshare)
+export function CarshareResearchView(carshare){
 
     return (
         <React.Fragment>
@@ -39,7 +37,7 @@ export function ResearchCarShareView(carshare){
                                         <div className="circle"></div>
                                     </div>
                                     <div className="col">
-                                        <p><strong style={{ fontSize:"18px" }}>{carshare.carshare.start_place}</strong></p>
+                                        <p><strong style={{ fontSize:"18px" }}>{carshare.carshare.start_place.city}</strong></p>
                                     </div>
                                 </div>
                                 <div className="row center-div-picture">
@@ -61,13 +59,13 @@ export function ResearchCarShareView(carshare){
                                         <div className="circle"></div>
                                     </div>
                                     <div className="col">
-                                        <p><strong style={{ fontSize:"18px" }}>{carshare.carshare.end_place}</strong></p>
+                                        <p><strong style={{ fontSize:"18px" }}>{carshare.carshare.end_place.city}</strong></p>
                                     </div>
                                 </div>
                             </div>                        
                         </div>
                         <div className="col" style={{ maxWidth:"450px" }}>
-                            <ResearchProfile userid={carshare.carshare.driver.uid}/>
+                            <CarshareResearchProfile userid={carshare.carshare.driver.uid}/>
                         </div>
                         <div className="col" style={{ marginRight:"3%", maxWidth:"300px"}}>
                             <div className="row" >
