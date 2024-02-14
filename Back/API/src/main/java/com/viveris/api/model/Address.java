@@ -39,6 +39,6 @@ public class Address {
     public Double longitude;
 
     public String getFullAddress() {
-        return String.format("%d, %s, %s, %s, %d", house_number, road, city,department,postcode);
+        return String.format("%d %s, %s (%d)", house_number, road, city,postcode);
     }
 }

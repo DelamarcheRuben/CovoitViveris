@@ -25,7 +25,7 @@ export function CarshareResearchProfile(userid){
                         </div>
                         <div className="col">
                             <p style={{ marginTop: "15px", fontSize: "20px" }}><strong>{userDriver.pseudo}</strong></p>
-                            <p style={{ fontSize:  "14px" }}>{userDriver.job}, {userDriver.city}</p>
+                            <p style={{ fontSize:  "14px" }}>{userDriver.job}, {userDriver.address.city}</p>
                             <p><em style={{ fontSize:  "14px" }}>{userDriver.nb_carshares} covoiturages, {userDriver.kilometers} km parcourus</em></p>
                         </div>
                     </div>

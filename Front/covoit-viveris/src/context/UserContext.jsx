@@ -12,7 +12,7 @@ export const UserProvider = ({ children, navigate }) => {
   const [user, setUser] = useState(null);
 
   const updateUser = (newUser) => {
-    document.cookie = "user_id="+newUser.uid + ";Secure;max-age=86400";
+    document.cookie = `user_id=${newUser.uid}; Secure; Max-Age=86400; SameSite=Strict`;
     setUser(newUser);
   };
 

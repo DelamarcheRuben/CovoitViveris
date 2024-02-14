@@ -1,12 +1,22 @@
-import React from "react";
-import { CarshareResearchProfile } from "./CarshareResearchProfile.jsx";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
+import { CarshareResearchProfile } from "./CarshareResearchProfile.jsx";
+
 
 export function CarshareResearchView(carshare){
 
+    const windowWidth = useWindowWidth();
+
+    useEffect(() => {
+        console.log("--------------------------------------------------");
+        console.log(carshare);
+        console.log(carshare.carshare.uid);
+    }, []);
+
     return (
         <React.Fragment>
-            {window.innerWidth < 1105 &&
+            {windowWidth < 1105 &&
                 <div className="carShare-research">
                     <div className="row">
                         <div className="col">
@@ -23,7 +33,7 @@ export function CarshareResearchView(carshare){
             }
             
             
-            {window.innerWidth >= 1105 && 
+            {windowWidth >= 1105 && 
                 <div className="carShare-research">
                     <div className="row">
                         <div className="col">
@@ -34,10 +44,10 @@ export function CarshareResearchView(carshare){
                                         <p><strong>{carshare.carshare.schedule.substring(11, 16)}</strong></p>
                                     </div>
                                     <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
-                                        <div className="circle"></div>
+                                        <div className="carshare-circle"></div>
                                     </div>
                                     <div className="col">
-                                        <p><strong style={{ fontSize:"18px" }}>{carshare.carshare.start_place.city}</strong></p>
+                                        <p><strong style={{ fontSize:"18px" }}>{carshare.carshare.start_place.fullAddress}</strong></p>
                                     </div>
                                 </div>
                                 <div className="row center-div-picture">
@@ -56,10 +66,10 @@ export function CarshareResearchView(carshare){
                                         <p><strong>12:00</strong></p>
                                     </div>
                                     <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
-                                        <div className="circle"></div>
+                                        <div className="carshare-circle"></div>
                                     </div>
                                     <div className="col">
-                                        <p><strong style={{ fontSize:"18px" }}>{carshare.carshare.end_place.city}</strong></p>
+                                        <p><strong style={{ fontSize:"18px" }}>{carshare.carshare.end_place.fullAddress}</strong></p>
                                     </div>
                                 </div>
                             </div>                        

@@ -1,17 +1,20 @@
-import React from "react";
-import { useState, useEffect } from 'react';
-import * as levels from "../../functions/levels"
+import React, { useState, useEffect } from "react";
 import { useLocation, NavLink, Route, Routes } from "react-router-dom";
-import { useUser } from "../../context/UserContext";
-import { ProfileBadges   } from "./ProfileBadges";
-import { ProfileCarShares} from "./ProfileCarShares";
-import { ProfileFriends  } from "./ProfileFriends";
-import { ProfileSummary  } from "./ProfileSummary";
-import { ProfileUpdate   } from "./ProfileUpdate";
+import { useUser }         from "../../context/UserContext.jsx";
+import { useWindowWidth }  from "../../context/WindowWidthContext.jsx";
+import { ProfileBadges   } from "./ProfileBadges.jsx";
+import { ProfileCarShares} from "./ProfileCarShares.jsx";
+import { ProfileFriends  } from "./ProfileFriends.jsx";
+import { ProfileSummary  } from "./ProfileSummary.jsx";
+import { ProfileUpdate   } from "./ProfileUpdate.jsx";
+import * as levels from "../../functions/levels.js"
 
 
 export function ProfileNavbar(){
+
     const { user } = useUser();
+    const windowWidth = useWindowWidth();
+
     const location = useLocation();
     const [currentUrl, setCurrentUrl] = useState("profile");
 
@@ -31,6 +34,7 @@ export function ProfileNavbar(){
         else{
             setCurrentUrl("profile");
         }
+        console.log(location.pathname);
     }, [location.pathname]);
 
     const contentLabel = () => {
@@ -58,7 +62,7 @@ export function ProfileNavbar(){
     return (
         <React.Fragment>
 
-            {user && window.innerWidth < 1105 && 
+            {user && windowWidth < 1105 && 
             <div className="small-screen">
                 <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
@@ -67,9 +71,9 @@ export function ProfileNavbar(){
                 <p className="center" style={{ fontSize:  "3vw" }}>{user.job}, {user.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "50%" }}>
-                    <div className="profile-progress" style={{ width: `${(levels.compute_current_level_exp(user.level, user.experience)/levels.compute_next_level_exp(user.level))*100}%`}}></div>
+                    <div className="profile-progress" style={{ width: `${(user.experience/levels.level_experience(user.level))*100}%`}}></div>
                 </div>
-                <p className="center" style={{ marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "4vw" }}>{levels.compute_current_level_exp(user.level, user.experience)} / {levels.compute_next_level_exp(user.level)}</strong></p>
+                <p className="center" style={{ marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "4vw" }}>{user.experience} / {levels.level_experience(user.level)}</strong></p>
 
                 <div className="row justify-content-center">
                     <div className="col center">
@@ -121,7 +125,7 @@ export function ProfileNavbar(){
             </div>
             }
 
-            {user && window.innerWidth >= 1105 && 
+            {user && windowWidth >= 1105 && 
             <div className="large-screen">
                 <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
                 <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>

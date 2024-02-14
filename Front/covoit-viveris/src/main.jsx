@@ -1,19 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
-import Login    from "./pages/Login";
-import Home     from "./pages/Home";
-import Schedule from "./pages/Schedule";
-import Research from "./pages/Research";
-import Ranking  from "./pages/Ranking";
-import Profile  from "./pages/Profile";
+import { UserProvider }        from "./context/UserContext.jsx";
+import { WindowWidthProvider } from "./context/WindowWidthContext.jsx";
+import Login        from "./pages/Login.jsx";
+import Home         from "./pages/Home.jsx";
+import Schedule     from "./pages/Schedule.jsx";
+import Research     from "./pages/Research.jsx";
+import Ranking      from "./pages/Ranking.jsx";
+import Profile      from "./pages/Profile.jsx";
+import EndCarShare  from "./pages/EndCarShare.jsx";
+import BookCarshare from "./pages/BookCarShare.jsx";
 import "./style/main.css";
 import "./style/header.css";
-import { UserProvider } from "./context/UserContext";
-import { ProfileNavbar } from "./components/profile/ProfileNavbar";
-import EndCarShare from "./pages/EndCarShare";
-import BookCarshare from "./pages/BookCarshare.jsx";
-
 
 
 const router = createBrowserRouter([
@@ -58,7 +57,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
     <UserProvider>
-      <RouterProvider router={router}/>
+      <WindowWidthProvider>
+        <RouterProvider router={router}/>
+      </WindowWidthProvider>
     </UserProvider>
   //</React.StrictMode>
 )

@@ -1,8 +1,8 @@
-import React from "react";
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useUser } from "../../context/UserContext";
+import { useUser }         from "../../context/UserContext.jsx";
+
 
 export function Navbar(){
     const { logout } = useUser();
@@ -17,7 +17,6 @@ export function Navbar(){
     }
 
     useEffect(() => {
-        // Remove 'http://localhost:5173/' of the URL
         let url = location.pathname.substring(1,5);
 
         if(url == "prof"){
@@ -38,20 +37,19 @@ export function Navbar(){
     }, [location.pathname]);
 
     const contentLabel = () => {
-        // Remove 'http://localhost:5173/' of the URL
-        let url = window.location.href.substring(22, 31);
+        let url = location.pathname.substring(1,5);
         
         let label = "Accueil";
-        if(url === "schedule"){
+        if(url === "sche"){
             label = "Planifier un trajet";
         }
-        else if(url === "research"){
+        else if(url === "rese"){
             label = "Rechercher un trajet";
         }
-        else if(url === "ranking/"){
+        else if(url === "rank"){
             label = "Classement";
         }
-        else if(url === "profile/"){
+        else if(url === "prof"){
             label = "Mon profil";
         }
         return label;

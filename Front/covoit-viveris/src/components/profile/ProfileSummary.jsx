@@ -1,12 +1,15 @@
 import React from "react";
-import { useUser } from "../../context/UserContext";
+import { useUser }        from "../../context/UserContext";
+import { useWindowWidth } from "../../context/WindowWidthContext";
 
 export function ProfileSummary(){
+
     const { user } = useUser();
+    const windowWidth = useWindowWidth();
 
     return (
         <React.Fragment>
-            {window.innerWidth < 1105 &&
+            {windowWidth < 1105 &&
             <div className="small-screen">
                 <div className="row" style={{ marginTop:"10px" }}>
                     <div className="col center">
@@ -38,7 +41,7 @@ export function ProfileSummary(){
             }
 
 
-            {window.innerWidth >= 1105 && 
+            {windowWidth >= 1105 && 
             <div className="large-screen">
                 <div className="row" style={{ marginTop:"10px" }}>
                     <div className="col center">
