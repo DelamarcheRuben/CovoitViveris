@@ -40,8 +40,8 @@ public class ParticipateController {
 	 * @return A Participate object full filled
 	 */
 	@GetMapping("/participate")
-	public Participate getParticipate(@RequestParam Long carshare, @RequestParam Long user) {
-		Optional<Participate> participate = participateService.getParticipate(new ParticipateId(carshare, user));
+	public Participate getParticipate(@RequestParam Long challenge, @RequestParam Long user) {
+		Optional<Participate> participate = participateService.getParticipate(new ParticipateId(challenge, user));
 		if(participate.isPresent()) {
 			return participate.get();
 		} else {
@@ -65,11 +65,12 @@ public class ParticipateController {
 	 * @return
 	 */
 	@PutMapping("/participate")
-	public Participate updateParticipate(@RequestParam Long carshare, @RequestParam Long user, @RequestBody Participate participate) {
-		Optional<Participate> e = participateService.getParticipate(new ParticipateId(carshare, user));
+	public Participate updateParticipate(@RequestParam Long challenge, @RequestParam Long user, @RequestBody Participate participate) {
+		Optional<Participate> e = participateService.getParticipate(new ParticipateId(challenge, user));
 		if(e.isPresent()) {
-			participate.setUid(new ParticipateId(carshare, user));
-			Participate currentParticipate = participate;
+			Participate currentParticipate = e.get();
+			Float progression = participate.getProgression();
+			if(progression!=null) currentParticipate.setProgression(progression);
 			participateService.saveParticipate(currentParticipate);
 			return currentParticipate;
 		} else {
@@ -83,8 +84,8 @@ public class ParticipateController {
 	 * @param id - The id of the participate to delete
 	 */
 	@DeleteMapping("/participate")
-	public void deleteParticipate(@RequestParam Long carshare, @RequestParam Long user) {
-		participateService.deleteParticipate(new ParticipateId(carshare, user));
+	public void deleteParticipate(@RequestParam Long challenge, @RequestParam Long user) {
+		participateService.deleteParticipate(new ParticipateId(challenge, user));
 	}
 
 }

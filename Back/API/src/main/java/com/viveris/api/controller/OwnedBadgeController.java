@@ -41,8 +41,8 @@ public class OwnedBadgeController {
 	 * @return A OwnedBadge object full filled
 	 */
 	@GetMapping("/ownedbadge")
-	public OwnedBadge getOwnedBadge(@RequestParam Long carshare, @RequestParam Long user) {
-		Optional<OwnedBadge> ownedBadge = ownedBadgeService.getOwnedBadge(new OwnedBadgeId(carshare, user));
+	public OwnedBadge getOwnedBadge(@RequestParam Long badge, @RequestParam Long user) {
+		Optional<OwnedBadge> ownedBadge = ownedBadgeService.getOwnedBadge(new OwnedBadgeId(badge, user));
 		if(ownedBadge.isPresent()) {
 			return ownedBadge.get();
 		} else {
@@ -67,11 +67,12 @@ public class OwnedBadgeController {
 	 * @return
 	 */
 	@PutMapping("/ownedbadge")
-	public OwnedBadge updateOwnedBadge(@RequestParam Long carshare, @RequestParam Long user, @RequestBody OwnedBadge ownedBadge) {
-		Optional<OwnedBadge> e = ownedBadgeService.getOwnedBadge(new OwnedBadgeId(carshare, user));
+	public OwnedBadge updateOwnedBadge(@RequestParam Long badge, @RequestParam Long user, @RequestBody OwnedBadge ownedBadge) {
+		Optional<OwnedBadge> e = ownedBadgeService.getOwnedBadge(new OwnedBadgeId(badge, user));
 		if(e.isPresent()) {
-			ownedBadge.setUid(new OwnedBadgeId(carshare, user));
-			OwnedBadge currentOwnedBadge = ownedBadge;
+			OwnedBadge currentOwnedBadge = e.get();
+			Integer level = ownedBadge.getLevel();
+			if(level!=null) currentOwnedBadge.setLevel(level);
 			ownedBadgeService.saveOwnedBadge(currentOwnedBadge);
 			return currentOwnedBadge;
 		} else {
@@ -85,8 +86,8 @@ public class OwnedBadgeController {
 	 * @param id - The id of the ownedBadge to delete
 	 */
 	@DeleteMapping("/ownedbadge")
-	public void deleteOwnedBadge(@RequestParam Long carshare, @RequestParam Long user) {
-		ownedBadgeService.deleteOwnedBadge(new OwnedBadgeId(carshare, user));
+	public void deleteOwnedBadge(@RequestParam Long badge, @RequestParam Long user) {
+		ownedBadgeService.deleteOwnedBadge(new OwnedBadgeId(badge, user));
 	}
 
 }

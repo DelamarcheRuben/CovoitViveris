@@ -40,8 +40,8 @@ public class PlayController {
 	 * @return A Play object full filled
 	 */
 	@GetMapping("/play")
-	public Play getPlay(@RequestParam Long carshare, @RequestParam Long user) {
-		Optional<Play> play = playService.getPlay(new PlayId(carshare, user));
+	public Play getPlay(@RequestParam Long league, @RequestParam Long user) {
+		Optional<Play> play = playService.getPlay(new PlayId(league, user));
 		if(play.isPresent()) {
 			return play.get();
 		} else {
@@ -65,11 +65,15 @@ public class PlayController {
 	 * @return
 	 */
 	@PutMapping("/play")
-	public Play updatePlay(@RequestParam Long carshare, @RequestParam Long user, @RequestBody Play play) {
-		Optional<Play> e = playService.getPlay(new PlayId(carshare, user));
+	public Play updatePlay(@RequestParam Long league, @RequestParam Long user, @RequestBody Play play) {
+		Optional<Play> e = playService.getPlay(new PlayId(league, user));
 		if(e.isPresent()) {
-			play.setUid(new PlayId(carshare, user));
-			Play currentPlay = play;
+			Play currentPlay = e.get();
+			Integer experience = play.getExperience();
+			if(experience!=null)
+			{
+				currentPlay.setExperience(experience);
+			}
 			playService.savePlay(currentPlay);
 			return currentPlay;
 		} else {
@@ -83,8 +87,8 @@ public class PlayController {
 	 * @param id - The id of the play to delete
 	 */
 	@DeleteMapping("/play")
-	public void deletePlay(@RequestParam Long carshare, @RequestParam Long user) {
-		playService.deletePlay(new PlayId(carshare, user));
+	public void deletePlay(@RequestParam Long league, @RequestParam Long user) {
+		playService.deletePlay(new PlayId(league, user));
 	}
 
 }

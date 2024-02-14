@@ -69,7 +69,20 @@ public class AddressController {
 		Optional<Address> e = addressService.getAddress(id);
 		if(e.isPresent()) {
 			Address currentAddress = e.get();
-			
+			String city = address.getCity();
+			if(city!=null) currentAddress.setCity(city);
+			String department = address.getDepartment();
+			if(department!=null) currentAddress.setDepartment(city);
+			Integer postcode = address.getPostcode();
+			if(postcode!=null) currentAddress.setPostcode(postcode);
+			String road = address.getRoad();
+			if(road!=null) currentAddress.setRoad(city);
+			Integer house_number = address.getHouse_number();
+			if(house_number!=null) currentAddress.setHouse_number(house_number);
+			Double latitude = address.getLatitude();
+			if(latitude!=null) currentAddress.setLatitude(latitude);
+			Double longitude = address.getLongitude();
+			if(longitude!=null) currentAddress.setLongitude(longitude);
 			addressService.saveAddress(currentAddress);
 			return currentAddress;
 		} else {
