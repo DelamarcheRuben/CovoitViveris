@@ -1,5 +1,6 @@
 package com.viveris.api.controller;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.viveris.api.model.Address;
 import com.viveris.api.model.Passenger;
 import com.viveris.api.model.PassengerId;
 import com.viveris.api.service.PassengerService;
@@ -72,8 +74,11 @@ public class PassengerController {
 	public Passenger updatePassenger(@RequestParam Long carshare, @RequestParam Long user, @RequestBody Passenger passenger) {
 		Optional<Passenger> e = passengerService.getPassenger(new PassengerId(carshare, user));
 		if(e.isPresent()) {
-			passenger.setUid(new PassengerId(carshare, user));
-			Passenger currentPassenger = passenger;
+			Passenger currentPassenger = e.get();
+			LocalDateTime schedule = passenger.getSchedule();
+			if(schedule!=null) currentPassenger.setSchedule(schedule);
+			Address start_place = passenger.getStart_place();
+			if(start_place!=null) currentPassenger.setStart_place(start_place);
 			passengerService.savePassenger(currentPassenger);
 			return currentPassenger;
 		} else {
