@@ -464,3 +464,39 @@ button:hover{
     text-align: center; /* Centrer le texte */
 }
 
+.scheduling-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 5%;
+    width: 80%;
+    max-width: 500px; /* Ajustez selon vos besoins */
+    margin: auto;
+}
+
+.scheduling-form label {
+    width: 100%;
+    margin-bottom: 20px; /* Espacement entre les éléments du formulaire */
+}
+
+.scheduling-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box; /* S'assure que le padding ne change pas la largeur */
+}
+
+.btn {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .scheduling-form {
+        width: 90%;
+        padding: 10px;
+    }
+}
