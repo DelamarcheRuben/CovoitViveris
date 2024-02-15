@@ -130,8 +130,8 @@ const Authentification = ({ onLogin }) => {
                       <input type="text"     id="email"    className="input-stylish center-picture" value={loginEmail}    placeholder="Email professionnel" onChange={handleChangeLoginEmail}    style={{ marginBottom:"10px" }}/>
                       <input type="password" id="password" className="input-stylish center-picture" value={loginPassword} placeholder="Mot de passe"        onChange={handleChangeLoginPassword} style={{ marginBottom:"25px" }}/>
                       <p></p>
-                      <button className="btn-auth">
-                        <strong style={{ fontSize:"15px" }} onClick={handleLoginClick}>CONNEXION</strong>
+                      <button className="btn-auth" onClick={handleLoginClick}>
+                        <strong style={{ fontSize:"15px" }}>CONNEXION</strong>
                       </button>
                     </div>
                   </React.Fragment>
