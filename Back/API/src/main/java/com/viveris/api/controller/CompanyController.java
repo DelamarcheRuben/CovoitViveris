@@ -67,8 +67,9 @@ public class CompanyController {
 	public Company updateCompany(@PathVariable("id") final Long id, @RequestBody Company company) {
 		Optional<Company> e = companyService.getCompany(id);
 		if(e.isPresent()) {
-			company.setUid(id);
-			Company currentCompany = company;
+			Company currentCompany = e.get();
+			String name = company.getName();
+			if(name!=null) currentCompany.setName(name);
 			companyService.saveCompany(currentCompany);
 			return currentCompany;
 		} else {

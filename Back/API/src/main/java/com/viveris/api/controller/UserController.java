@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.viveris.api.model.Address;
 import com.viveris.api.model.User;
 import com.viveris.api.service.UserService;
 
@@ -41,12 +43,32 @@ public class UserController {
 	 */
 	@GetMapping("/user/{id}")
 	public User getUser(@PathVariable("id") final Long id) {
-		Optional<User> user = userService.getUser(id);
-		if(user.isPresent()) {
-			return user.get();
+		Optional<User> opt_user = userService.getUser(id);
+		if(opt_user.isPresent()) {
+			User user = opt_user.get();
+			user.setPassword(null);
+			return user;
 		} else {
 			return null;
 		}
+	}
+	
+	/**
+	 * Read - Get a specific user by pseudo
+	 * @return - An Iterable object of User full filled
+	 */
+	@GetMapping("/user")
+	public User getUserByPseudo(@RequestParam(required = true) String pseudo, @RequestHeader("password") Long pwd) {
+		System.out.println(pwd);
+		Optional<User> opt_user = userService.getUserByPseudo(pseudo);
+		if(opt_user.isPresent()) {
+			User user = opt_user.get();
+			user.setPassword(null);
+			return user;
+		} else {
+			return null;
+		}
+		
 	}
 	
 	/**
@@ -54,9 +76,11 @@ public class UserController {
 	 * @return - An Iterable object of User full filled
 	 */
 	@GetMapping("/users")
-	public Iterable<User> getUsers(@RequestParam(required = false) String pseudo) {
-		if(pseudo!=null) return userService.getUsersByPseudo(pseudo);
-		else return userService.getUsers();
+	public Iterable<User> getUsers() {
+		Iterable<User> users = userService.getUsers();
+		//for protection, until better way
+		for(User user : users) user.setPassword(null);
+		return users;
 	}
 	
 	/**
@@ -72,17 +96,48 @@ public class UserController {
 			User currentUser = e.get();
 			
 			String pseudo = user.getPseudo();
-			if(pseudo != null) {
-				currentUser.setPseudo(pseudo);
-			}
-			int level = user.getLevel();
-			if(level>0) {
-				currentUser.setLevel(level);;
-			}
-			int experience = user.getExperience();
-			if(experience>0) {
-				currentUser.setExperience(experience);
-			}
+			if(pseudo!=null) currentUser.setPseudo(pseudo);
+			String password = user.getPassword();
+			if(password!=null) currentUser.setPassword(password);
+			String first_name = user.getFirst_name();
+			if(first_name!=null) currentUser.setFirst_name(first_name);
+			String last_name = user.getLast_name();
+			if(last_name!=null) currentUser.setLast_name(last_name);
+			
+			String email = user.getEmail();
+			if(email!=null) currentUser.setEmail(email);
+			
+			String job = user.getJob();
+			if(job!=null) currentUser.setJob(job);
+			
+			Address address = user.getAddress();
+			if(address!=null) currentUser.setAddress(address);
+			
+			String picture_background = user.getPicture_background();
+			if(picture_background!=null) currentUser.setPicture_background(picture_background);
+			
+			String car_type = user.getCar_type();
+			if(car_type!=null) currentUser.setCar_type(car_type);
+			
+			Float fuel_consumption = user.getFuel_consumption();
+			if(fuel_consumption!=null) currentUser.setFuel_consumption(fuel_consumption);
+			
+			Integer nb_carshares = user.getNb_carshares();
+			if(nb_carshares!=null) currentUser.setNb_carshares(nb_carshares);
+			
+			Float kilometers = user.getKilometers();
+			if(kilometers!=null) currentUser.setKilometers(kilometers);
+			
+			Integer level = user.getLevel();
+			if(level!=null) currentUser.setLevel(level);;
+			Integer experience = user.getExperience();
+			if(experience!=null) currentUser.setExperience(experience);
+			
+			Float bonus_loyalty = user.getBonus_loyalty();
+			if(bonus_loyalty!=null) currentUser.setBonus_loyalty(bonus_loyalty);
+			
+			Float co2_economy = user.getCo2_economy();
+			if(co2_economy!=null) currentUser.setCo2_economy(co2_economy);
 			
 			userService.saveUser(currentUser);
 			return currentUser;

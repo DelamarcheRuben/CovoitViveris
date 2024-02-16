@@ -16,7 +16,7 @@ const CarshareResearchList = () => {
             .then((data) => {
                 setCarShareList(data);
             });
-    }, []);
+    }, [user]);
 
     return (
         <React.Fragment>
@@ -25,15 +25,14 @@ const CarshareResearchList = () => {
                 <p className="center"><strong style={{ fontSize:"40px" }}>Aucun Résultat</strong></p>
                 :
                 carShareList.map((carshare, index) => (
-                    <React.Fragment key={index}>
-                        {/* Display medal + user if user is in the top 3 otherwise display user only */}
-                        {carshare.driver.uid == user.uid ? (
-                            <div></div>
-                        ) : (
+                    // <React.Fragment key={index}>
+                        // {carshare.driver.uid == user.uid ? (
+                        //     <div></div>
+                        // ) : (
                             <CarshareResearchView key={index} carshare={carshare} />
-                        )}
+                    //     )}
 
-                    </React.Fragment>
+                    // </React.Fragment>
                 ))}
         </React.Fragment>
     );

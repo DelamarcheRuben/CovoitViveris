@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useUser }     from "../../context/UserContext";
-import { Navbar  }     from "../header/Navbar";
-import * as levels     from "../../functions/levels";
+import { useUser }        from "../../context/UserContext.jsx";
+import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
+import * as levels     from "../../functions/levels.js";
 
 export function EndCarshareView(){
+
+    const { user } = useUser();
+    const windowWidth = useWindowWidth();
+
     const id_carshare = 1;
     const navigate = useNavigate();
-    const { user } = useUser();
     const [data, setData] = useState();
   
     useEffect(() => {
@@ -16,8 +19,6 @@ export function EndCarshareView(){
             return res.json();
         })
         .then((data_json) => {
-            console.log("aaa");
-            console.log(data_json);
             const carShareUser = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16), 
             endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place, endLocation:data_json.end_place, 
             co2Saved:895, level:user.level, experience:user.experience, nbPeople:data_json.max_passenger};
@@ -51,7 +52,7 @@ export function EndCarshareView(){
 
     return (
     <React.Fragment>
-        {window.innerWidth < 1105 && data && 
+        {windowWidth < 1105 && data && 
         <div className="endCarShare-background" style={{ minHeight:"1200px"}}>
             <p className="center"><strong style={{ fontSize:"30px" }}>Félicitations !</strong></p>
             <div className="center-picture" style={{ maxWidth:"300px" }}>
@@ -161,7 +162,7 @@ export function EndCarshareView(){
         </div>
         }
 
-        {window.innerWidth >= 1105 && data && 
+        {windowWidth >= 1105 && data && 
         <div className="endCarShare-background" style={{ minHeight:"1200px"}}>
             <p className="center"><strong style={{ fontSize:"30px" }}>Félicitations !</strong></p>
             <div className="center-picture" style={{ maxWidth:"300px" }}>

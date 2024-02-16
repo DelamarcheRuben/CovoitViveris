@@ -6,12 +6,12 @@ export function BookCarshareProfile(userid){
 
     useEffect(() => {
         fetch("http://localhost:8080/user/"+userid.userid)
-          .then((res) => {
+        .then((res) => {
             return res.json();
-          })
-          .then((data) => {
+        })
+        .then((data) => {
             setUserDriver(data);
-          });
+        });
     }, []);
 
     return (

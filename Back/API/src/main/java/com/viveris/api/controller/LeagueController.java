@@ -1,5 +1,6 @@
 package com.viveris.api.controller;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +68,11 @@ public class LeagueController {
 	public League updateLeague(@PathVariable("id") final Long id, @RequestBody League league) {
 		Optional<League> e = leagueService.getLeague(id);
 		if(e.isPresent()) {
-			league.setUid(id);
-			League currentLeague = league;
+			League currentLeague = e.get();
+			LocalDateTime start_date = league.getStart_date();
+			if(start_date!=null) currentLeague.setStart_date(start_date);
+			LocalDateTime end_date = league.getEnd_date();
+			if(end_date!=null) currentLeague.setEnd_date(end_date);
 			leagueService.saveLeague(currentLeague);
 			return currentLeague;
 		} else {

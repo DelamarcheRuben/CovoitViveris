@@ -1,5 +1,6 @@
 package com.viveris.api.controller;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +68,17 @@ public class ChallengeController {
 	public Challenge updateChallenge(@PathVariable("id") final Long id, @RequestBody Challenge challenge) {
 		Optional<Challenge> e = challengeService.getChallenge(id);
 		if(e.isPresent()) {
-			challenge.setUid(id);
-			Challenge currentChallenge = challenge;
+			Challenge currentChallenge = e.get();
+			String name = challenge.getName();
+			if(name!=null) currentChallenge.setName(name);
+			String description = challenge.getDescription();
+			if(description!=null) currentChallenge.setDescription(description);
+			Float goal = challenge.getGoal();
+			if(goal!=null) currentChallenge.setGoal(goal);
+			Float bonus_exp =challenge.getBonus_exp();
+			if(bonus_exp!=null) currentChallenge.setBonus_exp(bonus_exp);
+			LocalDateTime expired_date =challenge.getExpired_date();
+			if(expired_date!=null) currentChallenge.setExpired_date(expired_date);
 			challengeService.saveChallenge(currentChallenge);
 			return currentChallenge;
 		} else {

@@ -1,8 +1,9 @@
-﻿import React from "react";
-import { useState, useEffect } from 'react';
-import { useUser } from "../../context/UserContext";
+﻿import React, { useState, useEffect }  from "react";
+import { useUser }        from "../../context/UserContext.jsx";
+import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 
 const AutocompleteInput = ({ value, onChange, placeholder }) => {
+
     const [suggestions, setSuggestions] = useState([]);
     const [timer, setTimer] = useState(null);
 
@@ -74,6 +75,9 @@ const AutocompleteInput = ({ value, onChange, placeholder }) => {
 };
 
 const CarshareCreation = () => {
+
+    const windowWidth = useWindowWidth();
+
     const [startPlace, setStartPlace] = useState('');
     const [endPlace, setEndPlace] = useState('');
     const [startDate, setStartDate] = useState('');
@@ -122,12 +126,12 @@ const CarshareCreation = () => {
 
     return (
            <React.Fragment>
-            {user && window.innerWidth < 1105 &&
+            {user && windowWidth < 1105 &&
                 //TODO: Gestion de la version mobile du site. Pour l'instant seule la version ordi a été écrite
                 <div className="small-screen">
                     <p className="center" style={{ marginBottom: "20px" }}>Placeholder version mobile </p>
                 </div>}
-            {user && window.innerWidth >= 1105 &&
+            {user && windowWidth >= 1105 &&
                 <div className="large-screen">
                     <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
                     <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Proposer un trajet</strong> </p>

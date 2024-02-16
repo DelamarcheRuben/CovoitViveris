@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser }          from "../../context/UserContext";
+import { useUser }     from "../../context/UserContext.jsx";
 import { BookCarshareViewDriver } from "./BookCarshareViewDriver.jsx";
 
 export function BookCarshareView(){
@@ -16,6 +16,8 @@ export function BookCarshareView(){
             return res.json();
         })
         .then((data) => {
+            console.log("#############");
+            console.log(data);
             setCarshare(data)
             return fetch("http://localhost:8080/passengers?id_carshare=" + location.pathname.substring(23))
         })
@@ -92,7 +94,7 @@ export function BookCarshareView(){
                                             <div className="carshare-circle"></div>
                                         </div>
                                         <div className="col">
-                                            <p><strong style={{ fontSize:"18px" }}>{carshare.start_place}</strong></p>
+                                            <p><strong style={{ fontSize:"18px" }}>{carshare.start_place.fullAddress}</strong></p>
                                         </div>
                                     </div>
                                     <div className="row center-div-picture">
@@ -114,7 +116,7 @@ export function BookCarshareView(){
                                             <div className="carshare-circle"></div>
                                         </div>
                                         <div className="col">
-                                            <p><strong style={{ fontSize:"18px" }}>{carshare.end_place}</strong></p>
+                                            <p><strong style={{ fontSize:"18px" }}>{carshare.end_place.fullAddress}</strong></p>
                                         </div>
                                     </div>
                                 </div>

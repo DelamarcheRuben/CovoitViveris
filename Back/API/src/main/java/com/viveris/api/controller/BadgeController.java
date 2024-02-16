@@ -69,7 +69,14 @@ public class BadgeController {
 		Optional<Badge> e = badgeService.getBadge(id);
 		if(e.isPresent()) {
 			Badge currentBadge = e.get();
-			
+			String name_badge = badge.getName_badge();
+			if(name_badge!=null) currentBadge.setName_badge(name_badge);
+			String picture_badge = badge.getPicture_badge();
+			if(picture_badge!=null) currentBadge.setPicture_badge(picture_badge);
+			String description = badge.getDescription();
+			if(description!=null) currentBadge.setDescription(description);
+			String goals = badge.getGoals();
+			if(goals!=null) currentBadge.setGoals(goals);
 			badgeService.saveBadge(currentBadge);
 			return currentBadge;
 		} else {

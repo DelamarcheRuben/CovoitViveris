@@ -464,3 +464,6 @@ button:hover{
     text-align: center; /* Centrer le texte */
 }
 
+.form_challenge *{
+    margin-bottom: 10px;
+}

@@ -1,11 +1,15 @@
-import React from "react";
-import { useState, useEffect } from 'react';
-import { useUser } from "../../context/UserContext";
-import { Tooltip } from "../Tooltip";
+import React, { useState, useEffect } from "react";
+import { useUser }        from "../../context/UserContext.jsx";
+import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
+import { Tooltip } from "../Tooltip.jsx";
+
 
 
 export function ProfileBadges(){
+
     const { user } = useUser();
+    const windowWidth = useWindowWidth();
+    
     const [badges, setBadges] = useState([]);
     const [ownedBadges, setOwnedBadges] = useState([]);
 
@@ -64,15 +68,17 @@ export function ProfileBadges(){
         })
     }
 
+
+
     return (
         <React.Fragment>
-            {window.innerWidth < 1105 && 
+            {windowWidth < 1105 && 
             <div className="small-screen">
                 <div className="badge-view-small">
                     <p><strong className="center-div-picture" style={{ fontSize:"20px", paddingTop:"15px" }}>GALERIES DE BADGES : </strong></p>
                     
                     {badgeData.map((data, index) => (
-                        <div className="row center-picture" style={{ marginTop:"20px" }}>
+                        <div key={index} className="row center-picture" style={{ marginTop:"20px" }}>
                             <div className="col" style={{ maxWidth:"75px", marginLeft:"5%" }}>
                                 <img className="center-picture" src={`../src/images/badge/${data.picture}${data.num_badge}.png`} alt={`Badge ${data.title}`} width="100%"/>
                             </div>
@@ -88,15 +94,15 @@ export function ProfileBadges(){
             }
 
 
-            {window.innerWidth >= 1105 && 
+            {windowWidth >= 1105 && 
             <div className="large-screen" style={{ marginTop:"20px"}}>
                 <div className="badge-view">
                     <p><strong className="center-div-picture" style={{ fontSize:"20px", paddingTop:"15px" }}>GALERIES DE BADGES : </strong></p>
                     
                     {badgeData.map((data, index) => (
-                        <div className="row center-picture" style={{ marginTop:"20px" }}>
+                        <div key={index} className="row center-picture" style={{ marginTop:"20px" }}>
                             <div className="col" style={{ maxWidth:"50px", marginLeft:"5%" }}>
-                                <Tooltip content={data.content}>
+                                <Tooltip key={index} content={data.content}>
                                     <div className="info-badge-circle">
                                         <span style={{ color: 'white', fontSize: '16px'}}>i</span>
                                     </div>

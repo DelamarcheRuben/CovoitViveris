@@ -1,9 +1,12 @@
-import React from "react";
-import { useState } from 'react';
-import { useUser }  from "../../context/UserContext";
+import React, { useState } from "react";
+import { useUser }         from "../../context/UserContext";
+import { useWindowWidth }  from "../../context/WindowWidthContext";
 
 const Authentification = ({ onLogin }) => {
+
   const { user, login, logout } = useUser();
+  const windowWidth = useWindowWidth();
+
   const [isLeftSideActive, setIsLeftSideActive] = useState(true);
   
   const handleButtonClick = () => {
@@ -51,7 +54,7 @@ const Authentification = ({ onLogin }) => {
 
   return (
       <React.Fragment>
-        {window.innerWidth < 1105 && 
+        {windowWidth < 1105 && 
         <div>
           <div className="small-screen" style={{ boxShadow:"0px 5px 10px rgba(0, 0, 0, 0.2)", padding:"10px" }}>
             <img className="" src="../../src/images/logo/logo_v.jpg" alt="Logo Viveris" style={{ width: "35px" }}/>
@@ -106,7 +109,7 @@ const Authentification = ({ onLogin }) => {
         </div>
         }
 
-        {window.innerWidth >= 1105 && 
+        {windowWidth >= 1105 && 
         <div>
           <div className="large-screen" style={{ boxShadow:"0px 5px 10px rgba(0, 0, 0, 0.2)", padding:"20px" }}>
             <img className="" src="../../src/images/logo/logo_viveris.jpg" alt="Logo Viveris" style={{ width: "150px" }}/>
@@ -127,8 +130,8 @@ const Authentification = ({ onLogin }) => {
                       <input type="text"     id="email"    className="input-stylish center-picture" value={loginEmail}    placeholder="Email professionnel" onChange={handleChangeLoginEmail}    style={{ marginBottom:"10px" }}/>
                       <input type="password" id="password" className="input-stylish center-picture" value={loginPassword} placeholder="Mot de passe"        onChange={handleChangeLoginPassword} style={{ marginBottom:"25px" }}/>
                       <p></p>
-                      <button className="btn-auth">
-                        <strong style={{ fontSize:"15px" }} onClick={handleLoginClick}>CONNEXION</strong>
+                      <button className="btn-auth" onClick={handleLoginClick}>
+                        <strong style={{ fontSize:"15px" }}>CONNEXION</strong>
                       </button>
                     </div>
                   </React.Fragment>
