@@ -11,6 +11,7 @@ import Ranking      from "./pages/Ranking.jsx";
 import Profile      from "./pages/Profile.jsx";
 import EndCarShare  from "./pages/EndCarShare.jsx";
 import BookCarshare from "./pages/BookCarShare.jsx";
+import AdminChallenge from "./pages/AdminChallenge.jsx";
 import "./style/main.css";
 import "./style/header.css";
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   {
     path: "research/bookCarShare/*",
     element: <div><BookCarshare/></div>
+  },
+  {
+    path: "admin/challenge/",
+    element: <div><AdminChallenge/></div>
   }
 ])
 
