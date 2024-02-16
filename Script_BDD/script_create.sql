@@ -99,6 +99,13 @@ CREATE TABLE USERS (
     UID_company INT,
     UID_sponsor INT
 );
+
+CREATE TABLE FRIEND(
+    PRIMARY KEY (user1, user2),
+    user1 INT NOT NULL,
+    user2 INT NOT NULL
+);
+
 ALTER TABLE
     CARSHARE
     ADD
@@ -163,3 +170,14 @@ ALTER TABLE
     USERS
     ADD
         FOREIGN KEY (address) REFERENCES ADDRESS (UID);
+
+
+ALTER TABLE
+    FRIEND
+    ADD
+        FOREIGN KEY (user1) REFERENCES USERS (UID);
+
+ALTER TABLE
+    FRIEND
+    ADD
+        FOREIGN KEY (user2) REFERENCES USERS (UID);

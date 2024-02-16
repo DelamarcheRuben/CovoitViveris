@@ -57,3 +57,30 @@ INSERT INTO CHALLENGE (name, description, goal, bonus_exp, expired_date) VALUES
 INSERT INTO LEAGUE (start_date, end_date) VALUES ('2024-03-01', '2024-06-01');
 -- Insertion des participations aux ligues et aux challenges
 -- Assurez-vous d'avoir les bons UID_challenge et UID_league avant d'insérer ces données
+
+
+INSERT INTO BADGE(name_badge, picture_badge, description, goals) VALUES
+("Covoitureur", "covoitureur", "covoiturages réalisés", "5, 20, 50, 100"),
+("Covoiturage consécutif", "covoitureur_consecutif", "covoiturages consécutifs réalisés", "2, 3, 5, 10"),
+("Kilométrage", "kilometrage", "Parcourez des kilomètres en covoiturage", "50, 150, 500, 1000"),
+("Éco-citoyen", "eco_citoyen", "Réduisez vos émissions de CO2 grâce au covoiturage", "1, 2, 3, 4"),
+("Vétéran", "veteran", "Utilisez l'application de covoiturage pendant plusieurs semaines", "2, 4, 12, 24"),
+("Annonceur", "annonceur", "Postez des annonces de covoiturage", "3, 10, 20, 50"),
+("Partenaire", "partenaire", "Partagez un covoiturage avec plusieurs passagers différents","2, 3, 5, 10"),
+("Challenge", "challenge", "Réussir des challenges", "2, 3, 5, 10" );
+
+INSERT INTO OWNEDBADGE(UID_badge, UID_user, level) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 4),
+(5, 2, 5),
+(6, 3, 2);
+
+
+
+INSERT INTO FRIEND(user1, user2) VALUES
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 5);
