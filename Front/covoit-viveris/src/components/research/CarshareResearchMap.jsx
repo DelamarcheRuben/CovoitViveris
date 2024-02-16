@@ -86,4 +86,4 @@ const CarshareResearchMap = () => {
     );
 };
 
-export { CarshareResearchMap };
+export default CarshareResearchMap ;
