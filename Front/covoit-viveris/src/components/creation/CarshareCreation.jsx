@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect }  from "react";
 import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
+import { geocodeAddress } from "../../functions/geocode.js";
 
 const AutocompleteInput = ({ value, onChange, placeholder }) => {
 
@@ -93,6 +94,7 @@ const CarshareCreation = () => {
                 setMessage("Certains champs n'ont pas été remplis");
             }
             else {
+
                 const options = {
                     method: 'POST',
                     headers: {
@@ -125,6 +127,35 @@ const CarshareCreation = () => {
     }
 
     return (
+        <div className="creation-form">
+            <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
+            <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Planifier un trajet</strong></p>
+
+            <label> Lieu de départ :
+                <AutocompleteInput value={startPlace} onChange={setStartPlace} placeholder="Entrez l'adresse de départ" />
+                
+            </label>
+
+            <label> Lieu d'arrivée :
+                <AutocompleteInput value={endPlace} onChange={setEndPlace} placeholder="Entrez l'adresse d'arrivée" />
+            </label>
+
+            <br></br>
+            <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
+                            <input width="20%" type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />
+                            <input type="time" name="timeStart" value={startTime} onChange={e => setStartTime(e.target.value)} />
+            </label>
+            <br></br>
+            <label> Nombre de places :<br></br>
+                <input type="number" name="seats" min="1" max="10" value={numSeats} onChange={e => setNumSeats(e.target.value)} style={{ width: "15%" }} />
+            </label>
+
+            <button className="btn" onClick={handleCreateClick}>
+                <strong style={{ fontSize: "15px", padding: "5px" }}>Rechercher</strong>
+            </button>
+        </div>
+
+        /*
            <React.Fragment>
             {user && windowWidth < 1105 &&
                 //TODO: Gestion de la version mobile du site. Pour l'instant seule la version ordi a été écrite
@@ -134,7 +165,7 @@ const CarshareCreation = () => {
             {user && windowWidth >= 1105 &&
                 <div className="large-screen">
                     <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
-                    <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Proposer un trajet</strong> </p>
+                    <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Planifier un trajet</strong> </p>
                     <div className="scheduling-form" style={{ boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)", padding: "5%", width: "70%", marginLeft: "15%" }}>
 
                         <label> Lieu de départ :<br />
@@ -154,7 +185,7 @@ const CarshareCreation = () => {
                         </label>
 
                         <br></br>
-                        {/* <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
+                        { <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
                             <input type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />
                             <input type="time" name="timeStart" value={startTime} onChange={e => setStartTime(e.target.value)} />
                         </label>
@@ -166,11 +197,11 @@ const CarshareCreation = () => {
                             <button className="btn" onClick={handleCreateClick}>
                                 <strong style={{ fontSize: "15px", padding: "5px" }}>Je propose un trajet</strong>
                         </button>
-                        </div> */}
+                        </div> }
                     </div>
                 </div>}
 
-        </React.Fragment>
+        </React.Fragment>*/
     );
 
 };
