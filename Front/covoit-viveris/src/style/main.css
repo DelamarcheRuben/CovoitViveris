@@ -336,6 +336,18 @@ button:hover{
     }
 }
 
+@media (max-width: 600px) {
+    .scheduling-form {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .carshare-container {
+        width: 90%;
+        padding: 10px;
+    }
+}
+
 
 .endCarShare-background{
     background-image     : url(./src/images/background_map.png);
@@ -396,7 +408,7 @@ button:hover{
 
 .mapContainer {
     height: 500px;
-    width: 80%;
+    width: 95%;
     margin: 20px auto;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -406,8 +418,7 @@ button:hover{
     width        : 90%;
     height       : 215px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
-    margin       : auto;
-    margin-top   : 15px;
+    margin: 15px auto auto;
     background-color: white;
 }
 
@@ -415,8 +426,7 @@ button:hover{
     width        : 75%;
     height       : 215px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
-    margin       : auto;
-    margin-top   : 15px;
+    margin: 15px auto auto;
     background-color: white;
 }
 
@@ -440,8 +450,7 @@ button:hover{
     width        : 60%;
     height       : 300px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
-    margin       : auto;
-    margin-top   : 15px;
+    margin: 15px auto auto;
     background-color: white;
 }
 
@@ -466,4 +475,68 @@ button:hover{
 
 .form_challenge *{
     margin-bottom: 10px;
+}
+
+/* style du formulaire de CarshareResearchForm */
+.scheduling-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 5%;
+    width: 100%;
+    max-width: 500px; /* Ajustez selon vos besoins */
+    margin: auto;
+    margin: 20px auto;
+}
+
+.scheduling-form label {
+    width: 100%;
+    margin-bottom: 20px; /* Espacement entre les éléments du formulaire */
+}
+
+.scheduling-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box; /* S'assure que le padding ne change pas la largeur */
+}
+
+.btn {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* style du container de CarshareResearch */
+.carshare-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+    margin: auto;
+    width: calc(100% - 4%);
+    max-width: 95%;
+    background-color: var(--backgroundColor); /* Utilisez votre couleur de fond définie */
+    height: auto;
+}
+
+.carshare-container label {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.carshare-container input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.bottom-navigation {
+    padding: 5%;
+    width: 100%;
+    position: relative;
 }
