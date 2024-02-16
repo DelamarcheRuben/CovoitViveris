@@ -155,53 +155,6 @@ const CarshareCreation = () => {
             </button>
         </div>
 
-        /*
-           <React.Fragment>
-            {user && windowWidth < 1105 &&
-                //TODO: Gestion de la version mobile du site. Pour l'instant seule la version ordi a été écrite
-                <div className="small-screen">
-                    <p className="center" style={{ marginBottom: "20px" }}>Placeholder version mobile </p>
-                </div>}
-            {user && windowWidth >= 1105 &&
-                <div className="large-screen">
-                    <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
-                    <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Planifier un trajet</strong> </p>
-                    <div className="scheduling-form" style={{ boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)", padding: "5%", width: "70%", marginLeft: "15%" }}>
-
-                        <label> Lieu de départ :<br />
-                            <AutocompleteInput
-                                value={startPlace}
-                                onChange={setStartPlace}
-                                placeholder="Entrez l'adresse de départ"
-                            />
-                        </label>
-
-                        <label> Lieu d'arrivée :<br />
-                            <AutocompleteInput
-                                value={endPlace}
-                                onChange={setEndPlace}
-                                placeholder="Entrez l'adresse d'arrivée"
-                            />
-                        </label>
-
-                        <br></br>
-                        { <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
-                            <input type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />
-                            <input type="time" name="timeStart" value={startTime} onChange={e => setStartTime(e.target.value)} />
-                        </label>
-                        <br></br>
-                        <label style={{ width: "70%", marginBottom: "30px" }}> Nombre de places :<br></br>
-                            <input className="input-stylish" type="number" name="seats" min="1" max="10" value={numSeats} onChange={e => setNumSeats(e.target.value)} style={{ width: "10%" }} />
-                        </label>
-                        <div>
-                            <button className="btn" onClick={handleCreateClick}>
-                                <strong style={{ fontSize: "15px", padding: "5px" }}>Je propose un trajet</strong>
-                        </button>
-                        </div> }
-                    </div>
-                </div>}
-
-        </React.Fragment>*/
     );
 
 };
