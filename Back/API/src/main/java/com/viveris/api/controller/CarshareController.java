@@ -65,8 +65,21 @@ public class CarshareController {
 	 * @return - An Iterable object of Carshare full filled
 	 */
 	@GetMapping("/not-full-carshares")
-	public Iterable<Carshare> getNotFullCarshares(@RequestParam(required = true) Integer id_user ) {
+	public Iterable<Carshare> getNotFullCarshares(@RequestParam(required = true) Long id_user ) {
 		return carshareService.getNotFullCarshares(id_user);
+	}
+	
+	
+	/**
+	 * Read - Get all carshares for a given date, sorted by distance (with a distance max)
+	 * @param date : date of carshares
+	 * @param distance_max : max_distance from user
+	 * @return - An Iterable object of Carshare full filled
+	 */
+	@GetMapping("/sorted-carshares")
+	public Iterable<Carshare> getNotFullCarshares(@RequestParam(required = true) Long id_user, @RequestParam(required = true) String date, @RequestParam(required=false) Float distance_max) {
+		if(distance_max==null) distance_max = 50.0f;
+		return carshareService.getSortedCarshares(id_user, date, distance_max);
 	}
 	
 	

@@ -4,35 +4,56 @@ import { useUser }      from "../context/UserContext";
 import Authentification from "../components/authentification/Authentification";
 
 
+//https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
+const cyrb53 = (str, seed = 0) => {
+  let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+  for(let i = 0, ch; i < str.length; i++) {
+      ch = str.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1  = Math.imul(h1 ^ (h1 >>> 16), 2246822507);
+  h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2  = Math.imul(h2 ^ (h2 >>> 16), 2246822507);
+  h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+
+  return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+};
+
+
+
 const Login = () => {
   const { updateUser } = useUser();
   const navigate = useNavigate();
-
+  
   const handleLogin = (username, password) => {
-    fetch("http://localhost:8080/users?pseudo="+username)
+    var hashed_pwd = cyrb53(password);
+    const options = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'password':hashed_pwd
+      }
+  };
+    fetch("http://localhost:8080/user?pseudo="+username, options)
     .then((res) => {
-      return res.json();
+      var data = res.json();
+      if(data===null) navigate("/login");
+      return data;
     })
     .then((data) => {
-      updateUser(data[0]);
-      navigate('/home');
+        updateUser(data);
+        navigate('/home');
+    })
+    .catch((error) => //if data === null, then error
+    {
+      window.location.reload();
     });
-    /*if (password === 'admin') {
-      updateUser({ id: 1, pseudo: username, job: "Dev Full-Stack", city: "Boulogne-Billancourt", nb_carshares: 549, kilometers: 8754, experience: 109, picture_background: "mountain", nb_badges: 39, start_date: "16/07/2021" });
-      navigate('/home');
-    } 
-    else if (password === 'secret') {
-      updateUser({ id: 2, pseudo: username, job: "Dev Full-Stack", city: "Boulogne-Billancourt", nb_carshares: 549, kilometers: 8754, experience: 109, picture_background: "mountain", nb_badges: 39, start_date: "16/07/2021" });
-      navigate('/home');
-    }
-    else {
-      alert('Mot de passe incorrect');
-    }*/
   };
 
   return (
     <div>
-      <Authentification onLogin={handleLogin} />
+      <Authentification onLogin={handleLogin}/>
     </div>
   );
 };

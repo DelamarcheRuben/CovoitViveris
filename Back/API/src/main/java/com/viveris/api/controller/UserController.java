@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,12 +43,32 @@ public class UserController {
 	 */
 	@GetMapping("/user/{id}")
 	public User getUser(@PathVariable("id") final Long id) {
-		Optional<User> user = userService.getUser(id);
-		if(user.isPresent()) {
-			return user.get();
+		Optional<User> opt_user = userService.getUser(id);
+		if(opt_user.isPresent()) {
+			User user = opt_user.get();
+			user.setPassword(null);
+			return user;
 		} else {
 			return null;
 		}
+	}
+	
+	/**
+	 * Read - Get a specific user by pseudo
+	 * @return - An Iterable object of User full filled
+	 */
+	@GetMapping("/user")
+	public User getUserByPseudo(@RequestParam(required = true) String pseudo, @RequestHeader("password") Long pwd) {
+		System.out.println(pwd);
+		Optional<User> opt_user = userService.getUserByPseudo(pseudo);
+		if(opt_user.isPresent()) {
+			User user = opt_user.get();
+			user.setPassword(null);
+			return user;
+		} else {
+			return null;
+		}
+		
 	}
 	
 	/**
@@ -55,9 +76,11 @@ public class UserController {
 	 * @return - An Iterable object of User full filled
 	 */
 	@GetMapping("/users")
-	public Iterable<User> getUsers(@RequestParam(required = false) String pseudo) {
-		if(pseudo!=null) return userService.getUsersByPseudo(pseudo);
-		else return userService.getUsers();
+	public Iterable<User> getUsers() {
+		Iterable<User> users = userService.getUsers();
+		//for protection, until better way
+		for(User user : users) user.setPassword(null);
+		return users;
 	}
 	
 	/**
