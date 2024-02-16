@@ -22,7 +22,7 @@ public interface CarshareRepository extends CrudRepository<Carshare, Long> {
 
 	
 	@Query(value = "SELECT * FROM Carshare "
-			+ " WHERE DATE_FORMAT(schedule, \"%Y-%m-%d\") = :date"
+			+ " WHERE DATE_FORMAT(schedule, \"%Y-%m-%d\") >= :date"
 			+ " AND "
 			+ " uid NOT IN("
 			+ "	SELECT uid FROM Carshare LEFT JOIN Passenger ON(uid=uid_carshare) "

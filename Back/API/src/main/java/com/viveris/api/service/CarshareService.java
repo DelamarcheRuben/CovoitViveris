@@ -3,6 +3,7 @@ package com.viveris.api.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,9 +70,18 @@ public class CarshareService {
 			          Math.sin(Δλ/2) * Math.sin(Δλ/2);
 			Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 			Float distance = (float) (R*c);
-			carshare.setDistance(distance);
+			if(distance<= distance_max)
+			{
+				carshare.setDistance(distance);	
+				sorted_carshares.add(carshare);
+			}
 		}
-		return carshares;
+		sorted_carshares.sort((o1, o2) -> {
+			if(o1.getDistance()<o2.getDistance()) return -1;
+			if(o1.getDistance()==o2.getDistance()) return 0;
+			return 1;
+		});
+		return sorted_carshares;
 	}
 
 }
