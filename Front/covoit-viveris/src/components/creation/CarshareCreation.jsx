@@ -90,40 +90,137 @@ const CarshareCreation = () => {
 
     const handleCreateClick = () => {
 
-            if (startPlace === '' || endPlace === '' || startDate === '' || startTime === '') {
-                setMessage("Certains champs n'ont pas été remplis");
+        if (startPlace === '' || endPlace === '' || startDate === '' || startTime === '') {
+            setMessage("Certains champs n'ont pas été remplis.");
+        }
+        else {
+
+            if (startPlace.address.hasOwnProperty("city")) {
+                start_city = startPlace.address.city;
             }
             else {
-
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        max_passenger:  numSeats ,
-                        is_Full: 'false',
-                        schedule: startDate  + ' ' +  startTime ,
-                        start_place:  startPlace ,
-                        end_place:  endPlace ,
-                        //TODO : Ajouter les coordonnées lat et lon de chaque start_place et end_place, ne pas oublier que start et end_place sont maintenant des Addresses. Faire attention a envoyer les bonnes informations pour créer l'objet covoiturage.
-                        //TODO: Calculer distance et bonus_pollution avant de faire cette requête POST
-                        driver:{
-                            uid: user.uid 
-                        }
-                    })
-                };
-                fetch('http://localhost:8080/carshare', options).then((res) => { });
-                
-                // Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
-                // Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
-                setMessage("Requête de création de covoiturage envoyée");
-                // setStartPlace('');
-                // setEndPlace('');
-                // setStartDate('');
-                // setNumSeats('1');
-                
+                start_city = null;
             }
+
+            if (startPlace.address.hasOwnProperty("state")) {
+                start_department = startPlace.address.state;
+            }
+            else {
+                start_department = null;
+            }
+
+            if (startPlace.address.hasOwnProperty("postcode")) {
+                start_postcode = startPlace.address.postcode;
+            }
+            else {
+                start_postcode = null;
+            }
+
+            if (startPlace.address.hasOwnProperty("road")) {
+                start_road = startPlace.address.road;
+            }
+            else {
+                start_road = null;
+            }
+
+            if (startPlace.address.hasOwnProperty("house_number")) {
+                start_house_number = startPlace.address.house_number;
+            }
+
+            else {
+                start_house_number = null;
+            }
+            if (endPlace.address.hasOwnProperty("city")) {
+                end_city = endPlace.address.city;
+            }
+            else {
+                end_city = null;
+            }
+
+            if (endPlace.address.hasOwnProperty("state")) {
+                end_department = endPlace.address.state;
+            }
+            else {
+                end_department = null;
+            }
+
+            if (endPlace.address.hasOwnProperty("postcode")) {
+                end_postcode = endPlace.address.postcode;
+            }
+            else {
+                end_postcode = null;
+            }
+
+            if (endPlace.address.hasOwnProperty("road")) {
+                end_road = endtPlace.address.road;
+            }
+            else {
+                end_road = null;
+            }
+
+            if (endPlace.address.hasOwnProperty("house_number")) {
+                end_house_number = endPlace.address.house_number;
+            }
+            else {
+                end_house_number = null;
+            }
+
+            setMessage("exiting test zone");
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    max_passenger: numSeats,
+                    is_Full: 'false',
+                    schedule: startDate + ' ' + startTime,
+
+                    start_place: {
+                        city: start_city,
+                        department: start_department,
+                        postcode: start_postcode,
+                        road: start_road,
+                        house_number: start_house_number,
+                        latitude: startPlace.lat,
+                        longitude: startPlace.lon
+                    },
+
+                    end_place: {
+                        city: end_city,
+                        department: end_department,
+                        postcode: end_postcode,
+                        road: end_road,
+                        house_number: end_house_number,
+                        latitude: endPlace.lat,
+                        longitude: endPlace.lon
+                    },
+
+                    //TODO : Ajouter les coordonnées lat et lon de chaque start_place et end_place, ne pas oublier que start et end_place sont maintenant des Addresses. Faire attention a envoyer les bonnes informations pour créer l'objet covoiturage.
+                    //TODO: Calculer distance et bonus_pollution avant de faire cette requête POST
+                    driver: {
+                        uid: user.uid
+                    }
+
+                })
+
+            };
+
+            fetch('http://localhost:8080/carshare', options).then((res) => { });
+
+
+            // Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
+            // Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
+
+            setMessage("Requête de création de covoiturage envoyée");
+            // setStartPlace('');
+            // setEndPlace('');
+            // setStartDate('');
+            // setNumSeats('1');
+
+        }
     }
 
     return (
