@@ -261,7 +261,7 @@ button:hover{
 
 .badge-view-small{
     width        : 350px;
-    height       : 725px;
+    height       : 810px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.1);
     margin       : auto;
     margin-bottom: 25px;
@@ -416,6 +416,15 @@ button:hover{
 
 .carShare-research{
     width        : 90%;
+    height       : 250px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top   : 15px;
+    background-color: white;
+}
+
+.carShare-research-small{
+    width        : 90%;
     height       : 215px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
     margin: 15px auto auto;
@@ -430,8 +439,41 @@ button:hover{
     background-color: white;
 }
 
+.carShare-booking-small{
+    width        : 90%;
+    height       : 250px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top   : 15px;
+    background-color: white;
+}
+
+.line-45{
+    height: 46px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: black; /* Couleur de la ligne, à personnaliser */
+    margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
 .line-50{
-    height: 52px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    height: 51px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: black; /* Couleur de la ligne, à personnaliser */
+    margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
+.line-55{
+    height: 56px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: black; /* Couleur de la ligne, à personnaliser */
+    margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
+.line-60{
+    height: 64px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
     width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
     background-color: black; /* Couleur de la ligne, à personnaliser */
     margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
@@ -446,11 +488,28 @@ button:hover{
     --bs-gutter-x: 0;
 }
 
+.line-company-color-horizontal{
+    height: 2px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 75%; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: var(--secondaryColor); /* Couleur de la ligne, à personnaliser */
+    margin-top: 20px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
 .profile-booking{
     width        : 60%;
     height       : 300px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
     margin: 15px auto auto;
+    background-color: white;
+}
+
+.profile-booking-small{
+    width        : 90%;
+    height       : 40%;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top   : 15px;
     background-color: white;
 }
 

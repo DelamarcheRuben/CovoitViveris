@@ -103,8 +103,9 @@ CREATE TABLE USERS (
 CREATE TABLE FRIEND(
     PRIMARY KEY (user1, user2),
     user1 INT NOT NULL,
-    user2 INT NOT NULL,
-)
+    user2 INT NOT NULL
+);
+
 ALTER TABLE
     CARSHARE
     ADD
