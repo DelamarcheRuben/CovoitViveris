@@ -23,7 +23,7 @@ export function Tooltip({ content, children }) {
         <div
           style={{
             position : 'absolute',
-            width    : '420%',
+            width    : '500%',
             top      : '100%',
             left     : '50%',
             padding  : '10px',
