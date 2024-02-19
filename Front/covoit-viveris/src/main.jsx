@@ -15,6 +15,8 @@ import AdminChallenge from "./pages/AdminChallenge.jsx";
 import "./style/main.css";
 import "./style/header.css";
 import {ThemeProvider, createTheme, StyledEngineProvider} from "@mui/material/styles";
+import CarshareResearchResultsDisplay from "./components/research/CarshareResearchResultDisplay";
+import {SearchResultsProvider} from "./context/SearchResultsContext";
 
 // Création d'un thème personnalisé avec les couleurs de votre site
 const theme = createTheme({
@@ -84,8 +86,12 @@ const router = createBrowserRouter([
     element: <div><EndCarShare/></div>
   },
   {
-    path: "research/bookCarShare/*",
+    path: "research/book-carshare",
     element: <div><BookCarshare/></div>
+  },
+  {
+    path: "/research/results",
+    element: <div><CarshareResearchResultsDisplay/></div>
   },
   {
     path: "admin/challenge/",
@@ -98,7 +104,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <UserProvider>
         <WindowWidthProvider>
           <ThemeProvider theme={theme}>
-            <RouterProvider router={router}/>
+            <SearchResultsProvider>
+              <RouterProvider router={router}/>
+            </SearchResultsProvider>
           </ThemeProvider>
         </WindowWidthProvider>
       </UserProvider>

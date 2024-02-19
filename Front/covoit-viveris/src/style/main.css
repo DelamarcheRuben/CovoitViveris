@@ -508,7 +508,7 @@ button:hover{
     cursor: pointer;
 }
 
-/* style du container de CarshareResearch */
+/* style du container des résultats */
 .carshare-container {
     display: flex;
     flex-direction: column;

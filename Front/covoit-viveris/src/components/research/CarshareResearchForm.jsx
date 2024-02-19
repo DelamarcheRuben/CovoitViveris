@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
+import {useUser} from "../../context/UserContext.jsx";
+import {useSearchResults} from "../../context/SearchResultsContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 const CarshareResearchForm = () => {
-    const windowWidth = useWindowWidth();
-
     const [startPlace, setStartPlace] = useState('');
     const [endPlace, setEndPlace] = useState('');
     const [startDate, setStartDate] = useState('');
+    const { updateUser, user } = useUser();
+    const { updateSearchResults } = useSearchResults(); // Utiliser le contexte de résultats de recherche
+    const navigate = useNavigate();
 
     const handleSearchClick = () => {
         console.log("Recherche en cours pour", { startPlace, endPlace, startDate });
-        // Implémentez la logique pour afficher CarshareResearchList avec les résultats ici
+        fetch(`http://localhost:8080/sorted-carshares?id_user=${user.uid}&date=${startDate}`)
+            .then(response => response.json())
+            .then(data => {
+                updateSearchResults(data); // Mise à jour des résultats dans le contexte
+                navigate("/research/results"); // Naviguer vers la page de résultats
+            })
+            .catch(error => {
+                console.error("Erreur lors de la récupération des covoiturages triés : ", error);
+            });
     };
 
     return (
@@ -25,6 +37,7 @@ const CarshareResearchForm = () => {
                         onChange={e => setStartPlace(e.target.value)}
                         placeholder="Entrez l'adresse de départ"
                         autoComplete="off"
+                        disabled={true}
                     />
                 </label>
 
@@ -35,6 +48,7 @@ const CarshareResearchForm = () => {
                         onChange={e => setEndPlace(e.target.value)}
                         placeholder="Entrez l'adresse d'arrivée"
                         autoComplete="off"
+                        disabled={true}
                     />
                 </label>
 

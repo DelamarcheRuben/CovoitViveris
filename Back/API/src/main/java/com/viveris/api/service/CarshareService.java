@@ -51,7 +51,6 @@ public class CarshareService {
 		if(!opt_user.isPresent()) return null;
 		User user = opt_user.get();
 		Iterable<Carshare> carshares = carshareRepository.getSortedCarshares(id_user, date);
-		ArrayList<Carshare> sorted_carshares = new ArrayList<>();
 		for(Carshare carshare:carshares)
 		{
 			//https://www.movable-type.co.uk/scripts/latlong.html

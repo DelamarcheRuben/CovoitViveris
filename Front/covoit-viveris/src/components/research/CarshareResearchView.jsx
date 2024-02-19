@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import { CarshareResearchProfile } from "./CarshareResearchProfile.jsx";
 
 
 export function CarshareResearchView(carshare){
-
+    const navigate = useNavigate();
     const windowWidth = useWindowWidth();
 
-    useEffect(() => {
-        console.log("--------------------------------------------------");
-        console.log(carshare);
-        console.log(carshare.carshare.uid);
-    }, []);
+    const redirectToBookCarshareView = () => {
+        navigate('/research/book-carshare', { state: { carshare: carshare.carshare } });
+    };
 
     return (
         <React.Fragment>
@@ -87,9 +85,7 @@ export function CarshareResearchView(carshare){
                                 </div>
                             </div>
                             <div className="row" style={{ marginTop:"30px", justifyContent:"right", display:"grid" }}>
-                                <NavLink to={`/research/bookCarShare/${carshare.carshare.uid}`}>
-                                    <button className="btn" style={{ width: "40px" }}><strong style={{ fontSize:"20px"}}>&gt;</strong></button>
-                                </NavLink>
+                                <button onClick={redirectToBookCarshareView} className="btn" style={{ width: "40px" }}><strong style={{ fontSize:"20px"}}>&gt;</strong></button>
                             </div>
                         </div>
                     </div>

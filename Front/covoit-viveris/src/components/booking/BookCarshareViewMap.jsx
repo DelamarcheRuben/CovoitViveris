@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser }     from "../../context/UserContext.jsx";
 import { BookCarshareViewDriver } from "./BookCarshareViewDriver.jsx";
 
-export function BookCarshareView(){
+export function BookCarshareViewMap({ carshare }){
     const [passengers, setPassengers] = useState([]);
     const { user } = useUser();
     const navigate = useNavigate();
-    const location = useLocation();
-    const [carshare, setCarshare] = useState();
 
     useEffect(() => {
-        if (location.state && location.state.carshare) {
-            setCarshare(location.state.carshare);
+        if (carshare) { // S'assurer que carshare est défini
+            fetch("http://localhost:8080/passengers?id_carshare=" + carshare.id) // Utilisez l'ID correct du carshare
+                .then((res) => res.json())
+                .then((data) => {
+                    setPassengers(data);
+                });
         }
-    }, [location]); // Dépendance à carshare
+    }, [carshare]); // Dépendance à carshare
 
     const handleBookClick = () => {
         const passenger = {
