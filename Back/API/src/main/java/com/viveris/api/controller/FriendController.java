@@ -51,10 +51,12 @@ public class FriendController {
 	
 	/**
 	 * Read - Get all friends
+	 * @param (optional) id_user - The id of one user, to get all his friends 
 	 * @return - An Iterable object of Friend full filled
 	 */
 	@GetMapping("/friends")
-	public Iterable<Friend> getFriends() {
+	public Iterable<Friend> getFriends(@RequestParam(required = false) Long id_user) {
+		if(id_user!=null) return friendService.getFriendsById(id_user);
 		return friendService.getFriends();
 	}
 	

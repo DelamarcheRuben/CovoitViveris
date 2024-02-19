@@ -35,8 +35,12 @@ public class CarshareService {
 		return savedCarshare;
 	}
 
-	public Iterable<Carshare> getNotFullCarshares(Integer id_user) {
+	public Iterable<Carshare> getNotFullCarshares(Long id_user) {
 		return carshareRepository.findNotFullCarshares(id_user);
+	}
+
+	public Iterable<Carshare> getHistoryCarshares(Long id_user) {
+		return carshareRepository.findHistoryCarshares(id_user);
 	}
 
 }

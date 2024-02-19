@@ -32,8 +32,13 @@ public class FriendService {
 	}
 	
 	public Friend saveFriend(Friend Friend) {
+		if(Friend.user1==Friend.user2) return null;
 		Friend savedFriend = friendRepository.save(Friend);
 		return savedFriend;
+	}
+
+	public Iterable<Friend> getFriendsById(Long id_user) {
+		return friendRepository.findByIdUser(id_user);
 	}
 
 
