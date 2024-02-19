@@ -59,9 +59,7 @@ export function CarshareResearchView(carshare){
                             <CarshareResearchProfile userid={carshare.carshare.driver.uid}/>
                         </div>
                         <div className="col" style={{ maxWidth:"10%" }}>
-                            <NavLink to={`/research/bookCarShare/${carshare.carshare.uid}`}>
-                                <button className="btn" style={{ width:"40px", height:"40px" }}><strong style={{ fontSize:"20px" }}>&gt;</strong></button>
-                            </NavLink>
+                            <button onClick={redirectToBookCarshareView} className="btn" style={{ width: "40px" }}><strong style={{ fontSize:"20px"}}>&gt;</strong></button>
                         </div>
                     </div>
                 </div>
