@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,6 +35,6 @@ public class Challenge {
     
     public Float bonus_exp;
     
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public LocalDateTime expired_date;
 }

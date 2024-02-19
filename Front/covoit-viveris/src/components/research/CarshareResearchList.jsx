@@ -1,41 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import {MapContainer, TileLayer, Marker, Popup, useMap} from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import { useUser } from "../../context/UserContext.jsx";
-import {CarshareResearchView} from "./CarshareResearchView.jsx";
+// Dans CarshareResearchList
+import React from 'react';
+import { useSearchResults } from '../../context/SearchResultsContext'; // Assurez-vous que le chemin d'accès est correct
+import { CarshareResearchView } from "./CarshareResearchView.jsx";
+import {useUser} from "../../context/UserContext.jsx";
 
 const CarshareResearchList = () => {
+    const { searchResults } = useSearchResults(); // Accès aux résultats de recherche via le contexte
     const { user } = useUser();
-    const [carShareList, setCarShareList] = useState([]);
-
-    useEffect(() => {
-        fetch("http://localhost:8080/not-full-carshares?id_user=" + user.uid)
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                setCarShareList(data);
-            });
-    }, [user]);
 
     return (
         <React.Fragment>
-            {carShareList && carShareList.length == 0
-                ?
-                <p className="center"><strong style={{ fontSize:"40px" }}>Aucun Résultat</strong></p>
-                :
-                carShareList.map((carshare, index) => (
-                    // <React.Fragment key={index}>
-                        // {carshare.driver.uid == user.uid ? (
-                        //     <div></div>
-                        // ) : (
-                            <CarshareResearchView key={index} carshare={carshare} />
-                    //     )}
-
-                    // </React.Fragment>
+            {searchResults.length === 0
+                ? <p className="center"><strong style={{ fontSize:"40px" }}>Aucun Résultat</strong></p>
+                : searchResults.map((carshare, index) => (
+                    <CarshareResearchView key={index} carshare={carshare} />
                 ))}
         </React.Fragment>
     );
 }
 
-export { CarshareResearchList };
+export default CarshareResearchList;

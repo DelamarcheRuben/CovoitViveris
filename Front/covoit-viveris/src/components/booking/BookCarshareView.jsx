@@ -1,36 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { useUser }     from "../../context/UserContext.jsx";
 import { BookCarshareViewDriver } from "./BookCarshareViewDriver.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 
 export function BookCarshareView(){
-
-
-    const [carshare, setCarshare]     = useState();
     const [passengers, setPassengers] = useState([]);
     const { user } = useUser();
     const windowWidth = useWindowWidth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const [carshare, setCarshare] = useState();
 
     useEffect(() => {
-        fetch("http://localhost:8080/carshare/" + location.pathname.substring(23))
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            console.log("#############");
-            console.log(data);
-            setCarshare(data)
-            return fetch("http://localhost:8080/passengers?id_carshare=" + location.pathname.substring(23))
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            setPassengers(data)
-        });
-    }, [location.pathname]);
+        if (location.state && location.state.carshare) {
+            setCarshare(location.state.carshare);
+        }
+    }, [location]); // Dépendance à carshare
 
     const handleBookClick = () => {
         const passenger = {
@@ -45,7 +31,7 @@ export function BookCarshareView(){
                 },
                 "carshare": {
                     "uid": carshare.uid
-                    },
+                },
                 "user": {
                     "uid": user.uid
                 },
@@ -55,26 +41,26 @@ export function BookCarshareView(){
         };
 
         fetch('http://localhost:8080/passenger', passenger)
-        .then((res) => {
-            return fetch("http://localhost:8080/passengers?id_carshare=" + carshare.uid);
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            if(carshare.max_passenger == data.length){
-                const carshareUpdate = {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        is_Full: true
-                    })
-                };
-                fetch("http://localhost:8080/carshare/" + carshare.uid, carshareUpdate).then((res) => { });
-            }
-        });
+            .then((res) => {
+                return fetch("http://localhost:8080/passengers?id_carshare=" + carshare.uid);
+            })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                if(carshare.max_passenger == data.length){
+                    const carshareUpdate = {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            is_Full: true
+                        })
+                    };
+                    fetch("http://localhost:8080/carshare/" + carshare.uid, carshareUpdate).then((res) => { });
+                }
+            });
 
         navigate('/home');
     }
