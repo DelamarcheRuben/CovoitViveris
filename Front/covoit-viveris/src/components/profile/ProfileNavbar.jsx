@@ -64,8 +64,8 @@ export function ProfileNavbar(){
 
             {user && windowWidth < 1105 && 
             <div className="small-screen">
-                <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
-                <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
+                <img className="center-picture" src={`../../src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
+                <img className="center-picture" src="../../src/images/profil_picture.png" alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
                 <p className="color-company center" style={{ marginTop: "-46px" }}><strong style={{ fontSize: "12px" }}> {user.level} </strong></p>
                 <p className="center" style={{ marginTop: "10px" }}><strong style={{ fontSize: "4.5vw" }}>{user.pseudo}</strong></p>
                 <p className="center" style={{ fontSize:  "3vw" }}>{user.job}, {user.city}</p>
@@ -79,7 +79,7 @@ export function ProfileNavbar(){
                     <div className="col center">
                         <NavLink to="/profile/updateProfile">
                             <div style={{ height:"115px" }}>
-                                <img className="center-picture" src="./src/images/logo/updateProfile.png" alt="Modifier profil" width="90vw"/>
+                                <img className="center-picture" src="../../src/images/logo/updateProfile.png" alt="Modifier profil" width="90vw"/>
                             </div>
                         </NavLink>
                         <p className={`${currentUrl === "updateProfile" ? 'active-link' : ''}`} style={{ fontSize:"3vw" }}> Modifier profil </p>
@@ -87,7 +87,7 @@ export function ProfileNavbar(){
                     <div className="col center">
                         <NavLink to="/profile/carSharesHistory">
                             <div className="center-div-picture" style={{ height:"115px" }}>
-                                <img className="center-picture" src="./src/images/logo/carSharesHistory.png" alt="Historique des trajets" width="90vw"/>
+                                <img className="center-picture" src="../../src/images/logo/carSharesHistory.png" alt="Historique des trajets" width="90vw"/>
                             </div>
                         </NavLink>
                         <p className={`${currentUrl === "carSharesHistory" ? 'active-link' : ''}`} style={{ fontSize:"3vw" }}> Historique des trajets </p>
@@ -95,7 +95,7 @@ export function ProfileNavbar(){
                     <div className="col center">
                         <NavLink to="/profile/badges">
                             <div style={{ height:"115px" }}>
-                                <img className="center-picture" src="./src/images/logo/badges.png" alt="Badges" width="55vw"/>
+                                <img className="center-picture" src="../../src/images/logo/badges.png" alt="Badges" width="55vw"/>
                             </div>
                         </NavLink>
                         <p className={`${currentUrl === "badges" ? 'active-link' : ''}`} style={{ fontSize:"3vw" }}> Badges </p>
@@ -127,8 +127,8 @@ export function ProfileNavbar(){
 
             {user && windowWidth >= 1105 && 
             <div className="large-screen">
-                <img className="center-picture" src={`./src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
-                <img className="center-picture" src="./src/images/profil_picture.png" alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>
+                <img className="center-picture" src={`../../src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
+                <img className="center-picture" src="../../src/images/profil_picture.png" alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>
                 <p className={`color-company center`} style={{ marginTop: "-70px" }}><strong style={{ fontSize: "22px" }}>{user.level}</strong></p>
                 <p className="center" style={{ marginTop: "15px" }}><strong style={{ fontSize: "30px" }}>{user.pseudo}</strong></p>
                 <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.city}</p>
@@ -142,7 +142,7 @@ export function ProfileNavbar(){
                     <div className="col-md-2 mb-4 center">
                         <NavLink to="/profile/updateProfile">
                             <div style={{ height:"115px" }}>
-                                <img className="center-picture" src="./src/images/logo/updateProfile.png" alt="Modifier profil" />
+                                <img className="center-picture" src="../../src/images/logo/updateProfile.png" alt="Modifier profil" />
                             </div>
                         </NavLink>
                         <p className={`${currentUrl === "updateProfile" ? 'active-link' : ''}`}> Modifier profil </p>
@@ -150,7 +150,7 @@ export function ProfileNavbar(){
                     <div className="col-md-2 mb-4 center">
                         <NavLink to="/profile/carSharesHistory">
                             <div className="center-div-picture" style={{ height:"115px" }}>
-                                <img className="center-picture" src="./src/images/logo/carSharesHistory.png" alt="Historique des trajets" />
+                                <img className="center-picture" src="../../src/images/logo/carSharesHistory.png" alt="Historique des trajets" />
                             </div>
                         </NavLink>
                         <p className={`${currentUrl === "carSharesHistory" ? 'active-link' : ''}`}> Historique des trajets </p>
@@ -158,7 +158,7 @@ export function ProfileNavbar(){
                     <div className="col-md-2 mb-4 center">
                         <NavLink to="/profile/badges">
                             <div style={{ height:"115px" }}>
-                                <img className="center-picture" src="./src/images/logo/badges.png" alt="Badges" />
+                                <img className="center-picture" src="../../src/images/logo/badges.png" alt="Badges" />
                             </div>
                         </NavLink>
                         <p className={`${currentUrl === "badges" ? 'active-link' : ''}`}> Badges </p>
@@ -166,7 +166,7 @@ export function ProfileNavbar(){
                     <div className="col-md-2 mb-4 center">
                         <NavLink to="/profile/friends">
                             <div className="center-div-picture" style={{ height:"115px" }}>
-                                <img className="center-picture" src="./src/images/logo/friends.png" alt="Amis" />
+                                <img className="center-picture" src="../../src/images/logo/friends.png" alt="Amis" />
                             </div>
                         </NavLink>
                         <p className={`${currentUrl === "friends" ? 'active-link' : ''}`}> Amis </p>
