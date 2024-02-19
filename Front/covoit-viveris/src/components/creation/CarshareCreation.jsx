@@ -242,7 +242,9 @@ const CarshareCreation = () => {
 
             setMessage("La requête de création de covoiturage a été envoyée.");
             setStartPlace('');
+            setStartName('');
             setEndPlace('');
+            setEndName('');
             setStartDate('');
             setStartTime('');
             setNumSeats('1');
@@ -275,7 +277,7 @@ const CarshareCreation = () => {
             </label>
 
             <button className="btn" onClick={handleCreateClick}>
-                <strong style={{ fontSize: "15px", padding: "5px" }}>Rechercher</strong>
+                <strong style={{ fontSize: "15px", padding: "5px" }}>Proposer le covoiturage</strong>
             </button>
         </div>
 
