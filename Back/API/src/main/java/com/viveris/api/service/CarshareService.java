@@ -50,7 +50,7 @@ public class CarshareService {
 			start_place = addressRepository.save(start_place);
 		}
 		
-		address = addressRepository.findAddress(start_place.city, end_place.department, 
+		address = addressRepository.findAddress(end_place.city, end_place.department, 
 				end_place.postcode, end_place.road, end_place.house_number);
 		if(address.isPresent())
 		{
