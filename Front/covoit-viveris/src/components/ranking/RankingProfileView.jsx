@@ -37,8 +37,7 @@ export function RankingProfileView(u){
         <React.Fragment>
             {windowWidth < 1105 && badges.length > 0 &&
             <div className="small-screen">
-                <div className="ranking-profile-view-small" style={{ maxWidth: "290px"}}>
-
+                <div className="ranking-profile-view-small" style={{ maxWidth: "290px" }}>
                     <div className="column">
                         <div className="" style={{ marginTop: "-5px" }}>
                             <img src="./src/images/profil_picture.png" alt="Photo profil" width="110px"/>

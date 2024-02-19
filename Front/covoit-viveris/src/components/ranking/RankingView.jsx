@@ -22,7 +22,7 @@ export function RankingView(){
         <React.Fragment>
             {window.innerWidth < 1105 && usersList &&
                 <div className="small-screen">
-                    <p className="center" style={{ marginBottom: "90px" }}>Le classement est actualisé tous les matins. <br></br> Atteignez les plus hautes places pour gagner des récompenses ! </p>
+                    <p className="center" style={{ marginBottom: "10px" }}>Le classement est actualisé tous les matins. <br></br> Atteignez les plus hautes places pour gagner des récompenses ! </p>
                     <div className="center">
                         <button className="btn" style={{ marginBottom: "20px" }}>Liste des récompenses</button> <br></br>
                     </div>
@@ -34,7 +34,7 @@ export function RankingView(){
                             {index < 3 
                                 ? (
                                 <div className="center-div-picture">
-                                    <img src={`./src/images/ranking/rank${index + 1}.png`} alt={`Rank ${index + 1}`} width="35vw" />
+                                    <img src={`../../src/images/ranking/rank${index + 1}.png`} alt={`Rank ${index + 1}`} width="35vw" />
                                     <div style={{ marginLeft:"2px" }}>
                                         <RankingProfileView key={index} user={u} />
                                     </div>
