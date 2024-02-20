@@ -305,7 +305,7 @@ button:hover{
 
 .badge-view-small{
     width        : 350px;
-    height       : 725px;
+    height       : 810px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.1);
     margin       : auto;
     margin-bottom: 25px;
@@ -359,7 +359,7 @@ button:hover{
 
 /* ===================== Media queries ===================== */
 @media only screen and (max-width: 1105px){
-    
+
     .large-screen {
         display: none;
     }
@@ -370,13 +370,25 @@ button:hover{
 }
 
 @media only screen and (min-width: 1105px){
-    
+
     .large-screen {
         display: block;
     }
 
     .small-screen {
         display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .scheduling-form {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .carshare-container {
+        width: 90%;
+        padding: 10px;
     }
 }
 
@@ -440,7 +452,7 @@ button:hover{
 
 .mapContainer {
     height: 500px;
-    width: 80%;
+    width: 95%;
     margin: 20px auto;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -448,10 +460,18 @@ button:hover{
 
 .carShare-research{
     width        : 90%;
-    height       : 215px;
+    height       : 250px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
     margin       : auto;
     margin-top   : 15px;
+    background-color: white;
+}
+
+.carShare-research-small{
+    width        : 90%;
+    height       : 215px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin: 15px auto auto;
     background-color: white;
 }
 
@@ -459,13 +479,45 @@ button:hover{
     width        : 75%;
     height       : 215px;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin: 15px auto auto;
+    background-color: white;
+}
+
+.carShare-booking-small{
+    width        : 90%;
+    height       : 250px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
     margin       : auto;
     margin-top   : 15px;
     background-color: white;
 }
 
+.line-45{
+    height: 46px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: black; /* Couleur de la ligne, à personnaliser */
+    margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
 .line-50{
-    height: 52px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    height: 51px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: black; /* Couleur de la ligne, à personnaliser */
+    margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
+.line-55{
+    height: 56px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: black; /* Couleur de la ligne, à personnaliser */
+    margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
+.line-60{
+    height: 64px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
     width: 2px; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
     background-color: black; /* Couleur de la ligne, à personnaliser */
     margin: 0 11px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
@@ -480,9 +532,25 @@ button:hover{
     --bs-gutter-x: 0;
 }
 
+.line-company-color-horizontal{
+    height: 2px; /* La hauteur de la ligne, ajustez-la selon vos besoins */
+    width: 75%; /* L'épaisseur de la ligne, ajustez-la selon vos besoins */
+    background-color: var(--secondaryColor); /* Couleur de la ligne, à personnaliser */
+    margin-top: 20px; /* Marge entre le cercle et la ligne, ajustez-la selon vos besoins */
+    --bs-gutter-x: 0;
+}
+
 .profile-booking{
     width        : 60%;
     height       : 300px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin: 15px auto auto;
+    background-color: white;
+}
+
+.profile-booking-small{
+    width        : 90%;
+    height       : 40%;
     box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
     margin       : auto;
     margin-top   : 15px;
@@ -508,3 +576,278 @@ button:hover{
     text-align: center; /* Centrer le texte */
 }
 
+.form_challenge *{
+    margin-bottom: 10px;
+}
+
+/* style du formulaire de CarshareResearchForm */
+.scheduling-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 5%;
+    width: 100%;
+    max-width: 500px; /* Ajustez selon vos besoins */
+    margin: auto;
+    margin: 20px auto;
+}
+
+.scheduling-form label {
+    width: 100%;
+    margin-bottom: 20px; /* Espacement entre les éléments du formulaire */
+}
+
+.scheduling-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box; /* S'assure que le padding ne change pas la largeur */
+}
+
+.btn {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* style du container des résultats */
+.carshare-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+    margin: auto;
+    width: calc(100% - 4%);
+    max-width: 95%;
+    background-color: var(--backgroundColor); /* Utilisez votre couleur de fond définie */
+    height: auto;
+}
+
+.carshare-container label {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.carshare-container input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.bottom-navigation {
+    padding: 5%;
+    width: 100%;
+    position: relative;
+}
+
+.friend-small{
+    width        : 90%;
+    height       : 160px;
+    box-shadow   : 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin       : auto;
+    margin-top   : 15px;
+    background-color: white;
+}
+
+.container-profile-friend {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item-profile-friend {
+    width: calc(25% - 10px);
+    margin: 5px; 
+}
+
+.already-friend {
+    background-color: var(--secondaryColor);
+    color           : var(--backgroundColor);
+    width           : 125px; 
+    cursor          : pointer;
+    border-radius   : 0;
+    padding         : 5px;
+    margin          : auto;
+}
+
+.home-box {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 4%;
+    background-color: var(--backgroundColor);
+    height: auto;
+    box-sizing: border-box;
+}
+
+.home-box h4 {
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.air-quality-rectangle {
+    text-align: center;
+    padding: 3%;
+    color: white;
+}
+
+.home-container-1 {
+    display: grid;
+    grid-template-columns: 1fr; /* deux colonnes de taille égale */
+    gap: 3rem; /* espace entre les grilles */
+    padding: 3rem; /* espace autour de la grille */
+}
+
+.home-container-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* deux colonnes de taille égale */
+    gap: 3rem; /* espace entre les grilles */
+    padding: 3rem; /* espace autour de la grille */
+}
+
+.home-text {
+    text-align: center;
+}
+
+.carshare-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Divides the grid into 3 equal columns */
+    gap: 10px; /* Adjust the gap as needed */
+    align-items: center; /* Vertically aligns the content in the center */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centring content within the grid items */
+.carshare-card > div,
+.carshare-card > button {
+    justify-self: center; /* Horizontally center the content within the grid item */
+    align-self: center; /* Vertically center the content within the grid item */
+}
+
+.btn-details {
+    flex-grow: 0; /* Prevent the button from growing */
+    padding: 5px 15px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background-color: var(--mainColor);
+    color           : var(--backgroundColor);
+    cursor          : pointer;
+    border-radius   : 0;
+    padding         : 5px;
+    margin          : auto;
+}
+/* Add a little space between the elements */
+.carshare-card > *:not(:last-child) {
+    margin-right: 10px;
+}
+
+.carshare-date {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+}
+
+.carshare-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.carshare-info span {
+    margin: 2px 0;
+}
+
+.carshare-driver {
+    display: flex;
+    align-items: center;
+}
+
+.carshare-driver img {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    border-radius: 50%; /* Creates a circle */
+    margin-right: 10px;
+}
+
+.carshare-driver span {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.home-air-quality-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 4%;
+    width: 100%;
+    max-width: 600px; /* Ajustez selon vos besoins */
+    margin: auto;
+    margin: 20px auto;
+}
+
+
+
+/* ===================== Media queries ===================== */
+@media only screen and (max-width: 1105px){
+
+    .large-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1105px){
+
+    .large-screen {
+        display: block;
+    }
+
+    .small-screen {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .scheduling-form {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .carshare-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .home-container-2 {
+        grid-template-columns: 1fr;
+        padding: 5%
+    }
+
+    .carshare-card {
+        display: grid;
+        grid-template-columns: 1fr; /* Makes it a single column layout */
+        justify-items: center; /* Horizontally centers the content */
+        align-items: center; /* Vertically centers the content */
+    }
+
+    .home-air-quality-box {
+        width: 90%;
+        padding: 10px;
+    }
+}

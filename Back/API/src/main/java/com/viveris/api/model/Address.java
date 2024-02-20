@@ -44,4 +44,12 @@ public class Address {
     public String getFullAddress() {
         return String.format("%d %s, %s (%d)", house_number, road, city,postcode);
     }
+    
+    public String getHouseRoad() {
+        return String.format("%d %s",house_number,road);
+    }
+    
+    public String getCityPostcode() {
+        return String.format("%s (%d)",city,postcode);
+    }
 }

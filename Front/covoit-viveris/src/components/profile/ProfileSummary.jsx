@@ -26,15 +26,15 @@ export function ProfileSummary(){
                 <div className="row" style={{ marginLeft:"12.5%"}}>
                     <div className="col" style={{ minWidth:"200px" }}>
                         <p>Distances parcourues  </p>
+                        <p>Economie de CO2       </p>
                         <p>Covoiturages effectués</p>
                         <p>Nombre total de badges</p>
-                        <p>Date de début         </p>
                     </div>
                     <div className="col">
-                        <p>{user.kilometers} km</p>
-                        <p>{user.nb_carshares} </p>
-                        <p>{user.nb_badges}    </p>
-                        <p>{user.start_date}   </p>
+                        <p>{user.kilometers} km     </p>
+                        <p>{user.co2_economy} kg CO2</p>
+                        <p>{user.nb_carshares}      </p>
+                        <p>{user.nb_carshares}      </p>
                     </div>
                 </div>
             </div>
@@ -58,15 +58,15 @@ export function ProfileSummary(){
                 <div className="row" style={{ marginLeft:"25%", fontSize:"30px"}}>
                     <div className="col" >
                         <p style={{ fontSize:"22px"}}>Distances parcourues  </p>
+                        <p style={{ fontSize:"22px"}}>Economie de CO2       </p>
                         <p style={{ fontSize:"22px"}}>Covoiturages effectués</p>
                         <p style={{ fontSize:"22px"}}>Nombre total de badges</p>
-                        <p style={{ fontSize:"22px"}}>Date de début         </p>
                     </div>
                     <div className="col">
-                        <p style={{ fontSize:"22px"}}>{user.kilometers} km</p>
-                        <p style={{ fontSize:"22px"}}>{user.nb_carshares} </p>
-                        <p style={{ fontSize:"22px"}}>{user.nb_badges}    </p>
-                        <p style={{ fontSize:"22px"}}>{user.start_date}   </p>
+                        <p style={{ fontSize:"22px"}}>{user.kilometers} km     </p>
+                        <p style={{ fontSize:"22px"}}>{user.co2_economy} kg CO2</p>
+                        <p style={{ fontSize:"22px"}}>{user.nb_carshares}      </p>
+                        <p style={{ fontSize:"22px"}}>{user.nb_carshares}      </p>
                     </div>
                 </div>
             </div>

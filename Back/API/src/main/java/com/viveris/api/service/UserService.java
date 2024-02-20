@@ -25,8 +25,8 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	public Iterable<User> getUsersByPseudo(String pseudo) {
-		return userRepository.findByPseudo(pseudo);
+	public Optional<User> getUserByPseudo(String pseudo) {
+		return userRepository.findFirstByPseudo(pseudo);
 	}
 	
 	public void deleteUser(final Long id) {

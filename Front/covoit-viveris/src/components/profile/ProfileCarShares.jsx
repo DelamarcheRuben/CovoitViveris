@@ -3,6 +3,8 @@ import { useUser } from "../../context/UserContext";
 
 export function ProfileCarShares(){
     const { user } = useUser();
+    // /history-carshares?id_user={id}
+
 
     return (
         <React.Fragment>

@@ -1,5 +1,7 @@
 package com.viveris.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,6 +25,7 @@ public class User {
 
     public String pseudo;
     
+    @JsonIgnore
     public String password;
     
     public String first_name;

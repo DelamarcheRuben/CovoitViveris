@@ -56,7 +56,7 @@ export function ProfileBadges(){
         else num_badge = num_badge.level;
 
         const tooltipContent = "Bronze &nbsp; : " + goalBadge[index][0] + "<br>Argent &nbsp;&nbsp; : " + 
-                            goalBadge[index][1] + " <br>Or &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : " + 
+                            goalBadge[index][1] + " <br>Or &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : " + 
                             goalBadge[index][2] + " <br>Diamant : " + goalBadge[index][3]
 
         badgeData.push({

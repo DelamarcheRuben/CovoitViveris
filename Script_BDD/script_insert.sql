@@ -24,8 +24,8 @@ VALUES
 INSERT INTO USERS (pseudo, password, last_name, first_name, email, job, address, picture_background, car_type, fuel_consumption, level, experience, bonus_loyalty, kilometers, nb_carshares, CO_2_economy, UID_company) VALUES
 ('Esteban', '', 'Doe', 'Esteban', 'esteban@neraudau.fr', 'Dev Full-Stack', 1, 'desert', 'Sedan', 5.5, 9, 50, 10, 8754, 549, 1.2, 1),
 ('Alexandra', '', 'Smith', 'Alexandra', 'alexandra@example.com', 'Business Analyst', 2, 'land', 'Compact', 6.2, 2, 12, 5, 2750, 93, 0.9, 1),
-('JulieMartin', '', 'Martin', 'Julie', 'julie.martin@viveris.fr', 'Data Scientist', 5, 'city', 'Electric', 0.0, 4, 25, 5, 1620, 30, 0.8, 1),
-('LucasDurand', '', 'Durand', 'Lucas', 'lucas.durand@viveris.fr', 'Système d\'Information', 4, 'ocean', 'Diesel', 6.5, 3, 15, 3, 980, 15, 0.5, 1),
+('JulieMartin', '', 'Martin', 'Julie', 'julie.martin@viveris.fr', 'Data Scientist', 5, 'mountain', 'Electric', 0.0, 4, 25, 5, 1620, 30, 0.8, 1),
+('LucasDurand', '', 'Durand', 'Lucas', 'lucas.durand@viveris.fr', 'Système d\'Information', 4, 'forest', 'Diesel', 6.5, 3, 15, 3, 980, 15, 0.5, 1),
 ('EmiliePetit', '', 'Petit', 'Emilie', 'emilie.petit@viveris.fr', 'Ingénieur logiciel', 3, 'mountain', 'Hybride', 4.2, 5, 40, 7, 2500, 45, 1.1, 1),
 ('RaphaelLefevre', '', 'Lefevre', 'Raphael', 'raphael.lefevre@viveris.fr', 'Architecte réseau', 2, 'forest', 'Essence', 7.5, 6, 60, 9, 3200, 60, 1.4, 1),
 ('SophieBertrand', '', 'Bertrand', 'Sophie', 'sophie.bertrand@viveris.fr', 'Chef de projet IT', 1, 'desert', 'GPL', 5.8, 7, 75, 10, 4100, 75, 1.7, 1);
@@ -57,3 +57,81 @@ INSERT INTO CHALLENGE (name, description, goal, bonus_exp, expired_date) VALUES
 INSERT INTO LEAGUE (start_date, end_date) VALUES ('2024-03-01', '2024-06-01');
 -- Insertion des participations aux ligues et aux challenges
 -- Assurez-vous d'avoir les bons UID_challenge et UID_league avant d'insérer ces données
+
+
+INSERT INTO BADGE(name_badge, picture_badge, description, goals) VALUES
+("Covoitureur", "covoitureur", "covoiturages réalisés", "5, 20, 50, 100"),
+("Covoiturage consécutif", "covoitureur_consecutif", "covoiturages consécutifs réalisés", "2, 3, 5, 10"),
+("Kilométrage", "kilometrage", "Parcourez des kilomètres en covoiturage", "50, 150, 500, 1000"),
+("Éco-citoyen", "eco_citoyen", "Réduisez vos émissions de CO2 grâce au covoiturage", "1, 2, 3, 4"),
+("Vétéran", "veteran", "Utilisez l'application de covoiturage pendant plusieurs semaines", "2, 4, 12, 24"),
+("Annonceur", "annonceur", "Postez des annonces de covoiturage", "3, 10, 20, 50"),
+("Partenaire", "partenaire", "Partagez un covoiturage avec plusieurs passagers différents","2, 3, 5, 10"),
+("Challenge", "challenge", "Réussir des challenges", "2, 3, 5, 10" );
+
+INSERT INTO OWNEDBADGE(UID_badge, UID_user, level) VALUES
+(1, 1, 0),
+(2, 1, 1),
+(3, 1, 2),
+(4, 1, 3),
+(5, 1, 0),
+(6, 1, 0),
+(7, 1, 0),
+(8, 1, 0),
+(1, 2, 0),
+(2, 2, 1),
+(3, 2, 0),
+(4, 2, 1),
+(5, 2, 0),
+(6, 2, 1),
+(7, 2, 0),
+(8, 2, 1),
+(1, 3, 0),
+(2, 3, 1),
+(3, 3, 2),
+(4, 3, 3),
+(5, 3, 0),
+(6, 3, 0),
+(7, 3, 0),
+(8, 3, 0),
+(1, 4, 1),
+(2, 4, 1),
+(3, 4, 1),
+(4, 4, 1),
+(5, 4, 1),
+(6, 4, 1),
+(7, 4, 1),
+(8, 4, 1),
+(1, 5, 1),
+(2, 5, 1),
+(3, 5, 1),
+(4, 5, 1),
+(5, 5, 1),
+(6, 5, 1),
+(7, 5, 1),
+(8, 5, 1),
+(1, 6, 1),
+(2, 6, 2),
+(3, 6, 3),
+(4, 6, 4),
+(5, 6, 1),
+(6, 6, 2),
+(7, 6, 3),
+(8, 6, 4),
+(1, 7, 2),
+(2, 7, 2),
+(3, 7, 2),
+(4, 7, 2),
+(5, 7, 2),
+(6, 7, 2),
+(7, 7, 2),
+(8, 7, 2);
+
+
+
+INSERT INTO FRIEND(user1, user2) VALUES
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 5),
+(2, 3);

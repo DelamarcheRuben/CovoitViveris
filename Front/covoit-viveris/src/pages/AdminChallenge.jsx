@@ -1,15 +1,15 @@
 import React from "react";
 import { Navbar  } from "../components/header/Navbar";
 import { useUser } from "../context/UserContext";
-import HomeComponent from "../components/home/HomeComponent.jsx";
+import AdministrationChallenge from "../components/administration/AdministrationChallenge";
 
 const Home = () => {
-  const { user } = useUser();
+  // const { user } = useUser();
 
   return (
     <React.Fragment>
-        <Navbar />
-        <HomeComponent/>
+      <Navbar />
+      <AdministrationChallenge/>
     </React.Fragment>
   );
 }
