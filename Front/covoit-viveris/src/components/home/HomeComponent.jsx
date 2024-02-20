@@ -14,19 +14,17 @@ const HomeComponent = () => {
             <div className="home-text">
                 <h3>Bienvenue {user.pseudo} !</h3>
             </div >
-            <div class="home-container">
+            <div>
                 <HomeCurrentAirQuality/>
-                <HomeWeeklyChallenge/>
             </div>
             <div className="home-text">
                 <h3>Mes covoiturages :</h3>
             </div>
-            <div className="home-container">
+            <div className="home-container-2">
                 <HomeCarshareReserved/>
                 <HomeCarshareOffered/>
             </div>
         </div>
-
     );
 };
 

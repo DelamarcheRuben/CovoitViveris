@@ -48,7 +48,7 @@ function HomeCurrentAirQuality({ location }) {
     };
 
     return (
-        <div className="home-box">
+        <div className="home-air-quality-box">
             <h4>Qualité de l'air</h4>
             <div className="air-quality-rectangle" style={airQualityStyle}>
                 {airQualityIndex !== null ? (
