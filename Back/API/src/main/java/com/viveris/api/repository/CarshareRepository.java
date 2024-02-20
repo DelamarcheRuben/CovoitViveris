@@ -44,4 +44,17 @@ public interface CarshareRepository extends CrudRepository<Carshare, Long> {
 			+ " WHERE (uid_passenger= :id_user) "
 			+ "    OR UID_driver= :id_user) ", nativeQuery = true)
 	Iterable<Carshare> findHistoryCarshares(Long id_user);
+
+
+	
+	@Query(value = "SELECT * FROM Carshare "
+			+ "WHERE uid IN( "
+			+ " SELECT uid FROM Carshare JOIN Passenger p ON(uid=uid_carshare) "
+			+ " WHERE uid_passenger= :id_user AND DATE_FORMAT(p.schedule, \"%Y-%m-%d\") > :yesterday) ", nativeQuery = true)
+	Iterable<Carshare> findReservationsCarshares(Long id_user, @Param("yesterday") String yesterday);
+
+
+	@Query(value = "SELECT * FROM Carshare "
+			+ "WHERE uid_driver= :id_user AND DATE_FORMAT(schedule, \"%Y-%m-%d\") > :yesterday ", nativeQuery = true)
+	Iterable<Carshare> findProposedCarshares(Long id_user, String yesterday);
 }

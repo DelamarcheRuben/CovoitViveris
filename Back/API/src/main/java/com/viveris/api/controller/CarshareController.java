@@ -79,6 +79,26 @@ public class CarshareController {
 		return carshareService.getHistoryCarshares(id_user);
 	}
 	
+	/**
+	 * Read - Get all carshares booked by a user, not finished
+	 * @param id_user : the user who is the passegner of the carshares
+	 * @return - An Iterable object of Carshare full filled
+	 */
+	@GetMapping("/booked-carshares")
+	public Iterable<Carshare> getReservationsCarshares(@RequestParam(required = true) Long id_user) {
+		return carshareService.getReservationsCarshares(id_user);
+	}
+	
+	/**
+	 * Read - Get all carshares booked by a user, not finished
+	 * @param id_user : the user who is the passegner of the carshares
+	 * @return - An Iterable object of Carshare full filled
+	 */
+	@GetMapping("/proposed-carshares")
+	public Iterable<Carshare> getProposedCarshares(@RequestParam(required = true) Long id_user) {
+		return carshareService.getProposedCarshares(id_user);
+	}
+	
 	
 	/**
 	 * Read - Get all carshares for a given date, sorted by distance (with a distance max)
