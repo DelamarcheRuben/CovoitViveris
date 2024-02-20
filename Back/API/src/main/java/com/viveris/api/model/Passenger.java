@@ -34,11 +34,12 @@ public class Passenger {
     @JoinColumn(name="UID_passenger", referencedColumnName="UID")
     public User user;
     
+    /* ebauche d'une precision du trajet
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public LocalDateTime schedule;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="start_place", referencedColumnName="UID")
-    public Address start_place;
+    public Address start_place;*/
 
 }

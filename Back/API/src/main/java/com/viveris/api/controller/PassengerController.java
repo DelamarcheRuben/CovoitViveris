@@ -75,10 +75,12 @@ public class PassengerController {
 		Optional<Passenger> e = passengerService.getPassenger(new PassengerId(carshare, user));
 		if(e.isPresent()) {
 			Passenger currentPassenger = e.get();
+			/*
 			LocalDateTime schedule = passenger.getSchedule();
 			if(schedule!=null) currentPassenger.setSchedule(schedule);
 			Address start_place = passenger.getStart_place();
 			if(start_place!=null) currentPassenger.setStart_place(start_place);
+			*/
 			passengerService.savePassenger(currentPassenger);
 			return currentPassenger;
 		} else {
