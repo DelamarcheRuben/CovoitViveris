@@ -275,6 +275,13 @@ button:hover{
         box-sizing: border-box; /* S'assure que le padding ne change pas la largeur */
 }
 
+.creation-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
 @media (max-width: 600px) {
     .creation-form {
         width: 90%;

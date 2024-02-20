@@ -88,6 +88,7 @@ const CarshareCreation = () => {
     const [startTime, setStartTime] = useState('');
     const [numSeats, setNumSeats] = useState(1);
     const [message, setMessage] = useState('');
+    const [hasComeback, setHasComeback] = useState("sans");
 
     const { user } = useUser();
 
@@ -95,6 +96,7 @@ const CarshareCreation = () => {
 
         if (startPlace === '' || endPlace === '' || startDate === '' || startTime === '') {
             setMessage("Certains champs n'ont pas été remplis.");
+
         }
         else {
 
@@ -225,6 +227,8 @@ const CarshareCreation = () => {
                         longitude: endPlace.lon
                     },
 
+                    comeback: (hasComeback==="avec"),
+
                     //TODO: Calculer distance et bonus_pollution avant de faire cette requête POST
                     driver: {
                         uid: user.uid
@@ -248,6 +252,7 @@ const CarshareCreation = () => {
             setStartDate('');
             setStartTime('');
             setNumSeats('1');
+            setHasComeback("sans");
 
         }
     }
@@ -272,9 +277,17 @@ const CarshareCreation = () => {
                             <input type="time" name="timeStart" value={startTime} onChange={e => setStartTime(e.target.value)} />
             </label>
             <br></br>
+
+            <div>
+                <select id="comeback" value={hasComeback} onChange={e => setHasComeback(e.target.value)}>
+                    <option value={"sans"}>Sans allez-retour</option>
+                    <option value={"avec"}>Avec allez-retour</option>
+                </select>
+            </div>
             <label> Nombre de places :<br></br>
                 <input type="number" name="seats" min="1" max="10" value={numSeats} onChange={e => setNumSeats(e.target.value)} style={{ width: "15%" }} />
             </label>
+
 
             <button className="btn" onClick={handleCreateClick}>
                 <strong style={{ fontSize: "15px", padding: "5px" }}>Proposer le covoiturage</strong>
