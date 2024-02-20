@@ -81,4 +81,14 @@ public class CarshareService {
 		return carshareRepository.findCommonCarshares(id_user1, id_user2);
 	}
 
+	public Iterable<Carshare> getReservationsCarshares(Long id_user) {
+		String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ISO_DATE);
+		return carshareRepository.findReservationsCarshares(id_user, yesterday);
+	}
+
+	public Iterable<Carshare> getProposedCarshares(Long id_user) {
+		String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ISO_DATE);
+		return carshareRepository.findProposedCarshares(id_user, yesterday);
+	}
+
 }

@@ -315,7 +315,7 @@ button:hover{
 
 /* ===================== Media queries ===================== */
 @media only screen and (max-width: 1105px){
-    
+
     .large-screen {
         display: none;
     }
@@ -326,7 +326,7 @@ button:hover{
 }
 
 @media only screen and (min-width: 1105px){
-    
+
     .large-screen {
         display: block;
     }
@@ -627,4 +627,183 @@ button:hover{
     border-radius   : 0;
     padding         : 5px;
     margin          : auto;
+}
+
+.home-box {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 4%;
+    background-color: var(--backgroundColor);
+    height: auto;
+    box-sizing: border-box;
+}
+
+.home-box h4 {
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.air-quality-rectangle {
+    text-align: center;
+    padding: 3%;
+    color: white;
+}
+
+.home-container-1 {
+    display: grid;
+    grid-template-columns: 1fr; /* deux colonnes de taille égale */
+    gap: 3rem; /* espace entre les grilles */
+    padding: 3rem; /* espace autour de la grille */
+}
+
+.home-container-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* deux colonnes de taille égale */
+    gap: 3rem; /* espace entre les grilles */
+    padding: 3rem; /* espace autour de la grille */
+}
+
+.home-text {
+    text-align: center;
+}
+
+.carshare-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Divides the grid into 3 equal columns */
+    gap: 10px; /* Adjust the gap as needed */
+    align-items: center; /* Vertically aligns the content in the center */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centring content within the grid items */
+.carshare-card > div,
+.carshare-card > button {
+    justify-self: center; /* Horizontally center the content within the grid item */
+    align-self: center; /* Vertically center the content within the grid item */
+}
+
+.btn-details {
+    flex-grow: 0; /* Prevent the button from growing */
+    padding: 5px 15px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background-color: var(--mainColor);
+    color           : var(--backgroundColor);
+    cursor          : pointer;
+    border-radius   : 0;
+    padding         : 5px;
+    margin          : auto;
+}
+/* Add a little space between the elements */
+.carshare-card > *:not(:last-child) {
+    margin-right: 10px;
+}
+
+.carshare-date {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+}
+
+.carshare-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.carshare-info span {
+    margin: 2px 0;
+}
+
+.carshare-driver {
+    display: flex;
+    align-items: center;
+}
+
+.carshare-driver img {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    border-radius: 50%; /* Creates a circle */
+    margin-right: 10px;
+}
+
+.carshare-driver span {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.home-air-quality-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 4%;
+    width: 100%;
+    max-width: 600px; /* Ajustez selon vos besoins */
+    margin: auto;
+    margin: 20px auto;
+}
+
+
+
+/* ===================== Media queries ===================== */
+@media only screen and (max-width: 1105px){
+
+    .large-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1105px){
+
+    .large-screen {
+        display: block;
+    }
+
+    .small-screen {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .scheduling-form {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .carshare-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .home-container-2 {
+        grid-template-columns: 1fr;
+        padding: 5%
+    }
+
+    .carshare-card {
+        display: grid;
+        grid-template-columns: 1fr; /* Makes it a single column layout */
+        justify-items: center; /* Horizontally centers the content */
+        align-items: center; /* Vertically centers the content */
+    }
+
+    .home-air-quality-box {
+        width: 90%;
+        padding: 10px;
+    }
 }
