@@ -2,7 +2,7 @@
 import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 
-const AutocompleteInput = ({ value, onChange, placeholder }) => {
+const AutocompleteInput = ({ value, onChange, placeholder, setOutput }) => {
 
     const [suggestions, setSuggestions] = useState([]);
     const [timer, setTimer] = useState(null);
@@ -62,6 +62,7 @@ const AutocompleteInput = ({ value, onChange, placeholder }) => {
                             key={index}
                             onClick={() => {
                                 onChange(suggestion.display_name);
+                                setOutput(suggestion);
                                 setSuggestions([]);
                             }}
                         >
@@ -78,99 +79,221 @@ const CarshareCreation = () => {
 
     const windowWidth = useWindowWidth();
 
+
+    const [startName, setStartName] = useState('');
     const [startPlace, setStartPlace] = useState('');
+    const [endName, setEndName] = useState('');
     const [endPlace, setEndPlace] = useState('');
     const [startDate, setStartDate] = useState('');
     const [startTime, setStartTime] = useState('');
     const [numSeats, setNumSeats] = useState(1);
     const [message, setMessage] = useState('');
+    const [hasComeback, setHasComeback] = useState("sans");
 
     const { user } = useUser();
 
     const handleCreateClick = () => {
 
-            if (startPlace === '' || endPlace === '' || startDate === '' || startTime === '') {
-                setMessage("Certains champs n'ont pas été remplis");
+        if (startPlace === '' || endPlace === '' || startDate === '' || startTime === '') {
+            setMessage("Certains champs n'ont pas été remplis.");
+
+        }
+        else {
+
+            //Vérification des champs à envoyer qui existent dans ce qui a été reçu par la requête à nominatim
+            var start_city = null;
+            var start_department = null;
+            var start_postcode = null;
+            var start_road = null;
+            var start_house_number = null;
+
+            //Vérification des différents types d'agglomérations dans l'ordre décroissant de taille
+            if (typeof startPlace.address.municipality != 'undefined') {
+                var start_city = startPlace.address.municipality;
             }
-            else {
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
+
+            if (typeof startPlace.address.city != 'undefined') {
+                var start_city = startPlace.address.city;
+            }
+
+            if (typeof startPlace.address.town != 'undefined') {
+                var start_city = startPlace.address.town;
+            }
+
+            if (typeof startPlace.address.village != 'undefined') {
+                var start_city = startPlace.address.village;
+            }
+
+            if (typeof startPlace.address.hamlet != 'undefined') {
+                var start_city = startPlace.address.hamlet;
+            }
+
+            if (typeof startPlace.address.county != 'undefined') {
+                var start_department = startPlace.address.county;
+            }
+
+            if (typeof startPlace.address.postcode != 'undefined') {
+                var start_postcode = startPlace.address.postcode;
+            }
+
+            if (typeof startPlace.address.road != 'undefined') {
+                var start_road = startPlace.address.road;
+            }
+
+            if (typeof startPlace.address.house_number != 'undefined') {
+                var start_house_number = startPlace.address.house_number;
+            }
+
+            //Cas particulier pour Paris, où le département est aussi la ville
+            if (start_department === null && start_city === "Paris") {
+                var start_department = "Paris";
+            }
+
+            //On effectue les mêmes vérifications qu'avec endPlace
+            var end_city = null;
+            var end_department = null;
+            var end_postcode = null;
+            var end_road = null;
+            var end_house_number = null;
+
+            if (typeof endPlace.address.municipality != 'undefined') {
+                var end_city = endPlace.address.municipality;
+            }
+
+            if (typeof endPlace.address.city != 'undefined') {
+                var end_city = endPlace.address.city;
+            }
+
+            if (typeof endPlace.address.town != 'undefined') {
+                var end_city = endPlace.address.town;
+            }
+
+            if (typeof endPlace.address.village != 'undefined') {
+                var end_city = endPlace.address.village;
+            }
+
+            if (typeof endPlace.address.hamlet != 'undefined') {
+                var end_city = endPlace.address.hamlet;
+            }
+
+            if (typeof endPlace.address.county != 'undefined') {
+                var end_department = endPlace.address.county;
+            }
+
+            if (typeof endPlace.address.postcode != 'undefined') {
+                var end_postcode = endPlace.address.postcode;
+            }
+
+            if (typeof endPlace.address.road != 'undefined') {
+                var end_road = endPlace.address.road;
+            }
+
+            if (typeof endPlace.address.house_number != 'undefined') {
+                var end_house_number = endPlace.address.house_number;
+            }
+
+            if (end_department === null && end_city === "Paris") {
+                var end_department = "Paris";
+            }
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    max_passenger: numSeats,
+                    is_Full: 'false',
+                    schedule: startDate + ' ' + startTime,
+
+                    start_place: {
+                        city: start_city,
+                        department: start_department,
+                        postcode: start_postcode,
+                        road: start_road,
+                        house_number: start_house_number,
+                        latitude: startPlace.lat,
+                        longitude: startPlace.lon
                     },
-                    body: JSON.stringify({
-                        max_passenger:  numSeats ,
-                        is_Full: 'false',
-                        schedule: startDate  + ' ' +  startTime ,
-                        start_place:  startPlace ,
-                        end_place:  endPlace ,
-                        //TODO : Ajouter les coordonnées lat et lon de chaque start_place et end_place, ne pas oublier que start et end_place sont maintenant des Addresses. Faire attention a envoyer les bonnes informations pour créer l'objet covoiturage.
-                        //TODO: Calculer distance et bonus_pollution avant de faire cette requête POST
-                        driver:{
-                            uid: user.uid 
-                        }
-                    })
-                };
-                fetch('http://localhost:8080/carshare', options).then((res) => { });
-                
-                // Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
-                // Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
-                setMessage("Requête de création de covoiturage envoyée");
-                // setStartPlace('');
-                // setEndPlace('');
-                // setStartDate('');
-                // setNumSeats('1');
-                
-            }
+
+                    end_place: {
+                        city: end_city,
+                        department: end_department,
+                        postcode: end_postcode,
+                        road: end_road,
+                        house_number: end_house_number,
+                        latitude: endPlace.lat,
+                        longitude: endPlace.lon
+                    },
+
+                    comeback: (hasComeback==="avec"),
+
+                    //TODO: Calculer distance et bonus_pollution avant de faire cette requête POST
+                    driver: {
+                        uid: user.uid
+                    }
+
+                })
+
+            };
+
+            fetch('http://localhost:8080/carshare', options).then((res) => { });
+
+
+            // Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
+            // Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
+
+            setMessage("La requête de création de covoiturage a été envoyée.");
+            setStartPlace('');
+            setStartName('');
+            setEndPlace('');
+            setEndName('');
+            setStartDate('');
+            setStartTime('');
+            setNumSeats('1');
+            setHasComeback("sans");
+
+        }
     }
 
     return (
-           <React.Fragment>
-            {user && windowWidth < 1105 &&
-                //TODO: Gestion de la version mobile du site. Pour l'instant seule la version ordi a été écrite
-                <div className="small-screen">
-                    <p className="center" style={{ marginBottom: "20px" }}>Placeholder version mobile </p>
-                </div>}
-            {user && windowWidth >= 1105 &&
-                <div className="large-screen">
-                    <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
-                    <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Proposer un trajet</strong> </p>
-                    <div className="scheduling-form" style={{ boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)", padding: "5%", width: "70%", marginLeft: "15%" }}>
+        <div className="creation-form">
+            <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
+            <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Planifier un trajet</strong></p>
 
-                        <label> Lieu de départ :<br />
-                            <AutocompleteInput
-                                value={startPlace}
-                                onChange={setStartPlace}
-                                placeholder="Entrez l'adresse de départ"
-                            />
-                        </label>
+            <label> Lieu de départ :
+                <AutocompleteInput value={startName} onChange={setStartName} placeholder="Entrez l'adresse de départ" setOutput={setStartPlace} />
+                
+            </label>
 
-                        <label> Lieu d'arrivée :<br />
-                            <AutocompleteInput
-                                value={endPlace}
-                                onChange={setEndPlace}
-                                placeholder="Entrez l'adresse d'arrivée"
-                            />
-                        </label>
+            <label> Lieu d'arrivée :
+                <AutocompleteInput value={endName} onChange={setEndName} placeholder="Entrez l'adresse d'arrivée" setOutput={setEndPlace} />
+            </label>
 
-                        <br></br>
-                        {/* <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
-                            <input type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />
+            <br></br>
+            <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
+                            <input width="20%" type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />
                             <input type="time" name="timeStart" value={startTime} onChange={e => setStartTime(e.target.value)} />
-                        </label>
-                        <br></br>
-                        <label style={{ width: "70%", marginBottom: "30px" }}> Nombre de places :<br></br>
-                            <input className="input-stylish" type="number" name="seats" min="1" max="10" value={numSeats} onChange={e => setNumSeats(e.target.value)} style={{ width: "10%" }} />
-                        </label>
-                        <div>
-                            <button className="btn" onClick={handleCreateClick}>
-                                <strong style={{ fontSize: "15px", padding: "5px" }}>Je propose un trajet</strong>
-                        </button>
-                        </div> */}
-                    </div>
-                </div>}
+            </label>
+            <br></br>
 
-        </React.Fragment>
+            <div>
+                <select id="comeback" value={hasComeback} onChange={e => setHasComeback(e.target.value)}>
+                    <option value={"sans"}>Sans allez-retour</option>
+                    <option value={"avec"}>Avec allez-retour</option>
+                </select>
+            </div>
+            <label> Nombre de places :<br></br>
+                <input type="number" name="seats" min="1" max="10" value={numSeats} onChange={e => setNumSeats(e.target.value)} style={{ width: "15%" }} />
+            </label>
+
+
+            <button className="btn" onClick={handleCreateClick}>
+                <strong style={{ fontSize: "15px", padding: "5px" }}>Proposer le covoiturage</strong>
+            </button>
+        </div>
+
     );
 
 };
