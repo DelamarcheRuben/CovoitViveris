@@ -12,7 +12,7 @@ const CarshareResearchResultsDisplay = () => {
     return (
         <React.Fragment>
             <Navbar/>
-            <div class="carshare-container">
+            <div className="carshare-container">
                 <BottomNavigation
                     showLabels
                     value={view}

@@ -113,6 +113,17 @@ public class CarshareController {
 	}
 	
 	
+	/**
+	 * Read - Get all carshares linked two given users
+	 * @param id_user1 : the first user linked with the carshares
+	 * @param id_user2 : the second user linked with the carshares
+	 * @return - An Iterable object of Carshare full filled
+	 */
+	@GetMapping("/common-carshares/{id1}-{id2}")
+	public Iterable<Carshare> getCommonCarshares(@PathVariable("id1") final Long id_user1, @PathVariable("id2") final Long id_user2) {
+		return carshareService.getCommonCarshares(id_user1, id_user2);
+	}
+	
 	
 	/**
 	 * Update - Update an existing carshare
@@ -167,14 +178,4 @@ public class CarshareController {
 		carshareService.deleteCarshare(id);
 	}
 
-	/**
-	 * Read - Get all carshares linked two given users
-	 * @param id_user1 : the first user linked with the carshares
-	 * @param id_user2 : the second user linked with the carshares
-	 * @return - An Iterable object of Carshare full filled
-	 */
-	@GetMapping("/common-carshares/{id1}-{id2}")
-	public Iterable<Carshare> getCommonCarshares(@PathVariable("id1") final Long id_user1, @PathVariable("id2") final Long id_user2) {
-		return carshareService.getCommonCarshares(id_user1, id_user2);
-	}
 }
