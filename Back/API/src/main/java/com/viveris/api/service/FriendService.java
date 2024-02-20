@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.viveris.api.model.Friend;
 import com.viveris.api.model.FriendId;
+import com.viveris.api.model.User;
 import com.viveris.api.repository.FriendRepository;
 
 import lombok.Data;
@@ -32,13 +33,17 @@ public class FriendService {
 	}
 	
 	public Friend saveFriend(Friend Friend) {
-		if(Friend.user1==Friend.user2) return null;
+		if(Friend.user1.uid==Friend.user2.uid) return null;
 		Friend savedFriend = friendRepository.save(Friend);
 		return savedFriend;
 	}
 
 	public Iterable<Friend> getFriendsById(Long id_user) {
 		return friendRepository.findByIdUser(id_user);
+	}
+
+	public Iterable<Integer> getCommonFriends(Long user1, Long user2) {
+		return friendRepository.findCommonFriends(user1, user2);
 	}
 
 

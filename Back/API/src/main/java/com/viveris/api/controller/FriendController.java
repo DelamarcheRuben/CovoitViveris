@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.viveris.api.model.Friend;
 import com.viveris.api.model.FriendId;
+import com.viveris.api.model.User;
 import com.viveris.api.service.FriendService;
 
 @RestController
@@ -58,6 +60,17 @@ public class FriendController {
 	public Iterable<Friend> getFriends(@RequestParam(required = false) Long id_user) {
 		if(id_user!=null) return friendService.getFriendsById(id_user);
 		return friendService.getFriends();
+	}
+	
+	/**
+	 * Read - Get all common friends between two users
+	 * @param user1 - first user
+	 * @param user2 - second user
+	 * @return - An Iterable object of Integer (ids of common friends)
+	 */
+	@GetMapping("/common-friends/{id1}-{id2}")
+	public Iterable<Integer> getCommonFriends(@PathVariable("id1") final Long user1, @PathVariable("id2") final Long user2) {
+		return friendService.getCommonFriends(user1, user2);
 	}
 	
 	/**

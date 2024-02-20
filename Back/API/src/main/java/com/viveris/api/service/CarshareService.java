@@ -73,4 +73,12 @@ public class CarshareService {
 		return carshares;
 	}
 
+	public Iterable<Carshare> getHistoryCarshares(Long id_user) {
+		return carshareRepository.findHistoryCarshares(id_user);
+	}
+
+	public Iterable<Carshare> getCommonCarshares(Long id_user1, Long id_user2) {
+		return carshareRepository.findCommonCarshares(id_user1, id_user2);
+	}
+
 }

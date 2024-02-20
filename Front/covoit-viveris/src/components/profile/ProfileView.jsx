@@ -13,14 +13,14 @@ export function ProfileView(u){
     const location = useLocation();
     const [currentUrl, setCurrentUrl] = useState("profile");
 
-    // useEffect(() => {
-    //     if(location.pathname == "/profile/friends"){
-    //         setCurrentUrl("friends");
-    //     }
-    //     else{
-    //         setCurrentUrl("profile");
-    //     }
-    // }, [location.pathname]);
+    useEffect(() => {
+        if(location.pathname == "/profile/friends"){
+            setCurrentUrl("friends");
+        }
+        else{
+            setCurrentUrl("profile");
+        }
+    }, [location.pathname]);
 
     // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
