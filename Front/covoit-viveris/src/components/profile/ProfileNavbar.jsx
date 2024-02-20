@@ -75,7 +75,7 @@ export function ProfileNavbar(){
                 </div>
                 <p className="center" style={{ marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "4vw" }}>{user.experience} / {levels.level_experience(user.level)}</strong></p>
 
-                <div className="row justify-content-center">
+                <div className="row justify-content-center" style={{ marginBottom:"25px" }}>
                     <div className="col center">
                         <NavLink to="/profile/updateProfile">
                             <div style={{ height:"115px" }}>
@@ -138,7 +138,7 @@ export function ProfileNavbar(){
                 </div>
                 <p className="center" style={{ fontSize: "17px", marginTop: "5px", marginBottom: "20px" }}><strong style={{ fontSize: "20px" }}>{user.experience} / {levels.level_experience(user.level)}</strong></p>
 
-                <div className="row justify-content-center">
+                <div className="row justify-content-center" style={{ marginBottom:"25px" }}>
                     <div className="col-md-2 mb-4 center">
                         <NavLink to="/profile/updateProfile">
                             <div style={{ height:"115px" }}>

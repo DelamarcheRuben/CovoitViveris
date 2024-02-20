@@ -39,7 +39,7 @@ export function ProfileBadges(){
         .then((data) => {
             setOwnedBadges(data);
         });
-      }, []);
+    }, []);
 
     const goalBadge = [];
     for (let index = 0; index < badges.length; index++) {
