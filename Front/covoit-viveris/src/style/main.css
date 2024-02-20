@@ -313,42 +313,6 @@ button:hover{
     background-color: var(--mainColor);
 }
 
-/* ===================== Media queries ===================== */
-@media only screen and (max-width: 1105px){
-    
-    .large-screen {
-        display: none;
-    }
-
-    .small-screen {
-        display: block;
-    }
-}
-
-@media only screen and (min-width: 1105px){
-    
-    .large-screen {
-        display: block;
-    }
-
-    .small-screen {
-        display: none;
-    }
-}
-
-@media (max-width: 600px) {
-    .scheduling-form {
-        width: 90%;
-        padding: 10px;
-    }
-
-    .carshare-container {
-        width: 90%;
-        padding: 10px;
-    }
-}
-
-
 .endCarShare-background{
     background-image     : url(./src/images/background_map.png);
     background-size      : 50%;
@@ -598,4 +562,77 @@ button:hover{
     padding: 5%;
     width: 100%;
     position: relative;
+}
+
+.home-box {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+    /*margin: 1rem; */
+    background-color: var(--backgroundColor);
+    height: auto;
+    box-sizing: border-box;
+}
+
+.home-box h4 {
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.air-quality-rectangle {
+    padding: 10px;
+    color: white;
+    /* Vous pouvez ajouter d'autres styles comme les bordures, le rayon de la bordure, etc. */
+}
+
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* deux colonnes de taille égale */
+    gap: 3rem; /* espace entre les grilles */
+    padding: 3rem; /* espace autour de la grille */
+}
+
+.home-text {
+    text-align: center;
+}
+
+
+/* ===================== Media queries ===================== */
+@media only screen and (max-width: 1105px){
+
+    .large-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1105px){
+
+    .large-screen {
+        display: block;
+    }
+
+    .small-screen {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .scheduling-form {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .carshare-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .home-container {
+        grid-template-columns: 1fr;
+    }
 }
