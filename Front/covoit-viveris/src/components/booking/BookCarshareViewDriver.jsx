@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { BookCarshareProfile } from "../booking/BookCarshareProfile.jsx"
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
+import { useUser } from "../../context/UserContext.jsx";
 
 export function BookCarshareViewDriver(userDriver){
 
     const windowWidth = useWindowWidth();
+    const { user } = useUser();
 
-    const [ownedBadges, setOwnedBadges] = useState([]);
+    const [ownedBadges, setOwnedBadges]   = useState([]);
+    const [isFriend, setIsFriend]         = useState(false);
+    const [commonFriend, setCommonFriend] = useState(0);
 
     useEffect(() => {
         fetch("http://localhost:8080/ownedbadges?user_id="+userDriver.carDriver.uid)
@@ -14,15 +18,57 @@ export function BookCarshareViewDriver(userDriver){
             return res.json();
         })
         .then((data) => {
-            console.log(data)
             setOwnedBadges(data);
         });
-    }, []);
+
+        fetch("http://localhost:8080/friends?id_user="+user.uid)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            let isfriend = false;
+            data.forEach((friend) => {
+                if(friend.user1.uid == userDriver.carDriver.uid || friend.user2.uid == userDriver.carDriver.uid){
+                    isfriend = true;
+                }
+            });
+            setIsFriend(isfriend);
+        });
+
+        fetch("http://localhost:8080/common-friends/" + user.uid + "-" + userDriver.carDriver.uid)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            setCommonFriend(data.length);
+       });
+    }, [user]);
+
+    const handleFriendClick = () => {
+        const friend = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "uid":{
+                    "uidUser2":userDriver.carDriver.uid,
+                    "uidUser1":user.uid
+                },
+                "user1": {"uid":user.uid},
+                "user2": {"uid":userDriver.carDriver.uid}
+            })
+        };
+        fetch('http://localhost:8080/friend', friend);
+
+        setIsFriend(true);
+    }
+
 
 
     return (
         <React.Fragment>
-            {windowWidth < 1105 && userDriver && ownedBadges && 
+            {windowWidth < 1105 && userDriver && ownedBadges &&
             <div className="small-screen profile-booking-small" style={{ marginTop:"35px" }} >
                 <div className="row">
                     <img className="center-picture" src={`../../src/images/background_profile/background_${userDriver.carDriver.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "100%", maxHeight:"125px" }}/>
@@ -34,8 +80,14 @@ export function BookCarshareViewDriver(userDriver){
                     <div className="line-company-color-horizontal"></div>
                 </div>
                 <div className="row" style={{ marginTop:"15px" }}>
-                    <p className="center"> Amis en commun : </p>
-                    <button className="btn" style={{ width: "150px", marginTop:"10px" }}><strong style={{ fontSize:"15px"}}>Ajouter en ami</strong></button>
+                    <p className="center">{commonFriend} amis en commun </p>
+                    {
+                        isFriend 
+                        ?
+                        <p className="center already-friend" style={{ marginTop:"10px" }}>Déjà ami</p>
+                        :
+                        <button className="btn" onClick={handleFriendClick} style={{ width: "150px", marginTop:"10px" }}><strong style={{ fontSize:"15px"}}>Ajouter en ami</strong></button>
+                    }
                 </div>
                 <div className="col center-div-picture">
                     <div className="line-company-color-horizontal"></div>
@@ -55,7 +107,7 @@ export function BookCarshareViewDriver(userDriver){
             </div>
             }
 
-            {windowWidth >= 1105 && userDriver && ownedBadges && 
+            {windowWidth >= 1105 && userDriver && ownedBadges &&
             <div className="large-screen profile-booking" style={{ marginTop:"35px", maxWidth:"60%" }} >
                 <div className="row">
                     <img className="center-picture" src={`../../src/images/background_profile/background_${userDriver.carDriver.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "100%", maxHeight:"125px" }}/>
@@ -69,8 +121,14 @@ export function BookCarshareViewDriver(userDriver){
                     </div>
                     <div className="col center-div-picture">
                         <div className="row">
-                            <p className="center"> Amis en commun : </p>
-                            <button className="btn" style={{ width: "10vw", marginTop:"15px" }}><strong style={{ fontSize:"1.2vw"}}>Ajouter en ami</strong></button>
+                            <p className="center">{commonFriend} amis en commun </p>
+                            {
+                                isFriend 
+                                ?
+                                <p className="center already-friend" style={{ marginTop:"10px" }}>Déjà ami</p>
+                                :
+                                <button className="btn" onClick={handleFriendClick} style={{ width: "150px", marginTop:"10px" }}><strong style={{ fontSize:"15px"}}>Ajouter en ami</strong></button>
+                            }                        
                         </div>
                     </div>
                     <div className="col" style={{ maxWidth:"10px" }}>

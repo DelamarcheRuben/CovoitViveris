@@ -115,7 +115,7 @@ export function BookCarshareView(){
                                             }
                                         </div>
                                         <div className="col" style={{ maxWidth:"25%"}}>
-                                            <button className="btn" onClick={handleBookClick} style={{ width: "80px", marginTop:"15px" }}><strong style={{ fontSize:"15px"}}>Réserver</strong></button>
+                                            <button className="btn" onClick={handleBookClick} style={{ width: "100px", marginTop:"15px" }}><strong style={{ fontSize:"15px"}}>Réserver</strong></button>
                                         </div>
                                     </div>
                                 </div>
