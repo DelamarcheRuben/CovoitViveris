@@ -78,27 +78,27 @@ export function ProfileNavbar(){
                 <div className="row justify-content-center" style={{ marginBottom:"25px" }}>
                     <div className="col center">
                         <NavLink to="/profile/updateProfile">
-                            <div style={{ height:"115px" }}>
-                                <img className="center-picture" src="../../src/images/logo/updateProfile.png" alt="Modifier profil" width="90vw"/>
+                            <div style={{ height:"100%" }}>
+                                <img className="center-picture" src="../../src/images/logo/updateProfile.png" alt="Modifier profil" width="70vw"/>
                             </div>
                         </NavLink>
-                        <p className={`${currentUrl === "updateProfile" ? 'active-link' : ''}`} style={{ fontSize:"3vw" }}> Modifier profil </p>
+                        <p className={`${currentUrl === "updateProfile" ? 'active-link' : ''}`} style={{ fontSize:"3vw", marginTop:"5px" }}> Modifier profil </p>
                     </div>
                     <div className="col center">
                         <NavLink to="/profile/carSharesHistory">
-                            <div className="center-div-picture" style={{ height:"115px" }}>
-                                <img className="center-picture" src="../../src/images/logo/carSharesHistory.png" alt="Historique des trajets" width="90vw"/>
+                            <div className="center-div-picture" style={{ height:"100%" }}>
+                                <img className="center-picture" src="../../src/images/logo/carSharesHistory.png" alt="Historique des trajets" width="70vw"/>
                             </div>
                         </NavLink>
-                        <p className={`${currentUrl === "carSharesHistory" ? 'active-link' : ''}`} style={{ fontSize:"3vw" }}> Historique des trajets </p>
+                        <p className={`${currentUrl === "carSharesHistory" ? 'active-link' : ''}`} style={{ fontSize:"3vw", marginTop:"5px" }}> Historique des trajets </p>
                     </div>
                     <div className="col center">
                         <NavLink to="/profile/badges">
-                            <div style={{ height:"115px" }}>
+                            <div style={{ height:"100%" }}>
                                 <img className="center-picture" src="../../src/images/logo/badges.png" alt="Badges" width="55vw"/>
                             </div>
                         </NavLink>
-                        <p className={`${currentUrl === "badges" ? 'active-link' : ''}`} style={{ fontSize:"3vw" }}> Badges </p>
+                        <p className={`${currentUrl === "badges" ? 'active-link' : ''}`} style={{ fontSize:"3vw", marginTop:"5px" }}> Badges </p>
                     </div>
                 </div>
 
