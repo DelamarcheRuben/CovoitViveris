@@ -51,9 +51,63 @@ const Login = () => {
     });
   };
 
-  return (
+    const handleRegister = (email, username, password) => {
+        // Hashage du mot de passe
+        var hashedPassword = cyrb53(password);
+
+        // Préparation de l'objet utilisateur
+        const user = {
+            email: email,
+            pseudo: username,
+            password: hashedPassword,
+            first_name: "",
+            last_name: "",
+            job: "",
+            picture_background: 'desert',
+            car_type: "",
+            fuel_consumption: 0.0,
+            nb_carshares: 0,
+            kilometers: 0,
+            level: 0,
+            experience: 0,
+            bonus_loyalty: 0,
+            co2_economy: 0,
+        };
+
+        // Configuration de la requête
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user) // Conversion de l'objet utilisateur en chaîne JSON
+        };
+
+        // Envoi de la requête à l'API
+        fetch("http://localhost:8080/user", options)
+            .then(response => response.json()) // Conversion de la réponse en JSON
+            .then(data => {
+                // Traitement de la réponse de l'API
+                if(data && data.uid) { // Vérification si l'utilisateur est bien créé
+                    console.log('Utilisateur créé avec succès', data);
+                    // Redirection ou mise à jour de l'état de l'application ici
+                    updateUser(data);
+                    navigate('/profile/updateProfile'); // Redirige vers la page de connexion
+                } else {
+                    // Gérer l'erreur si l'utilisateur n'est pas créé
+                    console.error("Erreur lors de la création de l'utilisateur");
+                }
+            })
+            .catch(error => {
+                // Gestion des erreurs de la requête
+                console.error('Erreur lors de la requête:', error);
+            });
+    };
+
+
+    return (
     <div>
-      <Authentification onLogin={handleLogin}/>
+      <Authentification onLogin={handleLogin} onRegister={handleRegister}/>
     </div>
   );
 };

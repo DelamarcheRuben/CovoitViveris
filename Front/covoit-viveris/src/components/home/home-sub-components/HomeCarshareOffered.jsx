@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {useUser} from "../../../context/UserContext.jsx";
-import {CarshareReservedCard} from "./card/CarshareReservedCard.jsx";
 import {CarshareOfferedCard} from "./card/CarshareOfferedCard.jsx";
 
 function HomeCarshareOffered() {
@@ -17,7 +16,7 @@ function HomeCarshareOffered() {
             .catch(error => {
                 console.error("Erreur lors de la récupération des covoiturages reservés par l'utilisateur : ", error);
             });
-    });
+    }, [user.id]);
 
     return (
         <div className="home-box">

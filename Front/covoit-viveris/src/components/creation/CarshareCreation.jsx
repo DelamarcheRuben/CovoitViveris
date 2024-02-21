@@ -280,12 +280,12 @@ const CarshareCreation = () => {
 
             <div>
                 <select id="comeback" value={hasComeback} onChange={e => setHasComeback(e.target.value)}>
-                    <option value={"sans"}>Sans allez-retour</option>
-                    <option value={"avec"}>Avec allez-retour</option>
+                    <option value={"sans"}>Sans aller-retour</option>
+                    <option value={"avec"}>Avec aller-retour</option>
                 </select>
             </div>
-            <label> Nombre de places :<br></br>
-                <input type="number" name="seats" min="1" max="10" value={numSeats} onChange={e => setNumSeats(e.target.value)} style={{ width: "15%" }} />
+            <label style={{ marginTop:"10px" }}> Nombre de places :<br></br>
+                <input className="center-picture" type="number" name="seats" min="1" max="10" value={numSeats} onChange={e => setNumSeats(e.target.value)} style={{ width: "20%" }} />
             </label>
 
 

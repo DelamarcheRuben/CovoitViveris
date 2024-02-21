@@ -23,29 +23,39 @@ export function ProfileFriends(){
 
     return (
         <React.Fragment>
-            {window.innerWidth < 1105 && friendList &&
+            {windowWidth < 1105 && friendList &&
                 <div className="row center-div-picture">
-                    {friendList.sort((a, b) => b.level - a.level).map((f, index) => (
-                            <div key={index} style={{ maxWidth:"350px"}}>
-                                {f.uid.uidUser1 == user.uid
-                                ?
-                                <React.Fragment key={index}>
-                                    <ProfileFriendsView key={index} friendUser={f.user2}/>
-                                </React.Fragment>
-                                :
-                                <React.Fragment key={index}>
-                                    <ProfileFriendsView key={index} friendUser={f.user1}/>
-                                </React.Fragment>
-                                }
-                            </div>
-                        ))} 
+                    {friendList.sort((a, b) => {
+                        const levelA = (a.user1.uid == user.uid) ? a.user2.level : a.user1.level;
+                        const levelB = (b.user1.uid == user.uid) ? b.user2.level : b.user1.level;
+
+                        return levelB - levelA;
+                    }).map((f, index) => (
+                        <div key={index} style={{ maxWidth:"350px"}}>
+                            {f.uid.uidUser1 == user.uid
+                            ?
+                            <React.Fragment key={index}>
+                                <ProfileFriendsView key={index} friendUser={f.user2}/>
+                            </React.Fragment>
+                            :
+                            <React.Fragment key={index}>
+                                <ProfileFriendsView key={index} friendUser={f.user1}/>
+                            </React.Fragment>
+                            }
+                        </div>
+                    ))} 
                 </div>
             }
 
-            {window.innerWidth >= 1105 && friendList &&
+            {windowWidth >= 1105 && friendList &&
                 <div className="row center-div-picture">
                     <div className="container-profile-friend" style={{ marginTop:"5px", maxWidth:"85%" }}>
-                        {friendList.sort((a, b) => b.level - a.level).map((f, index) => (
+                        {friendList.sort((a, b) => {
+                            const levelA = (a.user1.uid == user.uid) ? a.user2.level : a.user1.level;
+                            const levelB = (b.user1.uid == user.uid) ? b.user2.level : b.user1.level;
+
+                            return levelB - levelA;
+                        }).map((f, index) => (
                             <div key={index} className="item-profile-friend"  style={{ maxWidth:"400px"}}>
                                 {f.uid.uidUser1 == user.uid
                                 ?

@@ -56,32 +56,56 @@ p{
 .row {
     display    : flex;
     align-items: center;
-    max-height : 180px;
+    max-height : 225px;
 }
 
 /* ===================== Secondary Features ===================== */
-.margin1{
+.margin1-ranking{
     margin-left: 102px;
 }
 
-.margin2{
+.margin2-ranking{
     margin-left: 98px;
 }
 
-.margin3{
+.margin3-ranking{
     margin-left: 94px;
 }
 
-.margin1-small{
+.margin1-small-ranking{
     margin-left: 52px;
 }
 
-.margin2-small{
+.margin2-small-ranking{
     margin-left: 50px;
 }
 
-.margin3-small{
+.margin3-small-ranking{
     margin-left: 48px;
+}
+
+.margin1-research{
+    margin-left: 71px;
+}
+
+.margin2-research{
+    margin-left: 67px;
+}
+
+.margin3-research{
+    margin-left: 64px;
+}
+
+.margin1-small-research{
+    margin-left: -11px;
+}
+
+.margin2-small-research{
+    margin-left: -12px;
+}
+
+.margin3-small-research{
+    margin-left: -14px;
 }
 
 .column-item-badge {
