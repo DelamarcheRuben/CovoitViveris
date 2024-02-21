@@ -10,7 +10,7 @@ function total_exp_level(level)
 {
     var next_level_exp = FIRST_LEVEL_EXP;
     var total_exp = FIRST_LEVEL_EXP;
-    for(var i=1;i<level;++i)
+    for(var i=0;i<level;++i)
     {
         next_level_exp = formula_level_exp(next_level_exp);
         total_exp+=next_level_exp;
