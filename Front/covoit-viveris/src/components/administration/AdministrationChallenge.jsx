@@ -33,7 +33,6 @@ const AdministrationChallenge = () => {
                 })
             };
 
-            console.log(options);
             fetch('http://localhost:8080/challenge', options).then((res) => { });
             
             setMessage("Requête de création de covoiturage envoyée");

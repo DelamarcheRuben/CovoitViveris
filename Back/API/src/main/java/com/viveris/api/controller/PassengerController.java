@@ -32,6 +32,7 @@ public class PassengerController {
 	 */
 	@PostMapping("/passenger")
 	public Passenger createPassenger(@RequestBody Passenger passenger) {
+		passenger.setHas_validated(false);
 		return passengerService.savePassenger(passenger);
 	}
 	
@@ -75,6 +76,14 @@ public class PassengerController {
 		Optional<Passenger> e = passengerService.getPassenger(new PassengerId(carshare, user));
 		if(e.isPresent()) {
 			Passenger currentPassenger = e.get();
+			Integer experience = passenger.getExperience();
+			if(experience!=null) {
+				currentPassenger.setExperience(experience);
+			}
+			Boolean has_validated = passenger.getHas_validated();
+			if(has_validated!=null) {
+				currentPassenger.setHas_validated(has_validated);
+			}
 			/*
 			LocalDateTime schedule = passenger.getSchedule();
 			if(schedule!=null) currentPassenger.setSchedule(schedule);

@@ -8,7 +8,7 @@ const CarshareResearchList = () => {
     const { searchResults } = useSearchResults(); // Accès aux résultats de recherche via le contexte
     const { user } = useUser();
 
-    return (
+    return (user &&
         <React.Fragment>
             {searchResults.length === 0
                 ? <p className="center"><strong style={{ fontSize:"40px" }}>Aucun Résultat</strong></p>

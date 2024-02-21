@@ -20,7 +20,7 @@ function HomeCarshareReserved() {
             });
     }, [user.id]);
 
-    return (
+    return (user &&
         <div className="home-box">
             <h4>Mes reservations</h4>
             {carshareReserved === null

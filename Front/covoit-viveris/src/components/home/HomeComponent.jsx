@@ -9,7 +9,7 @@ const HomeComponent = () => {
 
     const { user } = useUser();
 
-    return (
+    return (user &&
         <div>
             <div className="home-text">
                 <h3>Bienvenue {user.pseudo} !</h3>

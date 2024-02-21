@@ -42,14 +42,25 @@ public class Address {
     public Double longitude;
 
     public String getFullAddress() {
-        return String.format("%d %s, %s (%d)", house_number, road, city,postcode);
+    	String res = "";
+    	if(house_number!=null) res+=house_number+" ";
+    	if(road!=null) res+=road+", ";
+    	if(city!=null) res+=city+" ";
+    	if(postcode!=null) res+="("+postcode+")";
+        return res;
     }
     
     public String getHouseRoad() {
-        return String.format("%d %s",house_number,road);
+    	String res = "";
+    	if(house_number!=null) res+=house_number+" ";
+    	if(road!=null) res+=road;
+        return res;
     }
     
     public String getCityPostcode() {
-        return String.format("%s (%d)",city,postcode);
+    	String res = "";
+    	if(city!=null) res+=city+" ";
+    	if(postcode!=null) res+="("+postcode+")";
+        return res;
     }
 }

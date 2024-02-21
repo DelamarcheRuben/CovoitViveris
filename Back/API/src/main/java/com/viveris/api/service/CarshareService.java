@@ -43,6 +43,9 @@ public class CarshareService {
 	}
 	
 	public Carshare saveCarshare(Carshare Carshare) {
+		Optional<User> opt_driver = userRepository.findById(Carshare.driver.uid);
+		if(!opt_driver.isPresent()) return null;
+		User driver = opt_driver.get();
 		Address start_place = Carshare.getStart_place();
 		Address end_place = Carshare.getEnd_place();
 
@@ -68,10 +71,26 @@ public class CarshareService {
 			end_place = addressRepository.save(end_place);
 		}
 
-
+		
 		Carshare.setStart_place(start_place);
 		Carshare.setEnd_place(end_place);
-
+		
+		//https://www.movable-type.co.uk/scripts/latlong.html
+		Double lat1 = Carshare.getStart_place().getLatitude();
+		Double lon1 = Carshare.getStart_place().getLongitude();
+		Double lat2 = Carshare.getEnd_place().getLatitude();
+		Double lon2 = Carshare.getEnd_place().getLongitude();
+		Long R = (long) (6371); // kilometres
+		Double φ1 = lat1 * Math.PI/180; // φ, λ in radians
+		Double φ2 = lat2 * Math.PI/180;
+		Double Δφ = (lat2-lat1) * Math.PI/180;
+		Double Δλ = (lon2-lon1) * Math.PI/180;
+		Double a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+		          Math.cos(φ1) * Math.cos(φ2) *
+		          Math.sin(Δλ/2) * Math.sin(Δλ/2);
+		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		Float distance = (float) (R*c);
+		Carshare.setDistance(distance);
 		Carshare savedCarshare = carshareRepository.save(Carshare);
 		return savedCarshare;
 	}
@@ -85,9 +104,9 @@ public class CarshareService {
 		if(!opt_user.isPresent()) return null;
 		User user = opt_user.get();
 		Iterable<Carshare> carshares = carshareRepository.getSortedCarshares(id_user, date);
+		ArrayList<Carshare> sorted_carshares = new ArrayList<>();
 		for(Carshare carshare:carshares)
 		{
-			//https://www.movable-type.co.uk/scripts/latlong.html
 			Double lat1 = user.getAddress().getLatitude();
 			Double lon1 = user.getAddress().getLongitude();
 			Double lat2 = carshare.getStart_place().getLatitude();
@@ -102,9 +121,19 @@ public class CarshareService {
 			          Math.sin(Δλ/2) * Math.sin(Δλ/2);
 			Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 			Float distance = (float) (R*c);
-			carshare.setDistance(distance);
+			if(distance<=distance_max)
+			{
+				carshare.setDistance(distance);
+				sorted_carshares.add(carshare);
+			}
+				
 		}
-		return carshares;
+		sorted_carshares.sort((o1, o2) -> {
+			if(o1.getDistance()<o2.getDistance()) return -1;
+			if(o1.getDistance()==o2.getDistance()) return 0;
+			return 1;
+		});
+		return sorted_carshares;
 	}
 
 	public Iterable<Carshare> getHistoryCarshares(Long id_user) {

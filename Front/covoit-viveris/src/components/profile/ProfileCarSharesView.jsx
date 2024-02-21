@@ -5,7 +5,7 @@ export function ProfileCarSharesView(carshare){
 
     const { user } = useUser();
 
-    return (
+    return (user &&
         <React.Fragment>
             { user && carshare &&
             <div className="carShare-history-profile">
@@ -26,7 +26,7 @@ export function ProfileCarSharesView(carshare){
                     </div>
                     <div className="row center-div-picture">
                         <div className="col" style={{ display:"flex", maxWidth:"50px", marginTop:"-10px" }}>
-                            <i style={{ fontSize:"14px" }}>1h15</i>
+                            <i style={{ fontSize:"14px" }}>{carshare.carshare.duration}</i>
                         </div>
                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"50px", marginTop:"-5px", height:"30px"}}>
                             <div className="line-35"></div>
@@ -36,7 +36,7 @@ export function ProfileCarSharesView(carshare){
                     </div>
                     <div className="row center-div-picture" >
                         <div className="col" style={{ display:"flex", maxWidth:"50px" }}>
-                            <p><strong>12:00</strong></p>
+                            <p><strong>{carshare.carshare.endHour}</strong></p>
                         </div>
                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"50px"}}>
                             <div className="carshare-circle"></div>

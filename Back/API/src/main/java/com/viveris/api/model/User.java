@@ -56,7 +56,7 @@ public class User {
     
     public Float bonus_loyalty;
     
-    @Column(name="CO_2_economy")
+    @Column(name="CO2_economy")
     public Float co2_economy;
     
     @ManyToOne(fetch = FetchType.EAGER)

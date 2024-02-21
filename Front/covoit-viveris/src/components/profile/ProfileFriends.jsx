@@ -16,12 +16,12 @@ export function ProfileFriends(){
                 return res.json();
             })
             .then((data) => {
-                console.log(data);
+
                 setFriendList(data);
             });
     }, [user]);
 
-    return (
+    return (user &&
         <React.Fragment>
             {windowWidth < 1105 && friendList &&
                 <div className="row center-div-picture">

@@ -16,7 +16,7 @@ export function ProfileFriendsView(friend){
             });
     }, [friend, user]);
 
-    return (
+    return (user &&
         <React.Fragment>
             {friend && user && commonCarshares &&
                 <div className="friend-small">

@@ -34,7 +34,6 @@ export function ProfileNavbar(){
         else{
             setCurrentUrl("profile");
         }
-        console.log(location.pathname);
     }, [location.pathname]);
 
     const contentLabel = () => {
@@ -59,7 +58,7 @@ export function ProfileNavbar(){
         return label;
     };
 
-    return (
+    return (user &&
         <React.Fragment>
 
             {user && windowWidth < 1105 && 

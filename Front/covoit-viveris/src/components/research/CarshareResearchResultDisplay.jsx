@@ -5,10 +5,10 @@ import PlaceIcon from '@mui/icons-material/Place';
 import CarshareResearchList from './CarshareResearchList';
 import CarshareResearchMap from './CarshareResearchMap';
 import {Navbar} from "../header/Navbar.jsx";
+import { useUser }        from "../../context/UserContext.jsx";
 
 const CarshareResearchResultsDisplay = () => {
     const [view, setView] = useState('list'); // 'list' ou 'map'
-
     return (
         <React.Fragment>
             <Navbar/>
