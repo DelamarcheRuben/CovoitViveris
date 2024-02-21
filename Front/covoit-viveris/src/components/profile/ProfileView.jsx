@@ -37,7 +37,7 @@ export function ProfileView(u){
     // }, []);
 
 
-    return (
+    return (user &&
         <React.Fragment>
             
             {windowWidth < 1105 && 

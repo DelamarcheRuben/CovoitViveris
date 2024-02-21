@@ -32,6 +32,7 @@ public class PassengerController {
 	 */
 	@PostMapping("/passenger")
 	public Passenger createPassenger(@RequestBody Passenger passenger) {
+		passenger.setHas_validated(false);
 		return passengerService.savePassenger(passenger);
 	}
 	

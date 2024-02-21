@@ -7,7 +7,7 @@ export function ProfileSummary(){
     const { user } = useUser();
     const windowWidth = useWindowWidth();
 
-    return (
+    return (user &&
         <React.Fragment>
             {windowWidth < 1105 &&
             <div className="small-screen">

@@ -3,7 +3,7 @@
 const DIESEL_CONS = 130;//g/km
 const ESSENCE_CONS = 131;//g/km
 
-const type = {
+export const type = {
     diesel:0,
     essence:1,
     electric:2

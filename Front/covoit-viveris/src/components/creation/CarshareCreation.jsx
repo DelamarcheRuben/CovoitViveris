@@ -257,7 +257,7 @@ const CarshareCreation = () => {
         }
     }
 
-    return (
+    return (user &&
         <div className="creation-form">
             <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
             <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Planifier un trajet</strong></p>

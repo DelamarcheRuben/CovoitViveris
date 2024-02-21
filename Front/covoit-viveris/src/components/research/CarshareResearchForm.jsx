@@ -25,7 +25,7 @@ const CarshareResearchForm = () => {
             });
     };
 
-    return (
+    return (user &&
         <React.Fragment>
             <div className="scheduling-form">
                 <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Rechercher un trajet</strong></p>

@@ -32,7 +32,6 @@ public class PassengerService {
 	}
 	
 	public Passenger savePassenger(Passenger Passenger) {
-		Passenger.setHas_validated(false);
 		Passenger savedPassenger = passengerRepository.save(Passenger);
 		return savedPassenger;
 	}

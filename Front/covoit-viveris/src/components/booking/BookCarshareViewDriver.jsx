@@ -66,7 +66,7 @@ export function BookCarshareViewDriver(userDriver){
 
 
 
-    return (
+    return (user &&
         <React.Fragment>
             {windowWidth < 1105 && userDriver && ownedBadges &&
             <div className="small-screen profile-booking-small" style={{ marginTop:"35px" }} >

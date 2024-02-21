@@ -32,6 +32,7 @@ public class CarshareController {
 	 */
 	@PostMapping("/carshare")
 	public Carshare createCarshare(@RequestBody Carshare carshare) {
+		carshare.setHas_validated(false);
 		return carshareService.saveCarshare(carshare);
 	}
 	

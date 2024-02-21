@@ -70,7 +70,7 @@ export function ProfileBadges(){
 
 
 
-    return (
+    return (user &&
         <React.Fragment>
             {windowWidth < 1105 && 
             <div className="small-screen">

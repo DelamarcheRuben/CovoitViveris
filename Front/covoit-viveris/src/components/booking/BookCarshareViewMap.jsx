@@ -66,7 +66,7 @@ export function BookCarshareViewMap({ carshare }){
     }
 
 
-    return (
+    return (user &&
         <React.Fragment>
             {carshare && user && passengers &&
                 <React.Fragment>

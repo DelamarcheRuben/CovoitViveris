@@ -59,7 +59,6 @@ public class UserController {
 	 */
 	@GetMapping("/user")
 	public User getUserByPseudo(@RequestParam(required = true) String pseudo, @RequestHeader("password") Long pwd) {
-		System.out.println(pwd);
 		Optional<User> opt_user = userService.getUserByPseudo(pseudo);
 		if(opt_user.isPresent()) {
 			User user = opt_user.get();

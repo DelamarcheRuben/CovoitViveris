@@ -14,14 +14,12 @@ export function ProfileCarShares(){
             return res.json();
         })
         .then((data) => {
-            console.log(data);
             setCarShares(data);
-            console.log(carShares);
         });
     }, [user]);
 
 
-    return (
+    return (user &&
         <React.Fragment>
             {carShares &&
                 <div className="row center-div-picture" >

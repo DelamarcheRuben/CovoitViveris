@@ -76,10 +76,10 @@ public class CarshareService {
 		Carshare.setEnd_place(end_place);
 		
 		//https://www.movable-type.co.uk/scripts/latlong.html
-		Double lat1 = driver.getAddress().getLatitude();
-		Double lon1 = driver.getAddress().getLatitude();
-		Double lat2 = Carshare.getStart_place().getLatitude();
-		Double lon2 = Carshare.getStart_place().getLongitude();
+		Double lat1 = Carshare.getStart_place().getLatitude();
+		Double lon1 = Carshare.getStart_place().getLongitude();
+		Double lat2 = Carshare.getEnd_place().getLatitude();
+		Double lon2 = Carshare.getEnd_place().getLongitude();
 		Long R = (long) (6371); // kilometres
 		Double φ1 = lat1 * Math.PI/180; // φ, λ in radians
 		Double φ2 = lat2 * Math.PI/180;
@@ -91,7 +91,6 @@ public class CarshareService {
 		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 		Float distance = (float) (R*c);
 		Carshare.setDistance(distance);
-		Carshare.setHas_validated(false);
 		Carshare savedCarshare = carshareRepository.save(Carshare);
 		return savedCarshare;
 	}
@@ -108,11 +107,26 @@ public class CarshareService {
 		ArrayList<Carshare> sorted_carshares = new ArrayList<>();
 		for(Carshare carshare:carshares)
 		{
-			
-			if(carshare.getDistance()<= distance_max)
+			Double lat1 = user.getAddress().getLatitude();
+			Double lon1 = user.getAddress().getLongitude();
+			Double lat2 = carshare.getStart_place().getLatitude();
+			Double lon2 = carshare.getStart_place().getLongitude();
+			Long R = (long) (6371); // kilometres
+			Double φ1 = lat1 * Math.PI/180; // φ, λ in radians
+			Double φ2 = lat2 * Math.PI/180;
+			Double Δφ = (lat2-lat1) * Math.PI/180;
+			Double Δλ = (lon2-lon1) * Math.PI/180;
+			Double a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+			          Math.cos(φ1) * Math.cos(φ2) *
+			          Math.sin(Δλ/2) * Math.sin(Δλ/2);
+			Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			Float distance = (float) (R*c);
+			if(distance<=distance_max)
 			{
+				carshare.setDistance(distance);
 				sorted_carshares.add(carshare);
 			}
+				
 		}
 		sorted_carshares.sort((o1, o2) -> {
 			if(o1.getDistance()<o2.getDistance()) return -1;

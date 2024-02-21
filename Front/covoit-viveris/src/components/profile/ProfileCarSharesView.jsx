@@ -5,7 +5,7 @@ export function ProfileCarSharesView(carshare){
 
     const { user } = useUser();
 
-    return (
+    return (user &&
         <React.Fragment>
             { user && carshare &&
             <div className="carShare-history-profile">

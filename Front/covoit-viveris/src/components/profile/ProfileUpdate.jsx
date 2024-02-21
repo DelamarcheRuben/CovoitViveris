@@ -4,7 +4,7 @@ import { useUser } from "../../context/UserContext";
 export function ProfileUpdate(){
     const { user } = useUser();
 
-    return (
+    return (user &&
         <React.Fragment>
             <p> Update Profil </p>
         </React.Fragment>

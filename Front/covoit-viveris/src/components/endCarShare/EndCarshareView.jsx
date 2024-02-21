@@ -3,7 +3,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import * as levels     from "../../functions/levels.js";
-
+import * as economyCO2     from "../../functions/economyCO2.js";
 export function EndCarshareView(){
 
     const { user } = useUser();
@@ -29,10 +29,10 @@ export function EndCarshareView(){
                 const response = await fetch(`http://localhost:8080/carshare/${carshareId}`);
                 if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
                 const data_json = await response.json();
-
+                const economy = economyCO2.calcul_economy(data_json.distance, data_json.max_passenger, economyCO2.type.essence);
                 const carshare_user = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16),
                     endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
-                    co2Saved:895, level:data_json.driver.level, experience:data_json.driver.experience, nbPeople:data_json.max_passenger};
+                    co2Saved:economy, level:data_json.driver.level, experience:data_json.driver.experience, nbPeople:data_json.max_passenger};
                 const bonus = {bonusStreak:1.2, bonusPollution:data_json.bonus_pollution, bonusDay: 1.5};
                 var nbPeople;
                 if(user.uid===data_json.driver.uid) nbPeople = carshare_user.nbPeople;
@@ -41,13 +41,12 @@ export function EndCarshareView(){
                 const level_up  = levels.level_up(carshare_user.level, carshare_user.experience, experience_earned, 0);
                 const level_end = carshare_user.level + level_up;
                 const experience_end = levels.experience_user_end_carShare(carshare_user.level, carshare_user.experience, experience_earned);
-                console.log("xp a la fin : " + experience_end);
 
                 setData({carShare:carshare_user, bonus:bonus, experience_earned:experience_earned,
                     level_up:level_up, level_end:level_end, experience_end:experience_end});
-                var update_user = {uid:user.uid, level:level_end, experience:experience_end}
-                console.log(update_user);
-                const options = {
+                var update_user = {uid:user.uid, level:level_end, experience:experience_end, 
+                    CO2_economy: (user.CO2_economy)+economy, kilometers:user.kilometers+data_json.distance, nb_carshares:user.nb_carshares+1};
+                var options = {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -57,6 +56,38 @@ export function EndCarshareView(){
                 fetch("http://localhost:8080/user/"+user.uid, options)
                     .then((res) => {
                     })
+                if(user.uid===data_json.driver.uid)
+                {
+                    var update_carshare = {has_validated : true, CO2_economy:economy, experience:experience_earned};
+                    var options = {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(update_carshare)
+                    };
+                    fetch("http://localhost:8080/carshare/"+carshareId, options)
+                    .then((res) => {
+                    })
+                }
+                else 
+                {
+                    var update_passenger = {has_validated : true, experience:experience_earned};
+                    var options = {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(update_passenger)
+                    };
+                    fetch("http://localhost:8080/passenger/?carshare="+carshareId+"&user="+user.uid, options)
+                    .then((res) => {
+                    })
+                }
+                
+
+
+
             } catch (error) {
                 console.error("Erreur lors de la récupération du covoiturage :", error);
             }
@@ -122,7 +153,7 @@ export function EndCarshareView(){
                     <div className="carShare-co2-saved" style={{ maxWidth:"350px" }}>
                         <div className="row">
                             <div className="col center" style={{ marginTop:"10px" }}>
-                                <p><strong style={{ fontSize:"25px" }}>{data.carShare.co2Saved}g CO<sub>2</sub> économisés</strong></p>
+                                <p><strong style={{ fontSize:"25px" }}>{data.carShare.co2Saved.toPrecision(3)/1000}kg CO<sub>2</sub> économisés</strong></p>
                             </div>
                             <div className="col" style={{ maxWidth:"150px", paddingRight:"50px", marginTop:"10px" }}>
                                 <img className="center-picture" src={`../src/images/co2/co2_vert.png`} alt="Image CO2" width="80%"/>
@@ -232,7 +263,7 @@ export function EndCarshareView(){
                     <div className="carShare-co2-saved">
                         <div className="row">
                             <div className="col center" style={{ marginTop:"10px" }}>
-                                <p><strong style={{ fontSize:"25px" }}>{data.carShare.co2Saved}g CO<sub>2</sub> économisés</strong></p>
+                                <p><strong style={{ fontSize:"25px" }}>{data.carShare.co2Saved.toPrecision(3)/1000}kg CO<sub>2</sub> économisés</strong></p>
                             </div>
                             <div className="col" style={{ maxWidth:"150px", paddingRight:"50px", marginTop:"10px" }}>
                                 <img className="center-picture" src={`../src/images/co2/co2_vert.png`} alt="Image CO2" width="90%"/>
