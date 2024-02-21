@@ -9,7 +9,7 @@ export function CarshareReservedCard({ carshare }) {
             </div>
             <div className="carshare-driver">
                 <span>avec {carshare.driver.pseudo}</span>
-                <img src={carshare.driver.profilePictureUrl} alt={carshare.driver.name} />
+                <img src="../../src/images/profil_picture.png" alt={carshare.driver.name} />
             </div>
         </div>
     );
