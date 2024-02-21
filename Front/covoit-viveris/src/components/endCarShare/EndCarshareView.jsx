@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import * as levels     from "../../functions/levels.js";
@@ -8,47 +8,67 @@ export function EndCarshareView(){
 
     const { user } = useUser();
     const windowWidth = useWindowWidth();
-
-    const id_carshare = 1;
     const navigate = useNavigate();
-    const [data, setData] = useState();
-  
-    useEffect(() => {
-        fetch("http://localhost:8080/carshare/"+id_carshare)
-        .then((res) => {
-            return res.json();
-        })
-        .then((data_json) => {
-            const carShareUser = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16), 
-            endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place, endLocation:data_json.end_place, 
-            co2Saved:895, level:user.level, experience:user.experience, nbPeople:data_json.max_passenger};
-            const bonus = {bonusStreak:1.2, bonusPollution:1.5, bonusDay: 1.5};
-            const experience_earned = levels.calculate_experience_carShare(carShareUser.nbPeople, bonus.bonusStreak, bonus.bonusPollution, bonus.bonusDay); 
-            const level_up  = levels.level_up(carShareUser.level, carShareUser.experience, experience_earned, 0); 
-            const level_end = carShareUser.level + level_up;
-            const experience_end = levels.experience_user_end_carShare(carShareUser.level, carShareUser.experience, experience_earned);
-    
-            setData({carShare:carShareUser, bonus:bonus, experience_earned:experience_earned, 
-                level_up:level_up, level_end:level_end, experience_end:experience_end});
-    
-            var update_user = {uid:user.uid, level:level_end, experience:experience_end}
-            const options = {
-                method: 'PUT',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(update_user)
-            };
-            fetch("http://localhost:8080/user/"+user.uid, options)
-            .then((res) => {
-            })
-        });
-    }, [user]);
+    const [data, setData] = useState(null);
 
+    const location = useLocation();
+    const [carshareId, setCarshareId] = useState('');
+
+    useEffect(() => {
+        const id = location.state?.idCarshare;
+        if (id) {
+            setCarshareId(id);
+        }
+    }, [location]);
+
+    useEffect(() => {
+        if (!carshareId) return; // Ne rien faire si carshareId n'est pas défini
+
+        const fetchCarshare = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/carshare/${carshareId}`);
+                if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
+                const data_json = await response.json();
+
+                const carshare_user = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16),
+                    endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
+                    co2Saved:895, level:data_json.driver.level, experience:data_json.driver.experience, nbPeople:data_json.max_passenger};
+                const bonus = {bonusStreak:1.2, bonusPollution:data_json.bonus_pollution, bonusDay: 1.5};
+                const experience_earned = levels.calculate_experience_carShare(carshare_user.nbPeople, bonus.bonusStreak, bonus.bonusPollution, bonus.bonusDay);
+                const level_up  = levels.level_up(carshare_user.level, carshare_user.experience, experience_earned, 0);
+                const level_end = carshare_user.level + level_up;
+                const experience_end = levels.experience_user_end_carShare(carshare_user.level, carshare_user.experience, experience_earned);
+                console.log("xp a la fin : " + experience_end);
+
+                setData({carShare:carshare_user, bonus:bonus, experience_earned:experience_earned,
+                    level_up:level_up, level_end:level_end, experience_end:experience_end});
+                var update_user = {uid:user.uid, level:level_end, experience:experience_end}
+                console.log(update_user);
+                const options = {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(update_user)
+                };
+                fetch("http://localhost:8080/user/"+user.uid, options)
+                    .then((res) => {
+                    })
+            } catch (error) {
+                console.error("Erreur lors de la récupération du covoiturage :", error);
+            }
+        };
+
+        fetchCarshare();
+    }, [carshareId, user]);
 
     const handleClickRanking = () => {
         navigate('/ranking');
     };
+
+    if (!data) {
+        return <div>Chargement...</div>;
+    }
 
     return (
     <React.Fragment>
@@ -70,7 +90,7 @@ export function EndCarshareView(){
                             <div className="carshare-circle"></div>
                         </div>
                         <div className="col">
-                            <p style={{ fontSize:"15px" }}>{data.carShare.startLocation}</p>
+                            <p style={{ fontSize:"15px" }}>{data.carShare.startLocation.city}</p>
                         </div>
                     </div>
                     <div className="row center-div-picture">
@@ -91,7 +111,7 @@ export function EndCarshareView(){
                             <div className="carshare-circle"></div>
                         </div>
                         <div className="col">
-                            <p style={{ fontSize:"15px" }}>{data.carShare.endLocation}</p>
+                            <p style={{ fontSize:"15px" }}>{data.carShare.endLocation.city}</p>
                         </div>
                     </div>
                 </div>

@@ -17,6 +17,9 @@ import "./style/header.css";
 import {ThemeProvider, createTheme, StyledEngineProvider} from "@mui/material/styles";
 import CarshareResearchResultsDisplay from "./components/research/CarshareResearchResultDisplay";
 import {SearchResultsProvider} from "./context/SearchResultsContext";
+import AdministrationCarshare from "./components/administration/AdministrationCarshare.jsx";
+import AdministrationChallenge from "./components/administration/AdministrationChallenge.jsx";
+import AdminCarshare from "./pages/AdminCarshare.jsx";
 
 // Création d'un thème personnalisé avec les couleurs de votre site
 const theme = createTheme({
@@ -82,7 +85,7 @@ const router = createBrowserRouter([
     element: <div><Profile/></div>
   },
   {
-    path: "/endCarShare",
+    path: "/end-carshare",
     element: <div><EndCarShare/></div>
   },
   {
@@ -96,6 +99,10 @@ const router = createBrowserRouter([
   {
     path: "admin/challenge/",
     element: <div><AdminChallenge/></div>
+  },
+  {
+    path: "admin/carshare/",
+    element: <div><AdminCarshare/></div>
   }
 ])
 
