@@ -4,6 +4,7 @@ import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import * as levels     from "../../functions/levels.js";
 import * as economyCO2     from "../../functions/economyCO2.js";
+import * as time     from "../../functions/time.js";
 export function EndCarshareView(){
 
     const { user } = useUser();
@@ -30,8 +31,11 @@ export function EndCarshareView(){
                 if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
                 const data_json = await response.json();
                 const economy = economyCO2.calcul_economy(data_json.distance, data_json.max_passenger, economyCO2.type.essence);
+                const time_carshare = new time.Time(0, Math.round(data_json.distance+10)); //temps du carshare en minutes (formule : temps = distance en km+10)
+                var endHour = new time.Time(parseInt(data_json.schedule.substring(11,13)), parseInt(data_json.schedule.substring(14,16)));
+                endHour.addMinutes(time_carshare.getTotalMinutes());
                 const carshare_user = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16),
-                    endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
+                    endHour:endHour.toString(), carShareTime:time_carshare.toString(), startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
                     co2Saved:economy, level:data_json.driver.level, experience:data_json.driver.experience, nbPeople:data_json.max_passenger};
                 const bonus = {bonusStreak:1.2, bonusPollution:data_json.bonus_pollution, bonusDay: 1.5};
                 var nbPeople;

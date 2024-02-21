@@ -89,7 +89,7 @@ export function BookCarshareViewMap({ carshare }){
                                     <div className="row center-div-picture">
                                         <div className="col" style={{ display:"flex", maxWidth:"70px", marginTop:"-30px" }}>
                                             {/* <i style={{ fontSize:"14px" }}>{carshareTime}</i> */}
-                                            <i style={{ fontSize:"14px" }}>1h15</i>
+                                            <i style={{ fontSize:"14px" }}>{carshare.duration}</i>
                                         </div>
                                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px", marginTop:"-2px", height:"50px"}}>
                                             <div className="line-50"></div>
@@ -99,7 +99,7 @@ export function BookCarshareViewMap({ carshare }){
                                     </div>
                                     <div className="row center-div-picture" >
                                         <div className="col" style={{ display:"flex", maxWidth:"70px" }}>
-                                            <p><strong>12:00</strong></p>
+                                            <p><strong>{carshare.endHour}</strong></p>
                                         </div>
                                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
                                             <div className="carshare-circle"></div>

@@ -14,7 +14,8 @@ export function BookCarshareView(){
 
     useEffect(() => {
         if (location.state && location.state.carshare) {
-            setCarshare(location.state.carshare);
+            var covoit = location.state.carshare;
+            setCarshare(covoit);
         }
     }, [location]); // Dépendance à carshare
 
@@ -88,7 +89,7 @@ export function BookCarshareView(){
                                     </div>
                                     <div className="row center-div-picture">
                                         <div className="col" style={{ display:"flex", maxWidth:"70px", marginTop:"-15px" }}>
-                                            <i style={{ fontSize:"14px" }}>1h15</i>
+                                            <i style={{ fontSize:"14px" }}>{carshare.duration}</i>
                                         </div>
                                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"50px", marginTop:"-8px", height:"40px"}}>
                                             <div className="line-45"></div>
@@ -98,7 +99,7 @@ export function BookCarshareView(){
                                     </div>
                                     <div className="row center-div-picture" >
                                         <div className="col" style={{ display:"flex", maxWidth:"70px" }}>
-                                            <p><strong>12:00</strong></p>
+                                            <p><strong>{carshare.endHour}</strong></p>
                                         </div>
                                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"50px"}}>
                                             <div className="carshare-circle"></div>
@@ -147,7 +148,7 @@ export function BookCarshareView(){
                                     </div>
                                     <div className="row center-div-picture">
                                         <div className="col" style={{ display:"flex", maxWidth:"70px", marginTop:"-30px" }}>
-                                            <i style={{ fontSize:"14px" }}>1h15</i>
+                                            <i style={{ fontSize:"14px" }}>{carshare.duration}</i>
                                         </div>
                                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px", marginTop:"-15px", height:"40px"}}>
                                             <div className="line-55"></div>
@@ -157,7 +158,7 @@ export function BookCarshareView(){
                                     </div>
                                     <div className="row center-div-picture" >
                                         <div className="col" style={{ display:"flex", maxWidth:"70px" }}>
-                                            <p><strong>12:00</strong></p>
+                                            <p><strong>{carshare.endHour}</strong></p>
                                         </div>
                                         <div className="col" style={{ display:"flex", justifyContent:"right", maxWidth:"100px"}}>
                                             <div className="carshare-circle"></div>
