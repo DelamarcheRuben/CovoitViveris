@@ -17,7 +17,7 @@ function HomeCarshareOffered() {
             .catch(error => {
                 console.error("Erreur lors de la récupération des covoiturages reservés par l'utilisateur : ", error);
             });
-    });
+    }, [user.id]);
 
     return (
         <div className="home-box">
