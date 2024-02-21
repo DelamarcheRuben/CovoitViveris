@@ -68,7 +68,7 @@ const Login = () => {
             fuel_consumption: 0.0,
             nb_carshares: 0,
             kilometers: 0,
-            level: 0,
+            level: 1,
             experience: 0,
             bonus_loyalty: 0,
             co2_economy: 0,
