@@ -21,6 +21,9 @@ CREATE TABLE CARSHARE (
     distance FLOAT,
     bonus_pollution FLOAT,
     comeback BOOLEAN,
+    experience INT,
+    hasValidated BOOLEAN,
+    CO2_economy FLOAT,
     UID_driver INT NOT NULL
 );
 
@@ -42,8 +45,10 @@ CREATE TABLE PASSENGER (
     PRIMARY KEY (UID_carshare, UID_passenger),
     UID_carshare INT NOT NULL,
     UID_passenger INT NOT NULL,
-    schedule DATETIME,
-    start_place INT
+    experience INT,
+    hasValidated BOOLEAN
+    -- schedule DATETIME,
+    -- start_place INT
 );
 CREATE TABLE LEAGUE (
     PRIMARY KEY (UID),
@@ -95,7 +100,7 @@ CREATE TABLE USERS (
     bonus_loyalty FLOAT,
     kilometers FLOAT,
     nb_carshares INT,
-    CO_2_economy FLOAT,
+    CO2_economy FLOAT,
     UID_company INT,
     UID_sponsor INT
 );

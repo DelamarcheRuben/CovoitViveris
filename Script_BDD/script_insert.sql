@@ -21,7 +21,7 @@ VALUES
     ('Nanterre', 'Hauts-de-Seine', 92000, 'Rue Maurice Thorez', 7, 48.892, 2.2069);
 
 -- Insertion des utilisateurs (en référençant l'adresse et la compagnie)
-INSERT INTO USERS (pseudo, password, last_name, first_name, email, job, address, picture_background, car_type, fuel_consumption, level, experience, bonus_loyalty, kilometers, nb_carshares, CO_2_economy, UID_company) VALUES
+INSERT INTO USERS (pseudo, password, last_name, first_name, email, job, address, picture_background, car_type, fuel_consumption, level, experience, bonus_loyalty, kilometers, nb_carshares, CO2_economy, UID_company) VALUES
 ('Esteban', '', 'Doe', 'Esteban', 'esteban@neraudau.fr', 'Dev Full-Stack', 1, 'desert', 'Sedan', 5.5, 9, 50, 10, 8754, 549, 1.2, 1),
 ('Alexandra', '', 'Smith', 'Alexandra', 'alexandra@example.com', 'Business Analyst', 2, 'land', 'Compact', 6.2, 2, 12, 5, 2750, 93, 0.9, 1),
 ('JulieMartin', '', 'Martin', 'Julie', 'julie.martin@viveris.fr', 'Data Scientist', 5, 'mountain', 'Electric', 0.0, 4, 25, 5, 1620, 30, 0.8, 1),

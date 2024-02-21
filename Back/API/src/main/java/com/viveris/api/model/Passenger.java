@@ -34,6 +34,10 @@ public class Passenger {
     @JoinColumn(name="UID_passenger", referencedColumnName="UID")
     public User user;
     
+    public Integer experience;
+    
+    public Boolean hasValidated;
+    
     /* ebauche d'une precision du trajet
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public LocalDateTime schedule;

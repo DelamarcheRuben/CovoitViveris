@@ -141,9 +141,9 @@ public class CarshareController {
 			if(max_passenger!=null) {
 				currentCarshare.setMax_passenger(max_passenger);
 			}
-			Boolean is_Full = carshare.getIs_Full();
+			Boolean is_Full = carshare.getIs_full();
 			if(is_Full!=null) {
-				currentCarshare.setIs_Full(is_Full);
+				currentCarshare.setIs_full(is_Full);
 			}
 			LocalDateTime schedule = carshare.getSchedule();
 			if(schedule!=null) {
@@ -161,6 +161,18 @@ public class CarshareController {
 			Boolean comeback = carshare.getComeback();
 			if(comeback!=null) {
 				currentCarshare.setComeback(comeback);
+			}
+			Integer experience = carshare.getExperience();
+			if(experience!=null) {
+				currentCarshare.setExperience(experience);
+			}
+			Boolean hasValidated = carshare.getHasValidated();
+			if(hasValidated!=null) {
+				currentCarshare.setHasValidated(hasValidated);
+			}
+			Float economy = carshare.getCO2_economy();
+			if(economy!=null) {
+				currentCarshare.setCO2_economy(economy);
 			}
 			carshareService.saveCarshare(currentCarshare);
 			return currentCarshare;

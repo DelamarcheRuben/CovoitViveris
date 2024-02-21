@@ -33,7 +33,7 @@ public class Carshare {
 
     public Integer max_passenger;
 
-    public Boolean is_Full;
+    public Boolean is_full;
     
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     public LocalDateTime schedule;
@@ -51,6 +51,12 @@ public class Carshare {
     public Float bonus_pollution;
 
     public Boolean comeback;
+    
+    public Integer experience;
+    
+    public Boolean hasValidated;
+    
+    public Float CO2_economy;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="UID_driver", referencedColumnName="UID")

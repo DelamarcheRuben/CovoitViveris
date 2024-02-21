@@ -75,6 +75,14 @@ public class PassengerController {
 		Optional<Passenger> e = passengerService.getPassenger(new PassengerId(carshare, user));
 		if(e.isPresent()) {
 			Passenger currentPassenger = e.get();
+			Integer experience = passenger.getExperience();
+			if(experience!=null) {
+				currentPassenger.setExperience(experience);
+			}
+			Boolean hasValidated = passenger.getHasValidated();
+			if(hasValidated!=null) {
+				currentPassenger.setHasValidated(hasValidated);
+			}
 			/*
 			LocalDateTime schedule = passenger.getSchedule();
 			if(schedule!=null) currentPassenger.setSchedule(schedule);
