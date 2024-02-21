@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useUser }         from "../../context/UserContext";
 import { useWindowWidth }  from "../../context/WindowWidthContext";
 
-const Authentification = ({ onLogin }) => {
+const Authentification = ({ onLogin, onRegister }) => {
 
   const { user, login, logout } = useUser();
   const windowWidth = useWindowWidth();
@@ -25,6 +25,7 @@ const Authentification = ({ onLogin }) => {
   const [loginEmail,       setLoginEmail]       = useState('');
   const [loginPassword,    setLoginPassword]    = useState('');
   const [registerEmail,    setRegisterEmail]    = useState('');
+  const [registerUsername, setRegisterUsername] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
 
@@ -40,6 +41,10 @@ const Authentification = ({ onLogin }) => {
     setRegisterEmail(e.target.value);
   };
 
+  const handleChangeRegisterUsername = (e) => {
+    setRegisterUsername(e.target.value);
+  }
+
   const handleChangeRegisterPassword = (e) => {
     setRegisterPassword(e.target.value);
   };
@@ -50,6 +55,10 @@ const Authentification = ({ onLogin }) => {
 
   const handleLoginClick = () => {
     onLogin(loginEmail, loginPassword);
+  };
+
+  const handleRegisterClick = () => {
+    onRegister(registerEmail, registerUsername, registerPassword);
   };
 
   return (
@@ -97,9 +106,10 @@ const Authentification = ({ onLogin }) => {
               <React.Fragment>
               <div className="row" style={{ maxHeight:"none" }}>
                 <input type="text"     id="email"    className="input-stylish center-picture" value={registerEmail}    placeholder="Email professionnel" onChange={handleChangeRegisterEmail}    style={{ marginBottom:"10px" }}/>
+                <input type="text"     id="pseudo"    className="input-stylish center-picture" value={registerUsername}    placeholder="Nom d'utilisateur" onChange={handleChangeRegisterUsername}    style={{ marginBottom:"10px" }}/>
                 <input type="password" id="password" className="input-stylish center-picture" value={registerPassword} placeholder="Mot de passe"        onChange={handleChangeRegisterPassword} style={{ marginBottom:"10px" }}/>
                 <input type="password" id="confirmPassword" className="input-stylish center-picture" value={registerConfirmPassword} placeholder="Confirmation mot de passe" onChange={handleChangeRegisterConfirmPassword} style={{ marginBottom:"25px" }}/>                  <p></p>
-                <button className="btn-auth" style={{ marginBottom:"20px" }}>
+                <button className="btn-auth" style={{ marginBottom:"20px" }} onClick={handleRegisterClick}>
                   <strong style={{ fontSize:"15px" }}>S'INSCRIRE</strong>
                 </button>
               </div>
@@ -155,9 +165,10 @@ const Authentification = ({ onLogin }) => {
                   <div className="row" style={{ marginTop:"-55px"}}>
                     <p style={{ marginBottom:"10px" }}><strong style={{ fontSize:"30px" }}>INSCRIPTION</strong></p>
                     <input type="text"     id="email"    className="input-stylish center-picture" value={registerEmail}    placeholder="Email professionnel" onChange={handleChangeRegisterEmail}    style={{ marginBottom:"10px" }}/>
+                    <input type="text"     id="pseudo"    className="input-stylish center-picture" value={registerUsername}    placeholder="Nom d'utilisateur" onChange={handleChangeRegisterUsername}    style={{ marginBottom:"10px" }}/>
                     <input type="password" id="password" className="input-stylish center-picture" value={registerPassword} placeholder="Mot de passe"        onChange={handleChangeRegisterPassword} style={{ marginBottom:"10px" }}/>
                     <input type="password" id="confirmPassword" className="input-stylish center-picture" value={registerConfirmPassword} placeholder="Confirmation mot de passe" onChange={handleChangeRegisterConfirmPassword} style={{ marginBottom:"15px" }}/>                  <p></p>
-                    <button className="btn-auth">
+                    <button className="btn-auth" onClick={handleRegisterClick}>
                       <strong style={{ fontSize:"15px" }}>S'INSCRIRE</strong>
                     </button>
                   </div>
