@@ -22,7 +22,7 @@ CREATE TABLE CARSHARE (
     bonus_pollution FLOAT,
     comeback BOOLEAN,
     experience INT,
-    hasValidated BOOLEAN,
+    has_validated BOOLEAN,
     CO2_economy FLOAT,
     UID_driver INT NOT NULL
 );
@@ -46,7 +46,7 @@ CREATE TABLE PASSENGER (
     UID_carshare INT NOT NULL,
     UID_passenger INT NOT NULL,
     experience INT,
-    hasValidated BOOLEAN
+    has_validated BOOLEAN
     -- schedule DATETIME,
     -- start_place INT
 );
@@ -165,12 +165,7 @@ ALTER TABLE
     CARSHARE
     ADD
         FOREIGN KEY (end_place) REFERENCES ADDRESS (UID);
-
-ALTER TABLE
-    PASSENGER
-    ADD
-        FOREIGN KEY (start_place) REFERENCES ADDRESS (UID);
-
+        
 ALTER TABLE
     USERS
     ADD

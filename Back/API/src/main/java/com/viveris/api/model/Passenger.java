@@ -36,7 +36,8 @@ public class Passenger {
     
     public Integer experience;
     
-    public Boolean hasValidated;
+    @Column(name="has_validated")
+    public Boolean has_validated;
     
     /* ebauche d'une precision du trajet
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")

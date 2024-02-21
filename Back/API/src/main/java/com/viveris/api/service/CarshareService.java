@@ -91,7 +91,7 @@ public class CarshareService {
 		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 		Float distance = (float) (R*c);
 		Carshare.setDistance(distance);
-		Carshare.setHasValidated(false);
+		Carshare.setHas_validated(false);
 		Carshare savedCarshare = carshareRepository.save(Carshare);
 		return savedCarshare;
 	}

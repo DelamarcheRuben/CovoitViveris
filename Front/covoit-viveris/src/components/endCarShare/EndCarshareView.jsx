@@ -34,7 +34,10 @@ export function EndCarshareView(){
                     endHour:"10:00", carShareTime:"1h15", startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
                     co2Saved:895, level:data_json.driver.level, experience:data_json.driver.experience, nbPeople:data_json.max_passenger};
                 const bonus = {bonusStreak:1.2, bonusPollution:data_json.bonus_pollution, bonusDay: 1.5};
-                const experience_earned = levels.calculate_experience_carShare(carshare_user.nbPeople, bonus.bonusStreak, bonus.bonusPollution, bonus.bonusDay);
+                var nbPeople;
+                if(user.uid===data_json.driver.uid) nbPeople = carshare_user.nbPeople;
+                else nbPeople=0;
+                const experience_earned = levels.calculate_experience_carShare(nbPeople, bonus.bonusStreak, bonus.bonusPollution, bonus.bonusDay);
                 const level_up  = levels.level_up(carshare_user.level, carshare_user.experience, experience_earned, 0);
                 const level_end = carshare_user.level + level_up;
                 const experience_end = levels.experience_user_end_carShare(carshare_user.level, carshare_user.experience, experience_earned);

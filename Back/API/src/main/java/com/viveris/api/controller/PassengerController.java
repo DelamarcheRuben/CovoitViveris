@@ -79,9 +79,9 @@ public class PassengerController {
 			if(experience!=null) {
 				currentPassenger.setExperience(experience);
 			}
-			Boolean hasValidated = passenger.getHasValidated();
-			if(hasValidated!=null) {
-				currentPassenger.setHasValidated(hasValidated);
+			Boolean has_validated = passenger.getHas_validated();
+			if(has_validated!=null) {
+				currentPassenger.setHas_validated(has_validated);
 			}
 			/*
 			LocalDateTime schedule = passenger.getSchedule();

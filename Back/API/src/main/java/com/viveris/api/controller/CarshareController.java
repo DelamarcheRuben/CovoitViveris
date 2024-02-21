@@ -166,9 +166,9 @@ public class CarshareController {
 			if(experience!=null) {
 				currentCarshare.setExperience(experience);
 			}
-			Boolean hasValidated = carshare.getHasValidated();
-			if(hasValidated!=null) {
-				currentCarshare.setHasValidated(hasValidated);
+			Boolean has_validated = carshare.getHas_validated();
+			if(has_validated!=null) {
+				currentCarshare.setHas_validated(has_validated);
 			}
 			Float economy = carshare.getCO2_economy();
 			if(economy!=null) {

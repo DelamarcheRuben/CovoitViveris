@@ -44,9 +44,9 @@ INSERT INTO CARSHARE (max_passenger, is_full, schedule, start_place, end_place, 
 (4, FALSE, '2024-03-28 8:15:00', 3, 7, 14.3, 0.6, TRUE, 3);
 
 -- Insertion des passagers
-INSERT INTO PASSENGER (UID_carshare, UID_passenger, schedule, start_place) VALUES
-(1, 2, '2024-03-05 8:30:00', 1),
-(2, 1, '2024-03-07 9:00:00', 3);
+INSERT INTO PASSENGER (UID_carshare, UID_passenger) VALUES
+(1, 2),
+(2, 1);
 
 -- Insertion des challenges
 INSERT INTO CHALLENGE (name, description, goal, bonus_exp, expired_date) VALUES

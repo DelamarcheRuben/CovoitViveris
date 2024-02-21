@@ -54,7 +54,8 @@ public class Carshare {
     
     public Integer experience;
     
-    public Boolean hasValidated;
+    @Column(name="has_validated")
+    public Boolean has_validated;
     
     public Float CO2_economy;
     
