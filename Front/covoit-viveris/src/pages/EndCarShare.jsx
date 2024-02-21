@@ -8,7 +8,7 @@ const EndCarShare = () => {
   return (
     <React.Fragment>
         <Navbar />
-        <EndCarshareView />
+        <EndCarshareView/>
     </React.Fragment>
   );
 }

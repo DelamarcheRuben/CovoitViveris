@@ -2,16 +2,17 @@ import React from "react";
 import { Navbar  } from "../components/header/Navbar";
 import { useUser } from "../context/UserContext";
 import AdministrationChallenge from "../components/administration/AdministrationChallenge";
+import AdministrationCarshare from "../components/administration/AdministrationCarshare.jsx";
 
-const AdminChallenge = () => {
+const AdminCarshare = () => {
   // const { user } = useUser();
 
   return (
     <React.Fragment>
       <Navbar />
-      <AdministrationChallenge/>
+      <AdministrationCarshare/>
     </React.Fragment>
   );
 }
 
-export default AdminChallenge;
+export default AdminCarshare;

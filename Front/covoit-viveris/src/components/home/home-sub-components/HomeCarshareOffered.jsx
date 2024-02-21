@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {useUser} from "../../../context/UserContext.jsx";
-import {CarshareReservedCard} from "./card/CarshareReservedCard.jsx";
 import {CarshareOfferedCard} from "./card/CarshareOfferedCard.jsx";
 
 function HomeCarshareOffered() {

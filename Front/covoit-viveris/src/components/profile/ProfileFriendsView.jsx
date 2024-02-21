@@ -23,9 +23,9 @@ export function ProfileFriendsView(friend){
                     <img src={`../../src/images/background_profile/background_${friend.friendUser.picture_background}.png` } width="100%"/>
                     <div className="center-div-picture" style={{ marginTop: "-55px" }}>
                         <img src="../../src/images/profil_picture.png" alt="Photo profil" width="100px"/>
-                        <p className={`color-company`} style={{ marginTop: "-38px" }}><strong style={{ fontSize:"10px" }}>{/*{friend.friendUser.level}*/}</strong></p> 
                     </div>
-                    <div className="row center-div-picture" style={{ marginTop: "-10px" }}>
+                    <p className="center color-company" style={{ marginTop: "-36px" }}><strong style={{ fontSize:"10px" }}>{friend.friendUser.level}</strong></p> 
+                    <div className="row center-div-picture" style={{ marginTop: "0px" }}>
                         <p className="center"><strong style={{ fontSize: "14px" }}>{friend.friendUser.pseudo}</strong></p>
                         <p className="center" style={{ fontSize:  "10px" }}>{commonCarshares.length} covoiturages en commun </p>
                     </div>
