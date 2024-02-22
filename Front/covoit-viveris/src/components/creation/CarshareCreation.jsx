@@ -1,6 +1,11 @@
 ﻿import React, { useState, useEffect }  from "react";
 import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import {useSnackbar} from "../../context/SnackbarContext.jsx";
 
 const AutocompleteInput = ({ value, onChange, placeholder, setOutput }) => {
 
@@ -79,7 +84,6 @@ const CarshareCreation = () => {
 
     const windowWidth = useWindowWidth();
 
-
     const [startName, setStartName] = useState('');
     const [startPlace, setStartPlace] = useState('');
     const [endName, setEndName] = useState('');
@@ -87,18 +91,27 @@ const CarshareCreation = () => {
     const [startDate, setStartDate] = useState('');
     const [startTime, setStartTime] = useState('');
     const [numSeats, setNumSeats] = useState(1);
-    const [message, setMessage] = useState('');
     const [hasComeback, setHasComeback] = useState("sans");
+    const { snackbar, openSnackbar, closeSnackbar } = useSnackbar();
 
     const { user } = useUser();
 
     const handleCreateClick = () => {
 
-        if (startPlace === '' || endPlace === '' || startDate === '' || startTime === '') {
-            setMessage("Certains champs n'ont pas été remplis.");
+        if (!startPlace || !endPlace || !startDate || !startTime) {
+            openSnackbar('Certains champs sont erronés', 'error');
+            console.log("snackbar champ erronés")
+            return;
+        } else {
+            // Logique de création de covoiturage...
+            // Supposons que vous ayez une logique pour déterminer si l'opération a réussi ou non
+            const operationSuccess = true; // Simuler le résultat de l'opération
 
-        }
-        else {
+            if (operationSuccess) {
+                handleOpenSnackbar('success', 'Votre covoiturage est en ligne !', <CheckIcon fontSize="inherit" />);
+            } else {
+                handleOpenSnackbar('error', 'La création du covoiturage a échoué.');
+            }
 
             //Vérification des champs à envoyer qui existent dans ce qui a été reçu par la requête à nominatim
             var start_city = null;
@@ -238,28 +251,40 @@ const CarshareCreation = () => {
 
             };
 
-            fetch('http://localhost:8080/carshare', options).then((res) => { });
+            let apiSuccess;
+            fetch('http://localhost:8080/carshare', options)
+                .then((res) => {
+                    if (!res.ok) throw new Error('La réponse du serveur indique un échec.');
+                    return res.json(); // ou res.text() si la réponse n'est pas en JSON
+                })
+                .then((data) => {
+                    // La requête a réussi, gestion du succès
+                    apiSuccess=true;
+                    setStartPlace('');
+                    setStartName('');
+                    setEndPlace('');
+                    setEndName('');
+                    setStartDate('');
+                    setStartTime('');
+                    setNumSeats('1');
+                    setHasComeback("sans");
+                    // Réinitialisation des champs du formulaire ici
+                })
+                .catch((error) => {
+                    // La requête a échoué, gestion de l'échec
+                    apiSuccess=false;
+                });
 
-
-            // Réinitialise la page en mesure temporaire tant que la gestion de la requête n'est pas finie
-            // Il faut récupérer le résultat de la requête puis rediriger l'utilisateur en fonction du résultat
-
-            setMessage("La requête de création de covoiturage a été envoyée.");
-            setStartPlace('');
-            setStartName('');
-            setEndPlace('');
-            setEndName('');
-            setStartDate('');
-            setStartTime('');
-            setNumSeats('1');
-            setHasComeback("sans");
-
+            if (operationSuccess) {
+                openSnackbar('Votre covoiturage est en ligne !', 'success');
+            } else {
+                openSnackbar('La création du covoiturage a échoué.', 'error');
+            }
         }
     }
 
     return (user &&
         <div className="creation-form">
-            <p className="center" style={{ marginBottom: "20px" }}>{message} </p>
             <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Planifier un trajet</strong></p>
 
             <label> Lieu de départ :
@@ -276,7 +301,6 @@ const CarshareCreation = () => {
                             <input width="20%" type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />
                             <input type="time" name="timeStart" value={startTime} onChange={e => setStartTime(e.target.value)} />
             </label>
-            <br></br>
 
             <div>
                 <select id="comeback" value={hasComeback} onChange={e => setHasComeback(e.target.value)}>
@@ -284,7 +308,7 @@ const CarshareCreation = () => {
                     <option value={"avec"}>Avec aller-retour</option>
                 </select>
             </div>
-            <label style={{ marginTop:"10px" }}> Nombre de places :<br></br>
+            <label style={{ marginTop:"10px" }}> Nombre de places :
                 <input className="center-picture" type="number" name="seats" min="1" max="10" value={numSeats} onChange={e => setNumSeats(e.target.value)} style={{ width: "20%" }} />
             </label>
 

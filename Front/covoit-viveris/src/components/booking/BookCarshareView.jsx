@@ -3,6 +3,11 @@ import {useLocation, useNavigate} from "react-router-dom";
 import { useUser }     from "../../context/UserContext.jsx";
 import { BookCarshareViewDriver } from "./BookCarshareViewDriver.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import {useSnackbar} from "../../context/SnackbarContext.jsx";
 
 export function BookCarshareView(){
     const [passengers, setPassengers] = useState([]);
@@ -11,13 +16,13 @@ export function BookCarshareView(){
     const navigate = useNavigate();
     const location = useLocation();
     const [carshare, setCarshare] = useState();
+    const { openSnackbar } = useSnackbar();
 
     useEffect(() => {
         if (location.state && location.state.carshare) {
-            var covoit = location.state.carshare;
-            setCarshare(covoit);
+            setCarshare(location.state.carshare);
         }
-    }, [location]); // Dépendance à carshare
+    }, [location]);
 
     const handleBookClick = () => {
         const passenger = {
@@ -42,28 +47,17 @@ export function BookCarshareView(){
         };
 
         fetch('http://localhost:8080/passenger', passenger)
-            .then((res) => {
-                return fetch("http://localhost:8080/passengers?id_carshare=" + carshare.uid);
-            })
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                if(carshare.max_passenger == data.length){
-                    const carshareUpdate = {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            is_Full: true
-                        })
-                    };
-                    fetch("http://localhost:8080/carshare/" + carshare.uid, carshareUpdate).then((res) => { });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('La réservation a échoué. Veuillez réessayer.');
+                    openSnackbar('La réservation a échoué', 'error');
                 }
+                openSnackbar('Le covoiturage a été réservé', 'success');
+                navigate("/home");
+            })
+            .catch(error => {
+                openSnackbar(error.message, 'error');
             });
-
-        navigate('/home');
     }
 
 

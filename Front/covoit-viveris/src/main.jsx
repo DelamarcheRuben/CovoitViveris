@@ -20,6 +20,7 @@ import {SearchResultsProvider} from "./context/SearchResultsContext";
 import AdministrationCarshare from "./components/administration/AdministrationCarshare.jsx";
 import AdministrationChallenge from "./components/administration/AdministrationChallenge.jsx";
 import AdminCarshare from "./pages/AdminCarshare.jsx";
+import {SnackbarProvider} from "./context/SnackbarContext";
 
 // Création d'un thème personnalisé avec les couleurs de votre site
 const theme = createTheme({
@@ -111,9 +112,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <UserProvider>
         <WindowWidthProvider>
           <ThemeProvider theme={theme}>
-            <SearchResultsProvider>
-              <RouterProvider router={router}/>
-            </SearchResultsProvider>
+            <SnackbarProvider>
+              <SearchResultsProvider>
+                <RouterProvider router={router}/>
+              </SearchResultsProvider>
+            </SnackbarProvider>
           </ThemeProvider>
         </WindowWidthProvider>
       </UserProvider>

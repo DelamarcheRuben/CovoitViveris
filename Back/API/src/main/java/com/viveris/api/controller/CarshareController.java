@@ -111,6 +111,7 @@ public class CarshareController {
 	@GetMapping("/sorted-carshares")
 	public Iterable<Carshare> getNotFullCarshares(@RequestParam(required = true) Long id_user, @RequestParam(required = true) String date, @RequestParam(required=false) Float distance_max) {
 		if(distance_max==null) distance_max = 50.0f;
+		System.out.println(carshareService.getSortedCarshares(id_user,date,distance_max));
 		return carshareService.getSortedCarshares(id_user, date, distance_max);
 	}
 	
