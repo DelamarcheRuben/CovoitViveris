@@ -3,9 +3,11 @@ package com.viveris.api.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import com.viveris.api.model.Address;
@@ -105,6 +107,8 @@ public class CarshareService {
 		User user = opt_user.get();
 		Iterable<Carshare> carshares = carshareRepository.getSortedCarshares(id_user, date);
 		ArrayList<Carshare> sorted_carshares = new ArrayList<>();
+		//mapping est une sauvegarde temporaire de la vraie distance du trjaet, qui est modifie dans la boucle suivante
+		HashMap<Long, Float> mapping_distance = new HashMap<>();
 		for(Carshare carshare:carshares)
 		{
 			Double lat1 = user.getAddress().getLatitude();
@@ -123,6 +127,7 @@ public class CarshareService {
 			Float distance = (float) (R*c);
 			if(distance<=distance_max)
 			{
+				mapping_distance.put(carshare.uid, carshare.distance);
 				carshare.setDistance(distance);
 				sorted_carshares.add(carshare);
 			}
@@ -133,6 +138,11 @@ public class CarshareService {
 			if(o1.getDistance()==o2.getDistance()) return 0;
 			return 1;
 		});
+		for(Carshare c : sorted_carshares)
+		{
+			c.setDistance(mapping_distance.get(c.uid));
+		}
+		
 		return sorted_carshares;
 	}
 
