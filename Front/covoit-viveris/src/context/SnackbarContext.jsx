@@ -33,7 +33,7 @@ export const SnackbarProvider = ({ children }) => {
                 autoHideDuration={6000}
                 onClose={closeSnackbar}
                 anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-                sx={{ marginTop: '85px' }} // Ajustez cette valeur en fonction de la hauteur de votre Navbar
+                sx={{ marginTop: '80px'}}
             >
                 <Alert onClose={closeSnackbar} severity={snackbar.severity} sx={{ width: '100%' }}>
                     {snackbar.message}
