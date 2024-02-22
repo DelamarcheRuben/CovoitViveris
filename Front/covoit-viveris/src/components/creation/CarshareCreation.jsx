@@ -103,16 +103,6 @@ const CarshareCreation = () => {
             console.log("snackbar champ erronés")
             return;
         } else {
-            // Logique de création de covoiturage...
-            // Supposons que vous ayez une logique pour déterminer si l'opération a réussi ou non
-            const operationSuccess = true; // Simuler le résultat de l'opération
-
-            if (operationSuccess) {
-                handleOpenSnackbar('success', 'Votre covoiturage est en ligne !', <CheckIcon fontSize="inherit" />);
-            } else {
-                handleOpenSnackbar('error', 'La création du covoiturage a échoué.');
-            }
-
             //Vérification des champs à envoyer qui existent dans ce qui a été reçu par la requête à nominatim
             var start_city = null;
             var start_department = null;
@@ -259,7 +249,7 @@ const CarshareCreation = () => {
                 })
                 .then((data) => {
                     // La requête a réussi, gestion du succès
-                    apiSuccess=true;
+                    openSnackbar('Votre covoiturage est en ligne !', 'success');
                     setStartPlace('');
                     setStartName('');
                     setEndPlace('');
@@ -272,14 +262,8 @@ const CarshareCreation = () => {
                 })
                 .catch((error) => {
                     // La requête a échoué, gestion de l'échec
-                    apiSuccess=false;
+                    openSnackbar('La création du covoiturage a échoué.', 'error');
                 });
-
-            if (operationSuccess) {
-                openSnackbar('Votre covoiturage est en ligne !', 'success');
-            } else {
-                openSnackbar('La création du covoiturage a échoué.', 'error');
-            }
         }
     }
 
