@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
 
 const SnackbarContext = createContext();
 
@@ -12,10 +13,11 @@ export const SnackbarProvider = ({ children }) => {
         open: false,
         message: '',
         severity: 'info',
+        action: null, // Ajout d'une action pour le Snackbar
     });
 
-    const openSnackbar = (message, severity) => {
-        setSnackbar({ open: true, message, severity });
+    const openSnackbar = (message, severity, action = null) => {
+        setSnackbar({ open: true, message, severity, action });
     };
 
     const closeSnackbar = (event, reason) => {
@@ -35,7 +37,16 @@ export const SnackbarProvider = ({ children }) => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
                 sx={{ marginTop: '80px'}}
             >
-                <Alert onClose={closeSnackbar} severity={snackbar.severity} sx={{ width: '100%' }}>
+                <Alert
+                    onClose={closeSnackbar}
+                    severity={snackbar.severity}
+                    sx={{ width: '100%' }}
+                    action={snackbar.action ? (
+                        <Button color="inherit" size="small" onClick={snackbar.action.onClick}>
+                            {snackbar.action.label}
+                        </Button>
+                    ) : null}
+                >
                     {snackbar.message}
                 </Alert>
             </Snackbar>

@@ -16,7 +16,6 @@ export function ProfileFriends(){
                 return res.json();
             })
             .then((data) => {
-
                 setFriendList(data);
             });
     }, [user]);

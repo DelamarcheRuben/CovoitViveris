@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BookCarshareProfile } from "../booking/BookCarshareProfile.jsx"
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import { useUser } from "../../context/UserContext.jsx";
+import {useSnackbar} from "../../context/SnackbarContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 export function BookCarshareViewDriver(userDriver){
 
@@ -11,6 +13,8 @@ export function BookCarshareViewDriver(userDriver){
     const [ownedBadges, setOwnedBadges]   = useState([]);
     const [isFriend, setIsFriend]         = useState(false);
     const [commonFriend, setCommonFriend] = useState(0);
+    const { openSnackbar } = useSnackbar();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("http://localhost:8080/ownedbadges?user_id="+userDriver.carDriver.uid)
@@ -59,7 +63,17 @@ export function BookCarshareViewDriver(userDriver){
                 "user2": {"uid":userDriver.carDriver.uid}
             })
         };
-        fetch('http://localhost:8080/friend', friend);
+        fetch('http://localhost:8080/friend', friend)
+            .then(response => {
+                if (!response.ok){
+                    throw new Error ("La demande d'ami a échoué. Veuillez réessayer");
+                    openSnackbar('La demande d\'ami s\'est perdue en chemin. Réessayez', 'error')
+                }
+                openSnackbar('Vous avez un nouvel ami !', 'success', {
+                    label: 'Voir mes Amis',
+                    onClick: () => navigate('/profile/friends/'),
+                });
+            })
 
         setIsFriend(true);
     }
