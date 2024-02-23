@@ -67,7 +67,7 @@ export function ProfileNavbar(){
                 <img className="center-picture" src="../../src/images/profil_picture.png" alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
                 <p className="color-company center" style={{ marginTop: "-46px" }}><strong style={{ fontSize: "12px" }}> {user.level} </strong></p>
                 <p className="center" style={{ marginTop: "10px" }}><strong style={{ fontSize: "4.5vw" }}>{user.pseudo}</strong></p>
-                <p className="center" style={{ fontSize:  "3vw" }}>{user.job}, {user.city}</p>
+                <p className="center" style={{ fontSize:  "3vw" }}>{user.job}, {user.address.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "50%" }}>
                     <div className="profile-progress" style={{ width: `${(user.experience/levels.level_experience(user.level))*100}%`}}></div>
@@ -130,7 +130,7 @@ export function ProfileNavbar(){
                 <img className="center-picture" src="../../src/images/profil_picture.png" alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>
                 <p className={`color-company center`} style={{ marginTop: "-70px" }}><strong style={{ fontSize: "22px" }}>{user.level}</strong></p>
                 <p className="center" style={{ marginTop: "15px" }}><strong style={{ fontSize: "30px" }}>{user.pseudo}</strong></p>
-                <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.city}</p>
+                <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.address.city}</p>
 
                 <div className="profile-progress-bar center-picture" style={{ marginTop: "10px", width: "25%" }}>
                     <div className="profile-progress" style={{ width: `${(user.experience/levels.level_experience(user.level))*100}%`}}></div>

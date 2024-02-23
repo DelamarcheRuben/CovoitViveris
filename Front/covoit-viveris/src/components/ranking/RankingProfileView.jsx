@@ -40,7 +40,7 @@ export function RankingProfileView(u){
                 <div className="ranking-profile-view-small" style={{ maxWidth: "290px" }}>
                     <div className="column">
                         <div className="" style={{ marginTop: "-5px" }}>
-                            <img src="./src/images/profil_picture.png" alt="Photo profil" width="110px"/>
+                            <img src="../../src/images/profil_picture.png" alt="Photo profil" width="110px"/>
                             <p className={`color-company ${marginClass}-small-ranking`} style={{ marginTop: "-38px" }}><strong style={{ fontSize:"10px" }}>{u.user.level}</strong></p>
                         </div>
                         <div className="row" style={{ lineHeight: "20px"}}>
@@ -68,11 +68,11 @@ export function RankingProfileView(u){
 
                     <div className="column" style={{ marginTop: "-85px"}}>
                         <div className="">
-                            <img src="./src/images/profil_picture.png" alt="Photo profil"/>
+                            <img src="../../src/images/profil_picture.png" alt="Photo profil"/>
                             <p className={`color-company ${marginClass}-ranking`} style={{ marginTop: "-58px" }}><strong>{u.user.level}</strong></p>
                         </div>
                         <div className="row" style={{ lineHeight: "20px"}}>
-                            <img src="./src/images/exp/exp_level_1.png" alt="Photo profil" style={{ marginTop: "70px", width: "90%" }}/>
+                            <img src="../../src/images/exp/exp_level_1.png" alt="Photo profil" style={{ marginTop: "70px", width: "90%" }}/>
                             <p style={{ marginTop: "15px", fontSize: "20px" }}><strong>{u.user.pseudo}</strong></p>
                             <p style={{ fontSize:  "14px" }}>{u.user.job}, {u.user.address.city}</p>
                             <p><em style={{ fontSize:  "13px" }}>{u.user.nb_carshares} covoiturages, {u.user.kilometers} km parcourus</em></p>

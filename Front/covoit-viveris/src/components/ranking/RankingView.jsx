@@ -64,7 +64,7 @@ export function RankingView(){
                             {index < 3 
                                 ? (
                                 <div className="center-div-picture">
-                                    <img src={`./src/images/ranking/rank${index + 1}.png`} alt={`Rank ${index + 1}`} width="75px"/>
+                                    <img src={`../../src/images/ranking/rank${index + 1}.png`} alt={`Rank ${index + 1}`} width="75px"/>
                                     <div style={{ marginLeft:"15px" }}>
                                         <RankingProfileView key={index} user={u} />
                                     </div>

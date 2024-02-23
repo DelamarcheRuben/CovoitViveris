@@ -21,6 +21,7 @@ import AdministrationCarshare from "./components/administration/AdministrationCa
 import AdministrationChallenge from "./components/administration/AdministrationChallenge.jsx";
 import AdminCarshare from "./pages/AdminCarshare.jsx";
 import {SnackbarProvider} from "./context/SnackbarContext";
+import RegistrationDetails from "./pages/RegistrationDetails.jsx";
 
 // Création d'un thème personnalisé avec les couleurs de votre site
 const theme = createTheme({
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <div><Login/></div>
+  },
+  {
+    path: "/registrationDetails",
+    element: <div><RegistrationDetails/></div>
   },
   {
     path: "/home",
