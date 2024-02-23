@@ -23,7 +23,8 @@ CREATE TABLE CARSHARE (
     comeback BOOLEAN,
     experience INT,
     has_validated BOOLEAN,
-    CO2_economy FLOAT,
+    co2_economy FLOAT,
+    finished BOOLEAN,
     UID_driver INT NOT NULL
 );
 
@@ -93,14 +94,15 @@ CREATE TABLE USERS (
     job VARCHAR(42),
     address INT,
     picture_background VARCHAR(42),
-    car_type VARCHAR(42),
+    picture_profile VARCHAR(42),
+    car_type INT,
     fuel_consumption FLOAT,
     level INT,
     experience INT,
     bonus_loyalty FLOAT,
     kilometers FLOAT,
     nb_carshares INT,
-    CO2_economy FLOAT,
+    co2_economy FLOAT,
     UID_company INT,
     UID_sponsor INT
 );

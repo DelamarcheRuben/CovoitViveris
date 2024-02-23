@@ -1,1 +1,3 @@
+source E:/1_Documents/Documents/Cours/Polytech_A3/S9/Projet_Viveris/Projet/Script_BDD/script_delete.sql;
 source E:/1_Documents/Documents/Cours/Polytech_A3/S9/Projet_Viveris/Projet/Script_BDD/script_create.sql;
+source E:/1_Documents/Documents/Cours/Polytech_A3/S9/Projet_Viveris/Projet/Script_BDD/script_insert.sql;

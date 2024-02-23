@@ -66,6 +66,16 @@ public class PassengerController {
 	}
 	
 	/**
+	 * Read - Get all distinct passengers of a user
+	 * @param - id of the user
+	 * @return - An Iterable object of Passenger full filled
+	 */
+	@GetMapping("/distinct-passengers")
+	public Iterable<Passenger> getDistinctPassengersFromUser(@RequestParam(required = true) Long id_user) {
+		return passengerService.getDistinctPassengersFromUser(id_user);
+	}
+	
+	/**
 	 * Update - Update an existing passenger
 	 * @param id - The id of the passenger to update
 	 * @param passenger - The passenger object updated

@@ -4,6 +4,7 @@ import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import CheckIcon from '@mui/icons-material/Check';
 import {useSnackbar} from "../../context/SnackbarContext.jsx";
+import * as economyCO2     from "../../functions/economyCO2.js";
 
 const AutocompleteInput = ({ value, onChange, placeholder, setOutput }) => {
 
@@ -166,7 +167,7 @@ const RegistrationDetailsView = () => {
                     first_name: firstName,
                     last_name: lastName,
                     job: job,
-                    adress: {
+                    address: {
                         city: city,
                         department: department,
                         postcode: postcode,
@@ -175,7 +176,7 @@ const RegistrationDetailsView = () => {
                         latitude: addressPlace.lat,
                         longitude: addressPlace.lon
                     }, 
-                    car_type: carType,
+                    car_type: carType.split("|")[1],
                     picture_background: pictureBackground,
                     picture_profile: pictureProfile,
                     company:{
@@ -231,14 +232,14 @@ const RegistrationDetailsView = () => {
             <div className="row" style={{ marginTop:"20px" }}>
                 <div className="col">
                     <label> Type de voiture :
-                        <select id="background" value={carType} onChange={handleSelectCarTypeChange}>
-                            <option value={"135|Citadine - Essence"}>Citadine - Essence</option>
-                            <option value={"115|Citadine - Diesel"}>Citadine - Diesel</option>
-                            <option value={"160|Familiale - Essence"}>Familiale - Essence</option>
-                            <option value={"140|Familiale - Diesel"}>Familiale - Diesel</option>
-                            <option value={"210|Sportive - Essence"}>Sportive - Essence</option>
-                            <option value={"190|Sportive - Diesel"}>Sportive - Diesel</option>
-                            <option value={"50|Electrique/Hybride"}>Electrique/Hybride</option>
+                        <select id="background" value={carType.split("|")[1]} onChange={handleSelectCarTypeChange}>
+                            {
+                                economyCO2.type.map(element => {
+                                    return(
+                                        <option value={element.cons+"|"+element.id} key={"option_"+element.id}>{element.name}</option>
+                                    )
+                                })
+                            }
                         </select>
                     </label>
                 </div>

@@ -57,7 +57,9 @@ public class Carshare {
     @Column(name="has_validated")
     public Boolean has_validated;
     
-    public Float CO2_economy;
+    public Float co2_economy;
+    
+    public Boolean finished;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="UID_driver", referencedColumnName="UID")
