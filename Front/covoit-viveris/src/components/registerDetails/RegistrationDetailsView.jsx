@@ -104,15 +104,7 @@ const RegistrationDetailsView = () => {
             console.log("snackbar champ erronés")
             return;
         } else {
-            // Logique de création de covoiturage...
-            // Supposons que vous ayez une logique pour déterminer si l'opération a réussi ou non
-            const operationSuccess = true; // Simuler le résultat de l'opération
-
-            // if (operationSuccess) {
-            //     handleOpenSnackbar('success', 'Votre covoiturage est en ligne !', <CheckIcon fontSize="inherit" />);
-            // } else {
-            //     handleOpenSnackbar('error', 'La création du covoiturage a échoué.');
-            // }
+            
 
             //Vérification des champs à envoyer qui existent dans ce qui a été reçu par la requête à nominatim
             var city         = null;
@@ -196,7 +188,15 @@ const RegistrationDetailsView = () => {
             fetch("http://localhost:8080/user/" + user.uid, options)
             .then((res) => {
                 navigate('/home');
+                if (!res.ok){
+                    throw new Error ("La validation des informations a échoué. Veuillez réessayer");
+                    openSnackbar('La validation des informations s\'est perdue en chemin. Réessayez', 'error')
+                }
+                openSnackbar('Votre profil a été complété !', 'success', );
             });
+
+            openSnackbar('Votre compte est complété !', 'success');
+
         }
     }
 

@@ -30,6 +30,23 @@ export function EndCarshareView(){
                 const response = await fetch(`http://localhost:8080/carshare/${carshareId}`);
                 if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
                 const data_json = await response.json();
+
+                if(user.uid===data_json.driver.uid){
+                    if(data_json.has_validated){
+                        navigate("/home");
+                    }
+                }
+                else{
+                    const response = await fetch("http://localhost:8080/passenger?carshare="+carshareId+"&user="+user.uid);
+                    if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
+                    const data_json = await response.json();
+
+                    if(data_json.has_validated){
+                        navigate("/home");
+                    }
+                }
+
+
                 const economy = economyCO2.calcul_economy(data_json.distance, data_json.max_passenger, economyCO2.type.essence);
                 const time_carshare = new time.Time(0, Math.round(data_json.distance+10)); //temps du carshare en minutes (formule : temps = distance en km+10)
                 var endHour = new time.Time(parseInt(data_json.schedule.substring(11,13)), parseInt(data_json.schedule.substring(14,16)));
@@ -84,7 +101,7 @@ export function EndCarshareView(){
                         },
                         body: JSON.stringify(update_passenger)
                     };
-                    fetch("http://localhost:8080/passenger/?carshare="+carshareId+"&user="+user.uid, options)
+                    fetch("http://localhost:8080/passenger?carshare="+carshareId+"&user="+user.uid, options)
                     .then((res) => {
                     })
                 }
