@@ -5,6 +5,7 @@ import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import * as levels     from "../../functions/levels.js";
 import * as economyCO2     from "../../functions/economyCO2.js";
 import * as time     from "../../functions/time.js";
+import * as updateBadge     from "../../functions/updateBagde.js";
 export function EndCarshareView(){
 
     const { user } = useUser();
@@ -106,7 +107,7 @@ export function EndCarshareView(){
                     })
                 }
                 
-
+                updateBadge.updateLevelBadge(user);
 
 
             } catch (error) {

@@ -22,7 +22,7 @@ export function ProfileFriendsView(friend){
                 <div className="friend-small">
                     <img src={`../../src/images/background_profile/background_${friend.friendUser.picture_background}.png` } width="100%"/>
                     <div className="center-div-picture" style={{ marginTop: "-55px" }}>
-                        <img src="../../src/images/profil_picture.png" alt="Photo profil" width="100px"/>
+                        <img src={`../../src/images/profil_picture_${user.picture_profile}.png`} alt="Photo profil" width="100px"/>
                     </div>
                     <p className="center color-company" style={{ marginTop: "-36px" }}><strong style={{ fontSize:"10px" }}>{friend.friendUser.level}</strong></p> 
                     <div className="row center-div-picture" style={{ marginTop: "0px" }}>

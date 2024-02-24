@@ -40,7 +40,7 @@ export function RankingProfileView(u){
                 <div className="ranking-profile-view-small" style={{ maxWidth: "290px" }}>
                     <div className="column">
                         <div className="" style={{ marginTop: "-5px" }}>
-                            <img src="../../src/images/profil_picture.png" alt="Photo profil" width="110px"/>
+                            <img src={`../../src/images/profil_picture_${u.user.picture_profile}.png`} alt="Photo profil" width="110px"/>
                             <p className={`color-company ${marginClass}-small-ranking`} style={{ marginTop: "-38px" }}><strong style={{ fontSize:"10px" }}>{u.user.level}</strong></p>
                         </div>
                         <div className="row" style={{ lineHeight: "20px"}}>
@@ -68,7 +68,7 @@ export function RankingProfileView(u){
 
                     <div className="column" style={{ marginTop: "-85px"}}>
                         <div className="">
-                            <img src="../../src/images/profil_picture.png" alt="Photo profil"/>
+                            <img src={`../../src/images/profil_picture_${u.user.picture_profile}.png`} alt="Photo profil"/>
                             <p className={`color-company ${marginClass}-ranking`} style={{ marginTop: "-58px" }}><strong>{u.user.level}</strong></p>
                         </div>
                         <div className="row" style={{ lineHeight: "20px"}}>
