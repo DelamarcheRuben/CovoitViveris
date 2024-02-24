@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { ChallengeHomeView } from "../../challenge/ChallengeHomeView.jsx";
 import { useUser } from "../../../context/UserContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 function HomeChallenges() {
     const [participates, setParticipates] = useState([]);
+    const [buttonLabel, setButtonLabel] = useState("Voir tous les challenges");
     const { user } = useUser();
+    const navigate = useNavigate();
 
     const handleBtnChallengeClick = () => {
-        // TODO: Faire la page détails et insérer ici un navigate(/details/idCarshare)
-        console.log(user);
-        console.log(participates);
+        navigate("/challenge-details")
     };
 
     useEffect(() => {
@@ -18,7 +19,12 @@ function HomeChallenges() {
             fetch(`http://localhost:8080/participates?id_user=${user.uid}`)
                 .then(response => response.json())
                 .then(data => {
-                    setParticipates(data);
+                    if (data.length > 0){
+                        setParticipates(data);
+                    } else {
+                        setButtonLabel("Commencer un nouveau défi !");
+                    }
+
                 })
                 .catch(error => {
                     console.error("Erreur lors de la récupération des données de la table 'Participate' : ", error);
@@ -31,10 +37,11 @@ function HomeChallenges() {
             <h4>Challenges en cours</h4>
             {participates.length === 0
                 ? <p className="center"><strong style={{ fontSize:"150%" }}>Pas de challenges en cours</strong></p>
+
                 : <ChallengeHomeView key={participates[0].uid} participate={participates[0]} />
             }
             <div className="div-btn-challenge">
-                <button className="btn-details" onClick={handleBtnChallengeClick}>Voir tous les challenges</button>
+                <button className="btn-details" onClick={handleBtnChallengeClick}>{buttonLabel}</button>
             </div>
         </div>
     );
