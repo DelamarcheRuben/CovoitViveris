@@ -34,7 +34,7 @@ function HomeChallenges() {
 
     return (
         <div className="home-box">
-            <h4>Challenges en cours</h4>
+            <h4>Challenges</h4>
             {participates.length === 0
                 ? <p className="center"><strong style={{ fontSize:"150%" }}>Pas de challenges en cours</strong></p>
 

@@ -9,7 +9,7 @@ const ChallengeDetails = () => {
         <React.Fragment>
             <Navbar />
             <div>
-                <p> Challenge Details - {user.id} </p>
+                <p> Challenge Details - {user.uid} </p>
             </div>
         </React.Fragment>
     );

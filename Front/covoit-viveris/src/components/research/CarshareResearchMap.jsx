@@ -32,6 +32,7 @@ const CarshareResearchMap = () => {
     const [userLocation, setUserLocation] = useState(null);
     const [locationDenied, setLocationDenied] = useState(true);
     const [selectedCarshare, setSelectedCarshare] = useState(null);
+    const { user } = useUser();
 
     const handleMarkerClick = (carshare) => {
         setSelectedCarshare(carshare); // Mettre à jour l'état avec le covoiturage sélectionné
