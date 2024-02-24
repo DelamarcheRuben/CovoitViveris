@@ -52,7 +52,7 @@ const CarshareResearchMap = () => {
         return () => navigator.geolocation.clearWatch(watchId);
     }, []);
 
-    return (
+    return (user &&
         <div className="mapContainer" style={{ position: 'relative', height: '400px' }}>
             {!locationDenied && (
                 <>

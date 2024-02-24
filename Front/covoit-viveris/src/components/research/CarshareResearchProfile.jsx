@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useWindowWidth } from "../../context/WindowWidthContext";
+import {useUser} from "../../context/UserContext.jsx";
 
 export function CarshareResearchProfile(userid){
 
+    const user = useUser();
     const windowWidth = useWindowWidth();
     const [userDriver, setUserDriver] = useState();
     const [marginClass, setMarginClass] = useState();
@@ -27,7 +29,7 @@ export function CarshareResearchProfile(userid){
         });
     }, []);
 
-    return (
+    return (user &&
         <React.Fragment>
             
             {windowWidth < 1105 && userDriver &&

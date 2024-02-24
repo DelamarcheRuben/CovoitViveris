@@ -57,11 +57,22 @@ CREATE TABLE LEAGUE (
     end_date DATE
 );
 CREATE TABLE PARTICIPATE (
-    PRIMARY KEY (UID_challenge, UID_user),
-    UID_challenge INT NOT NULL,
+    PRIMARY KEY (UID_user, UID_challenge),
     UID_user INT NOT NULL,
-    progression FLOAT
+    UID_challenge INT NOT NULL,
+    CO2_economy FLOAT DEFAULT 0,
+    kilometers FLOAT DEFAULT 0,
+    completed_rides INT DEFAULT 0,
+    different_passengers INT DEFAULT 0,
+    progress FLOAT DEFAULT 0,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    has_completed BOOLEAN DEFAULT FALSE,
+
+    FOREIGN KEY (UID_user) REFERENCES USERS (UID),
+    FOREIGN KEY (UID_challenge) REFERENCES CHALLENGE (UID)
 );
+
 CREATE TABLE PLAY (
     PRIMARY KEY (UID_league, UID_user),
     UID_league INT NOT NULL,

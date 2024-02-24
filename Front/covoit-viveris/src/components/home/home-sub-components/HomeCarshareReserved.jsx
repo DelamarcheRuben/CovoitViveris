@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useUser} from "../../../context/UserContext.jsx";
 import {useSearchResults} from "../../../context/SearchResultsContext.jsx";
 import {useNavigate} from "react-router-dom";
-import {ChallengeView} from "../../challenge/ChallengeView.jsx";
+import {ChallengeHomeView} from "../../challenge/ChallengeHomeView.jsx";
 import {CarshareReservedCard} from "./card/CarshareReservedCard.jsx";
 
 function HomeCarshareReserved() {
@@ -26,7 +26,7 @@ function HomeCarshareReserved() {
             {carshareReserved === null
                 ? <p className="center">Chargement des réservations...</p> // Afficher un message de chargement
                 : carshareReserved.length === 0
-                    ? <p className="center"><strong style={{ fontSize: "40px" }}>Aucun Résultat</strong></p>
+                    ? <p className="center"><strong style={{ fontSize: "150%" }}>Aucune Réservation</strong></p>
                     : carshareReserved.map((carshare, index) => (
                         <CarshareReservedCard key={index} carshare={carshare} />
                     ))

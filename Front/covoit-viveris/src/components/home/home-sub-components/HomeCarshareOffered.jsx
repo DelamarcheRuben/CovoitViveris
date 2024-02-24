@@ -24,7 +24,7 @@ function HomeCarshareOffered() {
             {carshareOffered === null
                 ? <p className="center">Chargement des réservations...</p> // Afficher un message de chargement
                 : carshareOffered.length === 0
-                    ? <p className="center"><strong style={{ fontSize: "40px" }}>Aucun Résultat</strong></p>
+                    ? <p className="center"><strong style={{ fontSize: "150%" }}>Aucun covoiturage proposé</strong></p>
                     : carshareOffered.map((carshare, index) => (
                         <CarshareOfferedCard key={index} carshare={carshare} />
                     ))

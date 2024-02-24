@@ -50,8 +50,12 @@ INSERT INTO PASSENGER (UID_carshare, UID_passenger) VALUES
 
 -- Insertion des challenges
 INSERT INTO CHALLENGE (name, description, goal, bonus_exp, expired_date) VALUES
-('Mangeur de kilomètres', '34km en covoiturage en 1 mois', 34, 300, '2024-03-24'),
-('Collègue parfait', '5 personnes différentes en 1 mois', 5, 150, '2024-04-01');
+('Mangeur de kilomètres', 'Parcourir 90km en covoiturage', 90, 300, '2024-03-24'),
+('Collègue parfait', '5 personnes différentes en 1 mois', 5, 150, '2024-04-01'),
+('Marathonien', 'Compléter 20 covoiturages', 20, 500, '2024-12-31'),
+('Main verte', 'Économiser 150kg de CO2', 150, 1000, '2024-12-31'),
+('Le régulier', '12 covoiturages en 1 mois', 12, 12, '2024-12-31');
+
 
 -- Insertion des ligues
 INSERT INTO LEAGUE (start_date, end_date) VALUES ('2024-03-01', '2024-06-01');

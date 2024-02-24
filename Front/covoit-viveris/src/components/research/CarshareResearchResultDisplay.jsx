@@ -8,8 +8,9 @@ import {Navbar} from "../header/Navbar.jsx";
 import { useUser }        from "../../context/UserContext.jsx";
 
 const CarshareResearchResultsDisplay = () => {
+    const user = useUser();
     const [view, setView] = useState('list'); // 'list' ou 'map'
-    return (
+    return (user &&
         <React.Fragment>
             <Navbar/>
             <div className="carshare-container">
