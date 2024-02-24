@@ -753,7 +753,7 @@ button:hover{
     text-align: center;
     text-decoration: underline;
     padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .air-quality-rectangle {
@@ -825,6 +825,13 @@ button:hover{
     color: #333;
 }
 
+.challenge-name {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+    justify-self: left;
+}
+
 .carshare-info {
     display: flex;
     flex-direction: column;
@@ -885,6 +892,12 @@ button:hover{
 .challenge-box > button {
     justify-self: center; /* Horizontally center the content within the grid item */
     align-self: center; /* Vertically center the content within the grid item */
+}
+
+.div-btn-challenge {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
 }
 
 

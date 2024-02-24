@@ -5,7 +5,7 @@ import {CarshareOfferedCard} from "./card/CarshareOfferedCard.jsx";
 function HomeCarshareOffered() {
 
     const [carshareOffered, setCarshareOffered] = useState('');
-    const { updateUser, user } = useUser();
+    const { user } = useUser();
 
     useEffect(() => {
         fetch(`http://localhost:8080/proposed-carshares?id_user=${user.uid}`)
