@@ -139,3 +139,8 @@ INSERT INTO FRIEND(user1, user2) VALUES
 (1, 4),
 (2, 5),
 (2, 3);
+
+
+INSERT INTO PARTICIPATE(uid_user, uid_challenge, kilometers, different_passengers, progress, start_date, end_date) VALUES
+(1, 1, 50, NULL, 55.5, '2024-03-05 8:30:00', '2024-03-20 8:30:00'),
+(1, 2, NULL, 1, 20.0, '2024-03-05 8:30:00', '2024-03-20 8:30:00');
