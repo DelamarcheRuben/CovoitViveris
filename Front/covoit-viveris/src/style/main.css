@@ -385,42 +385,6 @@ button:hover{
     background-color: var(--mainColor);
 }
 
-/* ===================== Media queries ===================== */
-@media only screen and (max-width: 1105px){
-
-    .large-screen {
-        display: none;
-    }
-
-    .small-screen {
-        display: block;
-    }
-}
-
-@media only screen and (min-width: 1105px){
-
-    .large-screen {
-        display: block;
-    }
-
-    .small-screen {
-        display: none;
-    }
-}
-
-@media (max-width: 600px) {
-    .scheduling-form {
-        width: 90%;
-        padding: 10px;
-    }
-
-    .carshare-container {
-        width: 95%;
-        padding: 10px;
-    }
-}
-
-
 .endCarShare-background{
     background-image     : url(./src/images/background_map.png);
     background-size      : 50%;
@@ -894,26 +858,6 @@ button:hover{
     margin: 20px auto;
 }
 
-.challenge-box {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Divides the grid into 3 equal columns */
-    gap: 10px; /* Adjust the gap as needed */
-    align-items: center; /* Vertically aligns the content in the center */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Centring content within the grid items */
-.challenge-box > div,
-.challenge-box > button {
-    justify-self: center; /* Horizontally center the content within the grid item */
-    align-self: center; /* Vertically center the content within the grid item */
-}
-
 .div-btn-challenge {
     display: flex;
     justify-content: center;
@@ -935,6 +879,19 @@ button:hover{
     text-decoration: underline;
     padding-top: 1rem;
     padding-bottom: 1rem;
+}
+
+.challenge-xp {
+    display: flex;
+    align-items: center; /* Centrage vertical */
+    justify-content: center; /* Centrage horizontal */
+}
+
+.challenge-xp img {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 3px;
+    margin-left: 3px;
 }
 
 
@@ -989,7 +946,7 @@ button:hover{
         padding: 10px;
     }
 
-    .challenge-box {
+    .participate-details-box {
         display: grid;
         grid-template-columns: 1fr; /* Makes it a single column layout */
         justify-items: center; /* Horizontally centers the content */

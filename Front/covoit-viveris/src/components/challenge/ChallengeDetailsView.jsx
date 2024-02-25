@@ -18,8 +18,8 @@ export function ChallengeDetailsView({challenge, isParticipating}){
                 <span>{challenge.description}</span>
             </div>
             <div className="challenge-xp">
-                <strong>{challenge.bonus_exp}  </strong>
-                <img src={logoXP} alt="XP Logo" style={{ width: '20%', height: '20%', marginBottom: '3px' }} />
+                <strong>{challenge.bonus_exp}</strong>
+                <img src={logoXP} alt="XP Logo"/>
             </div>
             <div className="div-btn-challenge">
                 <button disabled={isParticipating} className="btn-details" style={buttonStyle} onClick={handleBtnChallengeClick}>
