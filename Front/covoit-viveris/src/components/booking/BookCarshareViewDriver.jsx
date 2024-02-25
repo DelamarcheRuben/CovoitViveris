@@ -15,13 +15,16 @@ export function BookCarshareViewDriver(userDriver){
     const [commonFriend, setCommonFriend] = useState(0);
     const { openSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    const badgesTitle = ["covoitureur", "covoitureur_consecutif", "kilometrage", "eco_citoyen", "veteran", "annonceur", "partenaire", "challenge"];
 
     useEffect(() => {
+
         fetch("http://localhost:8080/ownedbadges?user_id="+userDriver.carDriver.uid)
         .then((res) => {
             return res.json();
         })
         .then((data) => {
+            console.log(data);
             setOwnedBadges(data);
         });
 
@@ -82,7 +85,7 @@ export function BookCarshareViewDriver(userDriver){
 
     return (user &&
         <React.Fragment>
-            {windowWidth < 1105 && userDriver && ownedBadges &&
+            {windowWidth < 1105 && userDriver && ownedBadges && 
             <div className="small-screen profile-booking-small" style={{ marginTop:"35px" }} >
                 <div className="row">
                     <img className="center-picture" src={`../../src/images/background_profile/background_${userDriver.carDriver.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "100%", maxHeight:"125px" }}/>
@@ -113,7 +116,7 @@ export function BookCarshareViewDriver(userDriver){
                     <div className="container-badge-booking" style={{ marginTop:"5px", maxWidth:"85%" }}>
                         {ownedBadges.map((data, index) => (
                             <div key={index} className="item-badge-booking">
-                                <img className="center-picture" src={`../../src/images/badge/${data.badge.picture_badge}_${data.level}.png`} alt={`Badge ${data.badge.title}`} width="50%"/>
+                                <img className="center-picture" src={`../../src/images/badge/${badgesTitle[index]}_${data.level}.png`} alt={`Badge ${badgesTitle[index]}`} width="50%"/>
                             </div>
                         ))}
                     </div>
@@ -121,7 +124,7 @@ export function BookCarshareViewDriver(userDriver){
             </div>
             }
 
-            {windowWidth >= 1105 && userDriver && ownedBadges &&
+            {windowWidth >= 1105 && userDriver && ownedBadges && 
             <div className="large-screen profile-booking" style={{ marginTop:"35px", maxWidth:"60%" }} >
                 <div className="row">
                     <img className="center-picture" src={`../../src/images/background_profile/background_${userDriver.carDriver.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "100%", maxHeight:"125px" }}/>
@@ -156,7 +159,7 @@ export function BookCarshareViewDriver(userDriver){
                             <div className="container-badge-booking" style={{ marginTop:"5px", marginLeft:"-15px" }}>
                                 {ownedBadges.map((data, index) => (
                                     <div key={index} className="item-badge-booking">
-                                        <img className="center-picture" src={`../../src/images/badge/${data.badge.picture_badge}_${data.level}.png`} alt={`Badge ${data.badge.title}`} width="80%"/>
+                                        <img className="center-picture" src={`../../src/images/badge/${badgesTitle[index]}_${data.level}.png`} alt={`Badge ${badgesTitle[index]}`} width="80%"/>
                                     </div>
                                 ))}
                             </div>
