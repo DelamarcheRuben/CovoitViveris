@@ -14,11 +14,12 @@ export const type = [
 ]
 
 
-export function calcul_economy(distance, nb_passengers, type)
+export function calcul_economy(distance, nb_passengers, cartype)
 {
     var cons;
-    array.forEach(element => {
-        if(element.id = type) cons = element.cons;
+    type.forEach(element => {
+        if(element.id === cartype) cons = element.cons;
     });
+    console.log(distance, cons, nb_passengers, cartype);
     return distance*cons*nb_passengers;
 }

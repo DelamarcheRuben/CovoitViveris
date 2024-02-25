@@ -5,10 +5,10 @@ import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import * as levels     from "../../functions/levels.js";
 import * as economyCO2     from "../../functions/economyCO2.js";
 import * as time     from "../../functions/time.js";
-import * as updateBadge     from "../../functions/updateBagde.js";
+import * as updateBadge     from "../../functions/updateBadge.js";
 export function EndCarshareView(){
 
-    const { user } = useUser();
+    const { user, updateUser } = useUser();
     const windowWidth = useWindowWidth();
     const navigate = useNavigate();
     const [data, setData] = useState(null);
@@ -47,8 +47,7 @@ export function EndCarshareView(){
                     }
                 }
 
-
-                const economy = economyCO2.calcul_economy(data_json.distance, data_json.max_passenger, economyCO2.type.essence);
+                const economy = economyCO2.calcul_economy(data_json.distance, data_json.max_passenger, data_json.driver.car_type);
                 const time_carshare = new time.Time(0, Math.round(data_json.distance+10)); //temps du carshare en minutes (formule : temps = distance en km+10)
                 var endHour = new time.Time(parseInt(data_json.schedule.substring(11,13)), parseInt(data_json.schedule.substring(14,16)));
                 endHour.addMinutes(time_carshare.getTotalMinutes());
@@ -66,8 +65,14 @@ export function EndCarshareView(){
 
                 setData({carShare:carshare_user, bonus:bonus, experience_earned:experience_earned,
                     level_up:level_up, level_end:level_end, experience_end:experience_end});
+                
+                var user_copy = JSON.parse(JSON.stringify(user));
+
+                user_copy.level = level_end;user_copy.experience=experience_end;user_copy.co2_economy=(user_copy.co2_economy)+economy;
+                user_copy.kilometers=user_copy.kilometers+data_json.distance;user_copy.nb_carshares=user_copy.nb_carshares+1;
+                updateUser(user_copy);
                 var update_user = {uid:user.uid, level:level_end, experience:experience_end, 
-                    CO2_economy: (user.CO2_economy)+economy, kilometers:user.kilometers+data_json.distance, nb_carshares:user.nb_carshares+1};
+                    co2_economy: (user.co2_economy)+economy, kilometers:user.kilometers+data_json.distance, nb_carshares:user.nb_carshares+1};
                 var options = {
                     method: 'PUT',
                     headers: {
@@ -80,7 +85,7 @@ export function EndCarshareView(){
                     })
                 if(user.uid===data_json.driver.uid)
                 {
-                    var update_carshare = {has_validated : true, CO2_economy:economy, experience:experience_earned};
+                    var update_carshare = {has_validated : true, co2_economy:economy, experience:experience_earned};
                     var options = {
                         method: 'PUT',
                         headers: {
@@ -107,7 +112,7 @@ export function EndCarshareView(){
                     })
                 }
                 
-                updateBadge.updateLevelBadge(user);
+                await updateBadge.updateLevelBadge(user.uid);
 
 
             } catch (error) {
@@ -116,7 +121,7 @@ export function EndCarshareView(){
         };
 
         fetchCarshare();
-    }, [carshareId, user]);
+    }, [carshareId]);
 
     const handleClickRanking = () => {
         navigate('/ranking');
@@ -128,7 +133,7 @@ export function EndCarshareView(){
 
     return (
         <React.Fragment>
-            {windowWidth < 1105 && data &&
+            {windowWidth < 1105 && data && user &&
                 <div className="endCarShare-background" style={{ minHeight:"1200px"}}>
                     <p className="center"><strong style={{ fontSize:"30px" }}>Félicitations !</strong></p>
                     <div className="center-picture" style={{ maxWidth:"300px" }}>
