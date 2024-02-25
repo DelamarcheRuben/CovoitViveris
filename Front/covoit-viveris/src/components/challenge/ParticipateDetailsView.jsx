@@ -1,25 +1,32 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import {useUser} from "../../context/UserContext.jsx";
+import logoXP from "../../images/icon/xp.png";
 
 
-export function ChallengeHomeView({participate}){
+export function ParticipateDetailsView({participate}){
     const windowWidth = useWindowWidth();
     const user = useUser();
 
     const challengeName = participate.challenge.name;
     const challengeDescription = participate.challenge.description;
     const challengeProgress = participate.progress;
+    const challengeXp = participate.challenge.bonus_exp;
 
     return (
-        <div className="carshare-card">
+        <div className="participate-details-box">
             <div className="challenge-name"><strong>{challengeName}</strong></div>
-            <div className="carshare-info">
+            <div className="participate-description">
                 <span>{challengeDescription}</span>
             </div>
-            <div className="carshare-completion">
+            <div className="challenge-xp">
+                <strong>{challengeXp}  </strong>
+                <img src={logoXP} alt="XP Logo" style={{ width: '20%', height: '20%', marginBottom: '3px' }} />
+            </div>
+            <div className="participate-completion">
                 <span>{challengeProgress}%</span>
             </div>
         </div>
     );
 }
+

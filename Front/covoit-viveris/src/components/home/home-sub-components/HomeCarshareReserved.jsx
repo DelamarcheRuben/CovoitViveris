@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useUser} from "../../../context/UserContext.jsx";
 import {useSearchResults} from "../../../context/SearchResultsContext.jsx";
 import {useNavigate} from "react-router-dom";
-import {ChallengeHomeView} from "../../challenge/ChallengeHomeView.jsx";
+import {ParticipateHomeView} from "../../challenge/ParticipateHomeView.jsx";
 import {CarshareReservedCard} from "./card/CarshareReservedCard.jsx";
 
 function HomeCarshareReserved() {

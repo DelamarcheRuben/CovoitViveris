@@ -62,13 +62,13 @@ CREATE TABLE PARTICIPATE (
     PRIMARY KEY (UID_user, UID_challenge),
     UID_user INT NOT NULL,
     UID_challenge INT NOT NULL,
-    co2_economy FLOAT DEFAULT 0,
-    kilometers FLOAT DEFAULT 0,
-    completed_rides INT DEFAULT 0,
-    different_passengers INT DEFAULT 0,
-    progress FLOAT DEFAULT 0,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
+    co2_economy FLOAT,
+    kilometers FLOAT,
+    completed_rides INT,
+    different_passengers INT,
+    progress FLOAT,
+    start_date DATETIME NOT NULL,
+    end_date DATETIME NOT NULL,
     has_completed BOOLEAN DEFAULT FALSE
 );
 
