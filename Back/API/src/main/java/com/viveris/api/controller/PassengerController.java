@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.viveris.api.model.Address;
 import com.viveris.api.model.Passenger;
 import com.viveris.api.model.PassengerId;
+import com.viveris.api.model.User;
 import com.viveris.api.service.PassengerService;
 
 @RestController
@@ -70,8 +71,8 @@ public class PassengerController {
 	 * @param - id of the user
 	 * @return - An Iterable object of Passenger full filled
 	 */
-	@GetMapping("/distinct-passengers")
-	public Iterable<Passenger> getDistinctPassengersFromUser(@RequestParam(required = true) Long id_user) {
+	@GetMapping("/nb-distinct-passengers")
+	public Integer getDistinctPassengersFromUser(@RequestParam(required = true) Long id_user) {
 		return passengerService.getDistinctPassengersFromUser(id_user);
 	}
 	

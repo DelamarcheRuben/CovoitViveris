@@ -30,93 +30,95 @@ export function EndCarshareView(){
             try {
                 const response = await fetch(`http://localhost:8080/carshare/${carshareId}`);
                 if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
-                const data_json = await response.json();
-
+                var data_json = await response.json();
+                var isValidated=false;
                 if(user.uid===data_json.driver.uid){
-                    if(data_json.has_validated){
-                        navigate("/home");
-                    }
+                    isValidated = data_json.has_validated;
                 }
                 else{
                     const response = await fetch("http://localhost:8080/passenger?carshare="+carshareId+"&user="+user.uid);
                     if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
-                    const data_json = await response.json();
+                    const reponse_valid_passenger = await response.json();
+                    isValidated = reponse_valid_passenger.has_validated;
+                }
 
-                    if(data_json.has_validated){
-                        navigate("/home");
+                if(isValidated){
+                    navigate("/home");
+                }
+                else
+                {
+                    var economy = economyCO2.calcul_economy(data_json.distance, data_json.max_passenger, data_json.driver.car_type);
+                    economy = economy.toPrecision(3)/1000.0;
+                    const time_carshare = new time.Time(0, Math.round(data_json.distance+10)); //temps du carshare en minutes (formule : temps = distance en km+10)
+                    var endHour = new time.Time(parseInt(data_json.schedule.substring(11,13)), parseInt(data_json.schedule.substring(14,16)));
+                    endHour.addMinutes(time_carshare.getTotalMinutes());
+                    const carshare_user = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16),
+                        endHour:endHour.toString(), carShareTime:time_carshare.toString(), startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
+                        co2Saved:economy, level:data_json.driver.level, experience:data_json.driver.experience, nbPeople:data_json.max_passenger};
+                    const bonus = {bonusStreak:1.2, bonusPollution:data_json.bonus_pollution, bonusDay: 1.5};
+                    var nbPeople;
+                    if(user.uid===data_json.driver.uid) nbPeople = carshare_user.nbPeople;
+                    else nbPeople=0;
+                    const experience_earned = levels.calculate_experience_carShare(nbPeople, bonus.bonusStreak, bonus.bonusPollution, bonus.bonusDay);
+                    const level_up  = levels.level_up(carshare_user.level, carshare_user.experience, experience_earned, 0);
+                    const level_end = carshare_user.level + level_up;
+                    const experience_end = levels.experience_user_end_carShare(carshare_user.level, carshare_user.experience, experience_earned);
+
+                    setData({carShare:carshare_user, bonus:bonus, experience_earned:experience_earned,
+                        level_up:level_up, level_end:level_end, experience_end:experience_end});
+                    
+                    var user_copy = JSON.parse(JSON.stringify(user));
+
+                    user_copy.level = level_end;user_copy.experience=experience_end;user_copy.co2_economy=(user_copy.co2_economy)+economy;
+                    user_copy.kilometers=user_copy.kilometers+data_json.distance;user_copy.nb_carshares=user_copy.nb_carshares+1;
+                    updateUser(user_copy);
+                    var update_user = {uid:user.uid, level:level_end, experience:experience_end, 
+                        co2_economy: (user.co2_economy)+economy, kilometers:user.kilometers+data_json.distance, nb_carshares:user.nb_carshares+1};
+                    var options = {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(update_user)
+                    };
+                    fetch("http://localhost:8080/user/"+user.uid, options)
+                        .then((res) => {
+                        })
+                    if(user.uid===data_json.driver.uid)
+                    {
+                        var update_carshare = {has_validated : true, co2_economy:economy, experience:experience_earned};
+                        var options = {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(update_carshare)
+                        };
+                        fetch("http://localhost:8080/carshare/"+carshareId, options)
+                        .then((res) => {
+                        })
                     }
-                }
-
-                const economy = economyCO2.calcul_economy(data_json.distance, data_json.max_passenger, data_json.driver.car_type);
-                const time_carshare = new time.Time(0, Math.round(data_json.distance+10)); //temps du carshare en minutes (formule : temps = distance en km+10)
-                var endHour = new time.Time(parseInt(data_json.schedule.substring(11,13)), parseInt(data_json.schedule.substring(14,16)));
-                endHour.addMinutes(time_carshare.getTotalMinutes());
-                const carshare_user = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16),
-                    endHour:endHour.toString(), carShareTime:time_carshare.toString(), startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
-                    co2Saved:economy, level:data_json.driver.level, experience:data_json.driver.experience, nbPeople:data_json.max_passenger};
-                const bonus = {bonusStreak:1.2, bonusPollution:data_json.bonus_pollution, bonusDay: 1.5};
-                var nbPeople;
-                if(user.uid===data_json.driver.uid) nbPeople = carshare_user.nbPeople;
-                else nbPeople=0;
-                const experience_earned = levels.calculate_experience_carShare(nbPeople, bonus.bonusStreak, bonus.bonusPollution, bonus.bonusDay);
-                const level_up  = levels.level_up(carshare_user.level, carshare_user.experience, experience_earned, 0);
-                const level_end = carshare_user.level + level_up;
-                const experience_end = levels.experience_user_end_carShare(carshare_user.level, carshare_user.experience, experience_earned);
-
-                setData({carShare:carshare_user, bonus:bonus, experience_earned:experience_earned,
-                    level_up:level_up, level_end:level_end, experience_end:experience_end});
-                
-                var user_copy = JSON.parse(JSON.stringify(user));
-
-                user_copy.level = level_end;user_copy.experience=experience_end;user_copy.co2_economy=(user_copy.co2_economy)+economy;
-                user_copy.kilometers=user_copy.kilometers+data_json.distance;user_copy.nb_carshares=user_copy.nb_carshares+1;
-                updateUser(user_copy);
-                var update_user = {uid:user.uid, level:level_end, experience:experience_end, 
-                    co2_economy: (user.co2_economy)+economy, kilometers:user.kilometers+data_json.distance, nb_carshares:user.nb_carshares+1};
-                var options = {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(update_user)
-                };
-                fetch("http://localhost:8080/user/"+user.uid, options)
-                    .then((res) => {
-                    })
-                if(user.uid===data_json.driver.uid)
-                {
-                    var update_carshare = {has_validated : true, co2_economy:economy, experience:experience_earned};
-                    var options = {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(update_carshare)
-                    };
-                    fetch("http://localhost:8080/carshare/"+carshareId, options)
-                    .then((res) => {
-                    })
-                }
-                else 
-                {
-                    var update_passenger = {has_validated : true, experience:experience_earned};
-                    var options = {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(update_passenger)
-                    };
-                    fetch("http://localhost:8080/passenger?carshare="+carshareId+"&user="+user.uid, options)
-                    .then((res) => {
-                    })
-                }
-                
-                await updateBadge.updateLevelBadge(user.uid, 0);
-
+                    else 
+                    {
+                        var update_passenger = {has_validated : true, experience:experience_earned};
+                        var options = {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(update_passenger)
+                        };
+                        fetch("http://localhost:8080/passenger?carshare="+carshareId+"&user="+user.uid, options)
+                        .then((res) => {
+                        })
+                    }
+                    
+                    await updateBadge.updateLevelBadge(user.uid, 0);
+                }   
 
             } catch (error) {
                 console.error("Erreur lors de la récupération du covoiturage :", error);
+                navigate("/home");
             }
         };
 
@@ -290,7 +292,7 @@ export function EndCarshareView(){
                     <div className="carShare-co2-saved">
                         <div className="row">
                             <div className="col center" style={{ marginTop:"10px" }}>
-                                <p><strong style={{ fontSize:"25px" }}>{data.carShare.co2Saved.toPrecision(3)/1000}kg CO<sub>2</sub> économisés</strong></p>
+                                <p><strong style={{ fontSize:"25px" }}>{data.carShare.co2Saved}kg CO<sub>2</sub> économisés</strong></p>
                             </div>
                             <div className="col" style={{ maxWidth:"150px", paddingRight:"50px", marginTop:"10px" }}>
                                 <img className="center-picture" src={`../src/images/co2/co2_vert.png`} alt="Image CO2" width="90%"/>
