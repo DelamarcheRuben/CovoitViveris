@@ -118,7 +118,7 @@ extends org.springframework.data.repository.CrudRepository&lt;<a href="../model/
 <li>
 <section class="detail" id="findNotFullCarshares(java.lang.Integer)">
 <h3>findNotFullCarshares</h3>
-<div class="member-signature"><span class="annotations">@Query(value="SELECT Carshare.* FROM Carshare LEFT JOIN Passenger ON(uid=uid_carshare) WHERE (uid_passenger&lt;&gt; :id_user OR uid_passenger IS NULL) AND UID_driver&lt;&gt; :id_user AND (NOT is_Full OR is_Full IS NULL) ",
+<div class="member-signature"><span class="annotations">@Query(value="SELECT Carshare.* FROM Carshare LEFT JOIN Passenger ON(uid=uid_carshare) WHERE (uid_passenger&lt;&gt; :id_user OR uid_passenger IS NULL) AND UID_driver&lt;&gt; :id_user AND (NOT is_full OR is_full IS NULL) ",
        nativeQuery=true)
 </span><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="../model/Carshare.html" title="class in com.viveris.api.model">Carshare</a>&gt;</span>&nbsp;<span class="element-name">findNotFullCarshares</span><wbr><span class="parameters">(@Param("id_user")
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;id_user)</span></div>
