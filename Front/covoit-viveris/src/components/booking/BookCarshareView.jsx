@@ -9,6 +9,9 @@ import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {useSnackbar} from "../../context/SnackbarContext.jsx";
 
+
+
+
 export function BookCarshareView(){
     const [passengers, setPassengers] = useState([]);
     const { user } = useUser();
@@ -17,6 +20,7 @@ export function BookCarshareView(){
     const location = useLocation();
     const [carshare, setCarshare] = useState();
     const { openSnackbar } = useSnackbar();
+    
 
     useEffect(() => {
         if (location.state && location.state.carshare) {
@@ -46,14 +50,20 @@ export function BookCarshareView(){
             })
         };
 
+
         fetch('http://localhost:8080/passenger', passenger)
+
             .then(response => {
                 if (!response.ok) {
                     throw new Error('La réservation a échoué. Veuillez réessayer.');
                     openSnackbar('La réservation a échoué', 'error');
                 }
+
                 openSnackbar('Le covoiturage a été réservé', 'success');
                 navigate("/home");
+                    
+              
+
             })
             .catch(error => {
                 openSnackbar(error.message, 'error');

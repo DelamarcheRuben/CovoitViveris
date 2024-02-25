@@ -113,7 +113,6 @@ export function BookCarshareViewDriver(userDriver){
                     <div className="container-badge-booking" style={{ marginTop:"5px", maxWidth:"85%" }}>
                         {ownedBadges.map((data, index) => (
                             <div key={index} className="item-badge-booking">
-                                <img className="center-picture" src={`../../src/images/badge/${data.badge.picture_badge}_${data.level}.png`} alt={`Badge ${data.badge.title}`} width="50%"/>
                             </div>
                         ))}
                     </div>
@@ -156,7 +155,6 @@ export function BookCarshareViewDriver(userDriver){
                             <div className="container-badge-booking" style={{ marginTop:"5px", marginLeft:"-15px" }}>
                                 {ownedBadges.map((data, index) => (
                                     <div key={index} className="item-badge-booking">
-                                        <img className="center-picture" src={`../../src/images/badge/${data.badge.picture_badge}_${data.level}.png`} alt={`Badge ${data.badge.title}`} width="80%"/>
                                     </div>
                                 ))}
                             </div>

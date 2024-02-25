@@ -22,7 +22,7 @@ VALUES
 
 -- Insertion des utilisateurs (en référençant l'adresse et la compagnie)
 INSERT INTO USERS (pseudo, password, last_name, first_name, email, job, address, picture_background, picture_profile, car_type, fuel_consumption, level, experience, bonus_loyalty, kilometers, nb_carshares, co2_economy, UID_company) VALUES
-('Esteban', '', 'Doe', 'Esteban', 'esteban@neraudau.fr', 'Dev Full-Stack', 1, 'desert', 1, 0, 5.5, 9, 50, 10, 8754, 549, 1.2, 1),
+('Esteban', '', 'Doe', 'Esteban', 'messagecovoit@gmail.com', 'Dev Full-Stack', 1, 'desert', 1, 0, 5.5, 9, 50, 10, 8754, 549, 1.2, 1),
 ('Alexandra', '', 'Smith', 'Alexandra', 'alexandra@example.com', 'Business Analyst', 2, 'land', 1, 1, 6.2, 2, 12, 5, 2750, 93, 0.9, 1),
 ('JulieMartin', '', 'Martin', 'Julie', 'julie.martin@viveris.fr', 'Data Scientist', 5, 'mountain', 1, 2, 0.0, 4, 25, 5, 1620, 30, 0.8, 1),
 ('LucasDurand', '', 'Durand', 'Lucas', 'lucas.durand@viveris.fr', 'Système d\'Information', 4, 'forest', 1, 0, 6.5, 3, 15, 3, 980, 15, 0.5, 1),
