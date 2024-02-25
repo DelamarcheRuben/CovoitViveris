@@ -112,7 +112,7 @@ export function EndCarshareView(){
                     })
                 }
                 
-                await updateBadge.updateLevelBadge(user.uid);
+                await updateBadge.updateLevelBadge(user.uid, 0);
 
 
             } catch (error) {
