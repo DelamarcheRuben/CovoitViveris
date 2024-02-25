@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 
 import com.viveris.api.model.Address;
 import com.viveris.api.model.Carshare;
+import com.viveris.api.model.Passenger;
 import com.viveris.api.repository.AddressRepository;
 import com.viveris.api.model.User;
 import com.viveris.api.repository.CarshareRepository;
+import com.viveris.api.repository.PassengerRepository;
 import com.viveris.api.repository.UserRepository;
 
 import lombok.Data;
@@ -30,6 +32,9 @@ public class CarshareService {
 
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	@Autowired
+	private PassengerRepository passengerRepository;
 
 	public Optional<Carshare> getCarshare(final Long id) {
 		return carshareRepository.findById(id);
@@ -93,6 +98,23 @@ public class CarshareService {
 		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 		Float distance = (float) (R*c);
 		Carshare.setDistance(distance);
+		
+		if(Carshare.getHas_validated())
+		{
+			boolean finished = true;
+			Iterable<Passenger> passengers = passengerRepository.FindAllByIdCarshare(Carshare.uid);
+			for(Passenger p:passengers)
+			{
+				if(!p.has_validated) 
+				{
+					finished = false;
+					break;
+				}
+			}
+			Carshare.setFinished(finished);
+		}
+		
+		
 		Carshare savedCarshare = carshareRepository.save(Carshare);
 		return savedCarshare;
 	}

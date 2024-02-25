@@ -21,14 +21,14 @@ VALUES
     ('Nanterre', 'Hauts-de-Seine', 92000, 'Rue Maurice Thorez', 7, 48.892, 2.2069);
 
 -- Insertion des utilisateurs (en référençant l'adresse et la compagnie)
-INSERT INTO USERS (pseudo, password, last_name, first_name, email, job, address, picture_background, car_type, fuel_consumption, level, experience, bonus_loyalty, kilometers, nb_carshares, CO2_economy, UID_company) VALUES
-('Esteban', '', 'Doe', 'Esteban', 'esteban@neraudau.fr', 'Dev Full-Stack', 1, 'desert', 'Sedan', 5.5, 9, 50, 10, 8754, 549, 1.2, 1),
-('Alexandra', '', 'Smith', 'Alexandra', 'alexandra@example.com', 'Business Analyst', 2, 'land', 'Compact', 6.2, 2, 12, 5, 2750, 93, 0.9, 1),
-('JulieMartin', '', 'Martin', 'Julie', 'julie.martin@viveris.fr', 'Data Scientist', 5, 'mountain', 'Electric', 0.0, 4, 25, 5, 1620, 30, 0.8, 1),
-('LucasDurand', '', 'Durand', 'Lucas', 'lucas.durand@viveris.fr', 'Système d\'Information', 4, 'forest', 'Diesel', 6.5, 3, 15, 3, 980, 15, 0.5, 1),
-('EmiliePetit', '', 'Petit', 'Emilie', 'emilie.petit@viveris.fr', 'Ingénieur logiciel', 3, 'mountain', 'Hybride', 4.2, 5, 40, 7, 2500, 45, 1.1, 1),
-('RaphaelLefevre', '', 'Lefevre', 'Raphael', 'raphael.lefevre@viveris.fr', 'Architecte réseau', 2, 'forest', 'Essence', 7.5, 6, 60, 9, 3200, 60, 1.4, 1),
-('SophieBertrand', '', 'Bertrand', 'Sophie', 'sophie.bertrand@viveris.fr', 'Chef de projet IT', 1, 'desert', 'GPL', 5.8, 7, 75, 10, 4100, 75, 1.7, 1);
+INSERT INTO USERS (pseudo, password, last_name, first_name, email, job, address, picture_background, picture_profile, car_type, fuel_consumption, level, experience, bonus_loyalty, kilometers, nb_carshares, co2_economy, UID_company) VALUES
+('Esteban', '', 'Doe', 'Esteban', 'esteban@neraudau.fr', 'Dev Full-Stack', 1, 'desert', 1, 0, 5.5, 9, 50, 10, 8754, 549, 1.2, 1),
+('Alexandra', '', 'Smith', 'Alexandra', 'alexandra@example.com', 'Business Analyst', 2, 'land', 1, 1, 6.2, 2, 12, 5, 2750, 93, 0.9, 1),
+('JulieMartin', '', 'Martin', 'Julie', 'julie.martin@viveris.fr', 'Data Scientist', 5, 'mountain', 1, 2, 0.0, 4, 25, 5, 1620, 30, 0.8, 1),
+('LucasDurand', '', 'Durand', 'Lucas', 'lucas.durand@viveris.fr', 'Système d\'Information', 4, 'forest', 1, 0, 6.5, 3, 15, 3, 980, 15, 0.5, 1),
+('EmiliePetit', '', 'Petit', 'Emilie', 'emilie.petit@viveris.fr', 'Ingénieur logiciel', 3, 'mountain', 1, 1, 4.2, 5, 40, 7, 2500, 45, 1.1, 1),
+('RaphaelLefevre', '', 'Lefevre', 'Raphael', 'raphael.lefevre@viveris.fr', 'Architecte réseau', 2, 'forest', 1, 2, 7.5, 6, 60, 9, 3200, 60, 1.4, 1),
+('SophieBertrand', '', 'Bertrand', 'Sophie', 'sophie.bertrand@viveris.fr', 'Chef de projet IT', 1, 'desert', 1, 0, 5.8, 7, 75, 10, 4100, 75, 1.7, 1);
 
 -- Insertion des carshares (en référençant les adresses et les utilisateurs)
 INSERT INTO CARSHARE (max_passenger, is_full, schedule, start_place, end_place, distance, bonus_pollution, comeback, UID_driver) VALUES

@@ -24,6 +24,7 @@ public class OwnedBadge {
     @EmbeddedId
     public OwnedBadgeId uid;
 
+    /*
     @MapsId("uid_user")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="UID_user", referencedColumnName="UID")
@@ -33,6 +34,7 @@ public class OwnedBadge {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="UID_badge", referencedColumnName="UID")
     public Badge badge;
+    */
     
     public Integer level;
 

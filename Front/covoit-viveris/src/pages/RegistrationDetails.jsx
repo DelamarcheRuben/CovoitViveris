@@ -1,6 +1,6 @@
 import React from "react";
 import { useUser } from "../context/UserContext.jsx";
-import RegistrationDetailsView from "../components/registerDetails/RegistrationDetailsView.jsx";
+import RegistrationDetailsView from "../components/account/RegistrationDetailsView.jsx";
 
 const RegistrationDetails = () => {
   const { user } = useUser();

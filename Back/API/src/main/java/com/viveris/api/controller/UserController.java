@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viveris.api.model.Address;
+import com.viveris.api.model.Company;
 import com.viveris.api.model.User;
+import com.viveris.api.service.AddressService;
+import com.viveris.api.service.CompanyService;
 import com.viveris.api.service.UserService;
 
 @RestController
@@ -24,6 +27,12 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AddressService addressService;
+	
+	@Autowired
+	private CompanyService companyService;
 	
 	/**
 	 * Create - Add a new user
@@ -109,13 +118,13 @@ public class UserController {
 			String job = user.getJob();
 			if(job!=null) currentUser.setJob(job);
 			
-			Address address = user.getAddress();
-			if(address!=null) currentUser.setAddress(address);
-			
 			String picture_background = user.getPicture_background();
 			if(picture_background!=null) currentUser.setPicture_background(picture_background);
 			
-			String car_type = user.getCar_type();
+			String picture_profile = user.getPicture_profile();
+			if(picture_profile!=null) currentUser.setPicture_profile(picture_profile);
+			
+			Integer car_type = user.getCar_type();
 			if(car_type!=null) currentUser.setCar_type(car_type);
 			
 			Float fuel_consumption = user.getFuel_consumption();
@@ -137,6 +146,27 @@ public class UserController {
 			
 			Float co2_economy = user.getCo2_economy();
 			if(co2_economy!=null) currentUser.setCo2_economy(co2_economy);
+			
+			Optional<Address> address = addressService.findAddress(user.address.city, user.address.department,
+					user.address.postcode, user.address.road, user.address.house_number);
+			if(address.isPresent())
+			{
+				currentUser.setAddress(address.get());
+			}
+			else
+			{
+				currentUser.setAddress(addressService.saveAddress(user.getAddress()));
+			}
+			
+			Optional<Company> company = companyService.findCompany(user.company.name);
+			if(company.isPresent())
+			{
+				currentUser.setCompany(company.get());
+			}
+			else
+			{
+				currentUser.setCompany(companyService.saveCompany(user.getCompany()));
+			}
 			
 			userService.saveUser(currentUser);
 			return currentUser;

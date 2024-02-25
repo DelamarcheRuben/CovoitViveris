@@ -33,6 +33,12 @@ public class AddressService {
 		Address savedAddress = addressRepository.save(address);
 		return savedAddress;
 	}
+	
+	public Optional<Address> findAddress(String city, String department,
+					Integer postcode, String road, Integer house_number)
+	{
+		return addressRepository.findAddress(city, department, postcode, road, house_number);
+	}
 
 
 
