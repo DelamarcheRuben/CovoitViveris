@@ -4,7 +4,6 @@ import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import CheckIcon from '@mui/icons-material/Check';
 import {useSnackbar} from "../../context/SnackbarContext.jsx";
-import * as economyCO2     from "../../functions/economyCO2.js";
 
 const AutocompleteInput = ({ value, onChange, placeholder, setOutput }) => {
 
@@ -79,28 +78,51 @@ const AutocompleteInput = ({ value, onChange, placeholder, setOutput }) => {
     );
 };
 
-const RegistrationDetailsView = () => {
+export function ProfileUpdateView(){
 
     const navigate = useNavigate();
     const windowWidth = useWindowWidth();
+    const { user, updateUser } = useUser();
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [job, setJob] = useState('');
-    const [address, setAddress] = useState('');
-    const [addressPlace, setAddressPlace] = useState('');
-    const [carType, setCarType] = useState('Citadine - Essence');
-    const [co2Emission, setCo2Emission] = useState('135');
-    const [pictureBackground, setPictureBackground] = useState('land');
-    const [pictureProfile, setPictureProfile] = useState('1');
-    const [company, setCompany] = useState('1|viveris');
-    const { snackbar, openSnackbar, closeSnackbar } = useSnackbar();
+    const co2Emissioncar = () => {
+        let val = 135;
 
-    const { user } = useUser();
+        if(user.car_type == "Citadine - Diesel"){
+            val = 115;
+        }
+        else if(user.car_type == "Familiale - Essence"){
+            val = 160;
+        }
+        else if(user.car_type == "Familiale - Diesel"){
+            val = 140;
+        }
+        else if(user.car_type == "Sportive - Essence"){
+            val = 210;
+        }
+        else if(user.car_type == "Sportive - Diesel"){
+            val = 190;
+        }
+        else if(user.car_type == "Electrique/Hybride"){
+            val = 50;
+        }
+        return val;
+    };
+
+    const [firstName, setFirstName] = useState(user.first_name);
+    const [lastName, setLastName] = useState(user.last_name);
+    const [job, setJob] = useState(user.job);
+    const [address, setAddress] = useState(user.address.houseRoad+", "+user.address.cityPostcode);
+    const [addressPlace, setAddressPlace] = useState(null);
+    const [carType, setCarType] = useState(co2Emissioncar() + "|" + user.car_type);
+    const [co2Emission, setCo2Emission] = useState(co2Emissioncar());
+    const [pictureBackground, setPictureBackground] = useState(user.picture_background);
+    const [pictureProfile, setPictureProfile] = useState(user.picture_profile);
+    const [company, setCompany] = useState(user.company.uid + "|" + user.company.name);
+    const { openSnackbar } = useSnackbar();
 
     const handleCreateClick = () => {
 
-        if (!address) {
+        if (!address || firstName == '' || lastName == '' || job == '') {
             openSnackbar('Certains champs sont erronés', 'error');
             console.log("snackbar champ erronés")
             return;
@@ -113,52 +135,71 @@ const RegistrationDetailsView = () => {
             var postcode     = null;
             var road         = null;
             var house_number = null;
+            var latitude     = null;
+            var longitude    = null;
 
-            //Vérification des différents types d'agglomérations dans l'ordre décroissant de taille
-            if (typeof addressPlace.address.municipality != 'undefined') {
-                var city = addressPlace.address.municipality;
+            if(addressPlace == null){
+                city         = user.address.city;
+                department   = user.address.department;
+                postcode     = user.address.postcode;
+                road         = user.address.road;
+                house_number = user.address.house_number;
+                latitude     = user.address.latitude;
+                longitude    = user.address.longitude;
+            }
+            else{
+                //Vérification des différents types d'agglomérations dans l'ordre décroissant de taille
+                if (typeof addressPlace.address.municipality != 'undefined') {
+                    var city = addressPlace.address.municipality;
+                }
+
+                if (typeof addressPlace.address.city != 'undefined') {
+                    var city = addressPlace.address.city;
+                }
+
+                if (typeof addressPlace.address.town != 'undefined') {
+                    var city = addressPlace.address.town;
+                }
+
+                if (typeof addressPlace.address.village != 'undefined') {
+                    var city = addressPlace.address.village;
+                }
+
+                if (typeof addressPlace.address.hamlet != 'undefined') {
+                    var city = addressPlace.address.hamlet;
+                }
+
+                if (typeof addressPlace.address.county != 'undefined') {
+                    var department = addressPlace.address.county;
+                }
+
+                if (typeof addressPlace.address.postcode != 'undefined') {
+                    var postcode = addressPlace.address.postcode;
+                }
+
+                if (typeof addressPlace.address.road != 'undefined') {
+                    var road = addressPlace.address.road;
+                }
+
+                if (typeof addressPlace.address.house_number != 'undefined') {
+                    var house_number = addressPlace.address.house_number;
+                }
+
+                //Cas particulier pour Paris, où le département est aussi la ville
+                if (department === null && start_city === "Paris") {
+                    var department = "Paris";
+                }
+
+                latitude  = addressPlace.lat;
+                longitude = addressPlace.lon;
             }
 
-            if (typeof addressPlace.address.city != 'undefined') {
-                var city = addressPlace.address.city;
-            }
+            
 
-            if (typeof addressPlace.address.town != 'undefined') {
-                var city = addressPlace.address.town;
-            }
-
-            if (typeof addressPlace.address.village != 'undefined') {
-                var city = addressPlace.address.village;
-            }
-
-            if (typeof addressPlace.address.hamlet != 'undefined') {
-                var city = addressPlace.address.hamlet;
-            }
-
-            if (typeof addressPlace.address.county != 'undefined') {
-                var department = addressPlace.address.county;
-            }
-
-            if (typeof addressPlace.address.postcode != 'undefined') {
-                var postcode = addressPlace.address.postcode;
-            }
-
-            if (typeof addressPlace.address.road != 'undefined') {
-                var road = addressPlace.address.road;
-            }
-
-            if (typeof addressPlace.address.house_number != 'undefined') {
-                var house_number = addressPlace.address.house_number;
-            }
-
-            //Cas particulier pour Paris, où le département est aussi la ville
-            if (department === null && start_city === "Paris") {
-                var department = "Paris";
-            }
-
+            let car  = carType.split("|")[1];
             let comp = company.split("|");
 
-            var options = {
+            var userDetails = {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -173,10 +214,10 @@ const RegistrationDetailsView = () => {
                         postcode: postcode,
                         road: road,
                         house_number: house_number,
-                        latitude: addressPlace.lat,
-                        longitude: addressPlace.lon
+                        latitude: latitude,
+                        longitude: longitude
                     }, 
-                    car_type: carType.split("|")[1],
+                    car_type: car,
                     picture_background: pictureBackground,
                     picture_profile: pictureProfile,
                     company:{
@@ -186,21 +227,22 @@ const RegistrationDetailsView = () => {
                 })
             };
 
-            fetch("http://localhost:8080/user/" + user.uid, options)
+            fetch("http://localhost:8080/user/" + user.uid, userDetails)
             .then((res) => {
-                navigate('/home');
                 if (!res.ok){
                     throw new Error ("La validation des informations a échoué. Veuillez réessayer");
                     openSnackbar('La validation des informations s\'est perdue en chemin. Réessayez', 'error')
                 }
-                openSnackbar('Votre profil a été complété !', 'success', );
+                openSnackbar('Votre profil a été modifié !', 'success', );
 
-                
+                fetch("http://localhost:8080/user/"+user.uid)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    updateUser(data);
+                });
             });
-
-            openSnackbar('Votre compte est complété !', 'success');
-
-
         }
     }
 
@@ -214,7 +256,6 @@ const RegistrationDetailsView = () => {
 
     return (user &&
         <div className="creation-form">
-            <p className="center" style={{ marginBottom: "20px" }}><strong style={{ fontSize: "25px" }}>Bienvenue {user.pseudo},<br></br> Renseigne tes informations !</strong></p>
 
             <label> Prénom :
                 <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Entrez votre prénom"/>
@@ -235,14 +276,14 @@ const RegistrationDetailsView = () => {
             <div className="row" style={{ marginTop:"20px" }}>
                 <div className="col">
                     <label> Type de voiture :
-                        <select id="background" value={carType.split("|")[1]} onChange={handleSelectCarTypeChange}>
-                            {
-                                economyCO2.type.map(element => {
-                                    return(
-                                        <option value={element.cons+"|"+element.id} key={"option_"+element.id}>{element.name}</option>
-                                    )
-                                })
-                            }
+                        <select id="background" value={carType} onChange={handleSelectCarTypeChange}>
+                            <option value={"135|Citadine - Essence"}>Citadine - Essence</option>
+                            <option value={"115|Citadine - Diesel"}>Citadine - Diesel</option>
+                            <option value={"160|Familiale - Essence"}>Familiale - Essence</option>
+                            <option value={"140|Familiale - Diesel"}>Familiale - Diesel</option>
+                            <option value={"210|Sportive - Essence"}>Sportive - Essence</option>
+                            <option value={"190|Sportive - Diesel"}>Sportive - Diesel</option>
+                            <option value={"50|Electrique/Hybride"}>Electrique/Hybride</option>
                         </select>
                     </label>
                 </div>
@@ -268,7 +309,7 @@ const RegistrationDetailsView = () => {
             <div className="row" style={{ marginTop:"20px" }}>
                 <div className="col">
                     <label> Avatar utilisateur :
-                        <select id="background" value={pictureBackground} onChange={e => setPictureBackground(e.target.value)}>
+                        <select id="background" value={pictureProfile} onChange={e => setPictureProfile(e.target.value)}>
                             <option value={"1"}>1</option>
                             <option value={"2"}>2</option>
                             <option value={"3"}>3</option>
@@ -278,7 +319,7 @@ const RegistrationDetailsView = () => {
                     </label>
                 </div>
                 <div className="col">
-                    <img className="center-picture" src={`../../src/images/profil_picture_${pictureBackground}.png`} alt="Thème de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
+                    <img className="center-picture" src={`../../src/images/profil_picture_${pictureProfile}.png`} alt="Thème de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
                 </div>
             </div>
             
@@ -305,8 +346,3 @@ const RegistrationDetailsView = () => {
     );
 
 };
-
-export default RegistrationDetailsView;
-
-
-

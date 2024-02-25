@@ -3,21 +3,22 @@
 const DIESEL_CONS = 130;//g/km
 const ESSENCE_CONS = 131;//g/km
 
-export const type = {
-    diesel:0,
-    essence:1,
-    electric:2
-}
+export const type = [
+    {id:0,cons:135,name:"Citadine - Essence"},
+    {id:1,cons:115,name:"Citadine - Diesel"},
+    {id:2,cons:160,name:"Familiale - Essence"},
+    {id:3,cons:140,name:"Familiale - Diesel"},
+    {id:4,cons:210,name:"Sportive - Essence"},
+    {id:5,cons:190,name:"Sportive - Diesel"},
+    {id:6,cons:50,name:"Electrique/Hybride"}
+]
 
 
 export function calcul_economy(distance, nb_passengers, type)
 {
     var cons;
-    switch (type) {
-        case 0: cons = DIESEL_CONS;break;
-        case 1: cons = ESSENCE_CONS;break;
-        case 2: cons = ESSENCE_CONS;break;
-        default: cons = ESSENCE_CONS;break;
-    }
+    array.forEach(element => {
+        if(element.id = type) cons = element.cons;
+    });
     return distance*cons*nb_passengers;
 }

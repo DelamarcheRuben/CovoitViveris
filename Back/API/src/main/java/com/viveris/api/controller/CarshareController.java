@@ -172,9 +172,9 @@ public class CarshareController {
 			if(has_validated!=null) {
 				currentCarshare.setHas_validated(has_validated);
 			}
-			Float economy = carshare.getCO2_economy();
+			Float economy = carshare.getCo2_economy();
 			if(economy!=null) {
-				currentCarshare.setCO2_economy(economy);
+				currentCarshare.setCo2_economy(economy);
 			}
 			carshareService.saveCarshare(currentCarshare);
 			return currentCarshare;

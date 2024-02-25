@@ -55,7 +55,7 @@ public class OwnedBadgeController {
 	 * @return - An Iterable object of OwnedBadge full filled
 	 */
 	@GetMapping("/ownedbadges")
-	public Iterable<OwnedBadge> getOwnedBadges(@RequestParam(required=false) Integer user_id) {
+	public Iterable<OwnedBadge> getOwnedBadges(@RequestParam(required=false) Long user_id) {
 		if(user_id!=null) return ownedBadgeService.getOwnedBadgesByUserId(user_id);
 		return ownedBadgeService.getOwnedBadges();
 	}

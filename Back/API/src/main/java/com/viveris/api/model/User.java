@@ -42,7 +42,9 @@ public class User {
     
     public String picture_background;
     
-    public String car_type;
+    public String picture_profile;
+    
+    public Integer car_type;
     
     public Float fuel_consumption;
     
@@ -56,7 +58,6 @@ public class User {
     
     public Float bonus_loyalty;
     
-    @Column(name="CO2_economy")
     public Float co2_economy;
     
     @ManyToOne(fetch = FetchType.EAGER)

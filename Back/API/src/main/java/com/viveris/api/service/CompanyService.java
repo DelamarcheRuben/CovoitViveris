@@ -35,4 +35,8 @@ public class CompanyService {
 		return savedCompany;
 	}
 
+	public Optional<Company> findCompany(String name) {
+		return companyRepository.findCompanyByName(name);
+	}
+
 }

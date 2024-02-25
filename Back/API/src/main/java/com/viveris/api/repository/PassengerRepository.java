@@ -14,4 +14,8 @@ public interface PassengerRepository extends CrudRepository<Passenger, Passenger
 	
 	@Query(value = "SELECT * FROM Passenger WHERE uid_carshare= :id_carshare", nativeQuery = true)
 	Iterable<Passenger> FindAllByIdCarshare(@Param("id_carshare") Long id_carshare);
+
+	
+	@Query(value = "SELECT DISTINCT p.* FROM Passenger p JOIN Carshare c ON(uid_carshare=uid) WHERE uid_passenger = :id_user", nativeQuery = true)
+	Iterable<Passenger> findDistinctPassengersFromUser(@Param("id_user") Long id_user);
 }

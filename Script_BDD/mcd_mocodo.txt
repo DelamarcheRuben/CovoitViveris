@@ -10,7 +10,7 @@ PLAY, 0N USER, 0N LEAGUE : experience
 
 CARSHARE: UID, max_passenger, isFull, schedule, start_place, end_place, distance, bonus_pollution
 DRIVE, 11 CARSHARE, 0N [driver] USER 
-USER: UID, pseudo, password, last_name, first_name, email, companyID, car_type, fuel, level, experience, bonus_loyalty, kilometers, nb_carshares, CO2_economy
+USER: UID, pseudo, password, last_name, first_name, email, companyID, car_type, fuel, level, experience, bonus_loyalty, kilometers, nb_carshares, co2_economy
 SPONSOR, 0N USER, 11 USER
 :
 
