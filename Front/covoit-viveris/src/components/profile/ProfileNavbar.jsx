@@ -64,8 +64,8 @@ export function ProfileNavbar(){
             {user && windowWidth < 1105 && 
             <div className="small-screen">
                 <img className="center-picture" src={`../../src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ width: "100%", maxHeight: "125px", marginTop:"5px" }}/>
-                <img className="center-picture" src={`../../src/images/profil_picture_${user.picture_profile}.png`} alt="Photo profil" style={{ width: "150px", marginTop: "-90px" }}/>
-                <p className="color-company center" style={{ marginTop: "-46px" }}><strong style={{ fontSize: "12px" }}> {user.level} </strong></p>
+                <img className="center-picture" src={`../../src/images/profile_picture/profile_picture_${user.picture_profile}.png`} alt="Photo profil" style={{ width: "130px", marginTop: "-60px" }}/>
+                <p className="color-company center" style={{ marginTop: "-32px" }}><strong style={{ fontSize: "12px" }}> {user.level} </strong></p>
                 <p className="center" style={{ marginTop: "10px" }}><strong style={{ fontSize: "4.5vw" }}>{user.pseudo}</strong></p>
                 <p className="center" style={{ fontSize:  "3vw" }}>{user.job}, {user.address.city}</p>
 
@@ -127,8 +127,8 @@ export function ProfileNavbar(){
             {user && windowWidth >= 1105 && 
             <div className="large-screen">
                 <img className="center-picture" src={`../../src/images/background_profile/background_${user.picture_background}.png`} alt="Photo profil" style={{ marginTop:"-25px", width: "60%", maxHeight:"150px" }}/>
-                <img className="center-picture" src={`../../src/images/profil_picture_${user.picture_profile}.png`} alt="Photo profil" style={{ width: "250px", marginTop: "-150px" }}/>
-                <p className={`color-company center`} style={{ marginTop: "-70px" }}><strong style={{ fontSize: "22px" }}>{user.level}</strong></p>
+                <img className="center-picture" src={`../../src/images/profile_picture/profile_picture_${user.picture_profile}.png`} alt="Photo profil" style={{ width: "200px", marginTop: "-90px" }}/>
+                <p className={`color-company center`} style={{ marginTop: "-43px" }}><strong style={{ fontSize: "22px" }}>{user.level}</strong></p>
                 <p className="center" style={{ marginTop: "15px" }}><strong style={{ fontSize: "30px" }}>{user.pseudo}</strong></p>
                 <p className="center" style={{ fontSize:  "15px" }}>{user.job}, {user.address.city}</p>
 

@@ -61,27 +61,27 @@ p{
 
 /* ===================== Secondary Features ===================== */
 .margin1-ranking{
-    margin-left: 102px;
+    margin-left: 95px;
 }
 
 .margin2-ranking{
-    margin-left: 98px;
+    margin-left: 91px;
 }
 
 .margin3-ranking{
-    margin-left: 94px;
+    margin-left: 87px;
 }
 
 .margin1-small-ranking{
-    margin-left: 52px;
+    margin-left: 42px;
 }
 
 .margin2-small-ranking{
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .margin3-small-ranking{
-    margin-left: 48px;
+    margin-left: 38px;
 }
 
 .margin1-research{
@@ -97,15 +97,15 @@ p{
 }
 
 .margin1-small-research{
-    margin-left: -11px;
+    margin-left: 0px;
 }
 
 .margin2-small-research{
-    margin-left: -12px;
+    margin-left: -1px;
 }
 
 .margin3-small-research{
-    margin-left: -14px;
+    margin-left: -2px;
 }
 
 .column-item-badge {
@@ -317,7 +317,7 @@ button:hover{
     }
 
     .carshare-container {
-        width: 90%;
+        width: 95%;
         padding: 10px;
     }
 }
@@ -415,7 +415,7 @@ button:hover{
     }
 
     .carshare-container {
-        width: 90%;
+        width: 95%;
         padding: 10px;
     }
 }
@@ -898,7 +898,7 @@ button:hover{
     }
 
     .carshare-container {
-        width: 90%;
+        width: 95%;
         padding: 10px;
     }
 
