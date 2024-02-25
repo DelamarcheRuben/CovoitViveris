@@ -23,9 +23,16 @@ export function ParticipateDetailsView({participate}){
                 <strong>{challengeXp}  </strong>
                 <img src={logoXP} alt="XP Logo" />
             </div>
-            <div className="participate-completion">
-                <span>{challengeProgress}%</span>
+            <div className="participate-progress">
+                <div className="progress-bar-challenge">
+                    <div
+                        className="progress-bar-challenge-fill"
+                        style={{ width: `${challengeProgress}%` }}
+                    ></div>
+                </div>
+                <p>{challengeProgress}%</p>
             </div>
+
         </div>
     );
 }
