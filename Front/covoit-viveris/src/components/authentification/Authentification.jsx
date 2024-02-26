@@ -22,7 +22,7 @@ const Authentification = ({ onLogin, onRegister }) => {
     }
   };
 
-  const [loginEmail,       setLoginEmail]       = useState('');
+  const [loginPseudo,       setLoginEmail]       = useState('');
   const [loginPassword,    setLoginPassword]    = useState('');
   const [registerEmail,    setRegisterEmail]    = useState('');
   const [registerUsername, setRegisterUsername] = useState('');
@@ -54,7 +54,7 @@ const Authentification = ({ onLogin, onRegister }) => {
   };
 
   const handleLoginClick = () => {
-    onLogin(loginEmail, loginPassword);
+    onLogin(loginPseudo, loginPassword);
   };
 
   const handleRegisterClick = () => {
@@ -93,7 +93,7 @@ const Authentification = ({ onLogin, onRegister }) => {
             {isLeftSideActive && (
               <React.Fragment>
                 <div className="row" style={{ marginBottom:"25px" }}>
-                  <input type="text"     id="email"    className="input-stylish center-picture" value={loginEmail}    placeholder="Email professionnel" onChange={handleChangeLoginEmail}    style={{ marginBottom:"10px" }}/>
+                  <input type="text"     id="pseudo"    className="input-stylish center-picture" value={loginPseudo}    placeholder="Nom d'utilisateur" onChange={handleChangeLoginEmail}    style={{ marginBottom:"10px" }}/>
                   <input type="password" id="password" className="input-stylish center-picture" value={loginPassword} placeholder="Mot de passe"        onChange={handleChangeLoginPassword} style={{ marginBottom:"25px" }}/>
                   <p></p>
                   <button className="btn-auth" style={{ marginBottom:"20px" }} onClick={handleLoginClick}>
@@ -105,7 +105,7 @@ const Authentification = ({ onLogin, onRegister }) => {
             {!isLeftSideActive && (
               <React.Fragment>
               <div className="row" style={{ maxHeight:"none" }}>
-                <input type="text"     id="email"    className="input-stylish center-picture" value={registerEmail}    placeholder="Email professionnel" onChange={handleChangeRegisterEmail}    style={{ marginBottom:"10px" }}/>
+                <input type="text"     id="pseudo"    className="input-stylish center-picture" value={registerEmail}    placeholder="Email professionnel" onChange={handleChangeRegisterEmail}    style={{ marginBottom:"10px" }}/>
                 <input type="text"     id="pseudo"    className="input-stylish center-picture" value={registerUsername}    placeholder="Nom d'utilisateur" onChange={handleChangeRegisterUsername}    style={{ marginBottom:"10px" }}/>
                 <input type="password" id="password" className="input-stylish center-picture" value={registerPassword} placeholder="Mot de passe"        onChange={handleChangeRegisterPassword} style={{ marginBottom:"10px" }}/>
                 <input type="password" id="confirmPassword" className="input-stylish center-picture" value={registerConfirmPassword} placeholder="Confirmation mot de passe" onChange={handleChangeRegisterConfirmPassword} style={{ marginBottom:"25px" }}/>                  <p></p>
@@ -137,7 +137,7 @@ const Authentification = ({ onLogin, onRegister }) => {
                   <React.Fragment>
                     <div className="row" style={{ marginBottom:"25px"}}>
                       <p style={{ marginBottom:"10px" }}><strong style={{ fontSize:"30px" }}>CONNEXION</strong></p>
-                      <input type="text"     id="email"    className="input-stylish center-picture" value={loginEmail}    placeholder="Email professionnel" onChange={handleChangeLoginEmail}    style={{ marginBottom:"10px" }}/>
+                      <input type="text"     id="pseudo"    className="input-stylish center-picture" value={loginPseudo}    placeholder="Nom d'utilisateur" onChange={handleChangeLoginEmail}    style={{ marginBottom:"10px" }}/>
                       <input type="password" id="password" className="input-stylish center-picture" value={loginPassword} placeholder="Mot de passe"        onChange={handleChangeLoginPassword} style={{ marginBottom:"25px" }}/>
                       <p></p>
                       <button className="btn-auth" onClick={handleLoginClick}>
@@ -164,7 +164,7 @@ const Authentification = ({ onLogin, onRegister }) => {
                   <React.Fragment>
                   <div className="row" style={{ marginTop:"-55px"}}>
                     <p style={{ marginBottom:"10px" }}><strong style={{ fontSize:"30px" }}>INSCRIPTION</strong></p>
-                    <input type="text"     id="email"    className="input-stylish center-picture" value={registerEmail}    placeholder="Email professionnel" onChange={handleChangeRegisterEmail}    style={{ marginBottom:"10px" }}/>
+                    <input type="text"     id="pseudo"    className="input-stylish center-picture" value={registerEmail}    placeholder="Email professionnel" onChange={handleChangeRegisterEmail}    style={{ marginBottom:"10px" }}/>
                     <input type="text"     id="pseudo"    className="input-stylish center-picture" value={registerUsername}    placeholder="Nom d'utilisateur" onChange={handleChangeRegisterUsername}    style={{ marginBottom:"10px" }}/>
                     <input type="password" id="password" className="input-stylish center-picture" value={registerPassword} placeholder="Mot de passe"        onChange={handleChangeRegisterPassword} style={{ marginBottom:"10px" }}/>
                     <input type="password" id="confirmPassword" className="input-stylish center-picture" value={registerConfirmPassword} placeholder="Confirmation mot de passe" onChange={handleChangeRegisterConfirmPassword} style={{ marginBottom:"15px" }}/>                  <p></p>

@@ -818,6 +818,23 @@ button:hover{
     font-size: 12px; /* Taille du texte augmentée */
 }
 
+.btn-details-disabled {
+    flex-grow: 0; /* Prevent the button from growing */
+    border: none;
+    text-transform: uppercase;
+    background-color: grey;
+    color: var(--backgroundColor);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 8px 12px; /* Ajusté pour garder la taille du bouton plus constante */
+    margin: auto;
+    font-size: 12px; /* Taille du texte augmentée */
+}
+
+.btn-details-disabled:hover{
+    color:white;
+}
+
 /* Add a little space between the elements */
 .carshare-card > *:not(:last-child) {
     margin-right: 10px;

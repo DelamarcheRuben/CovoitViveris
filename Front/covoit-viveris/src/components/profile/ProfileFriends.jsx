@@ -23,39 +23,17 @@ export function ProfileFriends(){
     return (user &&
         <React.Fragment>
             {windowWidth < 1105 && friendList &&
-                <div className="row center-div-picture">
-                    {friendList.sort((a, b) => {
-                        const levelA = (a.user1.uid == user.uid) ? a.user2.level : a.user1.level;
-                        const levelB = (b.user1.uid == user.uid) ? b.user2.level : b.user1.level;
-
-                        return levelB - levelA;
-                    }).map((f, index) => (
-                        <div key={index} style={{ maxWidth:"350px"}}>
-                            {f.uid.uidUser1 == user.uid
-                            ?
-                            <React.Fragment key={index}>
-                                <ProfileFriendsView key={index} friendUser={f.user2}/>
-                            </React.Fragment>
-                            :
-                            <React.Fragment key={index}>
-                                <ProfileFriendsView key={index} friendUser={f.user1}/>
-                            </React.Fragment>
-                            }
-                        </div>
-                    ))} 
-                </div>
-            }
-
-            {windowWidth >= 1105 && friendList &&
-                <div className="row center-div-picture">
-                    <div className="container-profile-friend" style={{ marginTop:"5px", maxWidth:"85%" }}>
-                        {friendList.sort((a, b) => {
+                <div className="row center-div-picture" style={{ marginTop:"20px"}}>
+                    {friendList.length === 0
+                        ? <p className="center"><strong style={{ fontSize:"40px" }}>Aucun ami trouvé</strong></p>
+                        :
+                        friendList.sort((a, b) => {
                             const levelA = (a.user1.uid == user.uid) ? a.user2.level : a.user1.level;
                             const levelB = (b.user1.uid == user.uid) ? b.user2.level : b.user1.level;
 
                             return levelB - levelA;
                         }).map((f, index) => (
-                            <div key={index} className="item-profile-friend"  style={{ maxWidth:"400px"}}>
+                            <div key={index} style={{ maxWidth:"350px"}}>
                                 {f.uid.uidUser1 == user.uid
                                 ?
                                 <React.Fragment key={index}>
@@ -67,9 +45,39 @@ export function ProfileFriends(){
                                 </React.Fragment>
                                 }
                             </div>
-                        ))} 
+                        ))
+                    } 
+                </div>
+            }
+
+            {windowWidth >= 1105 && friendList &&
+                <div className="row center-div-picture">
+                    <div className="container-profile-friend" style={{ marginTop:"5px", maxWidth:"85%" }}>
+                        {friendList.length === 0
+                            ? <p className="center-picture"><strong style={{ fontSize:"40px" }}>Aucun ami trouvé</strong></p>
+                            :
+                            friendList.sort((a, b) => {
+                                const levelA = (a.user1.uid == user.uid) ? a.user2.level : a.user1.level;
+                                const levelB = (b.user1.uid == user.uid) ? b.user2.level : b.user1.level;
+
+                                return levelB - levelA;
+                            }).map((f, index) => (
+                                <div key={index} className="item-profile-friend"  style={{ maxWidth:"400px"}}>
+                                    {f.uid.uidUser1 == user.uid
+                                    ?
+                                    <React.Fragment key={index}>
+                                        <ProfileFriendsView key={index} friendUser={f.user2}/>
+                                    </React.Fragment>
+                                    :
+                                    <React.Fragment key={index}>
+                                        <ProfileFriendsView key={index} friendUser={f.user1}/>
+                                    </React.Fragment>
+                                    }
+                                </div>
+                            ))
+                        } 
                     </div>
-                </div>       
+                </div>
             }
 
         </React.Fragment>
