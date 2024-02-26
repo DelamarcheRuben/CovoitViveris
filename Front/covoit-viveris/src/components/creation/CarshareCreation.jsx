@@ -96,7 +96,7 @@ const CarshareCreation = () => {
 
     const { user } = useUser();
 
-    const handleCreateClick = () => {
+    const handleCreateClick = async () => {
 
         if (!startPlace || !endPlace || !startDate || !startTime) {
             openSnackbar('Certains champs sont erronés', 'error');
@@ -198,6 +198,38 @@ const CarshareCreation = () => {
             if (end_department === null && end_city === "Paris") {
                 var end_department = "Paris";
             }
+            var bonus_pollution = 1.0;
+            try {
+                // Remplacez 'YOUR_API_KEY' par votre clé API OpenAQ
+                const apiKey = 'YOUR_API_KEY';
+                var lon = startPlace.lon.substring(0, 8);
+                var lat = startPlace.lat.substring(0, 8);
+                const response = await fetch(
+                    `https://api.openaq.org/v2/latest?limit=1&page=1&offset=0&sort=desc&parameter_id=5&coordinates=${lat},${lon}&radius=10000&order_by=lastUpdated&dump_raw=false&apikey=${apiKey}`
+                    //`https://api.openaq.org/v2/latest?coordinates=${parisCoordinates.lat},${parisCoordinates.lng}&radius=1000&limit=1&order_by=distance&sort=asc&apikey=${apiKey}`
+                );
+                const data = await response.json();
+                // Vous pouvez adapter ce traitement selon la structure des données retournées par l'API
+                if (data && data.results && data.results.length > 0) {
+                    bonus_pollution=1.0;
+                    for (let i = 0; i < data.results.length; i++) {
+                        if(data.results[0].measurements[0].parameter==="no2"){
+                            const airQualityIndex = data.results[0].measurements[0].value;
+                            if (airQualityIndex <= 40) bonus_pollution = 1.00;
+                            else if (airQualityIndex <= 70) bonus_pollution = 1.05;
+                            else if (airQualityIndex <= 150) bonus_pollution = 1.1;
+                            else if (airQualityIndex <= 200) bonus_pollution = 1.15;
+                            else bonus_pollution = 1.2;
+                            break;
+                        }
+                    }
+                } else {
+                    bonus_pollution = 1.0;
+                }
+            } catch (error) {
+                console.error('Error fetching air quality:', error);
+                bonus_pollution=1.0;
+            }
 
             const options = {
                 method: 'POST',
@@ -207,9 +239,9 @@ const CarshareCreation = () => {
 
                 body: JSON.stringify({
                     max_passenger: numSeats,
-                    is_Full: 'false',
+                    is_full: false,
                     schedule: startDate + ' ' + startTime,
-
+                    bonus_pollution:bonus_pollution,
                     start_place: {
                         city: start_city,
                         department: start_department,

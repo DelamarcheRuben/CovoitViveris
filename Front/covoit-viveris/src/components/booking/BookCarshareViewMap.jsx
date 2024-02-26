@@ -55,7 +55,7 @@ export function BookCarshareViewMap({ carshare }){
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            is_Full: true
+                            is_full: true
                         })
                     };
                     fetch("http://localhost:8080/carshare/" + carshare.uid, carshareUpdate).then((res) => { });

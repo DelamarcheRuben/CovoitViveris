@@ -5,8 +5,7 @@ export function CarshareOfferedCard({ carshare }) {
     const navigate = useNavigate();
 
     const handleDetailsClick = () => {
-        // TODO: Faire la page détails et insérer ici un navigate(/details/idCarshare)
-        console.log('Affichage des détails pour', carshare.id);
+        navigate("/end-carshare",  {state: {idCarshare: carshare.uid}})
     };
 
     return (
@@ -15,7 +14,7 @@ export function CarshareOfferedCard({ carshare }) {
             <div className="carshare-info">
                 <span>de {carshare.start_place.city} vers {carshare.end_place.city}</span>
             </div>
-            <button className="btn-details" onClick={handleDetailsClick}>Détails</button>
+            <button className="btn-details" onClick={handleDetailsClick}>Valider</button>
         </div>
     );
 }

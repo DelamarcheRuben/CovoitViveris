@@ -37,7 +37,6 @@ function HomeChallenges() {
             <h4>Challenges</h4>
             {participates.length === 0
                 ? <p className="center"><strong style={{ fontSize:"150%" }}>Pas de challenges en cours</strong></p>
-
                 : <ParticipateHomeView key={participates[0].uid} participate={participates[0]} />
             }
             <div className="div-btn-challenge">
