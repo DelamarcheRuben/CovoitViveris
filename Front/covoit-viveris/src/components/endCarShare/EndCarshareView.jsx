@@ -15,7 +15,66 @@ export function EndCarshareView(){
 
     const location = useLocation();
     const [carshareId, setCarshareId] = useState('');
+    const [participations, setParticipations] = useState('');
 
+    const getUserParticipations = () =>  {
+        fetch(`http://localhost:8080/participates?id_user=${user.uid}`)
+            .then(response => response.json())
+            .then(data => {
+                setParticipations(data);
+            })
+            .catch(error => {
+                console.error("Erreur lors de la récupération des données de la table 'Participate' : ", error);
+            });
+    }
+
+    const updateParticipationInfo = (challengeId, newValue) => {
+        const participateToUpdate = participations.find(p => p.challenge.uid === challengeId);
+
+        if (!participateToUpdate) {
+            console.error("Aucune participation trouvée pour ce challenge");
+            return;
+        }
+
+        // Préparation des données à mettre à jour selon l'uid du challenge
+        let updatedFields = {};
+        switch (challengeId) {
+            case 1:
+                updatedFields = { kilometers: newValue };
+                break;
+            case 2:
+                updatedFields = { different_passengers: newValue };
+                break;
+            case 3:
+                updatedFields = { completed_rides: newValue };
+                break;
+            case 4:
+                updatedFields = { co2_economy: newValue };
+                break;
+            case 5:
+                updatedFields = { kilometers: newValue };
+            default:
+                console.error("Challenge non reconnu pour la mise à jour");
+                return;
+        }
+
+        // Appel de l'API pour mettre à jour la participation
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedFields)
+        };
+
+        fetch(`http://localhost:8080/participate?challenge=${challengeId}&user=${user.uid}`, requestOptions)
+            .then(response => response.ok ? response.json() : Promise.reject(`Erreur: ${response.statusText} (code: ${response.status})`))
+            .then(data => {
+                console.log(`Participation au challenge ${challengeId} mise à jour avec succès`, data);
+                // Vous pouvez rafraîchir les données de participation ici si nécessaire
+            })
+            .catch(error => {
+                console.error("Erreur lors de la mise à jour de la participation", error);
+            });
+    };
     useEffect(() => {
         const id = location.state?.idCarshare;
         if (id) {
@@ -74,6 +133,7 @@ export function EndCarshareView(){
                     updateUser(user_copy);
                     var update_user = {uid:user.uid, level:level_end, experience:experience_end, 
                         co2_economy: (user.co2_economy)+economy, kilometers:user.kilometers+data_json.distance, nb_carshares:user.nb_carshares+1};
+
                     var options = {
                         method: 'PUT',
                         headers: {
@@ -81,6 +141,7 @@ export function EndCarshareView(){
                         },
                         body: JSON.stringify(update_user)
                     };
+
                     fetch("http://localhost:8080/user/"+user.uid, options)
                         .then((res) => {
                         })
@@ -114,6 +175,17 @@ export function EndCarshareView(){
                     }
                     
                     await updateBadge.updateLevelBadge(user.uid, 0);
+
+                    /* on met a jour chaque défi par un put pour chaque type de défi */
+
+                    //on récupere dans 'participations' les participations de l'utilisateur
+                    getUserParticipations();
+
+                    // Pour chaque participation, on met à jour son avancée avec les données
+                    // nouvellement acquise de la fin de son covoiturage.
+                    // Si le user ne participe pas à certains challenge, ça affichera un message dans la console.
+                    updateParticipationInfo(1, )
+
                 }   
 
             } catch (error) {
@@ -121,7 +193,6 @@ export function EndCarshareView(){
                 navigate("/home");
             }
         };
-
         fetchCarshare();
     }, [carshareId]);
 
