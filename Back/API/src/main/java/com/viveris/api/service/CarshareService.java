@@ -102,7 +102,7 @@ public class CarshareService {
 		if(Carshare.getHas_validated())
 		{
 			boolean finished = true;
-			Iterable<Passenger> passengers = passengerRepository.FindAllByIdCarshare(Carshare.uid);
+			Iterable<Passenger> passengers = passengerRepository.findAllByIdCarshare(Carshare.uid);
 			for(Passenger p:passengers)
 			{
 				if(!p.has_validated) 

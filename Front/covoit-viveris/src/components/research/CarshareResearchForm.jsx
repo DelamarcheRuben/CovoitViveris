@@ -26,7 +26,6 @@ const CarshareResearchForm = () => {
                     d.duration = time_carshare.toString();
                     return d;
                 });
-                console.log(data);
                 updateSearchResults(data); // Mise à jour des résultats dans le contexte
                 navigate("/research/results"); // Naviguer vers la page de résultats
             })

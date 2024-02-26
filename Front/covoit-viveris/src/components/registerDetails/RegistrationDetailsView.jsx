@@ -194,12 +194,9 @@ const RegistrationDetailsView = () => {
                     openSnackbar('La validation des informations s\'est perdue en chemin. Réessayez', 'error')
                 }
                 openSnackbar('Votre profil a été complété !', 'success', );
-
-                
             });
 
             openSnackbar('Votre compte est complété !', 'success');
-
 
         }
     }
@@ -278,7 +275,7 @@ const RegistrationDetailsView = () => {
                     </label>
                 </div>
                 <div className="col">
-                    <img className="center-picture" src={`../../src/images/profil_picture_${pictureBackground}.png`} alt="Thème de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
+                    <img className="center-picture" src={`../../src/images/profil_picture.png`} alt="Thème de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
                 </div>
             </div>
             
@@ -307,6 +304,5 @@ const RegistrationDetailsView = () => {
 };
 
 export default RegistrationDetailsView;
-
 
 

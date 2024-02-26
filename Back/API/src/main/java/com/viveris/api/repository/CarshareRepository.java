@@ -17,7 +17,7 @@ public interface CarshareRepository extends CrudRepository<Carshare, Long> {
 			+ " SELECT uid FROM Carshare LEFT JOIN Passenger ON(uid=uid_carshare) "
 			+ " WHERE (uid_passenger= :id_user) "
 			+ "	OR UID_driver= :id_user) "
-			+ " AND (NOT is_Full OR is_Full IS NULL)", nativeQuery = true)
+			+ " AND (NOT is_full OR is_full IS NULL)", nativeQuery = true)
 	Iterable<Carshare> findNotFullCarshares(@Param("id_user") Long id_user);
 
 	
@@ -28,7 +28,7 @@ public interface CarshareRepository extends CrudRepository<Carshare, Long> {
 			+ "	SELECT uid FROM Carshare LEFT JOIN Passenger ON(uid=uid_carshare) "
 			+ "	WHERE (uid_passenger= :id_user) "
 			+ "	OR UID_driver= :id_user) "
-			+ "	AND (NOT is_Full OR is_Full IS NULL)", nativeQuery = true)
+			+ "	AND (NOT is_full OR is_full IS NULL)", nativeQuery = true)
 	Iterable<Carshare> getSortedCarshares(@Param("id_user") Long id_user, @Param("date") String date);
 
 	@Query(value = "SELECT * FROM Carshare "
@@ -40,9 +40,9 @@ public interface CarshareRepository extends CrudRepository<Carshare, Long> {
 
 	@Query(value = "SELECT * FROM Carshare "
 			+ "WHERE uid IN( "
-			+ " SELECT uid FROM Carshare LEFT JOIN Passenger ON(uid=uid_carshare) "
-			+ " WHERE (uid_passenger= :id_user) "
-			+ "    OR UID_driver= :id_user) ", nativeQuery = true)
+			+ " SELECT uid FROM Carshare c LEFT JOIN Passenger p ON(uid=uid_carshare) "
+			+ " WHERE (uid_passenger= :id_user "
+			+ " OR UID_driver= :id_user) AND c.finished IS TRUE) ", nativeQuery = true)
 	Iterable<Carshare> findHistoryCarshares(Long id_user);
 
 

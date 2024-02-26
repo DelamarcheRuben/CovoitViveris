@@ -143,9 +143,9 @@ public class CarshareController {
 			if(max_passenger!=null) {
 				currentCarshare.setMax_passenger(max_passenger);
 			}
-			Boolean is_Full = carshare.getIs_full();
-			if(is_Full!=null) {
-				currentCarshare.setIs_full(is_Full);
+			Boolean is_full = carshare.getIs_full();
+			if(is_full!=null) {
+				currentCarshare.setIs_full(is_full);
 			}
 			LocalDateTime schedule = carshare.getSchedule();
 			if(schedule!=null) {

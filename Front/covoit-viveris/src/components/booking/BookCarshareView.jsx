@@ -3,10 +3,6 @@ import {useLocation, useNavigate} from "react-router-dom";
 import { useUser }     from "../../context/UserContext.jsx";
 import { BookCarshareViewDriver } from "./BookCarshareViewDriver.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import CheckIcon from '@mui/icons-material/Check';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {useSnackbar} from "../../context/SnackbarContext.jsx";
 
 

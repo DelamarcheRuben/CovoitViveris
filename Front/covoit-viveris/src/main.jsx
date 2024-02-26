@@ -17,11 +17,11 @@ import "./style/header.css";
 import {ThemeProvider, createTheme, StyledEngineProvider} from "@mui/material/styles";
 import CarshareResearchResultsDisplay from "./components/research/CarshareResearchResultDisplay";
 import {SearchResultsProvider} from "./context/SearchResultsContext";
-import AdministrationCarshare from "./components/administration/AdministrationCarshare.jsx";
-import AdministrationChallenge from "./components/administration/AdministrationChallenge.jsx";
 import AdminCarshare from "./pages/AdminCarshare.jsx";
 import {SnackbarProvider} from "./context/SnackbarContext";
 import RegistrationDetails from "./pages/RegistrationDetails.jsx";
+import ChallengeDetails from "./components/challenge/ChallengeDetails.jsx";
+import DetailsCarshare from "./pages/DetailsCarshare.jsx";
 
 // Création d'un thème personnalisé avec les couleurs de votre site
 const theme = createTheme({
@@ -95,6 +95,10 @@ const router = createBrowserRouter([
     element: <div><EndCarShare/></div>
   },
   {
+    path: "/details-carshare",
+    element: <div><DetailsCarshare/></div>
+  },
+  {
     path: "research/book-carshare",
     element: <div><BookCarshare/></div>
   },
@@ -109,6 +113,10 @@ const router = createBrowserRouter([
   {
     path: "admin/carshare/",
     element: <div><AdminCarshare/></div>
+  },
+  {
+    path: "challenge-details/",
+    element: <div><ChallengeDetails/></div>
   }
 ])
 

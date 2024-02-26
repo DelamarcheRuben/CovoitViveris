@@ -77,8 +77,8 @@ public class ChallengeController {
 			if(goal!=null) currentChallenge.setGoal(goal);
 			Float bonus_exp =challenge.getBonus_exp();
 			if(bonus_exp!=null) currentChallenge.setBonus_exp(bonus_exp);
-			LocalDateTime expired_date =challenge.getExpired_date();
-			if(expired_date!=null) currentChallenge.setExpired_date(expired_date);
+			Integer deadline = challenge.getDeadline();
+			if(deadline!=null) currentChallenge.setDeadline(deadline);
 			challengeService.saveChallenge(currentChallenge);
 			return currentChallenge;
 		} else {

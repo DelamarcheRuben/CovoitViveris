@@ -124,7 +124,6 @@ export function ProfileUpdateView(){
 
         if (!address || firstName == '' || lastName == '' || job == '') {
             openSnackbar('Certains champs sont erronés', 'error');
-            console.log("snackbar champ erronés")
             return;
         } else {
             
@@ -315,11 +314,12 @@ export function ProfileUpdateView(){
                             <option value={"3"}>3</option>
                             <option value={"4"}>4</option>
                             <option value={"5"}>5</option>
+                            <option value={"6"}>6</option>
                         </select>
                     </label>
                 </div>
                 <div className="col">
-                    <img className="center-picture" src={`../../src/images/profil_picture_${pictureProfile}.png`} alt="Thème de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
+                    <img className="center-picture" src={`../../src/images/profile_picture/profile_picture_${pictureProfile}.png`} alt="Thème de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
                 </div>
             </div>
             

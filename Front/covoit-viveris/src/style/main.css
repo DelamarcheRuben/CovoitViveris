@@ -61,27 +61,27 @@ p{
 
 /* ===================== Secondary Features ===================== */
 .margin1-ranking{
-    margin-left: 102px;
+    margin-left: 95px;
 }
 
 .margin2-ranking{
-    margin-left: 98px;
+    margin-left: 91px;
 }
 
 .margin3-ranking{
-    margin-left: 94px;
+    margin-left: 87px;
 }
 
 .margin1-small-ranking{
-    margin-left: 52px;
+    margin-left: 42px;
 }
 
 .margin2-small-ranking{
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .margin3-small-ranking{
-    margin-left: 48px;
+    margin-left: 38px;
 }
 
 .margin1-research{
@@ -97,15 +97,15 @@ p{
 }
 
 .margin1-small-research{
-    margin-left: -11px;
+    margin-left: 0px;
 }
 
 .margin2-small-research{
-    margin-left: -12px;
+    margin-left: -1px;
 }
 
 .margin3-small-research{
-    margin-left: -14px;
+    margin-left: -2px;
 }
 
 .column-item-badge {
@@ -317,7 +317,7 @@ button:hover{
     }
 
     .carshare-container {
-        width: 90%;
+        width: 95%;
         padding: 10px;
     }
 }
@@ -384,42 +384,6 @@ button:hover{
 .info-badge-circle:hover {
     background-color: var(--mainColor);
 }
-
-/* ===================== Media queries ===================== */
-@media only screen and (max-width: 1105px){
-
-    .large-screen {
-        display: none;
-    }
-
-    .small-screen {
-        display: block;
-    }
-}
-
-@media only screen and (min-width: 1105px){
-
-    .large-screen {
-        display: block;
-    }
-
-    .small-screen {
-        display: none;
-    }
-}
-
-@media (max-width: 600px) {
-    .scheduling-form {
-        width: 90%;
-        padding: 10px;
-    }
-
-    .carshare-container {
-        width: 90%;
-        padding: 10px;
-    }
-}
-
 
 .endCarShare-background{
     background-image     : url(./src/images/background_map.png);
@@ -753,7 +717,7 @@ button:hover{
     text-align: center;
     text-decoration: underline;
     padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .air-quality-rectangle {
@@ -773,10 +737,11 @@ button:hover{
     display: grid;
     grid-template-columns: 1fr 1fr; /* deux colonnes de taille égale */
     gap: 3rem; /* espace entre les grilles */
-    padding: 3rem; /* espace autour de la grille */
+    padding: 1.5rem; /* espace autour de la grille */
 }
 
 .home-text {
+    padding: 2rem;
     text-align: center;
 }
 
@@ -800,19 +765,76 @@ button:hover{
     align-self: center; /* Vertically center the content within the grid item */
 }
 
+.carshare-reserved-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Divides the grid into 3 equal columns */
+    gap: 10px; /* Adjust the gap as needed */
+    align-items: center; /* Vertically aligns the content in the center */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centring content within the grid items */
+.carshare-reserved-card > div,
+.carshare-reserved-card > button {
+    justify-self: center; /* Horizontally center the content within the grid item */
+    align-self: center; /* Vertically center the content within the grid item */
+}
+
+.participate-details-box {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Divides the grid into 3 equal columns */
+    gap: 10px; /* Adjust the gap as needed */
+    align-items: center; /* Vertically aligns the content in the center */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centring content within the grid items */
+.participate-details-box > div,
+.participate-details-box > button {
+    justify-self: center; /* Horizontally center the content within the grid item */
+    align-self: center; /* Vertically center the content within the grid item */
+}
+
 .btn-details {
     flex-grow: 0; /* Prevent the button from growing */
-    padding: 5px 15px; /* Adjust padding as needed */
     border: none;
-    border-radius: 4px;
     text-transform: uppercase;
     background-color: var(--mainColor);
-    color           : var(--backgroundColor);
-    cursor          : pointer;
-    border-radius   : 0;
-    padding         : 5px;
-    margin          : auto;
+    color: var(--backgroundColor);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 8px 12px; /* Ajusté pour garder la taille du bouton plus constante */
+    margin: auto;
+    font-size: 12px; /* Taille du texte augmentée */
 }
+
+.btn-details-disabled {
+    flex-grow: 0; /* Prevent the button from growing */
+    border: none;
+    text-transform: uppercase;
+    background-color: grey;
+    color: var(--backgroundColor);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 8px 12px; /* Ajusté pour garder la taille du bouton plus constante */
+    margin: auto;
+    font-size: 12px; /* Taille du texte augmentée */
+}
+
+.btn-details-disabled:hover{
+    color:white;
+}
+
 /* Add a little space between the elements */
 .carshare-card > *:not(:last-child) {
     margin-right: 10px;
@@ -822,6 +844,13 @@ button:hover{
     flex-grow: 1;
     font-size: 1rem;
     color: #333;
+}
+
+.challenge-name {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+    justify-self: left;
 }
 
 .carshare-info {
@@ -866,6 +895,68 @@ button:hover{
     margin: 20px auto;
 }
 
+.div-btn-challenge {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.challenge-details-box {
+    padding-bottom: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+    background-color: var(--backgroundColor);
+    height: auto;
+    box-sizing: border-box;
+}
+
+.challenge-details-box h4 {
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.challenge-xp {
+    display: flex;
+    align-items: center; /* Centrage vertical */
+    justify-content: center; /* Centrage horizontal */
+}
+
+.challenge-xp img {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 3px;
+    margin-left: 3px;
+}
+
+.challenge-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Divides the grid into 3 equal columns */
+    gap: 10px; /* Adjust the gap as needed */
+    align-items: center; /* Vertically aligns the content in the center */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centring content within the grid items */
+.challenge-box > div,
+.challenge-box > button {
+    justify-self: center; /* Horizontally center the content within the grid item */
+    align-self: center; /* Vertically center the content within the grid item */
+}
+
+.div-btn-challenge {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
 
 
 /* ===================== Media queries ===================== */
@@ -898,7 +989,7 @@ button:hover{
     }
 
     .carshare-container {
-        width: 90%;
+        width: 95%;
         padding: 10px;
     }
 
@@ -918,4 +1009,50 @@ button:hover{
         width: 90%;
         padding: 10px;
     }
+
+    .participate-details-box {
+        display: grid;
+        grid-template-columns: 1fr; /* Makes it a single column layout */
+        justify-items: center; /* Horizontally centers the content */
+        align-items: center; /* Vertically centers the content */
+    }
+}
+
+.participate-progress {
+    display: flex; /* Utilisez Flexbox */
+    flex-direction: column; /* Empile les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement dans le conteneur */
+    justify-content: center; /* Centre les éléments verticalement dans le conteneur */
+    width: 100%; /* Assure que le conteneur de progression prend toute la largeur disponible de la case du tableau */
+    padding: 10px; /* Ajoute de l'espace autour de la barre de progression et du texte du pourcentage */
+    box-sizing: border-box; /* Inclut le padding dans le calcul de la largeur */
+}
+
+.progress-bar-challenge {
+    justify-self: center;
+    width: 70%;
+    height: 15px; /* Hauteur de la barre de progression */
+    background-color: #ddd; /* Couleur de fond par défaut de la barre de progression */
+    border-radius: 5px; /* Bords arrondis pour la barre de progression */
+    overflow: hidden; /* Garde le contenu intérieur dans les bords arrondis */
+    position: relative; /* Position relative pour positionner la barre de remplissage absolument */
+    margin-bottom: 1%; /* Espace entre la barre de progression et le texte du pourcentage */
+}
+
+.progress-bar-challenge-fill {
+    background-color: var(--mainColor); /* Couleur de remplissage de la barre de progression */
+    height: 100%; /* La hauteur de remplissage correspond à celle de la barre de progression */
+    border-radius: 5px; /* Bords arrondis pour la barre de remplissage */
+    transition: width 0.5s ease; /* Transition douce pour le changement de largeur */
+}
+
+/* Centrer le pourcentage sous la barre de progression */
+.participate-progress p {
+    text-align: center; /* Centre le texte horizontalement */
+    margin-top: 0; /* Supprime la marge par défaut au-dessus du paragraphe */
+}
+
+.time-over {
+    color: red;
+    text-transform: uppercase;
 }

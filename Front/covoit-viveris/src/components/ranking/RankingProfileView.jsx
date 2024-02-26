@@ -39,9 +39,9 @@ export function RankingProfileView(u){
             <div className="small-screen">
                 <div className="ranking-profile-view-small" style={{ maxWidth: "290px" }}>
                     <div className="column">
-                        <div className="" style={{ marginTop: "-5px" }}>
-                            <img src={`../../src/images/profil_picture_${u.user.picture_profile}.png`} alt="Photo profil" width="110px"/>
-                            <p className={`color-company ${marginClass}-small-ranking`} style={{ marginTop: "-38px" }}><strong style={{ fontSize:"10px" }}>{u.user.level}</strong></p>
+                        <div className="" style={{ marginTop: "5px" }}>
+                            <img src={`../../src/images/profile_picture/profile_picture_${u.user.picture_profile}.png`} alt="Photo profil" width="90px"/>
+                            <p className={`color-company ${marginClass}-small-ranking`} style={{ marginTop: "-27px" }}><strong style={{ fontSize:"10px" }}>{u.user.level}</strong></p>
                         </div>
                         <div className="row" style={{ lineHeight: "20px"}}>
                             <p style={{ marginTop: "5px"}}><strong style={{ fontSize: "14px" }}>{u.user.pseudo}</strong></p>
@@ -67,9 +67,9 @@ export function RankingProfileView(u){
                     </div>
 
                     <div className="column" style={{ marginTop: "-85px"}}>
-                        <div className="">
-                            <img src={`../../src/images/profil_picture_${u.user.picture_profile}.png`} alt="Photo profil"/>
-                            <p className={`color-company ${marginClass}-ranking`} style={{ marginTop: "-58px" }}><strong>{u.user.level}</strong></p>
+                        <div className="" style={{ minWidth:"200px", marginTop:"20px" }}>
+                            <img className="center-picture" src={`../../src/images/profile_picture/profile_picture_${u.user.picture_profile}.png`} alt="Photo profil" width="75%"/>
+                            <p className={`color-company ${marginClass}-ranking`} style={{ marginTop: "-33px" }}><strong>{u.user.level}</strong></p>
                         </div>
                         <div className="row" style={{ lineHeight: "20px"}}>
                             <img src="../../src/images/exp/exp_level_1.png" alt="Photo profil" style={{ marginTop: "70px", width: "90%" }}/>

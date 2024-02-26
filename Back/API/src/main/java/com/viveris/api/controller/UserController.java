@@ -147,25 +147,31 @@ public class UserController {
 			Float co2_economy = user.getCo2_economy();
 			if(co2_economy!=null) currentUser.setCo2_economy(co2_economy);
 			
-			Optional<Address> address = addressService.findAddress(user.address.city, user.address.department,
-					user.address.postcode, user.address.road, user.address.house_number);
-			if(address.isPresent())
+			if(user.address!=null)
 			{
-				currentUser.setAddress(address.get());
-			}
-			else
-			{
-				currentUser.setAddress(addressService.saveAddress(user.getAddress()));
+				Optional<Address> address = addressService.findAddress(user.address.city, user.address.department,
+						user.address.postcode, user.address.road, user.address.house_number);
+				if(address.isPresent())
+				{
+					currentUser.setAddress(address.get());
+				}
+				else
+				{
+					currentUser.setAddress(addressService.saveAddress(user.getAddress()));
+				}
 			}
 			
-			Optional<Company> company = companyService.findCompany(user.company.name);
-			if(company.isPresent())
+			if(user.company!=null)
 			{
-				currentUser.setCompany(company.get());
-			}
-			else
-			{
-				currentUser.setCompany(companyService.saveCompany(user.getCompany()));
+				Optional<Company> company = companyService.findCompany(user.company.name);
+				if(company.isPresent())
+				{
+					currentUser.setCompany(company.get());
+				}
+				else
+				{
+					currentUser.setCompany(companyService.saveCompany(user.getCompany()));
+				}
 			}
 			
 			userService.saveUser(currentUser);

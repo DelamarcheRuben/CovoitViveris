@@ -4,7 +4,6 @@ import { ProfileView } from "../components/profile/ProfileView";
 import { WindowWidthProvider } from "../context/WindowWidthContext";
 
 const Profile = () => {
-  
   return (
     <React.Fragment>
       <WindowWidthProvider>

@@ -20,14 +20,14 @@ public class ParticipateId implements Serializable {
 
     
 
-	public Long getuid_league() {
+	public Long getuid_challaenge() {
 		return uid_challenge;
 	}
 
 
 
-	public void setuid_league(Long uID_league) {
-		uid_challenge = uID_league;
+	public void setuid_challaenge(Long uID_challenge) {
+		uid_challenge = uID_challenge;
 	}
 
 

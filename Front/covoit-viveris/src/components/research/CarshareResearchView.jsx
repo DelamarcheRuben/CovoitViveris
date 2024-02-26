@@ -2,17 +2,19 @@ import React, { useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import { CarshareResearchProfile } from "./CarshareResearchProfile.jsx";
+import {useUser} from "../../context/UserContext.jsx";
 
 
 export function CarshareResearchView(carshare){
     const navigate = useNavigate();
     const windowWidth = useWindowWidth();
+    const user = useUser();
 
     const redirectToBookCarshareView = () => {
         navigate('/research/book-carshare', { state: { carshare: carshare.carshare } });
     };
 
-    return (
+    return (user &&
         <React.Fragment>
             {windowWidth < 1105 &&
                 <div className="carShare-research">
@@ -112,9 +114,6 @@ export function CarshareResearchView(carshare){
                         </div>
                         <div className="col" style={{ marginRight:"3%", maxWidth:"350px"}}>
                             <div className="row" >
-                                <div className="col" style={{ marginTop:"45px", justifyContent:"right", display:"grid"}}>
-                                    <p><strong style={{ fontSize:"20px" }}>895g CO<sub>2</sub> économisés</strong></p>
-                                </div>
                                 <div className="col" style={{ marginTop:"45px", justifyContent:"right", display:"grid", maxWidth:"90px" }}>
                                     <img className="" style={{ width:"80px" }} src={`../src/images/co2/co2_vert.png`} alt="Image CO2"/>
                                 </div>

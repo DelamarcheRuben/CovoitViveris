@@ -43,7 +43,7 @@ const Login = () => {
     })
     .then((data) => {
         updateUser(data);
-        if(data.first_name == null){
+        if(data.first_name === null){
           navigate('/registrationDetails');
         }
         else{

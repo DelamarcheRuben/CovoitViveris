@@ -35,7 +35,7 @@ CREATE TABLE CHALLENGE (
     description VARCHAR(200),
     goal FLOAT,
     bonus_exp FLOAT,
-    expired_date DATE
+    deadline INT
 );
 CREATE TABLE COMPANY (
     PRIMARY KEY (UID),
@@ -57,12 +57,22 @@ CREATE TABLE LEAGUE (
     start_date DATE,
     end_date DATE
 );
+
 CREATE TABLE PARTICIPATE (
-    PRIMARY KEY (UID_challenge, UID_user),
-    UID_challenge INT NOT NULL,
+    PRIMARY KEY (UID_user, UID_challenge),
     UID_user INT NOT NULL,
-    progression FLOAT
+    UID_challenge INT NOT NULL,
+    co2_economy FLOAT,
+    kilometers FLOAT,
+    completed_rides INT,
+    different_passengers INT,
+    progress FLOAT,
+    start_date DATETIME NOT NULL,
+    end_date DATETIME NOT NULL,
+    has_completed BOOLEAN DEFAULT FALSE,
+    time_over BOOLEAN DEFAULT FALSE
 );
+
 CREATE TABLE PLAY (
     PRIMARY KEY (UID_league, UID_user),
     UID_league INT NOT NULL,

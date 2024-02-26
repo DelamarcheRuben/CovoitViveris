@@ -34,6 +34,24 @@ public class Participate {
     @JoinColumn(name="UID_challenge", referencedColumnName="UID")
     public Challenge challenge;
     
-    public Float progression;
+    public Float progress;
+    
+    public Float co2_economy;
+    
+    public Float kilometers;
+    
+    public Integer completed_rides;
+    
+    public Integer different_passengers;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    public LocalDateTime start_date;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    public LocalDateTime end_date;
+    
+    public Boolean has_completed;
+
+    public Boolean time_over;
 
 }
