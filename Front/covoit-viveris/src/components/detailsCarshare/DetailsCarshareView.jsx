@@ -13,7 +13,7 @@ export function DetailsCarshareView({ idCarshare }) {
     const [passengers, setPassengers] = useState([]);
 
     const handleDetailsClick = () => {
-        navigate("/end-carshare",  {state: {idCarshare: carshare.uid}})
+        navigate("/end-carshare",  {state: {idCarshare: idCarshare}})
     };
 
   useEffect(() => {
