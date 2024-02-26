@@ -22,8 +22,11 @@ export function ProfileCarShares(){
     return (user &&
         <React.Fragment>
             {carShares &&
-                <div className="row center-div-picture" >
-                    {carShares.map((carshare, index) => (
+                <div className="row center-div-picture" style={{ marginTop:"20px"}}>
+                    {carShares.length === 0
+                        ? <p className="center"><strong style={{ fontSize:"40px" }}>Aucun covoiturage trouvé</strong></p>
+                        :
+                        carShares.map((carshare, index) => (
                         <div key={index} style={{maxWidth:"450px"}}>
                             <React.Fragment key={index}>
                                 <ProfileCarSharesView key={index} carshare={carshare}/>
