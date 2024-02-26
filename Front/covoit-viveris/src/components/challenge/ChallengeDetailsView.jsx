@@ -59,7 +59,7 @@ export function ChallengeDetailsView({ challenge, isParticipating }) {
     };
 
     const generateParticipateData = (challengeId) => {
-        return {
+        let participateData = {
             uid: {
                 uid_challenge: challengeId,
                 uid_user: user.uid,
@@ -70,8 +70,25 @@ export function ChallengeDetailsView({ challenge, isParticipating }) {
             start_date: startDate,
             end_date: endDate,
             has_completed: false,
-            // Les champs spécifiques à certains défis sont omis pour simplifier
+            kilometers: null,
+            co2_economy: null,
         };
+
+        switch (challengeId) {
+            case 1:
+                participateData.kilometers = 0;
+                break;
+            case 4:
+                participateData.co2_economy = 0;
+                break;
+            case 5:
+                participateData.kilometers = 0;
+                break;
+            default:
+                break;
+        }
+
+        return participateData;
     };
 
     const buttonStyle = isParticipating ? { backgroundColor: "grey", color: "white", cursor: "not-allowed" } : {};
