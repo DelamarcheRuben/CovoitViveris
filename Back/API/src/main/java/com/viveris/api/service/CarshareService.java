@@ -88,13 +88,13 @@ public class CarshareService {
 		Double lat2 = Carshare.getEnd_place().getLatitude();
 		Double lon2 = Carshare.getEnd_place().getLongitude();
 		Long R = (long) (6371); // kilometres
-		Double φ1 = lat1 * Math.PI/180; // φ, λ in radians
-		Double φ2 = lat2 * Math.PI/180;
-		Double Δφ = (lat2-lat1) * Math.PI/180;
-		Double Δλ = (lon2-lon1) * Math.PI/180;
-		Double a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-		          Math.cos(φ1) * Math.cos(φ2) *
-		          Math.sin(Δλ/2) * Math.sin(Δλ/2);
+		Double phi1 = lat1 * Math.PI/180; // phi, lambda in radians
+		Double phi2 = lat2 * Math.PI/180;
+		Double deltaphi = (lat2-lat1) * Math.PI/180;
+		Double deltalambda = (lon2-lon1) * Math.PI/180;
+		Double a = Math.sin(deltaphi/2) * Math.sin(deltaphi/2) +
+		          Math.cos(phi1) * Math.cos(phi2) *
+		          Math.sin(deltalambda/2) * Math.sin(deltalambda/2);
 		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 		Float distance = (float) (R*c);
 		Carshare.setDistance(distance);
@@ -138,13 +138,13 @@ public class CarshareService {
 			Double lat2 = carshare.getStart_place().getLatitude();
 			Double lon2 = carshare.getStart_place().getLongitude();
 			Long R = (long) (6371); // kilometres
-			Double φ1 = lat1 * Math.PI/180; // φ, λ in radians
-			Double φ2 = lat2 * Math.PI/180;
-			Double Δφ = (lat2-lat1) * Math.PI/180;
-			Double Δλ = (lon2-lon1) * Math.PI/180;
-			Double a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-			          Math.cos(φ1) * Math.cos(φ2) *
-			          Math.sin(Δλ/2) * Math.sin(Δλ/2);
+			Double phi1 = lat1 * Math.PI/180; // phi, lambda in radians
+			Double phi2 = lat2 * Math.PI/180;
+			Double deltaphi = (lat2-lat1) * Math.PI/180;
+			Double deltalambda = (lon2-lon1) * Math.PI/180;
+			Double a = Math.sin(deltaphi/2) * Math.sin(deltaphi/2) +
+			          Math.cos(phi1) * Math.cos(phi2) *
+			          Math.sin(deltalambda/2) * Math.sin(deltalambda/2);
 			Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 			Float distance = (float) (R*c);
 			if(distance<=distance_max)
