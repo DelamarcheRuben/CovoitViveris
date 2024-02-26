@@ -10,7 +10,6 @@ const ChallengeDetails = () => {
     const { user } = useUser();
 
     useEffect(() => {
-        // Assurez-vous que user.uid existe avant de lancer l'appel API
         fetch(`http://localhost:8080/participates?id_user=${user.uid}`)
             .then(response => response.json())
             .then(data => {

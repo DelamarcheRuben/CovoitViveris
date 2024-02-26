@@ -7,6 +7,7 @@ import * as economyCO2     from "../../functions/economyCO2.js";
 import * as time     from "../../functions/time.js";
 import * as updateBadge     from "../../functions/updateBadge.js";
 import {useSnackbar} from "../../context/SnackbarContext.jsx";
+import {type} from "../../functions/economyCO2.js";
 export function EndCarshareView(){
 
     const { user, updateUser } = useUser();
@@ -17,21 +18,12 @@ export function EndCarshareView(){
 
     const location = useLocation();
     const [carshareId, setCarshareId] = useState('');
-    const [participations, setParticipations] = useState('');
 
-    const setUserParticipations = () =>  {
-        fetch(`http://localhost:8080/participates?id_user=${user.uid}`)
-            .then(response => response.json())
-            .then(data => {
-                setParticipations(data);
-            })
-            .catch(error => {
-                console.error("Erreur lors de la récupération des données de la table 'Participate' : ", error);
-            });
-    }
+    var participates = null;
 
     const updateParticipationInfo = (challengeId, newValue) => {
-        const participateToUpdate = participations.find(p => p.challenge.uid === challengeId);
+        console.log(participates);
+        const participateToUpdate = participates.find(p => p.challenge.uid === challengeId);
 
         if (!participateToUpdate) {
             console.error("Aucune participation trouvée pour le challenge " + challengeId);
@@ -84,6 +76,20 @@ export function EndCarshareView(){
     };
 
     useEffect(() => {
+        const setUserParticipates = async () => {
+            try{
+                const response = await fetch(`http://localhost:8080/participates?id_user=${user.uid}`);
+                if (!response.ok) throw new Error('Les participations n\'ont pas pu être récupéré');
+                var dataFetched = await response.json();
+                participates = dataFetched;
+            } catch(error) {
+                console.error("Erreur lors de la récupération des données de la table 'Participate' : ", error);
+            }
+        }
+        setUserParticipates();
+    })
+
+    useEffect(() => {
         const id = location.state?.idCarshare;
         if (id) {
             setCarshareId(id);
@@ -94,6 +100,7 @@ export function EndCarshareView(){
         if (!carshareId) return; // Ne rien faire si carshareId n'est pas défini
 
         const fetchCarshare = async () => {
+            console.log(participates);
             try {
                 const response = await fetch(`http://localhost:8080/carshare/${carshareId}`);
                 if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
@@ -137,13 +144,13 @@ export function EndCarshareView(){
 
                     setData({carShare:carshare_user, bonus:bonus, experience_earned:experience_earned,
                         level_up:level_up, level_end:level_end, experience_end:experience_end});
-                    
+
                     var user_copy = JSON.parse(JSON.stringify(user));
 
                     user_copy.level = level_end;user_copy.experience=experience_end;user_copy.co2_economy=(user_copy.co2_economy)+economy;
                     user_copy.kilometers=user_copy.kilometers+data_json.distance;user_copy.nb_carshares=user_copy.nb_carshares+1;
                     updateUser(user_copy);
-                    var update_user = {uid:user.uid, level:level_end, experience:experience_end, 
+                    var update_user = {uid:user.uid, level:level_end, experience:experience_end,
                         co2_economy: (user.co2_economy)+economy, kilometers:user.kilometers+data_json.distance, nb_carshares:user.nb_carshares+1};
 
                     var options = {
@@ -157,6 +164,7 @@ export function EndCarshareView(){
                     fetch("http://localhost:8080/user/"+user.uid, options)
                         .then((res) => {
                         })
+
                     if(user.uid===data_json.driver.uid)
                     {
                         var update_carshare = {has_validated : true, co2_economy:economy, experience:experience_earned};
@@ -171,7 +179,7 @@ export function EndCarshareView(){
                         .then((res) => {
                         })
                     }
-                    else 
+                    else
                     {
                         var update_passenger = {has_validated : true, experience:experience_earned};
                         var options = {
@@ -185,11 +193,8 @@ export function EndCarshareView(){
                         .then((res) => {
                         })
                     }
-                    
-                    await updateBadge.updateLevelBadge(user.uid, 0);
-
                     //on récupere dans 'participations' les participations de l'utilisateur
-                    setUserParticipations();
+
 
                     // Pour chaque participation, on met à jour son avancée avec les données
                     // nouvellement acquise de la fin de son covoiturage.
@@ -201,15 +206,40 @@ export function EndCarshareView(){
                     updateParticipationInfo(4, economy);
                     updateParticipationInfo(5, data_json.distance);
 
-                }   
+
+                    await updateBadge.updateLevelBadge(user.uid, 0);
+
+                    // calcul xp a faire
+                    /*participates.forEach(element => {
+                        if(element.has_completed === true) {
+                            const level_up = levels.level_up(user.level, user.experience, element.challenge.bonus_exp, 0);
+                            const level_end = user.level + level_up;
+                            const experience_end = levels.experience_user_end_carShare(user.level, user.experience, element.challenge.bonus_exp);
+                            var update_user = {uid:user.uid, level:level_end, experience:experience_end};
+
+                            var options = {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(update_user)
+                            };
+
+                            fetch("http://localhost:8080/user/"+user.uid, options)
+                                .then((res) => {})
+                        }
+                    }); */
+                }
 
             } catch (error) {
                 console.error("Erreur lors de la récupération du covoiturage :", error);
                 navigate("/home");
             }
         };
+
         fetchCarshare();
-    }, [carshareId]);
+
+    }, [carshareId, participates]);
 
     const handleClickRanking = () => {
         navigate('/ranking');
