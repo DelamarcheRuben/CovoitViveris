@@ -27,9 +27,7 @@ function HomeCurrentAirQuality({ location }) {
                 if (data && data.results && data.results.length > 0) {
                     var airQualityIndex = null;
                     for (let i = 0; i < data.results[0].measurements.length; i++) {
-                        console.log(data.results[0].measurements[i]);
                         if(data.results[0].measurements[i].parameter==="no2"){
-                            console.log("toto");
                             airQualityIndex = data.results[0].measurements[i].value;
                             break;
                         }

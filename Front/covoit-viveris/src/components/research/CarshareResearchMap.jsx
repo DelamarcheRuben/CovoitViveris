@@ -74,7 +74,7 @@ const CarshareResearchMap = () => {
                                 <Popup>
                                     Départ: {carshare.start_place.road}<br />
                                     Arrivée: {carshare.end_place.road}<br />
-                                    Place restantes : {carshare.max_passenger}<br />
+                                    Nombre de places maximales : {carshare.max_passenger}<br />
                                 </Popup>
                             </Marker>
                         ))}

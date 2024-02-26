@@ -12,15 +12,10 @@ export function RankingProfileView(u){
           return res.json();
         })
         .then((data) => {
+            console.log(u.user.uid, data);
             setBadges(data);
         });
     }, [u.user.uid]);
-
-    useEffect(() => {
-        if (badges.length > 0) {
-            console.log(badges[0].level);
-        }
-    }, [badges]);
 
     let marginClass;
 

@@ -24,6 +24,16 @@ export function BookCarshareView(){
         }
     }, [location]);
 
+    useEffect(() => {
+        if (carshare) { // S'assurer que carshare est défini
+            fetch("http://localhost:8080/passengers?id_carshare=" + carshare.uid) // Utilisez l'ID correct du carshare
+                .then((res) => res.json())
+                .then((data) => {
+                    setPassengers(data);
+                });
+        }
+    }, [carshare]); // Dépendance à carshare
+
     const handleBookClick = () => {
         const passenger = {
             method: 'POST',

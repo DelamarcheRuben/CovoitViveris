@@ -96,7 +96,7 @@ const RegistrationDetailsView = () => {
     const [company, setCompany] = useState('1|viveris');
     const { snackbar, openSnackbar, closeSnackbar } = useSnackbar();
 
-    const { user } = useUser();
+    const { user, updateUser } = useUser();
 
     const handleCreateClick = () => {
 
@@ -152,7 +152,7 @@ const RegistrationDetailsView = () => {
             }
 
             //Cas particulier pour Paris, où le département est aussi la ville
-            if (department === null && start_city === "Paris") {
+            if (department === null && city === "Paris") {
                 var department = "Paris";
             }
 
@@ -198,6 +198,33 @@ const RegistrationDetailsView = () => {
 
             openSnackbar('Votre compte est complété !', 'success');
 
+            fetch("http://localhost:8080/user/"+user.uid)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    updateUser(data);
+            });
+
+            for(var index=1; index<=8; index++){
+                var badge = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        uid:{
+                            uid_user: user.uid,
+                            uid_badge: index
+                        },
+                        level: 0 
+                    })
+                };
+
+                fetch("http://localhost:8080/ownedbadge", badge)
+                .then((res) => {
+                })
+            }
         }
     }
 
@@ -232,7 +259,7 @@ const RegistrationDetailsView = () => {
             <div className="row" style={{ marginTop:"20px" }}>
                 <div className="col">
                     <label> Type de voiture :
-                        <select id="background" value={carType.split("|")[1]} onChange={handleSelectCarTypeChange}>
+                        <select id="background" value={carType} onChange={handleSelectCarTypeChange}>
                             {
                                 economyCO2.type.map(element => {
                                     return(
@@ -265,17 +292,18 @@ const RegistrationDetailsView = () => {
             <div className="row" style={{ marginTop:"20px" }}>
                 <div className="col">
                     <label> Avatar utilisateur :
-                        <select id="background" value={pictureBackground} onChange={e => setPictureBackground(e.target.value)}>
+                        <select id="background" value={pictureProfile} onChange={e => setPictureProfile(e.target.value)}>
                             <option value={"1"}>1</option>
                             <option value={"2"}>2</option>
                             <option value={"3"}>3</option>
                             <option value={"4"}>4</option>
                             <option value={"5"}>5</option>
+                            <option value={"6"}>6</option>
                         </select>
                     </label>
                 </div>
                 <div className="col">
-                    <img className="center-picture" src={`../../src/images/profil_picture.png`} alt="Thème de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
+                    <img className="center-picture" src={`../../src/images/profile_picture/profile_picture_${pictureProfile}.png`} alt="Photo de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
                 </div>
             </div>
             

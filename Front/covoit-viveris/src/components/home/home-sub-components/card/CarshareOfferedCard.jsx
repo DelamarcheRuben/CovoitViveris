@@ -14,7 +14,6 @@ export function CarshareOfferedCard({ carshare }) {
             const response = await fetch("http://localhost:8080/passengers?id_carshare="+carshare.uid);
             var data_json  = await response.json();
             setPassengers(data_json);
-            console.log(data_json);
     
           } catch (error) {
             console.error("Erreur lors de la récupération des passagers :", error);

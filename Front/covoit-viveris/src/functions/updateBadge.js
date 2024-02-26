@@ -16,7 +16,6 @@ export async function updateLevelBadge(userId, index) {
     var res1 = await reponse.json();
     var requete = false;
     var level = res1.level;
-
     if (level != 4) {
         reponse = await fetch("http://localhost:8080/badge/" + idBadge)
         var res2 = await reponse.json();
@@ -38,21 +37,25 @@ export async function updateLevelBadge(userId, index) {
             var res3 = await reponse.json();
             stat = parseInt(res3);
         }
-
-
+        console.log(goals);
+        console.log("stat", stat, "level", level);
         if(level == 0 && stat >= goals[0]){
+            console.log("a");
             requete = true;
             level += 1;
         } 
-        else if(level == 1 && stat >= goals[1]){
+        else if(level== 1 && stat >= goals[1]){
+            console.log("b");
             requete = true;
             level += 1;
         } 
         else if(level == 2 && stat >= goals[2]){
+            console.log("c");
             requete = true;
             level += 1;
         } 
         else if(level == 3 && stat >= goals[3]){
+            console.log("d");
             requete = true;
             level += 1;
         } 

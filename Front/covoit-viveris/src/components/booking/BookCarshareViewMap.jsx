@@ -10,7 +10,7 @@ export function BookCarshareViewMap({ carshare }){
 
     useEffect(() => {
         if (carshare) { // S'assurer que carshare est défini
-            fetch("http://localhost:8080/passengers?id_carshare=" + carshare.id) // Utilisez l'ID correct du carshare
+            fetch("http://localhost:8080/passengers?id_carshare=" + carshare.uid) // Utilisez l'ID correct du carshare
                 .then((res) => res.json())
                 .then((data) => {
                     setPassengers(data);

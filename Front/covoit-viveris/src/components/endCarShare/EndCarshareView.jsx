@@ -22,7 +22,6 @@ export function EndCarshareView(){
     var participates = null;
 
     const updateParticipationInfo = (challengeId, newValue) => {
-        console.log(participates);
         const participateToUpdate = participates.find(p => p.challenge.uid === challengeId);
 
         if (!participateToUpdate) {
@@ -72,7 +71,6 @@ export function EndCarshareView(){
                 openSnackbar('Erreur lors de la mise à jour d\'un de vos challenges', 'error');
                 console.error("Erreur lors de la mise à jour de la participation", error);
             });
-        console.log("je suis après le fetch sur l'update de data participation");
     };
 
     useEffect(() => {
@@ -100,7 +98,6 @@ export function EndCarshareView(){
         if (!carshareId) return; // Ne rien faire si carshareId n'est pas défini
 
         const fetchCarshare = async () => {
-            console.log(participates);
             try {
                 const response = await fetch(`http://localhost:8080/carshare/${carshareId}`);
                 if (!response.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
@@ -133,7 +130,7 @@ export function EndCarshareView(){
                     const carshare_user = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16),
                         endHour:endHour.toString(), carShareTime:time_carshare.toString(), startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
                         co2Saved:economy, level:user.level, experience:user.experience, nbPeople:nbPassengers};
-                    const bonus = {bonusStreak:1.2, bonusPollution:data_json.bonus_pollution, bonusDay: 1.5};
+                    const bonus = {bonusStreak:1, bonusPollution:data_json.bonus_pollution, bonusDay: 1};
                     var nbPeople;
                     if(user.uid===data_json.driver.uid) nbPeople = nbPassengers;
                     else nbPeople=1; //si passager alors on ne gagne pas autant d'xp qu'un conducteur
@@ -161,9 +158,7 @@ export function EndCarshareView(){
                         body: JSON.stringify(update_user)
                     };
 
-                    fetch("http://localhost:8080/user/"+user.uid, options)
-                        .then((res) => {
-                        })
+                    await fetch("http://localhost:8080/user/"+user.uid, options)
 
                     if(user.uid===data_json.driver.uid)
                     {

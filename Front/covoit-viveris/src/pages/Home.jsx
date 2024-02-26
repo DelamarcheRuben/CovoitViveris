@@ -5,7 +5,6 @@ import HomeComponent from "../components/home/HomeComponent.jsx";
 
 const Home = () => {
   const { user } = useUser();
-
   return (
     <React.Fragment>
         <Navbar />

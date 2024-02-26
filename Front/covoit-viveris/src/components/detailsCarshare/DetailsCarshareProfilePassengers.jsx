@@ -10,17 +10,13 @@ export function DetailsCarshareProfilePassengers(passengerID) {
   useEffect(() => {
     const fetchCarshare = async () => {
       try {
-        console.log("-------------");
-        console.log(passengerID);
         var response  = await fetch("http://localhost:8080/user/"+passengerID.uid_user);
         var data_json = await response.json();
         setPassenger(data_json);
-        console.log(data_json);
 
         response  = await fetch("http://localhost:8080/common-carshares/"+passengerID.uid_user+"-"+user.uid);
         data_json = await response.json();
         setCommonCarshares(data_json);
-        console.log(data_json);
       } catch (error) {
         console.error("Erreur lors de la récupération du covoiturage :", error);
         navigate("/home");
