@@ -58,18 +58,13 @@ export function BookCarshareView(){
 
 
         fetch('http://localhost:8080/passenger', passenger)
-
             .then(response => {
                 if (!response.ok) {
                     throw new Error('La réservation a échoué. Veuillez réessayer.');
                     openSnackbar('La réservation a échoué', 'error');
                 }
-
                 openSnackbar('Le covoiturage a été réservé', 'success');
                 navigate("/home");
-                    
-              
-
             })
             .catch(error => {
                 openSnackbar(error.message, 'error');

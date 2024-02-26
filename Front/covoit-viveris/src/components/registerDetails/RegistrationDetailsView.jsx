@@ -2,7 +2,6 @@ import React, { useState, useEffect }  from "react";
 import { useNavigate  } from "react-router-dom";
 import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
-import CheckIcon from '@mui/icons-material/Check';
 import {useSnackbar} from "../../context/SnackbarContext.jsx";
 import * as economyCO2     from "../../functions/economyCO2.js";
 

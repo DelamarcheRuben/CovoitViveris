@@ -57,7 +57,6 @@ public class PassengerService {
 		
 		if(Passenger.getHas_validated())
 		{
-			
 			Carshare carshare = carshareRepository.findById(Passenger.uid.getuid_carshare()).get();
 			boolean finished = carshare.getHas_validated();
 			if(finished)
@@ -72,12 +71,11 @@ public class PassengerService {
 					}
 				}
 			}
-			
-			
+
 			carshare.setFinished(finished);
 			carshareRepository.save(carshare);
 		}
-		else {
+		/*else {
 			Carshare carshare = carshareRepository.findById(Passenger.uid.getuid_carshare()).get();
 			
 			User driver = carshare.getDriver();
@@ -133,7 +131,7 @@ public class PassengerService {
 			                .attachments(att)
 			                .build();
 		
-			         try {
+					try {
 			            SendEmailResponse data = resend.emails().send(sendEmailRequest);
 			            System.out.println("Email " + data.getId() + " envoyé.");
 			        } catch (ResendException e) {
@@ -145,7 +143,7 @@ public class PassengerService {
 				
 				
 			}
-		}
+		}*/
 		
 		return savedPassenger;
 	}

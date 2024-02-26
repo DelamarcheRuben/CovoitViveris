@@ -5,7 +5,7 @@ import { useWindowWidth } from "../../context/WindowWidthContext";
 import { ProfileNavbar  } from "./ProfileNavbar";
 import { ProfileFriends } from "./ProfileFriends";
 
-export function ProfileView(u){
+export function ProfileView(){
 
     const { user } = useUser();
     const windowWidth = useWindowWidth();
@@ -21,20 +21,6 @@ export function ProfileView(u){
             setCurrentUrl("profile");
         }
     }, [location.pathname]);
-
-    // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         setWindowWidth(window.innerWidth);
-    //     };
-
-    //     window.addEventListener('resize', handleResize);
-
-    //     return () => {
-    //         window.removeEventListener('resize', handleResize);
-    //     };
-    // }, []);
 
 
     return (user &&
