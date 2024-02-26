@@ -4,6 +4,7 @@ import { useUser }        from "../../context/UserContext.jsx";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import CheckIcon from '@mui/icons-material/Check';
 import {useSnackbar} from "../../context/SnackbarContext.jsx";
+import * as economyCO2     from "../../functions/economyCO2.js";
 
 const AutocompleteInput = ({ value, onChange, placeholder, setOutput }) => {
 
@@ -93,14 +94,15 @@ const RegistrationDetailsView = () => {
     const [pictureBackground, setPictureBackground] = useState('land');
     const [pictureProfile, setPictureProfile] = useState('1');
     const [company, setCompany] = useState('1|viveris');
-    const { openSnackbar } = useSnackbar();
+    const { snackbar, openSnackbar, closeSnackbar } = useSnackbar();
 
-    const { user, updateUser } = useUser();
+    const { user } = useUser();
 
     const handleCreateClick = () => {
 
-        if (!addressPlace || address == '' || firstName == '' || lastName == '' || job == '') {
+        if (!address) {
             openSnackbar('Certains champs sont erronés', 'error');
+            console.log("snackbar champ erronés")
             return;
         } else {
             
@@ -154,10 +156,9 @@ const RegistrationDetailsView = () => {
                 var department = "Paris";
             }
 
-            let car  = carType.split("|")[1];
             let comp = company.split("|");
 
-            var userDetails = {
+            var options = {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -175,7 +176,7 @@ const RegistrationDetailsView = () => {
                         latitude: addressPlace.lat,
                         longitude: addressPlace.lon
                     }, 
-                    car_type: car,
+                    car_type: carType.split("|")[1],
                     picture_background: pictureBackground,
                     picture_profile: pictureProfile,
                     company:{
@@ -185,7 +186,7 @@ const RegistrationDetailsView = () => {
                 })
             };
 
-            fetch("http://localhost:8080/user/" + user.uid, userDetails)
+            fetch("http://localhost:8080/user/" + user.uid, options)
             .then((res) => {
                 navigate('/home');
                 if (!res.ok){
@@ -193,35 +194,10 @@ const RegistrationDetailsView = () => {
                     openSnackbar('La validation des informations s\'est perdue en chemin. Réessayez', 'error')
                 }
                 openSnackbar('Votre profil a été complété !', 'success', );
-                
-                fetch("http://localhost:8080/user/"+user.uid)
-                .then((res) => {
-                    return res.json();
-                })
-                .then((data) => {
-                    updateUser(data);
-                });
             });
 
-            for(var index=1; index<=8; index++){
-                var badge = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        uid:{
-                            uid_user: user.uid,
-                            uid_badge: index
-                        },
-                        level: 0 
-                    })
-                };
-                
-                fetch("http://localhost:8080/ownedbadge", badge)
-                .then((res) => {
-                })
-            }
+            openSnackbar('Votre compte est complété !', 'success');
+
         }
     }
 
@@ -256,14 +232,14 @@ const RegistrationDetailsView = () => {
             <div className="row" style={{ marginTop:"20px" }}>
                 <div className="col">
                     <label> Type de voiture :
-                        <select id="background" value={carType} onChange={handleSelectCarTypeChange}>
-                            <option value={"135|Citadine - Essence"}>Citadine - Essence</option>
-                            <option value={"115|Citadine - Diesel"}>Citadine - Diesel</option>
-                            <option value={"160|Familiale - Essence"}>Familiale - Essence</option>
-                            <option value={"140|Familiale - Diesel"}>Familiale - Diesel</option>
-                            <option value={"210|Sportive - Essence"}>Sportive - Essence</option>
-                            <option value={"190|Sportive - Diesel"}>Sportive - Diesel</option>
-                            <option value={"50|Electrique/Hybride"}>Electrique/Hybride</option>
+                        <select id="background" value={carType.split("|")[1]} onChange={handleSelectCarTypeChange}>
+                            {
+                                economyCO2.type.map(element => {
+                                    return(
+                                        <option value={element.cons+"|"+element.id} key={"option_"+element.id}>{element.name}</option>
+                                    )
+                                })
+                            }
                         </select>
                     </label>
                 </div>
@@ -289,18 +265,17 @@ const RegistrationDetailsView = () => {
             <div className="row" style={{ marginTop:"20px" }}>
                 <div className="col">
                     <label> Avatar utilisateur :
-                        <select id="background" value={pictureProfile} onChange={e => setPictureProfile(e.target.value)}>
+                        <select id="background" value={pictureBackground} onChange={e => setPictureBackground(e.target.value)}>
                             <option value={"1"}>1</option>
                             <option value={"2"}>2</option>
                             <option value={"3"}>3</option>
                             <option value={"4"}>4</option>
                             <option value={"5"}>5</option>
-                            <option value={"6"}>6</option>
                         </select>
                     </label>
                 </div>
                 <div className="col">
-                    <img className="center-picture" src={`../../src/images/profile_picture/profile_picture_${pictureProfile}.png`} alt="Avatar de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
+                    <img className="center-picture" src={`../../src/images/profil_picture.png`} alt="Thème de l'utilisateur" style={{ width: "100%", marginTop: "-10px" }}/>
                 </div>
             </div>
             
@@ -329,3 +304,5 @@ const RegistrationDetailsView = () => {
 };
 
 export default RegistrationDetailsView;
+
+
