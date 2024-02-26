@@ -22,7 +22,7 @@ CREATE TABLE CARSHARE (
     bonus_pollution FLOAT,
     comeback BOOLEAN,
     experience INT,
-    has_validated BOOLEAN,
+    has_validated BOOLEAN DEFAULT FALSE,
     co2_economy FLOAT,
     finished BOOLEAN,
     UID_driver INT NOT NULL
@@ -47,7 +47,7 @@ CREATE TABLE PASSENGER (
     UID_carshare INT NOT NULL,
     UID_passenger INT NOT NULL,
     experience INT,
-    has_validated BOOLEAN
+    has_validated BOOLEAN DEFAULT FALSE
     -- schedule DATETIME,
     -- start_place INT
 );

@@ -6,9 +6,11 @@ import * as levels     from "../../functions/levels.js";
 import * as economyCO2     from "../../functions/economyCO2.js";
 import * as time     from "../../functions/time.js";
 import * as updateBadge     from "../../functions/updateBadge.js";
+import {useSnackbar} from "../../context/SnackbarContext.jsx";
 export function EndCarshareView(){
 
     const { user, updateUser } = useUser();
+    const { openSnackbar } = useSnackbar();
     const windowWidth = useWindowWidth();
     const navigate = useNavigate();
     const [data, setData] = useState(null);
@@ -17,7 +19,7 @@ export function EndCarshareView(){
     const [carshareId, setCarshareId] = useState('');
     const [participations, setParticipations] = useState('');
 
-    const getUserParticipations = () =>  {
+    const setUserParticipations = () =>  {
         fetch(`http://localhost:8080/participates?id_user=${user.uid}`)
             .then(response => response.json())
             .then(data => {
@@ -32,7 +34,7 @@ export function EndCarshareView(){
         const participateToUpdate = participations.find(p => p.challenge.uid === challengeId);
 
         if (!participateToUpdate) {
-            console.error("Aucune participation trouvée pour ce challenge");
+            console.error("Aucune participation trouvée pour le challenge " + challengeId);
             return;
         }
 
@@ -69,12 +71,18 @@ export function EndCarshareView(){
             .then(response => response.ok ? response.json() : Promise.reject(`Erreur: ${response.statusText} (code: ${response.status})`))
             .then(data => {
                 console.log(`Participation au challenge ${challengeId} mise à jour avec succès`, data);
-                // Vous pouvez rafraîchir les données de participation ici si nécessaire
+                openSnackbar('Un de vos challenges a été mis à jour', 'success', {
+                    label: 'Voir',
+                    onClick: () => navigate('/challenge-details'),
+                });
             })
             .catch(error => {
+                openSnackbar('Erreur lors de la mise à jour d\'un de vos challenges', 'error');
                 console.error("Erreur lors de la mise à jour de la participation", error);
             });
+        console.log("je suis après le fetch sur l'update de data participation");
     };
+
     useEffect(() => {
         const id = location.state?.idCarshare;
         if (id) {
@@ -176,15 +184,18 @@ export function EndCarshareView(){
                     
                     await updateBadge.updateLevelBadge(user.uid, 0);
 
-                    /* on met a jour chaque défi par un put pour chaque type de défi */
-
                     //on récupere dans 'participations' les participations de l'utilisateur
-                    getUserParticipations();
+                    setUserParticipations();
 
                     // Pour chaque participation, on met à jour son avancée avec les données
                     // nouvellement acquise de la fin de son covoiturage.
                     // Si le user ne participe pas à certains challenge, ça affichera un message dans la console.
-                    updateParticipationInfo(1, )
+                    // donc on update les informations de participation de tous les challenges.
+                    updateParticipationInfo(1, data_json.distance);
+                    //updateParticipationInfo(2, nb_differents_person); // Recup les infos via la route de Ruben
+                    //updateParticipationInfo(3, completed_rides); // Recup les infos via la route de Ruben
+                    updateParticipationInfo(4, economy);
+                    updateParticipationInfo(5, data_json.distance);
 
                 }   
 
