@@ -25,13 +25,16 @@ function HomeCurrentAirQuality({ location }) {
                 const data = await response.json();
                 // Vous pouvez adapter ce traitement selon la structure des données retournées par l'API
                 if (data && data.results && data.results.length > 0) {
-                    setAirQualityIndex(null);
-                    for (let i = 0; i < data.results.length; i++) {
-                        if(data.results[0].measurements[0].parameter==="no2"){
-                            const airQualityIndex = data.results[0].measurements[0].value;
-                            setAirQualityIndex(airQualityIndex);
+                    var airQualityIndex = null;
+                    for (let i = 0; i < data.results[0].measurements.length; i++) {
+                        console.log(data.results[0].measurements[i]);
+                        if(data.results[0].measurements[i].parameter==="no2"){
+                            console.log("toto");
+                            airQualityIndex = data.results[0].measurements[i].value;
+                            break;
                         }
                     }
+                    setAirQualityIndex(airQualityIndex);
                 } else {
                     // Gérer le cas où aucune donnée n'est disponible pour Paris
                     setAirQualityIndex(null);

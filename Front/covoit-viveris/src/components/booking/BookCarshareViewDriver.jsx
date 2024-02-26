@@ -24,7 +24,6 @@ export function BookCarshareViewDriver(userDriver){
             return res.json();
         })
         .then((data) => {
-            console.log(data);
             setOwnedBadges(data);
         });
 

@@ -100,7 +100,6 @@ const CarshareCreation = () => {
 
         if (!startPlace || !endPlace || !startDate || !startTime) {
             openSnackbar('Certains champs sont erronés', 'error');
-            console.log("snackbar champ erronés")
             return;
         } else {
             //Vérification des champs à envoyer qui existent dans ce qui a été reçu par la requête à nominatim
@@ -314,7 +313,7 @@ const CarshareCreation = () => {
 
             <br></br>
             <label style={{ marginBottom: "20px" }}> Date et heure de départ :<br></br>
-                            <input width="20%" type="date" name="dateStart" value={startDate} onChange={e => setStartDate(e.target.value)} />
+                            <input width="20%" type="date" name="dateStart" value={startDate} min={new Date().toISOString().split("T")[0]} onChange={e => setStartDate(e.target.value)} />
                             <input type="time" name="timeStart" value={startTime} onChange={e => setStartTime(e.target.value)} />
             </label>
 

@@ -101,7 +101,6 @@ const RegistrationDetailsView = () => {
 
         if (!addressPlace || address == '' || firstName == '' || lastName == '' || job == '') {
             openSnackbar('Certains champs sont erronés', 'error');
-            console.log("snackbar champ erronés")
             return;
         } else {
             
