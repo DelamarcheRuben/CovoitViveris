@@ -49,7 +49,7 @@ const ChallengeDetails = () => {
             </div>
             <div className="challenge-details-box">
                 <h4>Challenge disponible : </h4>
-                {participates.length === 0
+                {challenges.length === 0
                     ? <p className="center"><strong style={{ fontSize:"150%" }}>Votre entreprise n'a pas mis en place de défi</strong></p>
 
                     : challenges.map((challenge, index) => (

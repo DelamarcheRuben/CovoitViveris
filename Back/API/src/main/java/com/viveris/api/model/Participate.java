@@ -52,4 +52,6 @@ public class Participate {
     
     public Boolean has_completed;
 
+    public Boolean time_over;
+
 }

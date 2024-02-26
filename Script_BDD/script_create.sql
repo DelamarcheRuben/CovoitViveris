@@ -35,7 +35,7 @@ CREATE TABLE CHALLENGE (
     description VARCHAR(200),
     goal FLOAT,
     bonus_exp FLOAT,
-    expired_date DATE
+    deadline INT
 );
 CREATE TABLE COMPANY (
     PRIMARY KEY (UID),
@@ -69,7 +69,8 @@ CREATE TABLE PARTICIPATE (
     progress FLOAT,
     start_date DATETIME NOT NULL,
     end_date DATETIME NOT NULL,
-    has_completed BOOLEAN DEFAULT FALSE
+    has_completed BOOLEAN DEFAULT FALSE,
+    time_over BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE PLAY (
