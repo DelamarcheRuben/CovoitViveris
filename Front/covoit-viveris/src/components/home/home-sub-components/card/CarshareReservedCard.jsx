@@ -17,7 +17,7 @@ export function CarshareReservedCard({ carshare }) {
             </div>
             <div className="carshare-driver">
                 <span>avec {carshare.driver.pseudo}</span>
-                <img src={`../../src/images/profil_picture_${carshare.driver.picture_profile}.png`} alt={carshare.driver.name} />
+                <img src={`../../src/images/profile_picture/profile_picture_${carshare.driver.picture_profile}.png`} alt={carshare.driver.name} />
             </div>
             <button className="btn-details" onClick={handleDetailsClick}>Valider</button>
         </div>
