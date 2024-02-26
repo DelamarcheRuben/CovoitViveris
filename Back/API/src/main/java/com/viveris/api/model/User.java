@@ -63,9 +63,5 @@ public class User {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="UID_company", referencedColumnName="UID")
     public Company company;
-
-    /*@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="UID_sponsor", referencedColumnName="UID")
-    public User company;*/
     
 }

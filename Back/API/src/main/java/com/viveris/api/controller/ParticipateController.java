@@ -107,7 +107,7 @@ public class ParticipateController {
 			Integer completed_rides = participate.getCompleted_rides();
 			if(completed_rides!=null) 
 			{
-				currentParticipate.setCompleted_rides(completed_rides+currentParticipate.getCompleted_rides());
+				currentParticipate.setCompleted_rides(completed_rides);
 				Float progress = ((float)currentParticipate.getCompleted_rides()/(float)currentChallenge.getGoal())*100.0F; 
 				if(progress>=100.0F)
 				{
@@ -120,7 +120,7 @@ public class ParticipateController {
 			Integer different_passengers = participate.getDifferent_passengers();
 			if(different_passengers!=null) 
 			{
-				currentParticipate.setDifferent_passengers(different_passengers+currentParticipate.getDifferent_passengers());
+				currentParticipate.setDifferent_passengers(different_passengers);
 				Float progress = ((float)currentParticipate.getDifferent_passengers()/(float)currentChallenge.getGoal())*100.0F; 
 				if(progress>=100.0F)
 				{

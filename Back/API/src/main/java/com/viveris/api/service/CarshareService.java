@@ -186,4 +186,9 @@ public class CarshareService {
 		return carshareRepository.findProposedCarshares(id_user, yesterday);
 	}
 
+	public Integer getNbValidatedCarsharesWithDates(Long id_user, LocalDateTime start_date,
+			LocalDateTime end_date) {
+		return carshareRepository.findNbValidatedCarsharesWithDates(id_user,start_date, end_date);
+	}
+
 }

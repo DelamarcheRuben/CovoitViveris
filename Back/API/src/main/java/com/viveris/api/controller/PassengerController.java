@@ -78,7 +78,9 @@ public class PassengerController {
 	 * @return - An Iterable object of Passenger full filled
 	 */
 	@GetMapping("/nb-distinct-passengers")
-	public Integer getDistinctPassengersFromUser(@RequestParam(required = true) Long id_user) {
+	public Integer getDistinctPassengersFromUser(@RequestParam(required = true) Long id_user, 
+			@RequestParam(required = false) LocalDateTime start_date, @RequestParam(required = false) LocalDateTime end_date) {
+		if(start_date!=null && end_date!=null) return passengerService.getDistinctPassengersFromUserWithDates(id_user, start_date, end_date);
 		return passengerService.getDistinctPassengersFromUser(id_user);
 	}
 	
