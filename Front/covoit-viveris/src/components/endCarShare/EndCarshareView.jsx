@@ -47,18 +47,22 @@ export function EndCarshareView(){
                 }
                 else
                 {
-                    var economy = economyCO2.calcul_economy(data_json.distance, data_json.max_passenger, data_json.driver.car_type);
+                    const response_nb_passengers = await fetch("http://localhost:8080/passengers?id_carshare="+carshareId);
+                    if (!response_nb_passengers.ok) throw new Error('Le covoiturage n’a pas pu être récupéré');
+                    var nbPassengers = await response_nb_passengers.json();
+                    nbPassengers = nbPassengers.length;
+                    var economy = economyCO2.calcul_economy(data_json.distance, nbPassengers, data_json.driver.car_type);
                     economy = economy.toPrecision(3)/1000.0;
                     const time_carshare = new time.Time(0, Math.round(data_json.distance+10)); //temps du carshare en minutes (formule : temps = distance en km+10)
                     var endHour = new time.Time(parseInt(data_json.schedule.substring(11,13)), parseInt(data_json.schedule.substring(14,16)));
                     endHour.addMinutes(time_carshare.getTotalMinutes());
                     const carshare_user = {day:data_json.schedule.substring(0, 10), startHour:data_json.schedule.substring(11,16),
                         endHour:endHour.toString(), carShareTime:time_carshare.toString(), startLocation:data_json.start_place.city, endLocation:data_json.end_place.city,
-                        co2Saved:economy, level:data_json.driver.level, experience:data_json.driver.experience, nbPeople:data_json.max_passenger};
+                        co2Saved:economy, level:user.level, experience:user.experience, nbPeople:nbPassengers};
                     const bonus = {bonusStreak:1.2, bonusPollution:data_json.bonus_pollution, bonusDay: 1.5};
                     var nbPeople;
-                    if(user.uid===data_json.driver.uid) nbPeople = carshare_user.nbPeople;
-                    else nbPeople=0;
+                    if(user.uid===data_json.driver.uid) nbPeople = nbPassengers;
+                    else nbPeople=1; //si passager alors on ne gagne pas autant d'xp qu'un conducteur
                     const experience_earned = levels.calculate_experience_carShare(nbPeople, bonus.bonusStreak, bonus.bonusPollution, bonus.bonusDay);
                     const level_up  = levels.level_up(carshare_user.level, carshare_user.experience, experience_earned, 0);
                     const level_end = carshare_user.level + level_up;

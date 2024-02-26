@@ -28,13 +28,13 @@ export function ProfileSummary(){
                         <p>Distances parcourues  </p>
                         <p>Economie de CO2       </p>
                         <p>Covoiturages effectués</p>
-                        <p>Nombre total de badges</p>
+                        {/* <p>Nombre total de badges</p> */}
                     </div>
                     <div className="col">
                         <p>{user.kilometers} km     </p>
-                        <p>{user.co2_economy} kg CO2</p>
+                        <p>{user.co2_economy} kg de CO2</p>
                         <p>{user.nb_carshares}      </p>
-                        <p>{user.nb_carshares}      </p>
+                        {/* <p>{user.nb_carshares}      </p> */}
                     </div>
                 </div>
             </div>
@@ -60,13 +60,13 @@ export function ProfileSummary(){
                         <p style={{ fontSize:"22px"}}>Distances parcourues  </p>
                         <p style={{ fontSize:"22px"}}>Economie de CO2       </p>
                         <p style={{ fontSize:"22px"}}>Covoiturages effectués</p>
-                        <p style={{ fontSize:"22px"}}>Nombre total de badges</p>
+                        {/* <p style={{ fontSize:"22px"}}>Nombre total de badges</p> */}
                     </div>
                     <div className="col">
                         <p style={{ fontSize:"22px"}}>{user.kilometers} km     </p>
-                        <p style={{ fontSize:"22px"}}>{user.co2_economy} kg CO2</p>
+                        <p style={{ fontSize:"22px"}}>{user.co2_economy} kg de CO2</p>
                         <p style={{ fontSize:"22px"}}>{user.nb_carshares}      </p>
-                        <p style={{ fontSize:"22px"}}>{user.nb_carshares}      </p>
+                        {/* <p style={{ fontSize:"22px"}}>{user.nb_carshares}      </p> */}
                     </div>
                 </div>
             </div>

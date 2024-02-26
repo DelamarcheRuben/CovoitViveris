@@ -25,6 +25,7 @@ export function level_experience(level){
 
 // Retourne l'expérience gagné grâce à un trajet
 export function calculate_experience_carShare(nb_people, bonus_streak, bonus_pollution, bonus_day){
+    if(nb_people === 0) return 0; 
     return Math.ceil((10+2*nb_people) * bonus_streak * bonus_pollution * bonus_day); 
 }
 

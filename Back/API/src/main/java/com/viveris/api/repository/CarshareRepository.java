@@ -40,9 +40,9 @@ public interface CarshareRepository extends CrudRepository<Carshare, Long> {
 
 	@Query(value = "SELECT * FROM Carshare "
 			+ "WHERE uid IN( "
-			+ " SELECT uid FROM Carshare LEFT JOIN Passenger ON(uid=uid_carshare) "
-			+ " WHERE (uid_passenger= :id_user) "
-			+ "    OR UID_driver= :id_user) ", nativeQuery = true)
+			+ " SELECT uid FROM Carshare c LEFT JOIN Passenger p ON(uid=uid_carshare) "
+			+ " WHERE (uid_passenger= :id_user "
+			+ " OR UID_driver= :id_user) AND c.finished IS TRUE) ", nativeQuery = true)
 	Iterable<Carshare> findHistoryCarshares(Long id_user);
 
 

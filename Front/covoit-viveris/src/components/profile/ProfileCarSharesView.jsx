@@ -64,8 +64,8 @@ export function ProfileCarSharesView(carshare){
                     </div>
                     <div className="col" style={{ marginLeft:"-30px" }}>
                         <img className="center-picture" style={{ width:"50px" }} src={`../../src/images/co2/co2_vert.png`} alt="Image CO2"/>
-                        <p className="center"><strong style={{ fontSize:"15px" }}>522 g CO2 économisés</strong></p>
-                        <p className="center"><strong style={{ fontSize:"15px" }}>44 XP gagnés</strong></p>
+                        <p className="center"><strong style={{ fontSize:"15px" }}>{carshare.carshare.co2_economy} kg de CO2 économisés</strong></p>
+                        <p className="center"><strong style={{ fontSize:"15px" }}>{carshare.carshare.experience} XP gagnés</strong></p>
                     </div>
                 </div>
             </div>

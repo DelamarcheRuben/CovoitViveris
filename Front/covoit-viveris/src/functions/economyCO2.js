@@ -20,6 +20,10 @@ export function calcul_economy(distance, nb_passengers, cartype)
     type.forEach(element => {
         if(element.id === cartype) cons = element.cons;
     });
-    console.log(distance, cons, nb_passengers, cartype);
+    console.log("cons", cons);
+    console.log("dist", distance);
+    console.log("nb", nb_passengers);
+
+    console.log("result", distance*cons*nb_passengers);
     return distance*cons*nb_passengers;
 }

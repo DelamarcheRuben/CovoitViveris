@@ -19,8 +19,6 @@ export function ParticipateDetailsView({participate}){
     useEffect(() => {
         const calculateTimeRemaining = () => {
             const now = new Date();
-            console.log(participate);
-            console.log(participate.end_date);
             const endDateStr = participate.end_date;
             const endDate = new Date(endDateStr.replace(' ', 'T'));
 
