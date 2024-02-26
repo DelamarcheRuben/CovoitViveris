@@ -42,7 +42,7 @@ public class OwnedBadgeController {
 	 */
 	@GetMapping("/ownedbadge")
 	public OwnedBadge getOwnedBadge(@RequestParam Long badge, @RequestParam Long user) {
-		Optional<OwnedBadge> ownedBadge = ownedBadgeService.getOwnedBadge(new OwnedBadgeId(badge, user));
+		Optional<OwnedBadge> ownedBadge = ownedBadgeService.getOwnedBadge(new OwnedBadgeId(user, badge));
 		if(ownedBadge.isPresent()) {
 			return ownedBadge.get();
 		} else {
@@ -68,7 +68,7 @@ public class OwnedBadgeController {
 	 */
 	@PutMapping("/ownedbadge")
 	public OwnedBadge updateOwnedBadge(@RequestParam Long badge, @RequestParam Long user, @RequestBody OwnedBadge ownedBadge) {
-		Optional<OwnedBadge> e = ownedBadgeService.getOwnedBadge(new OwnedBadgeId(badge, user));
+		Optional<OwnedBadge> e = ownedBadgeService.getOwnedBadge(new OwnedBadgeId(user, badge));
 		if(e.isPresent()) {
 			OwnedBadge currentOwnedBadge = e.get();
 			Integer level = ownedBadge.getLevel();
@@ -87,7 +87,7 @@ public class OwnedBadgeController {
 	 */
 	@DeleteMapping("/ownedbadge")
 	public void deleteOwnedBadge(@RequestParam Long badge, @RequestParam Long user) {
-		ownedBadgeService.deleteOwnedBadge(new OwnedBadgeId(badge, user));
+		ownedBadgeService.deleteOwnedBadge(new OwnedBadgeId(user, badge));
 	}
 
 }

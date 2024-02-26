@@ -2,17 +2,19 @@ import React, { useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 import { useWindowWidth } from "../../context/WindowWidthContext.jsx";
 import { CarshareResearchProfile } from "./CarshareResearchProfile.jsx";
+import {useUser} from "../../context/UserContext.jsx";
 
 
 export function CarshareResearchView(carshare){
     const navigate = useNavigate();
     const windowWidth = useWindowWidth();
+    const user = useUser();
 
     const redirectToBookCarshareView = () => {
         navigate('/research/book-carshare', { state: { carshare: carshare.carshare } });
     };
 
-    return (
+    return (user &&
         <React.Fragment>
             {windowWidth < 1105 &&
                 <div className="carShare-research">

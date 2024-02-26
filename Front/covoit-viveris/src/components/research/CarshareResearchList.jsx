@@ -11,7 +11,7 @@ const CarshareResearchList = () => {
     return (user &&
         <React.Fragment>
             {searchResults.length === 0
-                ? <p className="center"><strong style={{ fontSize:"40px" }}>Aucun Résultat</strong></p>
+                ? <p className="center"><strong style={{ fontSize:"150%" }}>Aucun covoiturage avec cette date</strong></p>
                 : searchResults.map((carshare, index) => (
                     <CarshareResearchView key={index} carshare={carshare} />
                 ))}

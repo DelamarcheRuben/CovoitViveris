@@ -41,7 +41,7 @@ export function level_up(level, exp_user, exp_car_share, nb_level){
 // Retourne l'expérience de l'user à la fin du trajet dans son nouveau level
 export function experience_user_end_carShare(level, exp_user, exp_car_share){
     if(exp_user + exp_car_share < level_experience(level)){
-        return exp_car_share;
+        return exp_car_share + exp_user;
     }
     else{
         return experience_user_end_carShare(level+1, 0, exp_car_share - (level_experience(level) - exp_user));

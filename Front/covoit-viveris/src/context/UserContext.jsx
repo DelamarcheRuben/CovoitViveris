@@ -37,7 +37,6 @@ export const useUser = () => {
   if(context.user===null)
   {
     var user_id = getCookie("user_id")
-    console.log(user_id);
     if(user_id)
     {
       fetch("http://localhost:8080/user/"+user_id)

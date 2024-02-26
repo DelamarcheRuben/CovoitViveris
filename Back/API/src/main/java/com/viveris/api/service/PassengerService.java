@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.viveris.api.model.Carshare;
 import com.viveris.api.model.Passenger;
 import com.viveris.api.model.PassengerId;
+import com.viveris.api.model.User;
 import com.viveris.api.repository.CarshareRepository;
 import com.viveris.api.repository.PassengerRepository;
 
@@ -46,7 +47,7 @@ public class PassengerService {
 			boolean finished = carshare.getHas_validated();
 			if(finished)
 			{
-				Iterable<Passenger> passengers = passengerRepository.FindAllByIdCarshare(Passenger.uid.getuid_carshare());
+				Iterable<Passenger> passengers = passengerRepository.findAllByIdCarshare(Passenger.uid.getuid_carshare());
 				for(Passenger p:passengers)
 				{
 					if(!p.getHas_validated()) 
@@ -65,11 +66,15 @@ public class PassengerService {
 	}
 
 	public Iterable<Passenger> getPassengersByIdCarshare(Long id_carshare) {
-		return passengerRepository.FindAllByIdCarshare(id_carshare);
+		return passengerRepository.findAllByIdCarshare(id_carshare);
 	}
 
-	public Iterable<Passenger> getDistinctPassengersFromUser(Long id_user) {
+	public Integer getDistinctPassengersFromUser(Long id_user) {
 		return passengerRepository.findDistinctPassengersFromUser(id_user);
+	}
+
+	public Iterable<Passenger> getPassengersByIdUser(Long id_user) {
+		return passengerRepository.findAllByIdUser(id_user);
 	}
 
 }

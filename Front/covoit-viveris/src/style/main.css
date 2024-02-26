@@ -753,7 +753,7 @@ button:hover{
     text-align: center;
     text-decoration: underline;
     padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .air-quality-rectangle {
@@ -773,10 +773,11 @@ button:hover{
     display: grid;
     grid-template-columns: 1fr 1fr; /* deux colonnes de taille égale */
     gap: 3rem; /* espace entre les grilles */
-    padding: 3rem; /* espace autour de la grille */
+    padding: 1.5rem; /* espace autour de la grille */
 }
 
 .home-text {
+    padding: 2rem;
     text-align: center;
 }
 
@@ -802,17 +803,17 @@ button:hover{
 
 .btn-details {
     flex-grow: 0; /* Prevent the button from growing */
-    padding: 5px 15px; /* Adjust padding as needed */
     border: none;
-    border-radius: 4px;
     text-transform: uppercase;
     background-color: var(--mainColor);
-    color           : var(--backgroundColor);
-    cursor          : pointer;
-    border-radius   : 0;
-    padding         : 5px;
-    margin          : auto;
+    color: var(--backgroundColor);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 8px 12px; /* Ajusté pour garder la taille du bouton plus constante */
+    margin: auto;
+    font-size: 12px; /* Taille du texte augmentée */
 }
+
 /* Add a little space between the elements */
 .carshare-card > *:not(:last-child) {
     margin-right: 10px;
@@ -822,6 +823,13 @@ button:hover{
     flex-grow: 1;
     font-size: 1rem;
     color: #333;
+}
+
+.challenge-name {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+    justify-self: left;
 }
 
 .carshare-info {
@@ -866,6 +874,32 @@ button:hover{
     margin: 20px auto;
 }
 
+.challenge-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Divides the grid into 3 equal columns */
+    gap: 10px; /* Adjust the gap as needed */
+    align-items: center; /* Vertically aligns the content in the center */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centring content within the grid items */
+.challenge-box > div,
+.challenge-box > button {
+    justify-self: center; /* Horizontally center the content within the grid item */
+    align-self: center; /* Vertically center the content within the grid item */
+}
+
+.div-btn-challenge {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
 
 
 /* ===================== Media queries ===================== */
@@ -917,5 +951,12 @@ button:hover{
     .home-air-quality-box {
         width: 90%;
         padding: 10px;
+    }
+
+    .challenge-box {
+        display: grid;
+        grid-template-columns: 1fr; /* Makes it a single column layout */
+        justify-items: center; /* Horizontally centers the content */
+        align-items: center; /* Vertically centers the content */
     }
 }
