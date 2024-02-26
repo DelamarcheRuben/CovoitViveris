@@ -10,7 +10,7 @@ export function CarshareReservedCard({ carshare }) {
     };
 
     return (
-        <div className="carshare-card">
+        <div className="carshare-reserved-card">
             <div className="carshare-date">{carshare.schedule}</div>
             <div className="carshare-info">
                 <span>{carshare.start_place.city} vers {carshare.end_place.city}</span>
