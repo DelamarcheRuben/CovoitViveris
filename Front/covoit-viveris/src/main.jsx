@@ -21,6 +21,7 @@ import AdminCarshare from "./pages/AdminCarshare.jsx";
 import {SnackbarProvider} from "./context/SnackbarContext";
 import RegistrationDetails from "./pages/RegistrationDetails.jsx";
 import ChallengeDetails from "./components/challenge/ChallengeDetails.jsx";
+import DetailsCarshare from "./pages/DetailsCarshare.jsx";
 
 // Création d'un thème personnalisé avec les couleurs de votre site
 const theme = createTheme({
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
   {
     path: "/end-carshare",
     element: <div><EndCarShare/></div>
+  },
+  {
+    path: "/details-carshare",
+    element: <div><DetailsCarshare/></div>
   },
   {
     path: "research/book-carshare",
