@@ -40,7 +40,7 @@ public class PassengerController {
 	
 	/**
 	 * Read - Get one passenger 
-	 * @param id The id of the passenger
+	 * @param id - The id of the passenger
 	 * @return A Passenger object full filled
 	 */
 	@GetMapping("/passenger")
@@ -55,13 +55,19 @@ public class PassengerController {
 	
 	/**
 	 * Read - Get all passengers
+	 * @param id_carshare - The id of a carshare
+	 * @param id_user - The id of a user
 	 * @return - An Iterable object of Passenger full filled
 	 */
 	@GetMapping("/passengers")
-	public Iterable<Passenger> getPassengers(@RequestParam(required = false) Long id_carshare) {
+	public Iterable<Passenger> getPassengers(@RequestParam(required = false) Long id_carshare, @RequestParam(required = false) Long id_user) {
 		if(id_carshare!=null)
 		{
 			return passengerService.getPassengersByIdCarshare(id_carshare);
+		}
+		else if(id_user!=null)
+		{
+			return passengerService.getPassengersByIdUser(id_user);
 		}
 		return passengerService.getPassengers();
 	}

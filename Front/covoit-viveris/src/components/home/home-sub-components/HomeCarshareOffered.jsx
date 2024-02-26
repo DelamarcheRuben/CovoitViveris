@@ -11,7 +11,11 @@ function HomeCarshareOffered() {
         fetch(`http://localhost:8080/proposed-carshares?id_user=${user.uid}`)
             .then(response => response.json())
             .then(data => {
-                setCarshareOffered(data); // Mise à jour des résultats dans le contexte
+                var filtered_data = []; //we remove carshares that are already validated
+                for (let index = 0; index < data.length; index++) {
+                    if(!data[index].has_validated) filtered_data.push(data[index]);
+                }
+                setCarshareOffered(filtered_data); // Mise à jour des résultats dans le contexte
             })
             .catch(error => {
                 console.error("Erreur lors de la récupération des covoiturages reservés par l'utilisateur : ", error);
