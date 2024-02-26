@@ -385,42 +385,6 @@ button:hover{
     background-color: var(--mainColor);
 }
 
-/* ===================== Media queries ===================== */
-@media only screen and (max-width: 1105px){
-
-    .large-screen {
-        display: none;
-    }
-
-    .small-screen {
-        display: block;
-    }
-}
-
-@media only screen and (min-width: 1105px){
-
-    .large-screen {
-        display: block;
-    }
-
-    .small-screen {
-        display: none;
-    }
-}
-
-@media (max-width: 600px) {
-    .scheduling-form {
-        width: 90%;
-        padding: 10px;
-    }
-
-    .carshare-container {
-        width: 95%;
-        padding: 10px;
-    }
-}
-
-
 .endCarShare-background{
     background-image     : url(./src/images/background_map.png);
     background-size      : 50%;
@@ -801,6 +765,26 @@ button:hover{
     align-self: center; /* Vertically center the content within the grid item */
 }
 
+.participate-details-box {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Divides the grid into 3 equal columns */
+    gap: 10px; /* Adjust the gap as needed */
+    align-items: center; /* Vertically aligns the content in the center */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Centring content within the grid items */
+.participate-details-box > div,
+.participate-details-box > button {
+    justify-self: center; /* Horizontally center the content within the grid item */
+    align-self: center; /* Vertically center the content within the grid item */
+}
+
 .btn-details {
     flex-grow: 0; /* Prevent the button from growing */
     border: none;
@@ -873,6 +857,41 @@ button:hover{
     margin: auto;
     margin: 20px auto;
 }
+
+.div-btn-challenge {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.challenge-details-box {
+    padding-bottom: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+    background-color: var(--backgroundColor);
+    height: auto;
+    box-sizing: border-box;
+}
+
+.challenge-details-box h4 {
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.challenge-xp {
+    display: flex;
+    align-items: center; /* Centrage vertical */
+    justify-content: center; /* Centrage horizontal */
+}
+
+.challenge-xp img {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 3px;
+    margin-left: 3px;
 
 .challenge-box {
     display: grid;
@@ -953,10 +972,49 @@ button:hover{
         padding: 10px;
     }
 
-    .challenge-box {
+    .participate-details-box {
         display: grid;
         grid-template-columns: 1fr; /* Makes it a single column layout */
         justify-items: center; /* Horizontally centers the content */
         align-items: center; /* Vertically centers the content */
     }
+}
+
+.participate-progress {
+    display: flex; /* Utilisez Flexbox */
+    flex-direction: column; /* Empile les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement dans le conteneur */
+    justify-content: center; /* Centre les éléments verticalement dans le conteneur */
+    width: 100%; /* Assure que le conteneur de progression prend toute la largeur disponible de la case du tableau */
+    padding: 10px; /* Ajoute de l'espace autour de la barre de progression et du texte du pourcentage */
+    box-sizing: border-box; /* Inclut le padding dans le calcul de la largeur */
+}
+
+.progress-bar-challenge {
+    justify-self: center;
+    width: 70%;
+    height: 15px; /* Hauteur de la barre de progression */
+    background-color: #ddd; /* Couleur de fond par défaut de la barre de progression */
+    border-radius: 5px; /* Bords arrondis pour la barre de progression */
+    overflow: hidden; /* Garde le contenu intérieur dans les bords arrondis */
+    position: relative; /* Position relative pour positionner la barre de remplissage absolument */
+    margin-bottom: 1%; /* Espace entre la barre de progression et le texte du pourcentage */
+}
+
+.progress-bar-challenge-fill {
+    background-color: var(--mainColor); /* Couleur de remplissage de la barre de progression */
+    height: 100%; /* La hauteur de remplissage correspond à celle de la barre de progression */
+    border-radius: 5px; /* Bords arrondis pour la barre de remplissage */
+    transition: width 0.5s ease; /* Transition douce pour le changement de largeur */
+}
+
+/* Centrer le pourcentage sous la barre de progression */
+.participate-progress p {
+    text-align: center; /* Centre le texte horizontalement */
+    margin-top: 0; /* Supprime la marge par défaut au-dessus du paragraphe */
+}
+
+.time-over {
+    color: red;
+    text-transform: uppercase;
 }

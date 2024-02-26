@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChallengeHomeView } from "../../challenge/ChallengeHomeView.jsx";
+import { ParticipateHomeView } from "../../challenge/ParticipateHomeView.jsx";
 import { useUser } from "../../../context/UserContext.jsx";
 import {useNavigate} from "react-router-dom";
 
@@ -37,8 +37,7 @@ function HomeChallenges() {
             <h4>Challenges</h4>
             {participates.length === 0
                 ? <p className="center"><strong style={{ fontSize:"150%" }}>Pas de challenges en cours</strong></p>
-
-                : <ChallengeHomeView key={participates[0].uid} participate={participates[0]} />
+                : <ParticipateHomeView key={participates[0].uid} participate={participates[0]} />
             }
             <div className="div-btn-challenge">
                 <button className="btn-details" onClick={handleBtnChallengeClick}>{buttonLabel}</button>

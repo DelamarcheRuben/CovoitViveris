@@ -34,7 +34,6 @@ public class Challenge {
     public Float goal;
     
     public Float bonus_exp;
-    
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    public LocalDateTime expired_date;
+
+    public Integer deadline;
 }

@@ -138,6 +138,9 @@ public class ParticipateController {
 			
 			Boolean has_completed = participate.getHas_completed();
 			if(has_completed!=null) currentParticipate.setHas_completed(has_completed);
+
+			Boolean time_over = participate.getTime_over();
+			if(time_over!=null) currentParticipate.setTime_over(time_over);
 			
 			participateService.saveParticipate(currentParticipate);
 			return currentParticipate;
