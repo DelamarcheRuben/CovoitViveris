@@ -101,6 +101,19 @@ public class CarshareController {
 		return carshareService.getProposedCarshares(id_user);
 	}
 	
+	/**
+	 * Read - Get nb validated carshares over an interval
+	 * @param id_user : the user who is the passegner of the carshares
+	 * @return - An Iterable object of Carshare full filled
+	 */
+	@GetMapping("/nb-validated-carshares")
+	public Integer getProposedCarshares(@RequestParam(required = true) Long id_user, 
+			@RequestParam(required = true) LocalDateTime start_date, @RequestParam(required = true) LocalDateTime end_date) {
+		return carshareService.getNbValidatedCarsharesWithDates(id_user, start_date, end_date);
+	}
+	
+	
+	
 	
 	/**
 	 * Read - Get all carshares for a given date, sorted by distance (with a distance max)

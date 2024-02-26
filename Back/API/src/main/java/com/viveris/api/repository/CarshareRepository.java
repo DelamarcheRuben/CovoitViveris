@@ -55,4 +55,12 @@ public interface CarshareRepository extends CrudRepository<Carshare, Long> {
 	@Query(value = "SELECT * FROM Carshare "
 			+ "WHERE uid_driver= :id_user AND DATE_FORMAT(schedule, \"%Y-%m-%d\") > :yesterday ", nativeQuery = true)
 	Iterable<Carshare> findProposedCarshares(Long id_user, String yesterday);
+
+
+	@Query(value = "SELECT COUNT(*) FROM Carshare c JOIN Passenger p ON(uid=uid_carshare) "
+			+ "WHERE ((uid_driver= :id_user AND c.has_validated IS TRUE) OR (uid_passenger = :id_user AND p.has_validated IS TRUE)) "
+			+ "AND DATE_FORMAT(c.schedule, \\\"%Y-%m-%d\\\") >= :start_date AND DATE_FORMAT(c.schedule, \\\"%Y-%m-%d\\\") <= :end_date"
+			, nativeQuery = true)
+	Integer findNbValidatedCarsharesWithDates(Long id_user, LocalDateTime start_date,
+			LocalDateTime end_date);
 }
