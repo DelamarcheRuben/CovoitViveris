@@ -1,5 +1,6 @@
 package com.viveris.api.service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,11 @@ public class PassengerService {
 
 	public Iterable<Passenger> getPassengersByIdUser(Long id_user) {
 		return passengerRepository.findAllByIdUser(id_user);
+	}
+
+	public Integer getDistinctPassengersFromUserWithDates(Long id_user, LocalDateTime start_date,
+			LocalDateTime end_date) {
+		return passengerRepository.findDistinctPassengersFromUserWithDates(id_user, start_date, end_date);
 	}
 
 }
